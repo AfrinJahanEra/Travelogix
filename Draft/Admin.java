@@ -14,7 +14,7 @@ public class Admin {
         this.password = password;
     }
 
-    // Display the Admin Menu
+   
     public void displayAdminMenu() {
         boolean isRunning = true;
 
@@ -158,5 +158,9 @@ public class Admin {
             System.out.println("Sending account deletion request to higher authorities...");
             fileManager.writeToFile("requests.txt", "Admin Deletion Request - Email: " + email);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println();
     }
 }

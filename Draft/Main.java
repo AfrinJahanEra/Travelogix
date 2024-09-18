@@ -35,7 +35,7 @@ public class Main {
 
     // User Sign-Up
     private static void signUp() {
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
         System.out.println("Enter Email (format: example@gmail.com): ");
         String email = scanner.nextLine();
         if (!validateEmail(email)) {
@@ -66,7 +66,7 @@ public class Main {
 
         System.out.println("Are you a (1) User, (2) Transport Agency, or (3) Admin?");
         int role = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
         if (role == 1) {
             fileManager.writeToFile("user_info.txt", email + ", " + contact);
@@ -82,16 +82,16 @@ public class Main {
         }
     }
 
-    // User Login
+   
     private static void login() {
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         System.out.println("Enter Email: ");
         String email = scanner.nextLine();
 
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
 
-        // Check if login details are valid for any role
+       
         if (validateLogin(email, password, "user_info.txt")) {
             User user = new User(email, password);
             user.displayUserMenu();
