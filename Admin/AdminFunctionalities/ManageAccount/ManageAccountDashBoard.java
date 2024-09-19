@@ -1,9 +1,12 @@
 package Admin.AdminFunctionalities.ManageAccount;
-
+import Utilities_Package.Musers.Logout;
 import java.util.Scanner;
 
 public class ManageAccountDashBoard {
     private void showMenu() {
+        Logout logout = new Logout();
+        ShowloginInfoOfAdmin showloginInfoOfAdmin= new ShowloginInfoOfAdmin();
+        DeleteAccountOfAdmin deleteAccountOfAdmin = new DeleteAccountOfAdmin();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -15,14 +18,14 @@ public class ManageAccountDashBoard {
 
             switch (choice) {
                 case 1:
-                    showLoginInfo();
+                    showloginInfoOfAdmin.showLoginInfo();
                     break;
                 case 2:
-                    deleteAccount();
-                    return; // Exit the method and go back to login page
+                    deleteAccountOfAdmin.deleteAccount();
+                    return; 
                 case 3:
-                    logout();
-                    return; // Exit the method and go back to login page
+                    
+                    return; 
                 default:
                     System.out.println("Invalid option. Try again.");
             }

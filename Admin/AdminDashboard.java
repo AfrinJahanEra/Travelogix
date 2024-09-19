@@ -1,7 +1,8 @@
 package Admin;
 
 import Admin.AdminFunctionalities.ApproveRequest;
-import Admin.AdminFunctionalities.SeeReview;
+import Admin.AdminFunctionalities.ViewAllLogins;
+import Admin.AdminFunctionalities.SeeReviews.SeeReviews;
 import Admin.AdminFunctionalities.ManageAccount.ShowloginInfoOfAdmin;
 import Admin.AdminFunctionalities.ManageAccount.ManageAccountDashBoard;
 import java.util.Scanner;
@@ -11,7 +12,8 @@ public class AdminDashboard{
     public void displayAdminMenu() {
 
         ApproveRequest approveReq = new ApproveRequest();
-        SeeReview seeReview = new SeeReview();
+        SeeReviews seeReview = new SeeReviews();
+        ViewAllLogins viewAllLogins = new ViewAllLogins();
         ShowloginInfoOfAdmin showloginInfoOfAdmin = new ShowloginInfoOfAdmin();
         ManageAccountDashBoard manageAccountDashBoard=new ManageAccountDashBoard();
         
@@ -36,10 +38,10 @@ public class AdminDashboard{
                     seeReview.reviewUserSuggestions();
                     break;
                 case 3:
-                    ShowloginInfoOfAdmin.viewLoginInfo();
+                    viewAllLogins.showAllLogins();
                     break;
                 case 4:
-                    ManageAccountDashBoard.manageAdminAccount();
+                    // ManageAccountDashBoard.manageAdminAccount();
                     break;
                 case 5:
                     isRunning = false;
