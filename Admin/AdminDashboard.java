@@ -1,10 +1,20 @@
 package Admin;
+
+import Admin.AdminFunctionalities.ApproveRequest;
+import Admin.AdminFunctionalities.SeeReview;
+import Admin.AdminFunctionalities.ManageAccount.ShowloginInfoOfAdmin;
+import Admin.AdminFunctionalities.ManageAccount.ManageAccountDashBoard;
 import java.util.Scanner;
 
-public class AdminDashboard {
+
+public class AdminDashboard{
     public void displayAdminMenu() {
 
-        AdminFunctionalities addFun = new AdminFunctionalities();
+        ApproveRequest approveReq = new ApproveRequest();
+        SeeReview seeReview = new SeeReview();
+        ShowloginInfoOfAdmin showloginInfoOfAdmin = new ShowloginInfoOfAdmin();
+        ManageAccountDashBoard manageAccountDashBoard=new ManageAccountDashBoard();
+        
 
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
@@ -20,16 +30,16 @@ public class AdminDashboard {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    addFun.approveTransportAgencyRequests();
+                    approveReq.approveTransportAgencyRequests();
                     break;
                 case 2:
-                    addFun.reviewUserSuggestions();
+                    seeReview.reviewUserSuggestions();
                     break;
                 case 3:
-                    addFun.viewLoginInfo();
+                    ShowloginInfoOfAdmin.viewLoginInfo();
                     break;
                 case 4:
-                    addFun.manageAdminAccount();
+                    ManageAccountDashBoard.manageAdminAccount();
                     break;
                 case 5:
                     isRunning = false;

@@ -1,15 +1,20 @@
-package User.UserFunctionalities;
+package Utilities_Package.Musers;
+
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import Admin.AdminDashboard;
 
 class LoginPage {
     private String currentEmail = null;
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
+        AdminDashboard showAdminDashboard=new AdminDashboard();
+
 
         while (currentEmail == null) {
             System.out.print("Enter email: ");
@@ -17,17 +22,17 @@ class LoginPage {
             System.out.print("Enter password: ");
             String password = scanner.nextLine();
 
-            if (validateLogin(email, password)) {
+            if (StoreEmailinFile(email, password)) {
                 currentEmail = email;
                 System.out.println("Login successful!");
-                showMenu();
+                showAdminDashboard.displayAdminMenu();
             } else {
                 System.out.println("Invalid email or password. Try again.");
             }
         }
     }
 
-    private boolean validateLogin(String email, String password) {
+    private boolean StoreEmailinFile(String email, String password) {
         File loginFile = new File("login.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(loginFile))) {

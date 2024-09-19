@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteAccount {
+public class DeleteAccountOfAdmin {
     private void deleteAccount() {
         File loginFile = new File("login.txt");
         List<String> updatedLoginInfo = new ArrayList<>();

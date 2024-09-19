@@ -1,4 +1,4 @@
-package User.UserFunctionalities;
+package Utilities_Package.Musers;
 
 public class Logout {
     private void logout() {

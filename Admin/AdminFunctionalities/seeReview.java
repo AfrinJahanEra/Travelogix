@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-class SeeReview {
+public class SeeReview {
     public void viewReviews() {
         File reviewFile = new File("review.txt");
 
