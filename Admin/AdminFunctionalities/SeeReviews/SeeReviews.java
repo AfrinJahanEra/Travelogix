@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SeeReviews {
 
-    private List<String> reviews;  // Store reviews here
+    private List<String> reviews;  
     private ReviewAnalyzer analyzer = new ReviewAnalyzer();
     private Comment comment = new Comment();
     private ReviewFile reviewFile = new ReviewFile();
@@ -16,7 +16,7 @@ public class SeeReviews {
         // Load reviews from the file
         reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
 
-        // Display the reviews and allow commenting
+       
         displayReviewsWithFeedback();
         takeUserComment();
     }
@@ -35,7 +35,7 @@ public class SeeReviews {
 
         System.out.println("\nSelect the review number you want to comment on (1, 2, 3...): ");
         int reviewNumber = inputScanner.nextInt();
-        inputScanner.nextLine();  // Consume the newline
+        inputScanner.nextLine();  
 
         if (reviewNumber < 1 || reviewNumber > reviews.size()) {
             System.out.println("Invalid selection.");
@@ -48,9 +48,7 @@ public class SeeReviews {
         comment.addComment(reviews.get(reviewNumber - 1), userComment);
         System.out.println("Your comment: \"" + userComment + "\" has been added to review " + reviewNumber);
 
-        // Update the file with the new comment
         reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt", reviewNumber - 1, userComment);
 
-        // inputScanner.close();
     }
 }
