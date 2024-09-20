@@ -3,7 +3,7 @@ import Utilities_Package.Musers.Logout;
 import java.util.Scanner;
 
 public class ManageAccountDashBoard {
-    private void showMenu() {
+    public void showMenu() {
         Logout logout = new Logout();
         ShowloginInfoOfAdmin showloginInfoOfAdmin= new ShowloginInfoOfAdmin();
         DeleteAccountOfAdmin deleteAccountOfAdmin = new DeleteAccountOfAdmin();

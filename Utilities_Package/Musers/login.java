@@ -1,9 +1,9 @@
 package Utilities_Package.Musers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import Admin.AdminDashboard;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Login {
@@ -11,38 +11,61 @@ public class Login {
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
-        Admin.AdminDashboard showAdminDashboard = new Admin.AdminDashboard();
+        AdminDashboard showAdminDashboard = new AdminDashboard();  // Create the object for the dashboard
 
-        while (currentEmail == null) {
-            System.out.print("Enter email: ");
-            String email = scanner.nextLine();
-            System.out.print("Enter password: ");
-            String password = scanner.nextLine();
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
+        
+        // Set the current email
+        currentEmail = email;
+        System.out.println("Login successful!");
 
-            if (isLoginValid(email, password)) {
-                currentEmail = email;
-                System.out.println("Login successful!");
-            } else {
-                System.out.println("Invalid email or password. Try again.");
-            }
+        // Write email to login.txt
+        writeEmailToFile(email);
+
+        // After login, show admin dashboard
+        showAdminDashboard.displayAdminMenu();
+    }
+
+    // Method to write email to login.txt
+    private void writeEmailToFile(String email) {
+        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile, true))) {  // 'true' for appending to the file
+            writer.write(email);
+            writer.newLine();
+            System.out.println("Email added to login.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private boolean isLoginValid(String email, String password) {
+    // Method to delete email from login.txt
+    public void deleteEmailFromFile(String email) {
         File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
+        List<String> remainingEmails = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(loginFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] loginInfo = line.split(",");
-                if (loginInfo[0].equalsIgnoreCase(email) && loginInfo[1].equals(password)) {
-                    return true;
+                // Add all emails except the one to delete
+                if (!line.equalsIgnoreCase(email)) {
+                    remainingEmails.add(line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+
+        // Write back the remaining emails
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile))) {
+            for (String remainingEmail : remainingEmails) {
+                writer.write(remainingEmail);
+                writer.newLine();
+            }
+            System.out.println("Email removed from login.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getCurrentEmail() {

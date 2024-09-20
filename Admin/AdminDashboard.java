@@ -2,6 +2,7 @@ package Admin;
 
 import Admin.AdminFunctionalities.ApproveRequest;
 import Admin.AdminFunctionalities.ViewAllLogins;
+import Admin.AdminFunctionalities.ManageAccount.ManageAccountDashBoard;
 import Admin.AdminFunctionalities.SeeReviews.SeeReviews;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class AdminDashboard{
         ApproveRequest approveReq = new ApproveRequest();
         SeeReviews seeReview = new SeeReviews();
         ViewAllLogins viewAllLogins = new ViewAllLogins();
+        ManageAccountDashBoard manageAccountDashBoard= new ManageAccountDashBoard();
         
         
 
@@ -38,7 +40,7 @@ public class AdminDashboard{
                     viewAllLogins.showAllLogins();
                     break;
                 case 4:
-                    // ManageAccountDashBoard.manageAdminAccount();
+                    manageAccountDashBoard.showMenu();
                     break;
                 case 5:
                     isRunning = false;
