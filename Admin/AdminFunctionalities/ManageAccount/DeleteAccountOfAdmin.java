@@ -17,7 +17,8 @@ public class DeleteAccountOfAdmin {
     void deleteAccount() {
         Login login = new Login();
         Logout logout = new Logout();
-        DeleteAccount deleteAccount= new DeleteAccount(login login);
+        DeleteAccount deleteAccount= new DeleteAccount();
+        deleteAccount.deleteAccount(login);
         
     }
 }

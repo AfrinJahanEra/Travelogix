@@ -6,14 +6,13 @@ public class ReviewAnalyzer {
     public String analyzeReview(String review) {
         String lowerCaseReview = review.toLowerCase();
 
-        // Simple classification based on keywords
-        if (lowerCaseReview.contains("amazing") || lowerCaseReview.contains("good") || lowerCaseReview.contains("great")) {
-            return "Positive";
-        } else if (lowerCaseReview.contains("not") || lowerCaseReview.contains("bad") || lowerCaseReview.contains("worst")) {
+        if (lowerCaseReview.contains("not") || lowerCaseReview.contains("bad") || lowerCaseReview.contains("worst")) {
             return "Negative";
+        // Simple classification based on keywords
+        }else if (lowerCaseReview.contains("amazing") || lowerCaseReview.contains("good") || lowerCaseReview.contains("great")) {
+            return "Positive";
         } else {
             return "Neutral";
         }
     }
 }
-

@@ -13,10 +13,6 @@ public class DeleteAccount {
 
     Logout logout = new Logout();
 
-    public DeleteAccount(Login login) {
-        //TODO Auto-generated constructor stub
-    }
-
     public void deleteAccount(Login login) {
         File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
         List<String> updatedLoginInfo = new ArrayList<>();

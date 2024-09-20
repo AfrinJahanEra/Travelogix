@@ -1,26 +1,25 @@
 package Admin.AdminFunctionalities.SeeReviews;
+
 import Utilities_Package.FileManager.ReviewFile;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class SeeReviews {
 
-    private List<String> reviews = new ArrayList<>();
+    private List<String> reviews;  // Store reviews here
     private ReviewAnalyzer analyzer = new ReviewAnalyzer();
     private Comment comment = new Comment();
-    ReviewFile reviewFile = new ReviewFile();
+    private ReviewFile reviewFile = new ReviewFile();
 
     public void reviewUserSuggestions() {
-        reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
+        // Load reviews from the file
+        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
+
+        // Display the reviews and allow commenting
         displayReviewsWithFeedback();
         takeUserComment();
     }
-
-
-
 
     private void displayReviewsWithFeedback() {
         System.out.println("Reviews with Feedback:");
@@ -31,13 +30,12 @@ public class SeeReviews {
         }
     }
 
-   
     private void takeUserComment() {
         Scanner inputScanner = new Scanner(System.in);
 
         System.out.println("\nSelect the review number you want to comment on (1, 2, 3...): ");
         int reviewNumber = inputScanner.nextInt();
-        inputScanner.nextLine();  
+        inputScanner.nextLine();  // Consume the newline
 
         if (reviewNumber < 1 || reviewNumber > reviews.size()) {
             System.out.println("Invalid selection.");
@@ -47,10 +45,12 @@ public class SeeReviews {
         System.out.println("Enter your comment for review " + reviewNumber + ": ");
         String userComment = inputScanner.nextLine();
 
-        comment.addComment(userComment);
+        comment.addComment(reviews.get(reviewNumber - 1), userComment);
         System.out.println("Your comment: \"" + userComment + "\" has been added to review " + reviewNumber);
-        inputScanner.close();
+
+        // Update the file with the new comment
+        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt", reviewNumber - 1, userComment);
+
+        // inputScanner.close();
     }
 }
-
-

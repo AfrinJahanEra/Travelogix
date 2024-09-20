@@ -19,6 +19,9 @@ public class  ApproveRequest{
         if(userInput==1){
             System.out.println("Request Approved");
         }
+        else{
+            System.out.println("Request not approved");
+        }
         adminDashboard.displayAdminMenu();
     }
 }

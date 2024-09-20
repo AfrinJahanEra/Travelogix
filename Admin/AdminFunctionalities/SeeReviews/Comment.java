@@ -1,10 +1,8 @@
 package Admin.AdminFunctionalities.SeeReviews;
-import Admin.AdminDashboard;
 
 public class Comment {
-    public void addComment(String comment) {
-        AdminDashboard adminDashboard = new AdminDashboard();
-        System.out.println("Comment added: " + comment);
-        adminDashboard.displayAdminMenu();
+    public void addComment(String review, String comment) {
+        System.out.println("Comment added for review: \"" + review + "\"");
+        System.out.println("Comment: " + comment);
     }
 }

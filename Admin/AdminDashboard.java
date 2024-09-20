@@ -3,8 +3,6 @@ package Admin;
 import Admin.AdminFunctionalities.ApproveRequest;
 import Admin.AdminFunctionalities.ViewAllLogins;
 import Admin.AdminFunctionalities.SeeReviews.SeeReviews;
-import Admin.AdminFunctionalities.ManageAccount.ShowloginInfoOfAdmin;
-import Admin.AdminFunctionalities.ManageAccount.ManageAccountDashBoard;
 import java.util.Scanner;
 
 
@@ -14,8 +12,7 @@ public class AdminDashboard{
         ApproveRequest approveReq = new ApproveRequest();
         SeeReviews seeReview = new SeeReviews();
         ViewAllLogins viewAllLogins = new ViewAllLogins();
-        ShowloginInfoOfAdmin showloginInfoOfAdmin = new ShowloginInfoOfAdmin();
-        ManageAccountDashBoard manageAccountDashBoard=new ManageAccountDashBoard();
+        
         
 
         Scanner scanner = new Scanner(System.in);
