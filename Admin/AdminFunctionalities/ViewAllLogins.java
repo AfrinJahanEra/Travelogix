@@ -1,5 +1,5 @@
 package Admin.AdminFunctionalities;
-
+import Utilities_Package.FileManager.AllLoginFile;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,22 +13,9 @@ public class ViewAllLogins {
         AdminDashboard adminDashboard=new AdminDashboard();
         File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
 
+        AllLoginFile allLoginFile= new AllLoginFile();
+        allLoginFile.AllLoginFile(loginFile);
         
-        try (BufferedReader reader = new BufferedReader(new FileReader(loginFile))) {
-            String line;
-            System.out.println("List of all logins:");
-            while ((line = reader.readLine()) != null) {
-              
-                String[] loginInfo = line.split(",");
-                
-                System.out.println("Email: " + loginInfo[0] + ", Password: " + loginInfo[1]);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("The login file was not found.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         adminDashboard.displayAdminMenu();
     }
 }

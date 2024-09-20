@@ -1,6 +1,6 @@
 package Utilities_Package.Musers;
 
-class Logout {
+public class Logout {
     public void logout() {
         Login login = new Login();
         

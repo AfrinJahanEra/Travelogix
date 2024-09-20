@@ -1,5 +1,5 @@
 package Admin.AdminFunctionalities.SeeReviews;
-
+import Utilities_Package.FileManager.ReviewFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -11,29 +11,15 @@ public class SeeReviews {
     private List<String> reviews = new ArrayList<>();
     private ReviewAnalyzer analyzer = new ReviewAnalyzer();
     private Comment comment = new Comment();
+    ReviewFile reviewFile = new ReviewFile();
 
     public void reviewUserSuggestions() {
-        loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
+        reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
         displayReviewsWithFeedback();
         takeUserComment();
     }
 
 
-    private void loadReviewsFromFile(String filename) {
-        try {
-            File file = new File(filename);
-            Scanner fileScanner = new Scanner(file);
-
-            while (fileScanner.hasNextLine()) {
-                String review = fileScanner.nextLine();
-                reviews.add(review);
-            }
-
-            fileScanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filename);
-        }
-    }
 
 
     private void displayReviewsWithFeedback() {
