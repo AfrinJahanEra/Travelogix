@@ -31,7 +31,7 @@ public class ReviewFile {
         return reviews;
     }
 
-    // Method to save a comment to the file under the specific review
+    // save a comment to the file under the specific review
     public void saveCommentToFile(String filename, int reviewIndex, String comment) {
         List<String> reviews = loadReviewsFromFile(filename);
 
