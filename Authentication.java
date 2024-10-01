@@ -1,6 +1,10 @@
 import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
 
-public class Authentication {
+
+public class Authentication{
     private static final String USERS_FILE = "users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
@@ -23,7 +27,7 @@ public class Authentication {
     public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
             if(role =="1") role= "Admin";
-            else role ="User";
+            else role ="Traveler";
             writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
             writer.newLine();
         } catch (IOException e) {
@@ -32,7 +36,7 @@ public class Authentication {
     }
 
     // Method to check if the user credentials are valid
-    private boolean isValidUser(String email, String password) {
+    public boolean isValidUser(String email, String password) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -49,30 +53,31 @@ public class Authentication {
 
     // Method to get password input with masking
     public String getPasswordInput() {
-        /*Console console = System.console();
-        if (console == null) {
-            // If the console is not available (like in some IDEs), use Scanner as fallback
-            Scanner scanner = new Scanner(System.in);
-            return scanner.nextLine().trim();
-        } else {
-            char[] passwordArray = console.readPassword();
-            return new String(passwordArray);
-        }
-    }*/
+
         Console console = System.console();
 
-        if (console == null) {
-            System.out.println("No console available");
-
-        }
 
         // Prompt user to enter a password
+        assert console != null;
         char[] passwordArray = console.readPassword(); // Masks the input with *
 
         // Convert char array to String
         String password = new String(passwordArray);
 
+        
         // Display the entered password (for demonstration purposes)
         return password;
+    }
+
+
+    public String encryptPassword(String password) throws NoSuchAlgorithmException{
+        
+        MessageDigest md= MessageDigest.getInstance("MD5");
+        byte[] messageDigest= md.digest(password.getBytes());
+        BigInteger bigInt = new BigInteger(1, messageDigest);
+
+        return bigInt.toString(16);
+         
+        
     }
 }

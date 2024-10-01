@@ -1,3 +1,4 @@
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class SignUp extends Authentication {
@@ -6,7 +7,7 @@ public class SignUp extends Authentication {
     private static final int MIN_PASSWORD_LENGTH = 8;
 
     // Method to sign up as Admin or User do the work to work
-    public void signUp() {
+    public void signUp() throws NoSuchAlgorithmException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Sign Up");
         System.out.println("Role: \n1. Admin\n2. Traveler\nEnter your role: ");
@@ -45,11 +46,18 @@ public class SignUp extends Authentication {
                     System.out.println("Passwords do not match. Try again.");
                 }
             }
+            
+
         }
 
+        String encrypted_pass =encryptPassword(password);
+        
+        
+
+        
         // Save user information
-        saveUserInfo(role, name, phoneNumber, email, password);
-        System.out.println("Sign up successful!");
+        saveUserInfo(role, name, phoneNumber, email, encrypted_pass);
+        System.out.println("Sign Up successful");
 
         scanner.close();
     }
