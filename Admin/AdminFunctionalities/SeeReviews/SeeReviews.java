@@ -1,7 +1,6 @@
 package Admin.AdminFunctionalities.SeeReviews;
 
 import Utilities_Package.FileManager.ReviewFile;
-import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ public class SeeReviews {
     private ReviewFile reviewFile = new ReviewFile();
 
     public void reviewUserSuggestions() {
-        // Load reviews from the file
+    
         reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
 
        

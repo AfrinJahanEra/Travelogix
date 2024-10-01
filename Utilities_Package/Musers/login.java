@@ -11,26 +11,28 @@ public class Login {
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
-        AdminDashboard showAdminDashboard = new AdminDashboard();  // Create the object for the dashboard
+        AdminDashboard showAdminDashboard = new AdminDashboard(); // Create the object for the dashboard
 
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
-        
+
         // Set the current email
         currentEmail = email;
         System.out.println("Login successful!");
 
-        // Write email to login.txt
+        // This is for Writing email to login.txt
         writeEmailToFile(email);
 
         // After login, show admin dashboard
         showAdminDashboard.displayAdminMenu();
     }
 
-    // Method to write email to login.txt
+    // write email to login.txt
     private void writeEmailToFile(String email) {
-        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile, true))) {  // 'true' for appending to the file
+        File loginFile = new File(
+                "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile, true))) { // 'true' for appending to
+                                                                                            // the file
             writer.write(email);
             writer.newLine();
             System.out.println("Email added to login.txt");
@@ -39,9 +41,10 @@ public class Login {
         }
     }
 
-    // Method to mark email as deleted in login.txt
+    // mark email as deleted in login.txt
     public void markEmailAsDeleted(String email) {
-        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
+        File loginFile = new File(
+                "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
         List<String> emailList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(loginFile))) {
@@ -58,7 +61,7 @@ public class Login {
             e.printStackTrace();
         }
 
-        // Write the updated email list back to the file
+        // updated email list back to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile))) {
             for (String updatedEmail : emailList) {
                 writer.write(updatedEmail);

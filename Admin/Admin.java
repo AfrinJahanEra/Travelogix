@@ -1,7 +1,5 @@
 package Admin;
 
-import java.io.*;
-import java.util.*;
 
 public class Admin {
 

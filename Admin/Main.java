@@ -8,8 +8,6 @@ public class Main {
 
         Login login = new Login();
         login.login();
-        // AdminDashboard addDash = new AdminDashboard();
-        // addDash.displayAdminMenu();
     }
 }
 
