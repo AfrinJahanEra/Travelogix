@@ -2,7 +2,6 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 public class DisplayCheckList {
 
-    // Method to display the checklist with packed/unpacked status
     public void displayChecklist(Checklist checklist) {
         System.out.println("\n--- Checklist ---");
         for (int i = 0; i < checklist.getItems().size(); i++) {

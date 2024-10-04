@@ -15,7 +15,6 @@ public class AudioUtils {
         return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
     }
 
-    // Save audio to a WAV file
     public static void saveAudioToFile(byte[] audioBytes, AudioFormat format, String filePath) {
         try {
             File file = new File(filePath);
@@ -28,7 +27,7 @@ public class AudioUtils {
         }
     }
 
-    // Capture audio for a given duration (in milliseconds)
+    // Capturing audio for a given duration (in milliseconds)
     public static byte[] captureAudio(int durationMs) throws LineUnavailableException {
         AudioFormat format = getAudioFormat();
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);

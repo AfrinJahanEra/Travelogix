@@ -12,7 +12,6 @@ public class NoteWriter {
         this.noteManager = noteManager;
     }
 
-    // Capture and save a note
     public void writeAndSaveNote() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the title of the note: ");
@@ -28,7 +27,7 @@ public class NoteWriter {
             noteContent.append(line).append(System.lineSeparator());
         }
 
-        // Save the note content to a file
+        // Saving the note content to a file
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(noteContent.toString());
             System.out.println("Note saved successfully!");

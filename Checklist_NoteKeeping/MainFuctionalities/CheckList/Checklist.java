@@ -3,9 +3,9 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 import java.util.*;
 
 public class Checklist {
-    private List<String> items;         // List of items to pack
-    private List<Boolean> packedItems;  // Status of packed items (true if packed)
-    private int totalItems;             // Total number of items
+    private List<String> items;         
+    private List<Boolean> packedItems;  
+    private int totalItems;             
 
     public Checklist() {
         items = new ArrayList<>();
@@ -13,7 +13,6 @@ public class Checklist {
         totalItems = 0;
     }
 
-    // Getter methods for checklist attributes
     public List<String> getItems() {
         return items;
     }
@@ -26,12 +25,10 @@ public class Checklist {
         return totalItems;
     }
 
-    // Method to increase the total items count
     public void increaseTotalItems() {
         totalItems++;
     }
 
-    // Method to decrease the total items count
     public void decreaseTotalItems() {
         totalItems--;
     }

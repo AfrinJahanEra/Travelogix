@@ -21,10 +21,10 @@ public class CheckListdashBoard {
 
             switch (choice) {
                 case 1:
-                    addItems.addItems(checklist);  // Add items
+                    addItems.addItems(checklist);  
                     break;
                 case 2:
-                    markPacked.markPacked(checklist);  // Mark items as packed
+                    markPacked.markPacked(checklist);  
                     break;
                 case 3:
                     System.out.println("Exiting the checklist manager. Goodbye!");
@@ -33,7 +33,7 @@ public class CheckListdashBoard {
                     System.out.println("Invalid choice! Please choose again.");
             }
             
-            displayCheckList.displayChecklist(checklist);  // Display checklist after every operation
+            displayCheckList.displayChecklist(checklist);  
         }
     }
 }

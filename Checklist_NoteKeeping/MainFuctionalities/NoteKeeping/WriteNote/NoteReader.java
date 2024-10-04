@@ -14,7 +14,6 @@ public class NoteReader {
         this.noteManager = noteManager;
     }
 
-    // Show available notes and read a selected note
     public void showAndReadNote() {
         List<String> notes = noteManager.getNotes();
         if (notes.isEmpty()) {

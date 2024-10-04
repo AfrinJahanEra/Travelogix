@@ -19,11 +19,9 @@ public class AudioRecorder {
 
             String filePath = voiceNoteManager.getNewVoiceNoteFilePath(noteName);
 
-            // Capturing audio for 10 seconds
             byte[] audioBytes = AudioUtils.captureAudio(10000);
             System.out.println("Audio captured of length: " + audioBytes.length);
 
-            // Saving the captured audio to a file
             AudioUtils.saveAudioToFile(audioBytes, AudioUtils.getAudioFormat(), filePath);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
