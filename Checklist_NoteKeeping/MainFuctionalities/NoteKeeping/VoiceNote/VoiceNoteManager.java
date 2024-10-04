@@ -1,4 +1,4 @@
-package User.MainFuctionalities.NoteKeeping.VoiceNote;
+package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.VoiceNote;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class VoiceNoteManager {
         }
     }
 
-    // Method to get all voice notes
+    // getting all voice notes
     public List<String> getVoiceNotes() {
         File dir = new File(DIRECTORY_PATH);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".wav"));

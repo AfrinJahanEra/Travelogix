@@ -1,4 +1,4 @@
-package User.MainFuctionalities.CheckList;
+package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 import java.util.Scanner;
 
