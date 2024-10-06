@@ -1,0 +1,184 @@
+Bus Details:
+Starting Location: dhaka
+Ending Location: chittagong
+Routes: voirob, brahmanbaria, feni
+Bus Name: Greenline
+Seat Count: 20
+Cost per Seat: 400.0
+Starting Time: 8:00 AM
+Ending Time: 2:00 PM
+Date: 10/9/2024
+Contact Number: +880-123-456-7891
+Bus Number Plate: Greenline-2754-G
+Seat Availability:
+A1 A2  A3  A4  A5
+B1  B2  B3  B4  B5
+C1  C2  C3  C4  C5
+D1  D2  D3 D4  D5
+---------------------------
+---------------------------
+---------------------------
+Bus Details:
+Starting Location: Gazipur
+Ending Location: Cumilla
+Routes: Dhaka Airport, Narayanganj, Daudkandi
+Bus Name: Royal
+Seat Count: 20
+Cost per Seat: 400.0
+Starting Time: 9:00 AM
+Ending Time: 1:00 PM
+Date: 14/10/2024
+Contact Number: +880-321-654-7891
+Bus Number Plate: Royal-6539-R
+Seat Availability:
+A1  A2  A3  A4  A5
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+---------------------------
+---------------------------
+Bus Details:
+Starting Location: Dhaka Airport
+Ending Location: Cumilla
+Routes: Badda, Munshiganj, Daudkandi
+Bus Name: Miami
+Seat Count: 20
+Cost per Seat: 350.0
+Starting Time: 4:00 PM
+Ending Time: 8:00 PM
+Date: 9/10/2024
+Contact Number: +880-132-465-7891
+Bus Number Plate: Miami-4298-M
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Savar
+Ending Location: Sirajganj
+Routes: Dhaka Mohakhali, Gazipur, Tangail
+Bus Name: SI Paribahan
+Seat Count: 20
+Cost per Seat: 400.0
+Starting Time: 3:00 PM
+Ending Time: 7:00 PM
+Date: 30/9/2024
+Contact Number: +880-231-546-9876
+Bus Number Plate: SI-6893-S
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Dhaka
+Ending Location: Tangail
+Routes: Tongi, Mirzapur, Kalihati
+Bus Name: Nirala
+Seat Count: 20
+Cost per Seat: 200.0
+Starting Time: 7:00 AM
+Ending Time: 9:00 AM
+Date: 4/10/2024
+Contact Number: +880-423-156-7893
+Bus Number Plate: Nirala-0292-N
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Tongi
+Ending Location: Jhenaidah
+Routes: Keraniganj, Faridpur, Magura
+Bus Name: Purbasha
+Seat Count: 20
+Cost per Seat: 400.0
+Starting Time: 5:00 PM
+Ending Time: 10:00 PM
+Date: 23/10/2024
+Contact Number: +880-124-376-5892
+Bus Number Plate: Purbasha-7439-P
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Gazipur
+Ending Location: Rangpur
+Routes: Dhaka, Bogura, Gaibandha
+Bus Name: SR Paribahan
+Seat Count: 20
+Cost per Seat: 500.0
+Starting Time: 9:00 AM
+Ending Time: 6:00 PM
+Date: 30/10/2024
+Contact Number: +880-412-356-9873
+Bus Number Plate: SR-4737-S
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Dhaka
+Ending Location: Tangail
+Routes: Chandra, Mirzapur, Vawra
+Bus Name: Rajdhani
+Seat Count: 20
+Cost per Seat: 250.0
+Starting Time: 5:00 PM
+Ending Time: 8:00 PM
+Date: 2/10/2024
+Contact Number: +880-513-264-7895
+Bus Number Plate: Rajdhani-4599-R
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Gazipur
+Ending Location: Rajshahi
+Routes: Tongi, Tangail, Sirajganj
+Bus Name: Ekota
+Seat Count: 20
+Cost per Seat: 300.0
+Starting Time: 2:00 PM
+Ending Time: 8:00 PM
+Date: 5/10/2024
+Contact Number: +880-145-236-7894
+Bus Number Plate: Ekota-3401-E
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
+Bus Details:
+Starting Location: Gazipur
+Ending Location: Rangpur
+Routes: Sirajganj, Bogura, Polashbari
+Bus Name: SR Paribahan
+Seat Count: 20
+Cost per Seat: 400.0
+Starting Time: 8:00 AM
+Ending Time: 5:00 PM
+Date: 4/10/2024
+Contact Number: +880-129-435-6789
+Bus Number Plate: SR-3929-S
+Seat Availability:
+A1  A2  A3  A4  A5  
+B1  B2  B3  B4  B5  
+C1  C2  C3  C4  C5  
+D1  D2  D3  D4  D5  
+---------------------------
