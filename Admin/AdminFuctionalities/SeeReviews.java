@@ -1,6 +1,6 @@
 package Admin.AdminFuctionalities;
 
-import Utilities_Package.FileManager.ReviewFile;
+import Utilities.FileManager.ReviewFile;
 import java.util.List;
 import java.util.Scanner;
 
