@@ -1,6 +1,4 @@
-package Admin;
-
-package Admin.AdminFunctionalities;
+package Admin.AdminFuctionalities;
 
 import Utilities_Package.FileManager.ReviewFile;
 import java.util.List;
