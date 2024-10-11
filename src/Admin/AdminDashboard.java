@@ -8,6 +8,7 @@ import src.Admin.AdminFuctionalities.ViewAllLogins;
 
 
 public class AdminDashboard{
+
     public void displayAdminMenu() {
 
         ApproveRequest approveReq = new ApproveRequest();
@@ -20,6 +21,7 @@ public class AdminDashboard{
         boolean isRunning = true;
 
         while (isRunning) {
+            
             System.out.println("\nAdmin Menu:");
             System.out.println("1. Approve Requests from Transport Agencies");
             System.out.println("2. Review User Suggestions and Comment");
