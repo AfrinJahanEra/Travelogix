@@ -2,7 +2,6 @@ package Admin;
 
 import Admin.AdminFunctionalities.ApproveRequest;
 import Admin.AdminFunctionalities.ViewAllLogins;
-import Admin.AdminFunctionalities.ManageAccount.ManageAccountDashBoard;
 import Admin.AdminFunctionalities.SeeReviews.SeeReviews;
 import java.util.Scanner;
 
@@ -13,7 +12,6 @@ public class AdminDashboard{
         ApproveRequest approveReq = new ApproveRequest();
         SeeReviews seeReview = new SeeReviews();
         ViewAllLogins viewAllLogins = new ViewAllLogins();
-        ManageAccountDashBoard manageAccountDashBoard= new ManageAccountDashBoard();
         
         
 
@@ -25,8 +23,7 @@ public class AdminDashboard{
             System.out.println("1. Approve Requests from Transport Agencies");
             System.out.println("2. Review User Suggestions and Comment");
             System.out.println("3. View Login Information ");
-            System.out.println("4. Manage Admin Account");
-            System.out.println("5. Logout");
+        
 
             int choice = scanner.nextInt();
             switch (choice) {
@@ -38,13 +35,6 @@ public class AdminDashboard{
                     break;
                 case 3:
                     viewAllLogins.showAllLogins();
-                    break;
-                case 4:
-                    manageAccountDashBoard.showMenu();
-                    break;
-                case 5:
-                    isRunning = false;
-                    System.out.println("Logging out...");
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
