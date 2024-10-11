@@ -1,7 +1,8 @@
-package Admin.AdminFuctionalities;
+package src.Admin.AdminFuctionalities;
 
-import Utilities.FileManager.AllLoginFile;
-import Admin.AdminDashboard;
+import src.Admin.AdminDashboard;
+import src.Utilities.FileManager.AllLoginFile;
+
 import java.io.File;
 
 public class ViewAllLogins {

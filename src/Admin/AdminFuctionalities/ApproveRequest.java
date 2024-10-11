@@ -1,8 +1,8 @@
-package Admin.AdminFuctionalities;
+package src.Admin.AdminFuctionalities;
 
 import java.util.Scanner;
 
-import Admin.AdminDashboard;
+import src.Admin.AdminDashboard;
 
 public class  ApproveRequest{
     public void approveTransportAgencyRequests(){

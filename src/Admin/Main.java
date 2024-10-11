@@ -1,4 +1,4 @@
-package Admin;
+package src.Admin;
 
 public class Main {
 

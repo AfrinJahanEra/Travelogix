@@ -1,4 +1,4 @@
-package Utilities.Custom_Library;
+package src.Utilities.Custom_Library;
 
 public class CustomList<T> {
     private Object[] elements;

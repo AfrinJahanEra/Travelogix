@@ -1,10 +1,10 @@
-package Admin;
+package src.Admin;
 
 import java.util.Scanner;
 
-import Admin.AdminFuctionalities.ApproveRequest;
-import Admin.AdminFuctionalities.SeeReviews;
-import Admin.AdminFuctionalities.ViewAllLogins;
+import src.Admin.AdminFuctionalities.ApproveRequest;
+import src.Admin.AdminFuctionalities.SeeReviews;
+import src.Admin.AdminFuctionalities.ViewAllLogins;
 
 
 public class AdminDashboard{
