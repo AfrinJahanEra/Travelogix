@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.math.BigInteger;
 
 
-public class Authentication{
+public class Authentication extends  PasswordField{
     private static final String USERS_FILE = "users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
@@ -12,8 +12,8 @@ public class Authentication{
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] userDetails = line.split(",");
-                if (userDetails.length > 0 && userDetails[0].equalsIgnoreCase(email)) {
+                String[] userDetails = line.split(", ");
+                if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
                     return false;
                 }
             }
@@ -26,8 +26,8 @@ public class Authentication{
     // Method to save user information
     public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
-            if(role =="1") role= "Admin";
-            else role ="Traveler";
+            if (role.equals("1")) role = "Admin";
+            else role = "Traveler";
             writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
             writer.newLine();
         } catch (IOException e) {
@@ -54,18 +54,8 @@ public class Authentication{
     // Method to get password input with masking
     public String getPasswordInput() {
 
-        Console console = System.console();
-
-
-        // Prompt user to enter a password
-        assert console != null;
-        char[] passwordArray = console.readPassword(); // Masks the input with *
-
-        // Convert char array to String
-        String password = new String(passwordArray);
-
-        
-        // Display the entered password (for demonstration purposes)
+       
+        String password = PasswordField.readPassword("");        
         return password;
     }
 
