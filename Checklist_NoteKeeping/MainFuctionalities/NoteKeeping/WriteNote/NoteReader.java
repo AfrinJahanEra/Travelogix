@@ -14,16 +14,17 @@ public class NoteReader {
         this.noteManager = noteManager;
     }
 
+    // Show available notes with metadata and read a selected note
     public void showAndReadNote() {
-        List<String> notes = noteManager.getNotes();
-        if (notes.isEmpty()) {
+        List<String> notesWithMetadata = noteManager.getNotesWithMetadata();
+        if (notesWithMetadata.isEmpty()) {
             System.out.println("No notes available.");
             return;
         }
 
         System.out.println("\nAvailable Notes:");
-        for (int i = 0; i < notes.size(); i++) {
-            System.out.println((i + 1) + ". " + notes.get(i));
+        for (int i = 0; i < notesWithMetadata.size(); i++) {
+            System.out.println((i + 1) + ". " + notesWithMetadata.get(i));
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -31,11 +32,11 @@ public class NoteReader {
         int noteNumber = scanner.nextInt();
         scanner.nextLine();  // Consume newline
 
-        if (noteNumber < 1 || noteNumber > notes.size()) {
+        if (noteNumber < 1 || noteNumber > notesWithMetadata.size()) {
             System.out.println("Invalid choice.");
         } else {
-            String selectedNote = notes.get(noteNumber - 1);
-            File noteFile = new File("notes/" + selectedNote);
+            String selectedNote = notesWithMetadata.get(noteNumber - 1).split(" \\| ")[0];  // Get the note title
+            File noteFile = new File("notes/" + selectedNote + ".txt");
             readNoteFromFile(noteFile);
         }
     }

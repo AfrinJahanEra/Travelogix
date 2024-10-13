@@ -10,11 +10,9 @@ public class Main {
         // CheckListdashBoard dashboard = new CheckListdashBoard();
         // dashboard.displayChecklist();
 
-
         VoiceNoteDashBoard voiceNoteDashBoard = new VoiceNoteDashBoard();
         voiceNoteDashBoard.voiceNoteDashBoard();
 
-        
         // NotewritingDashboard notewritingDashboard = new NotewritingDashboard();
         // notewritingDashboard.notewritingDashboard();
 
