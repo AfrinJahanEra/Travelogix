@@ -29,5 +29,7 @@ public class VoiceNoteManager {
     }
 
     // Generating a file path for a new voice note
-    
+    public String getNewVoiceNoteFilePath(String noteName) {
+        return DIRECTORY_PATH + noteName + ".wav";
+    }
 }
