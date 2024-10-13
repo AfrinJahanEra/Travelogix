@@ -11,12 +11,12 @@ public class Main {
         // dashboard.displayChecklist();
 
 
-        // VoiceNoteDashBoard voiceNoteDashBoard = new VoiceNoteDashBoard();
-        // voiceNoteDashBoard.voiceNoteDashBoard();
+        VoiceNoteDashBoard voiceNoteDashBoard = new VoiceNoteDashBoard();
+        voiceNoteDashBoard.voiceNoteDashBoard();
 
         
-        NotewritingDashboard notewritingDashboard = new NotewritingDashboard();
-        notewritingDashboard.notewritingDashboard();
+        // NotewritingDashboard notewritingDashboard = new NotewritingDashboard();
+        // notewritingDashboard.notewritingDashboard();
 
     }
 }
