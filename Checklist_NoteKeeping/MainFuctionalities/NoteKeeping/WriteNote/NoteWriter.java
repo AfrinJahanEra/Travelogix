@@ -2,6 +2,8 @@ package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class NoteWriter {
@@ -12,6 +14,7 @@ public class NoteWriter {
         this.noteManager = noteManager;
     }
 
+    // Capture and save a note with the current date and time
     public void writeAndSaveNote() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the title of the note: ");
@@ -27,13 +30,25 @@ public class NoteWriter {
             noteContent.append(line).append(System.lineSeparator());
         }
 
-        // Saving the note content to a file
+        // Save the note content to a file
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(noteContent.toString());
             System.out.println("Note saved successfully!");
+
+            // Save the note metadata (name, date, and time)
+            String currentDateTime = getCurrentDateTime();
+            noteManager.saveNoteMetadata(noteName, currentDateTime);
         } catch (IOException e) {
             System.out.println("Error saving the note.");
             e.printStackTrace();
         }
     }
+
+    // Get the current date and time as a formatted string
+    private String getCurrentDateTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
+    }
 }
+
