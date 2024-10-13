@@ -1,47 +1,34 @@
 package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NoteManager {
     private static final String DIRECTORY_PATH = "notes/";
-    private static final String METADATA_FILE = "notes_metadata.txt";
 
     public NoteManager() {
         File dir = new File(DIRECTORY_PATH);
         if (!dir.exists()) {
-            dir.mkdir();  // Create directory if it doesn't exist
+            dir.mkdir();  
         }
     }
 
-    // Get a list of all the saved notes with metadata
-    public List<String> getNotesWithMetadata() {
-        List<String> notesWithMetadata = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(METADATA_FILE))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                notesWithMetadata.add(line);
+    // list of all the saved notes
+    public List<String> getNotes() {
+        File dir = new File(DIRECTORY_PATH);
+        File[] files = dir.listFiles((d, name) -> name.endsWith(".txt"));
+        List<String> notes = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                notes.add(file.getName());
             }
-        } catch (IOException e) {
-            System.out.println("Error reading the metadata file.");
-            e.printStackTrace();
         }
-        return notesWithMetadata;
+        return notes;
     }
 
-    // Get file path for a new note
+    // path for a new note
     public String getNewNoteFilePath(String noteName) {
         return DIRECTORY_PATH + noteName + ".txt";
-    }
-
-    // Save the note metadata (name, date, and time) to the metadata file
-    public void saveNoteMetadata(String noteName, String dateTime) {
-        try (FileWriter writer = new FileWriter(METADATA_FILE, true)) {
-            writer.write(noteName + " | " + dateTime + "\n");
-        } catch (IOException e) {
-            System.out.println("Error writing to the metadata file.");
-            e.printStackTrace();
-        }
     }
 }

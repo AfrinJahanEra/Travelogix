@@ -3,8 +3,9 @@ package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote;
 import java.util.Scanner;
 
 public class NotewritingDashboard {
-    public void notewritingDashboard(){
-    NoteManager noteManager = new NoteManager();
+
+    public void notewritingDashboard() {
+        NoteManager noteManager = new NoteManager();
         NoteWriter noteWriter = new NoteWriter(noteManager);
         NoteReader noteReader = new NoteReader(noteManager);
 
@@ -16,7 +17,7 @@ public class NotewritingDashboard {
             System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine(); // Consume newline
 
             switch (choice) {
                 case 1:
@@ -34,4 +35,3 @@ public class NotewritingDashboard {
         }
     }
 }
-
