@@ -26,9 +26,9 @@ public class VoiceNoteDashBoard {
             case 2:
                 List<String> voiceNotes = voiceNoteManager.getVoiceNotes();
                 if (voiceNotes.isEmpty()) {
-                    System.out.println("No voice notes available.");
+                    System.out.println("No voice notes available in File.");
                 } else {
-                    System.out.println("\nAvailable Voice Notes:");
+                    System.out.println("\nSaved Voice Notes:");
                     for (int i = 0; i < voiceNotes.size(); i++) {
                         System.out.println((i + 1) + ". " + voiceNotes.get(i));
                     }
