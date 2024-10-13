@@ -9,6 +9,16 @@ public class AddItems {
         System.out.print("Enter the number of items to add: ");
         int numItems = scanner.nextInt();
         scanner.nextLine(); 
+
+
+        for (int i = 1; i <= numItems; i++) {
+            System.out.print("Enter item " + i + ": ");
+            String item = scanner.nextLine();
+            checklist.getItems().add(item);
+            checklist.getPackedItems().add(false);
+            checklist.increaseTotalItems();
+        }
+        
         
         System.out.println("Items added successfully!\n");
     }
