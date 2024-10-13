@@ -16,15 +16,7 @@ public class AudioUtils {
     }
 
     public static void saveAudioToFile(byte[] audioBytes, AudioFormat format, String filePath) {
-        try {
-            File file = new File(filePath);
-            ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
-            AudioInputStream ais = new AudioInputStream(bais, format, audioBytes.length / format.getFrameSize());
-            AudioSystem.write(ais, AudioFileFormat.Type.WAVE, file);
-            System.out.println("Audio saved to: " + file.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
     }
 
     // Capturing audio for a given duration (in milliseconds)
