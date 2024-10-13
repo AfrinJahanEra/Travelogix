@@ -17,12 +17,7 @@ public class AudioPlayer {
             audioLine.start();
             System.out.println("Playing audio...");
 
-            byte[] buffer = new byte[4096];
-            int bytesRead = -1;
-
-            while ((bytesRead = audioStream.read(buffer)) != -1) {
-                audioLine.write(buffer, 0, bytesRead);
-            }
+            
 
             audioLine.drain();
             audioLine.close();
