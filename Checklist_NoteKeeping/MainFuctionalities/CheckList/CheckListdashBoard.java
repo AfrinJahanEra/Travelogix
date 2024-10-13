@@ -19,7 +19,19 @@ public class CheckListdashBoard {
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
 
-
+            switch (choice) {
+                case 1:
+                    addItems.addItems(checklist);  
+                    break;
+                case 2:
+                    markPacked.markPacked(checklist);  
+                    break;
+                case 3:
+                    System.out.println("Exiting the checklist manager. Goodbye!");
+                    return;
+                default:
+                    System.out.println("Invalid choice! Please choose again.");
+            }
             
             displayCheckList.displayChecklist(checklist);  
         }
