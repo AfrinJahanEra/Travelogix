@@ -7,14 +7,14 @@ import Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote.Notewritin
 public class Main {
     public static void main(String[] args) {
 
-        // CheckListdashBoard dashboard = new CheckListdashBoard();
-        // dashboard.displayChecklist();
+        CheckListdashBoard dashboard = new CheckListdashBoard();
+        dashboard.displayChecklist();
 
         // VoiceNoteDashBoard voiceNoteDashBoard = new VoiceNoteDashBoard();
         // voiceNoteDashBoard.voiceNoteDashBoard();
 
-        NotewritingDashboard notewritingDashboard = new NotewritingDashboard();
-        notewritingDashboard.notewritingDashboard();
+        // NotewritingDashboard notewritingDashboard = new NotewritingDashboard();
+        // notewritingDashboard.notewritingDashboard();
 
     }
 }
