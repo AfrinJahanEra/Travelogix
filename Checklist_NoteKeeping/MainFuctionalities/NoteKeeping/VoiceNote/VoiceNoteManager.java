@@ -32,4 +32,14 @@ public class VoiceNoteManager {
     public String getNewVoiceNoteFilePath(String noteName) {
         return DIRECTORY_PATH + noteName + ".wav";
     }
+
+    // Deleting a voice note
+    public void deleteVoiceNote(String fileName) {
+        File file = new File(DIRECTORY_PATH + fileName);
+        if (file.delete()) {
+            System.out.println("Voice note '" + fileName + "' deleted successfully.");
+        } else {
+            System.out.println("Failed to delete voice note '" + fileName + "'.");
+        }
+    }
 }
