@@ -2,7 +2,13 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 import java.util.Scanner;
 
-public class MarkPacked {
+public class MarkPacked //extends Checklist
+{
+
+    // @Override
+    // public void manageChecklist() {
+    //     markPacked();
+    // }
 
     public void markPacked(Checklist checklist) {
         DisplayCheckList display = new DisplayCheckList();

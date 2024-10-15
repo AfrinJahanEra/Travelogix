@@ -1,6 +1,12 @@
 package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
-public class DisplayCheckList {
+public class DisplayCheckList //extends Checklist
+{
+
+    // @Override
+    // public void manageChecklist() {
+    //     displayChecklist(this);
+    // }
 
     public void displayChecklist(Checklist checklist) {
         System.out.println("\n--- Checklist ---");

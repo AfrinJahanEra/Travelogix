@@ -2,7 +2,14 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 import java.util.Scanner;
 
-public class DeleteItem {
+public class DeleteItem //extends Checklist
+{
+
+    // @Override
+    // public void manageChecklist() {
+    //     deleteItem();
+    // }
+
 
     public void deleteChecklistItem(Checklist checklist) {
         Scanner scanner = new Scanner(System.in);

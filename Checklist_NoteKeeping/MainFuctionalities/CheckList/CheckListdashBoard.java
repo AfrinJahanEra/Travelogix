@@ -2,7 +2,8 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 import java.util.Scanner;
 
-public class CheckListdashBoard {
+public class CheckListdashBoard{
+
 
     public void displayChecklist() {
         Checklist checklist = new Checklist();

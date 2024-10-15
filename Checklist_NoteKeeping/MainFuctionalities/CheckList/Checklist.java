@@ -5,7 +5,9 @@ import java.util.*;
 public class Checklist {
     private List<String> items;         
     private List<Boolean> packedItems;  
-    private int totalItems;             
+    private int totalItems;    
+    
+
 
     public Checklist() {
         items = new ArrayList<>();
@@ -32,4 +34,7 @@ public class Checklist {
     public void decreaseTotalItems() {
         totalItems--;
     }
+
+    // public abstract void manageChecklist();
+    
 }

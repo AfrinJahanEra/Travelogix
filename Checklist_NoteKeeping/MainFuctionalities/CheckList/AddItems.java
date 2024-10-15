@@ -2,7 +2,13 @@ package Checklist_NoteKeeping.MainFuctionalities.CheckList;
 
 import java.util.Scanner;
 
-public class AddItems {
+public class AddItems // extends Checklist 
+{
+
+    // @Override
+    // public void manageChecklist() {
+    //     addItems();
+    // }
 
     public void addItems(Checklist checklist) {
         Scanner scanner = new Scanner(System.in);
