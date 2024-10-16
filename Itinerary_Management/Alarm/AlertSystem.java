@@ -12,12 +12,15 @@ public class AlertSystem {
 
         System.out.println("Enter alert date and time (yyyy-MM-dd HH:mm:ss): ");
         String inputDateTime = scanner.nextLine();
+        System.out.println("Enter a message: ");
+
+        String message= scanner.nextLine();
 
         Date alertDate = DateUtils.parseDateTime(inputDateTime);
 
         if (alertDate != null) {
             System.out.println("Alert set for: " + inputDateTime);
-            AlertUtils.waitForAlert(alertDate, "Time for your activity!");
+            AlertUtils.waitForAlert(alertDate, message);
             SoundUtils.playSound(SOUND_FILE_PATH);
         } else {
             System.out.println("Invalid date and time format.");
