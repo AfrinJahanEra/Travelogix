@@ -10,7 +10,7 @@ public class SignUp extends Authentication {
     public void signUp() throws NoSuchAlgorithmException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Sign Up");
-        System.out.println("Role: \n1. Admin\n2. Traveler\nEnter your role: ");
+        System.out.println("Role: \n1. Admin\n2. Traveler\n3. Transport Agency\nEnter your role: ");
         String role = scanner.nextLine().trim();
 
         System.out.println("Enter name: ");
