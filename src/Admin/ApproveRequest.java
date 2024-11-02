@@ -6,7 +6,7 @@ public class  ApproveRequest{
     
     public void approveTransportAgencyRequests(){
 
-        AdminDashBoard adminDashboard=new AdminDashBoard();
+        AdminDashboard adminDashboard=new AdminDashboard();
 
         Scanner scanner = new Scanner(System.in);
 

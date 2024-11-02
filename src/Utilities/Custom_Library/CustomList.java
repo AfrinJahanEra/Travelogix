@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package Utilities.Custom_Library;
+=======
+package src.Utilities.Custom_Library;
+>>>>>>> 12dd30300b9e09dff749723bc4b0f2a76b54c638
 
 public class CustomList<T> {
     

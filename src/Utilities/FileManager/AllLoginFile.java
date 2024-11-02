@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package Utilities.FileManager;
+=======
+package src.Utilities.FileManager;
+>>>>>>> 12dd30300b9e09dff749723bc4b0f2a76b54c638
 
 import java.io.BufferedReader;
 import java.io.File;

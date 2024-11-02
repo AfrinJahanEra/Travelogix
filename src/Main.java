@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 import Admin.AdminDashBoard;
@@ -13,6 +14,8 @@ public class Main {
 }
 
 =======
+=======
+>>>>>>> 12dd30300b9e09dff749723bc4b0f2a76b54c638
 import Itinerary_Management.*;
 import Itinerary_Management.Alarm.AlertSystem;
 import Trip_Management.*;
@@ -33,5 +36,9 @@ public static void main(String[] args) {
 
         
     }
+<<<<<<< HEAD
+}
+>>>>>>> 12dd30300b9e09dff749723bc4b0f2a76b54c638
+=======
 }
 >>>>>>> 12dd30300b9e09dff749723bc4b0f2a76b54c638

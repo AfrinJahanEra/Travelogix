@@ -1,13 +1,15 @@
 package Admin;
 
-import Utilities.FileManager.AllLoginFile;
+
 import java.io.File;
+
+import src.Utilities.FileManager.AllLoginFile;
 
 public class ViewAllLogins {
 
     public void showAllLogins() {
 
-        AdminDashBoard adminDashboard = new AdminDashBoard();
+        AdminDashboard adminDashboard=new AdminDashboard();
         
         File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
 
