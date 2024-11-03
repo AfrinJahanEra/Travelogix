@@ -44,10 +44,10 @@ public class Dashbaord {
         String s = sc.next().trim();
 
         switch (s) {
-            case "v" -> new ViewBusDetails("bus.txt").viewBusDetails();
-            case "e" -> new EditBus("bus.txt").editBusDetails();
+            case "v" -> new ViewBusDetails("bus.txt").numberPlate();
+            case "e" -> new EditBus("bus.txt").numberPlate();
             case "b" -> new SeatBooking("bus.txt").initiateBooking();
-            case "d" -> new DeleteBus("bus.txt").deleteBus();
+            case "d" -> new DeleteBus("bus.txt").numberPlate();
             default -> System.out.println("Invalid option. Please choose 'e', 'b', or 'd'.");
         }
     }
@@ -58,10 +58,12 @@ public class Dashbaord {
         String s = sc.next().trim();
 
         switch (s) {
-            case "n" -> viewBusList.list(4);
-            case "s" -> viewBusList.list(1);
-            case "e" -> viewBusList.list(2);
+            case "n" -> System.out.println(viewBusList.list(4));
+            case "s" -> System.out.println(viewBusList.list(1));
+            case "e" -> System.out.println(viewBusList.list(2));
             default -> System.out.println("Invalid input! Please enter 'n', 's', or 'e'.");
         }
+
     }
 }
+
