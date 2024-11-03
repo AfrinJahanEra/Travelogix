@@ -7,7 +7,6 @@ import Transport.Bus.ViewBusDetails;
 import Transport.Bus.ViewBusList;
 import Transport.Seat.SeatBooking;
 import Utilities.FileManager.File.FileHandler;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -17,6 +16,10 @@ public class TransportDashboard{
     private FileHandler fileHandler = new FileHandler("bus.txt");
 
     public void dashboard() throws IOException {
+
+            System.out.println(" ________________________________");
+            System.out.println("|           TRANSPORT            |");
+            System.out.println("|________________________________|");
         do {
             displayMenu();
             choice = sc.nextInt();
@@ -33,10 +36,10 @@ public class TransportDashboard{
     }
 
     private void displayMenu() {
-        System.out.println("1. Add Bus");
-        System.out.println("2. View Bus List");
-        System.out.println("3. View Bus options");
-        System.out.println("4. Exit");
+        System.out.println("[1] Add Bus");
+        System.out.println("[2] View Bus List");
+        System.out.println("[3] View Bus options");
+        System.out.println("[4] Exit");
         System.out.print("Enter your choice: ");
     }
 

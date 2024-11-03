@@ -15,10 +15,10 @@ public class CheckListdashBoard{
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
-            System.out.println("1. Add checklist items");
-            System.out.println("2. Mark packed items");
-            System.out.println("3. Delete checklist item");  // Add this option
-            System.out.println("4. Go back (Exit)");
+            System.out.println("[1] Add checklist items");
+            System.out.println("[2] Mark packed items");
+            System.out.println("[3] Delete checklist item");  // Add this option
+            System.out.println("[4] Go back (Exit)");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
 

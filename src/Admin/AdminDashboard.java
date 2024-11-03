@@ -2,8 +2,6 @@ package Admin;
 
 import java.util.Scanner;
 
-import Admin.*;
-
 public class AdminDashboard{
 
     public void displayAdminMenu() {
@@ -18,6 +16,10 @@ public class AdminDashboard{
         boolean isRunning = true;
 
         while (isRunning) {
+
+            System.out.println(" ________________________________");
+            System.out.println("|              ADMIN             |");
+            System.out.println("|________________________________|");
             
             System.out.println("\nAdmin Menu:");
             System.out.println("1. Approve Requests from Transport Agencies");
