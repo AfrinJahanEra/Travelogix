@@ -1,9 +1,9 @@
-package src.Admin.AdminFuctionalities;
+package Admin;
 
 import java.util.List;
 import java.util.Scanner;
 
-import src.Utilities.FileManager.ReviewFile;
+import Utilities.FileManager.ReviewFile;
 
 public class SeeReviews {
 

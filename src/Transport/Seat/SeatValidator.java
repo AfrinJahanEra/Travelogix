@@ -1,4 +1,4 @@
-package Source.Seat;
+package Transport.Seat;
 
 
 public class SeatValidator {

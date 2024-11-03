@@ -1,8 +1,6 @@
-package Checklist_NoteKeeping;
+package Traveler.Checklist_NoteKeeping;
 
-import Checklist_NoteKeeping.MainFuctionalities.CheckList.CheckListdashBoard;
-import Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.VoiceNote.VoiceNoteDashBoard;
-import Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote.NotewritingDashboard;
+import Traveler.Checklist_NoteKeeping.CheckList.*;
 
 public class Main {
     public static void main(String[] args) {

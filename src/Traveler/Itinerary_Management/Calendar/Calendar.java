@@ -1,4 +1,4 @@
-package Itinerary_Management.Calendar;
+package Traveler.Itinerary_Management.Calendar;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

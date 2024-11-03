@@ -1,6 +1,6 @@
-package Trip_Management;
+package Traveler.Trip_Management;
 
-import Itinerary_Management.Calendar.Calendar;
+import Traveler.Itinerary_Management.Calendar.Calendar;
 import java.io.*;
 import java.util.Scanner;
 

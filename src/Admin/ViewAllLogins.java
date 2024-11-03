@@ -1,8 +1,8 @@
-package src.Admin.AdminFuctionalities;
+package Admin;
 
-import src.Admin.AdminDashboard;
+import Admin.AdminDashboard;
 
-import src.Utilities.FileManager.AllLoginFile;
+import Utilities.FileManager.AllLoginFile;
 
 import java.io.File;
 

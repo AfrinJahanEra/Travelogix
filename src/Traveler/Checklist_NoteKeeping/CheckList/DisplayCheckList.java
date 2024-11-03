@@ -1,4 +1,4 @@
-package Checklist_NoteKeeping.MainFuctionalities.CheckList;
+package Traveler.Checklist_NoteKeeping.CheckList;
 
 public class DisplayCheckList //extends Checklist
 {
