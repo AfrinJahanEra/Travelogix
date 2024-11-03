@@ -5,11 +5,13 @@ import java.util.Scanner;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote.VoiceNoteDashBoard;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote.NotewritingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
-import java.util.Calendar;
+import Traveler.Itinerary_Management.Calendar.Calendar;
 
 public class ItineraryDashboard {
+
+    private static final String tripFile = "trips.txt";
     public void displayItinerary() {
-        
+
         
         Scanner scanner = new Scanner(System.in);
         
@@ -26,7 +28,7 @@ public class ItineraryDashboard {
                     a.alertSystem();
                 case 2:
                     Calendar calendar= new Calendar();
-                    calendar.displayTripsOnCalendar();
+                    calendar.displayTripsOnCalendar(tripFile);
                     break;
                 case 3:
                     System.out.println("Exiting the checklist manager. Goodbye!");

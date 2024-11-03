@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class TravelerDashboard {
 
-    public void showDashboard(Scanner scanner) {
-        
+    public void showDashboard() {
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            
+
             System.out.println(" ________________________________");
             System.out.println("|            TRAVELER            |");
             System.out.println("|________________________________|");
@@ -22,34 +22,33 @@ public class TravelerDashboard {
             System.out.println("[3] CheckList");
             System.out.println("[4] Trip Management");
             System.out.println("[5] Exit");
-            System.out.print("Enter the index of the option you want to select (or 0 to exit): ");
+            System.out.print("Enter the index of the option you want to select: ");
 
             int mainOption = scanner.nextInt();
 
             switch (mainOption) {
                 case 1:
-                    ItineraryDashboard itineraryDashboard=new ItineraryDashboard();
+                    ItineraryDashboard itineraryDashboard = new ItineraryDashboard();
                     itineraryDashboard.displayItinerary();
                     break;
                 case 2:
-                    NoteKeepingDashboard noteKeepingDashboard=new NoteKeepingDashboard();
+                    NoteKeepingDashboard noteKeepingDashboard = new NoteKeepingDashboard();
                     noteKeepingDashboard.displayChecklist();
                     break;
                 case 3:
-                    CheckListdashBoard dashboard = new CheckListdashBoard();
-                    dashboard.displayChecklist();
+                    CheckListdashBoard checkListDashboard = new CheckListdashBoard();
+                    checkListDashboard.displayChecklist();
                     break;
                 case 4:
-                    TripDashboard tripDashboard=new TripDashboard();
+                    TripDashboard tripDashboard = new TripDashboard();
                     tripDashboard.showDashboard(scanner);
                     break;
                 case 5:
                     System.out.println("Exiting the Traveler Dashboard.");
-                    break;
+                    return;  // Exit the method to stop the loop and exit the dashboard
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
         }
     }
-
 }

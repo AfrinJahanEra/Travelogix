@@ -8,12 +8,12 @@ import Traveler.Itinerary_Management.ItineraryDashboard;
 
 public class TripDashboard {
 
-    
-        public void showDashboard(Scanner scanner) {
-            TripManager t = new TripManager();
+
+    public void showDashboard(Scanner scanner) {
+        TripManager t = new TripManager();
 
         while (true) {
-        
+
 
             System.out.println("[1] Add Trip");
             System.out.println("[2] Remove Trip");
@@ -45,4 +45,6 @@ public class TripDashboard {
                     System.out.println("Invalid option. Please try again.");
             }
         }
+
+    }
 }

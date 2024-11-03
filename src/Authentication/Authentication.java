@@ -25,17 +25,25 @@ public class Authentication extends  PasswordField{
         return true;
     }
 
-    // Method to save user information
-    public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
-            if (role.equals("1")) role = "Admin";
-            else role = "Traveler";
-            writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
-            writer.newLine();
+    public void saveUserInfo(String role, String name, String phoneNumber, String email, String encryptedPass) {
+        try (FileWriter writer = new FileWriter(USERS_FILE, true)) {
+            writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + encryptedPass + "\n");
         } catch (IOException e) {
-            System.out.println(e + " occurred while saving user information.");
+            System.out.println("An error occurred while saving user information: " + e.getMessage());
         }
     }
+
+    // Method to save user information
+    // public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
+    //         if (role.equals("1")) role = "Admin";
+    //         else role = "Traveler";
+    //         writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
+    //         writer.newLine();
+    //     } catch (IOException e) {
+    //         System.out.println(e + " occurred while saving user information.");
+    //     }
+    // }
 
     // Method to check if the user credentials are valid
     public boolean isValidUser(String email, String password) {
