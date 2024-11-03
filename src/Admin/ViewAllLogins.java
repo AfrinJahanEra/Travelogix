@@ -1,9 +1,6 @@
 package Admin;
 
-import Admin.AdminDashboard;
-
 import Utilities.FileManager.AllLoginFile;
-
 import java.io.File;
 
 public class ViewAllLogins {
@@ -12,7 +9,7 @@ public class ViewAllLogins {
 
         AdminDashboard adminDashboard = new AdminDashboard();
         
-        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\login.txt");
+        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt");
 
         AllLoginFile allLoginFile = new AllLoginFile();
         allLoginFile.readAllLogins(loginFile);  
