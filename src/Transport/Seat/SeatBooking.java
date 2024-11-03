@@ -1,5 +1,5 @@
-package Source.Seat;
-import Source.File.*;
+package Transport.Seat;
+import Utilities.FileManager.File.*;
 
 import java.io.IOException;
 import java.util.Scanner;

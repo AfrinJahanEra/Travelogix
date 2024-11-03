@@ -1,10 +1,12 @@
+package Authentication;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class LogIn extends Authentication {
+public class Login extends Authentication {
     private static final String USERS_FILE = "users.txt";
     private SignUp signUpInstance = new SignUp(); // Create a SignUp instance
 

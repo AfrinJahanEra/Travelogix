@@ -1,8 +1,8 @@
-package src.Admin.AdminFuctionalities;
+package Admin;
 
 import java.util.Scanner;
 
-import src.Admin.AdminDashboard;
+import Admin.AdminDashboard;
 
 public class  ApproveRequest{
     

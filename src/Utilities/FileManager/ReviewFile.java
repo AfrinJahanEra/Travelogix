@@ -1,4 +1,4 @@
-package src.Utilities.FileManager;
+package Utilities.FileManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;

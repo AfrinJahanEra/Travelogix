@@ -1,4 +1,4 @@
-package src.Utilities.Custom_Library;
+package Utilities.Custom_Library;
 
 public class CustomList<T> {
     

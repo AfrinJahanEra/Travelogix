@@ -1,4 +1,4 @@
-package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.WriteNote;
+package Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package Menu;
+package Traveler.Menu;
 
-import Trip_Management.TripManager;
+import Traveler.Itinerary_Management.Alarm.AlertSystem;
+import Traveler.Trip_Management.TripManager;
 import java.util.Scanner;
 
-import Itinerary_Management.Alarm.AlertSystem;
 
 public class MenuHandler {
 

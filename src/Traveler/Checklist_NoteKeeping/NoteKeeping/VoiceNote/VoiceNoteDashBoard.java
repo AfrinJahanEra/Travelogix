@@ -1,4 +1,4 @@
-package Checklist_NoteKeeping.MainFuctionalities.NoteKeeping.VoiceNote;
+package Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote;
 
 import java.util.List;
 import java.util.Scanner;

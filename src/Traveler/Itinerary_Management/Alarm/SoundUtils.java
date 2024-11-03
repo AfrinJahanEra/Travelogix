@@ -1,4 +1,4 @@
-package Itinerary_Management.Alarm;
+package Traveler.Itinerary_Management.Alarm;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

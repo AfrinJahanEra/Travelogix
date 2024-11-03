@@ -1,4 +1,4 @@
-package Source.Seat;
+package Transport.Seat;
 
 public class BusDetailsUpdater {
     public String updateBusDetails(String[] lines, String[] originalParts, String[] bookedSeats) {

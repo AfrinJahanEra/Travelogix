@@ -1,3 +1,5 @@
+package Authentication;
+
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -6,7 +8,7 @@ public class DeleteAccount extends Authentication {
 
     private static final String USERS_FILE = "users.txt";
     private static final String TEMP_FILE = "temp_users.txt"; // Temporary file for deletion operation
-    private LogIn loginHelper = new LogIn(); // Create an instance of LogIn to use isEmailRegistered
+    private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
 
     // Method to delete the account
     public void deleteAccount() throws NoSuchAlgorithmException {

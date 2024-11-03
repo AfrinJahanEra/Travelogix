@@ -1,3 +1,5 @@
+package Authentication;
+
 class EraserThread implements Runnable {
     private volatile boolean stop;
     private String prompt;

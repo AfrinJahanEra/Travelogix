@@ -1,4 +1,4 @@
-package Itinerary_Management.Alarm;
+package Traveler.Itinerary_Management.Alarm;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
