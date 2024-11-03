@@ -1,12 +1,17 @@
-package Transport.Transport_Agency;
-import Transport.Bus.*;
-import Transport.Seat.*;
+package Transport;
+
+import Transport.Bus.AddBus;
+import Transport.Bus.DeleteBus;
+import Transport.Bus.EditBus;
+import Transport.Bus.ViewBusDetails;
+import Transport.Bus.ViewBusList;
+import Transport.Seat.SeatBooking;
 import Utilities.FileManager.File.FileHandler;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Dashbaord {
+public class TransportDashboard{
     private Scanner sc = new Scanner(System.in);
     private int choice;
     private FileHandler fileHandler = new FileHandler("bus.txt");
@@ -48,7 +53,7 @@ public class Dashbaord {
             case "e" -> new EditBus("bus.txt").numberPlate();
             case "b" -> new SeatBooking("bus.txt").initiateBooking();
             case "d" -> new DeleteBus("bus.txt").numberPlate();
-            default -> System.out.println("Invalid option. Please choose 'e', 'b', or 'd'.");
+            default -> System.out.println("Invalid option. Please choose 'v', 'e', 'b', or 'd'.");
         }
     }
 
@@ -63,7 +68,5 @@ public class Dashbaord {
             case "e" -> System.out.println(viewBusList.list(2));
             default -> System.out.println("Invalid input! Please enter 'n', 's', or 'e'.");
         }
-
     }
 }
-

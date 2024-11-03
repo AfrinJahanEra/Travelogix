@@ -1,13 +1,13 @@
 package Authentication;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.math.BigInteger;
 
 
 public class Authentication extends  PasswordField{
-    private static final String USERS_FILE = "users.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
     public boolean isEmailUnique(String email) {

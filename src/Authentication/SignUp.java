@@ -1,19 +1,35 @@
 package Authentication;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+import Admin.AdminDashboard;
+import Transport.TransportDashboard;
 
 public class SignUp extends Authentication {
 
-    private static final String USERS_FILE = "users.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
     // Method to sign up as Admin or User
-    public void signUp() throws NoSuchAlgorithmException {
+    public void signUp() throws NoSuchAlgorithmException, IOException {
+
+        System.out.println(" ________________________________");
+        System.out.println("|            SIGN UP             |");
+        System.out.println("|________________________________|");
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Sign Up");
+
         System.out.println("Role: \n1. Admin\n2. Traveler\n3. Transport Agency\nEnter your role: ");
-        String role = scanner.nextLine().trim();
+        String roleInput = scanner.nextLine().trim();
+
+        int role;
+        try {
+            role = Integer.parseInt(roleInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            return;
+        }
 
         System.out.println("Enter name: ");
         String name = scanner.nextLine().trim();
@@ -33,11 +49,10 @@ public class SignUp extends Authentication {
         while (true) {
             System.out.println("Enter email: ");
             email = scanner.nextLine().trim();
-            
+
             if (!isValidEmail(email)) {
                 System.out.println("Invalid email. It must contain '@gmail.com' or '@yahoo.com', and only lowercase letters. Try again.");
-            } 
-            else if (!isEmailUnique(email)) {
+            } else if (!isEmailUnique(email)) {
                 System.out.println("This email is already registered. Please try a different one.");
             } else {
                 break; // Valid, unique, and lowercase email
@@ -64,8 +79,29 @@ public class SignUp extends Authentication {
         String encrypted_pass = encryptPassword(password);
 
         // Save user information
-        saveUserInfo(role, name, phoneNumber, email, encrypted_pass);
+        saveUserInfo(roleInput, name, phoneNumber, email, encrypted_pass);
         System.out.println("Sign Up successful");
+
+        // Display dashboard based on role
+        switch (role) {
+            case 1:
+                AdminDashboard adminDashboard = new AdminDashboard();
+                adminDashboard.displayAdminMenu();
+                break;
+            case 2:
+                TransportDashboard transportDashboard=new TransportDashboard();
+                transportDashboard.dashboard();
+                break;
+            case 3:
+                // Implement Transport Agency dashboard access here if needed
+                break;
+            case 0:
+                System.out.println("\nThank you for using Auth System. Goodbye!");
+                return;
+            default:
+                System.out.println("Invalid option! Please enter 1, 2, or 3.");
+                break;
+        }
 
         scanner.close();
     }

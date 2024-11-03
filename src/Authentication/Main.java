@@ -8,7 +8,7 @@ public class Main {
         // s.signUp();
 
 
-        // LogIn s= new LogIn();
+        // Login s= new Login();
         // s.logIn();
 
         DeleteAccount d = new DeleteAccount();

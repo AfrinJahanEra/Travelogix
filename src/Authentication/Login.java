@@ -7,12 +7,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Login extends Authentication {
-    private static final String USERS_FILE = "users.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
     private SignUp signUpInstance = new SignUp(); // Create a SignUp instance
 
-    public void logIn() throws NoSuchAlgorithmException {
+    public void logIn() throws NoSuchAlgorithmException, IOException {
+
+        System.out.println(" ________________________________");
+        System.out.println("|            LOG IN              |");
+        System.out.println("|________________________________|");
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Log In");
+        
         System.out.println("Enter email: ");
         String email = scanner.nextLine().trim();
 
