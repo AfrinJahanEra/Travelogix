@@ -13,9 +13,13 @@ public class DeleteBus {
         this.sc = new Scanner(System.in);
     }
 
-    public void deleteBus() throws IOException {
+    public void numberPlate() throws IOException {
         System.out.print("Enter the number plate of the bus to delete: ");
         String numberPlate = sc.nextLine().trim();
+        deleteBus(numberPlate);
+    }
+
+    public void deleteBus(String numberPlate) throws IOException {
         String content = fileHandler.readFromFile();
         String[] lines = content.split("\n");
         String updatedContent = "";
