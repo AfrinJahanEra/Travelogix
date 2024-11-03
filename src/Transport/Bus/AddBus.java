@@ -1,35 +1,68 @@
-package Test.Bus;
-
-import Source.Bus.AddBus;
+package Source.Bus;
 import Source.File.FileHandler;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.IOException;
+import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+public class AddBus {
+    public String busName;
+    public String startingLocation;
+    public String endingLocation;
+    public String startingTime;
+    public String numberPlate;
+    public String phoneNumber;
+    public int row;
+    public int col;
 
-class AddBusTest {
-    private final PrintStream originalOut = System.out;
-    private final InputStream originalIn = System.in;
-    private final String testFilePath = "test_bus.txt";
+    private FileHandler fileHandler;
 
+    public AddBus(String filePath) {
+        this.fileHandler = new FileHandler(filePath);
+    }
 
-    @Test
-    void testAddBusWithValidInputs() throws IOException {
+    public void inputBusDetails() throws IOException {
 
-        String input = "Test Bus\nStart City\nEnd City\n08:00 AM\nAB123\n1234567890\n5\n4\n";
+        String s ="";
+        Scanner sc = new Scanner(System.in);
 
-        AddBus addBus = new AddBus(testFilePath);
-        addBus.savedetails(input);
+        System.out.print("Enter bus name: ");
+        busName = sc.nextLine();
+        s+=busName+",";
 
-        FileHandler fileHandler = new FileHandler(testFilePath);
-        String fileContent = fileHandler.readFromFile();
+        System.out.print("Enter starting location: ");
+        startingLocation = sc.nextLine();
+        s+=startingLocation+",";
 
-        assertTrue(fileContent.contains("Test Bus,Start City,End City,08:00 AM,AB123,1234567890,5,4"));
+        System.out.print("Enter ending location: ");
+        endingLocation = sc.nextLine();
+        s+=endingLocation+",";
+
+        System.out.print("Enter starting time: ");
+        startingTime = sc.nextLine();
+        s+=startingTime+",";
+
+        System.out.print("Enter number plate (needs to be unique): ");
+        numberPlate = sc.nextLine();
+        s+=numberPlate+",";
+
+        System.out.print("Enter phone number: ");
+        phoneNumber = sc.nextLine();
+        s+=phoneNumber+",";
+
+        System.out.print("Enter row numbers: ");
+        row = sc.nextInt();
+        s+=row+",";
+
+        System.out.print("Enter column numbers: ");
+        col = sc.nextInt();
+        s+=col+",";
+
+        fileHandler.appendToFile(s);
+    }
+
+    public void savedetails(String s) throws IOException {
+
+        fileHandler.appendToFile(s);
+        System.out.println("Added successfully!");
     }
 }
-
