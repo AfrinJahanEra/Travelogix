@@ -1,15 +1,12 @@
 package Traveler.Itinerary_Management;
 
-import java.util.Scanner;
-
-import Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote.VoiceNoteDashBoard;
-import Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote.NotewritingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
 import Traveler.Itinerary_Management.Calendar.Calendar;
+import java.util.Scanner;
 
 public class ItineraryDashboard {
 
-    private static final String tripFile = "trips.txt";
+    private static final String tripFile = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\trips.txt";
     public void displayItinerary() {
 
         
