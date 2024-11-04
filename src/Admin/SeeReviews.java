@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class SeeReviews {
 
     private List<String> reviews;  
-    // private ReviewAnalyzer analyzer = new ReviewAnalyzer();
-    // private Comment comment = new Comment();
+    
     private ReviewFile reviewFile = new ReviewFile();
 
     public void reviewUserSuggestions() {

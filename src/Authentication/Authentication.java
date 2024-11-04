@@ -33,18 +33,6 @@ public class Authentication extends  PasswordField{
         }
     }
 
-    // Method to save user information
-    // public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
-    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
-    //         if (role.equals("1")) role = "Admin";
-    //         else role = "Traveler";
-    //         writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
-    //         writer.newLine();
-    //     } catch (IOException e) {
-    //         System.out.println(e + " occurred while saving user information.");
-    //     }
-    // }
-
     // Method to check if the user credentials are valid
     public boolean isValidUser(String email, String password) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {

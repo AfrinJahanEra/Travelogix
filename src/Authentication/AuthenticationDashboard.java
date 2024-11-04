@@ -42,14 +42,12 @@ public class AuthenticationDashboard {
     private final TravelerDashboard travelerDashboard;
     private final TransportDashboard transportDashboard;
 
-    // Constructor initializes dashboard instances
     public AuthenticationDashboard() {
         adminDashboard = new AdminDashboard();
         travelerDashboard = new TravelerDashboard();
         transportDashboard = new TransportDashboard();
     }
 
-    // Display dashboard based on user role
     public void displayDashboard(String role) throws IOException, NoSuchAlgorithmException {
         switch (role) {
             case "Admin" -> adminDashboard.displayAdminMenu();
