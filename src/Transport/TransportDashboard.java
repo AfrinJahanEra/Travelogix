@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class TransportDashboard{
     private Scanner sc = new Scanner(System.in);
     private int choice;
-    private FileHandler fileHandler = new FileHandler("bus.txt");
+    private FileHandler fileHandler = new FileHandler("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\requests.txt");
 
     public void dashboard() throws IOException {
 
@@ -61,7 +61,7 @@ public class TransportDashboard{
     }
 
     private void viewDetails() {
-        ViewBusList viewBusList = new ViewBusList("bus.txt");
+        ViewBusList viewBusList = new ViewBusList("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\bus.txt");
         System.out.println("View bus with number plate (n) / starting location (s) / ending location (e)");
         String s = sc.next().trim();
 
