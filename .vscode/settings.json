@@ -3,5 +3,6 @@
         "lib/**/*.jar",
         "c:\\Users\\afrin\\.m2\\repository\\org\\apache\\maven\\shared\\maven-shared-utils\\3.3.4\\maven-shared-utils-3.3.4.jar",
         "c:\\Users\\afrin\\Downloads\\json-simple-1.1.1.jar"
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }
