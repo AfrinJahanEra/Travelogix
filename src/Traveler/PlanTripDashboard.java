@@ -1,18 +1,18 @@
 package Traveler;
 
-import Authentication.DeleteAccount;
-import Authentication.UserAccess;
-import Traveler.Checklist_NoteKeeping.CheckList.*;
-import Traveler.Checklist_NoteKeeping.NoteKeeping.*;
-import Traveler.Itinerary_Management.*;
-import Traveler.Trip_Management.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.Scanner;
 
-public class TravelerDashboard {
+import Authentication.DeleteAccount;
+import Authentication.UserAccess;
+import Traveler.Checklist_NoteKeeping.CheckList.CheckListdashBoard;
+import Traveler.Checklist_NoteKeeping.NoteKeeping.NoteKeepingDashboard;
+import Traveler.Itinerary_Management.ItineraryDashboard;
+import Traveler.Trip_Management.TripDashboard;
 
-    public void showDashboard() throws NoSuchAlgorithmException, IOException {
+public class PlanTripDashboard {
+        public void PlanTripDashboard() throws NoSuchAlgorithmException, IOException {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
@@ -24,12 +24,17 @@ public class TravelerDashboard {
 
             System.out.println("[1] Plan a Trip");
             System.out.println("[2] Browse Trips");
-            System.out.println("[3] Reviwes");
-            System.out.println("[4] Manage Account");
-            System.out.println("[5] Exit");
-        
+            System.out.println("[3] Trips");
+            System.out.println("[4] Trip Management");
+            System.out.println("[5] Delete Account");
+            System.out.println("[6] Exit");
             System.out.print("Enter your choice: ");
 
+            System.out.println("[1] Itinerary Management");
+            System.out.println("[2] Notes");
+            System.out.println("[3] Trip Management");
+            System.out.println("[4] Back To Traveler DashBoard");
+            System.out.print("Enter your choice: ");
 
             int mainOption = scanner.nextInt();
             switch (mainOption) {
