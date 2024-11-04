@@ -13,7 +13,7 @@ public class SeeReviews {
 
     public void reviewUserSuggestions() {
     
-        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\review.txt");
+        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt");
 
        
         displayReviewsWithFeedback();
@@ -47,7 +47,7 @@ public class SeeReviews {
         addComment(reviews.get(reviewNumber - 1), userComment);
         System.out.println("Your comment: \"" + userComment + "\" has been added to review " + reviewNumber);
 
-        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\review.txt", reviewNumber - 1, userComment);
+        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt", reviewNumber - 1, userComment);
 
     }
 

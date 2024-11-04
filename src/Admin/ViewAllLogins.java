@@ -9,7 +9,7 @@ public class ViewAllLogins {
 
         AdminDashboard adminDashboard = new AdminDashboard();
         
-        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt");
+        File loginFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt");
 
         AllLoginFile allLoginFile = new AllLoginFile();
         allLoginFile.readAllLogins(loginFile);  

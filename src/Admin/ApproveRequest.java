@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ApproveRequest {
-    private static final String REQUEST_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\requests.txt";
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
+    private static final String REQUEST_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\requests.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
 
     public void approveTransportAgencyRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader(REQUEST_FILE));
@@ -54,7 +54,7 @@ public class ApproveRequest {
         replaceFile(REQUEST_FILE + "_temp", REQUEST_FILE);
     }
 
-    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\temp_users.txt";
+    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt";
 
     private void deleteUserAccount(String email) {
         boolean userDeleted = false;

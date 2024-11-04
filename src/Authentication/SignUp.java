@@ -106,7 +106,7 @@ import java.util.Scanner;
 
 public class SignUp extends Authentication {
 
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
     private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 
@@ -131,7 +131,7 @@ public class SignUp extends Authentication {
                 role = "Traveler";
                 break;
             case "3":
-                role = "Transport Agency";
+                role = "Transport";
                 break;
             default:
                 System.out.println("Invalid role selection. Please enter 1, 2, or 3.");

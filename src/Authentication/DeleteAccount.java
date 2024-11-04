@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class DeleteAccount extends Authentication {
 
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\users.txt";
-    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
+    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
     private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
 
     // Method to delete the account
