@@ -1,12 +1,13 @@
 package Transport;
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class TransportDeleteAccount {
     private static final String REQUEST_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\requests.txt";
 
-    public void sendDeleteRequest(String email) {
+    public void sendDeleteRequest(String email) throws IOException, NoSuchAlgorithmException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(REQUEST_FILE, true))) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please provide a reason for account deletion:");
@@ -19,5 +20,8 @@ public class TransportDeleteAccount {
         } catch (IOException e) {
             System.out.println("An error occurred while saving the delete request.");
         }
+
+        new TransportDashboard().dashboard();
+
     }
 }

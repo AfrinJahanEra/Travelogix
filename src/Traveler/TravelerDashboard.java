@@ -1,5 +1,6 @@
 package Traveler;
 
+import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.CheckList.*;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.*;
@@ -24,7 +25,8 @@ public class TravelerDashboard {
             System.out.println("[2] Keep Notes");
             System.out.println("[3] CheckList");
             System.out.println("[4] Trip Management");
-            System.out.println("[5] Exit");
+            System.out.println("[5] Delete Account");
+            System.out.println("[6] Exit");
             System.out.print("Enter your choice: ");
 
             int mainOption = scanner.nextInt();
@@ -33,7 +35,8 @@ public class TravelerDashboard {
                 case 2 -> new NoteKeepingDashboard().displayChecklist();
                 case 3 -> new CheckListdashBoard().displayChecklist();
                 case 4 -> new TripDashboard().showDashboard(scanner);
-                case 5 -> {
+                case 5 -> new DeleteAccount().deleteAccount();
+                case 6 -> {
                     System.out.println("Exiting Traveler Dashboard...");
                     UserAccess userAccess = new UserAccess();
                     userAccess.start();

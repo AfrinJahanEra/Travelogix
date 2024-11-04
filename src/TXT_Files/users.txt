@@ -11,7 +11,6 @@ Admin, Bilal, 01922388888, bilal@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Shaila, 01234567812, shaila@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Kamal, 01922312345, kamal@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Maya, 01877612345, maya@gmail.com, 25d55ad283aa400af464c76d713c07ad
-Transport, Rubel, 01922345678, rubel@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Roni, 01234567890, roni@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Shakib, 01877698765, shakib@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Admin, Sumaiya, 01922365432, sumaiya@gmail.com, 25d55ad283aa400af464c76d713c07ad

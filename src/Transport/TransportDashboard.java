@@ -1,5 +1,6 @@
 package Transport;
 
+import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import Transport.Bus.AddBus;
 import Transport.Bus.DeleteBus;
@@ -31,7 +32,8 @@ public class TransportDashboard{
                 case 1 -> addBus();
                 case 2 -> viewDetails();
                 case 3 -> busOptions();
-                case 4 -> {
+                case 4 -> new DeleteAccount().deleteAccount();
+                case 5 -> {
                     UserAccess userAccess = new UserAccess();
                     userAccess.start();
                 }
@@ -46,7 +48,8 @@ public class TransportDashboard{
         System.out.println("[1] Add Bus");
         System.out.println("[2] View Bus List");
         System.out.println("[3] View Bus options");
-        System.out.println("[4] Exit");
+        System.out.println("[4] Delete Account");
+        System.out.println("[5] Exit");
         System.out.print("Enter your choice: ");
     }
 

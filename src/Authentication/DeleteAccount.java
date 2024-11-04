@@ -12,7 +12,7 @@ public class DeleteAccount extends Authentication {
     private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
 
     // Method to delete the account
-    public void deleteAccount() throws NoSuchAlgorithmException {
+    public void deleteAccount() throws NoSuchAlgorithmException, IOException {
 
         System.out.println(" ________________________________");
         System.out.println("|         DELETE ACCOUNT         |");
