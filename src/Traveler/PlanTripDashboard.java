@@ -29,7 +29,7 @@ public class PlanTripDashboard {
                 case 2 -> new NoteKeepingDashboard().displayChecklist();
                 case 3 -> new TripDashboard().showDashboard(scanner);
                 case 4 -> {
-                    System.out.println("Exiting Traveler Dashboard...");
+                    System.out.println("Exiting Plan Trip Dashboard...");
                     new TravelerDashboard().showDashboard();
                 }
                 default -> System.out.println("Invalid option. Please try again.");

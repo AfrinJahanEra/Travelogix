@@ -1,6 +1,5 @@
 package Transport;
 
-import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import Transport.Bus.AddBus;
 import Transport.Bus.DeleteBus;
@@ -32,7 +31,7 @@ public class TransportDashboard{
                 case 1 -> addBus();
                 case 2 -> viewDetails();
                 case 3 -> busOptions();
-                case 4 -> new DeleteAccount().deleteAccount();
+                case 4 -> new Authentication.ManageAccountDash().showManageAccountDash();
                 case 5 -> {
                     UserAccess userAccess = new UserAccess();
                     userAccess.start();
