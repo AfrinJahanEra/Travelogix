@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e5fbe09-19ed-4c35-a546-b7cf7b246038" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Admin/AdminDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/AdminDashboard.java" afterDir="false" />
-    </list>
+    <list default="true" id="6e5fbe09-19ed-4c35-a546-b7cf7b246038" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +22,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Temp__main",
+    "git-widget-placeholder": "Traveler__Dashboard",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/afrin/OneDrive/Desktop/Travelogix"
   }
