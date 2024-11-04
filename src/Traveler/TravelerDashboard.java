@@ -1,10 +1,9 @@
 package Traveler;
 
 import Authentication.DeleteAccount;
+import Authentication.ManageAccountDash;
 import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.CheckList.*;
-import Traveler.Checklist_NoteKeeping.NoteKeeping.*;
-import Traveler.Itinerary_Management.*;
 import Traveler.Trip_Management.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -33,11 +32,10 @@ public class TravelerDashboard {
 
             int mainOption = scanner.nextInt();
             switch (mainOption) {
-                case 1 -> new ItineraryDashboard().displayItinerary();
-                case 2 -> new NoteKeepingDashboard().displayChecklist();
-                case 3 -> new CheckListdashBoard().displayChecklist();
-                case 4 -> new TripDashboard().showDashboard(scanner);
-                case 5 -> new DeleteAccount().deleteAccount();
+                case 1 -> new PlanTripDashboard().showPlanTripDashboard();
+                case 2 -> new BrowseTripDashboard().showBrowseTripDashboard();
+                case 3 -> new TripDashboard().showDashboard(scanner);
+                case 4 -> new ManageAccountDash().showManageAccountDash();
                 case 6 -> {
                     System.out.println("Exiting Traveler Dashboard...");
                     UserAccess userAccess = new UserAccess();
