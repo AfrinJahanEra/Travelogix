@@ -31,6 +31,6 @@ public class DeleteItemTest {
 
         // Verify item deletion
         assertEquals(1, checklist.getTotalItems());
-        assertFalse(checklist.getItems().contains("Item 1"));  // Assuming the first item is deleted
+        assertFalse(checklist.getItems().contains("Item 1")); 
     }
 }
