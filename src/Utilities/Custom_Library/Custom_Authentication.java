@@ -98,5 +98,48 @@ public class Custom_Authentication{
         return hexString.toString();
     }
 
+    // Custom getBytes method to convert a string to a byte array
+    private byte[] getBytes(String input) {
+        byte[] bytes = new byte[length(input)];
+        for (int i = 0; i < length(input); i++) {
+            bytes[i] = (byte) charAt(input, i); // Convert char to byte
+        }
+        return bytes;
+    }
+
+
+        // Custom charAt method
+        public char charAt(String str, int index) {
+            if (index < 0 || index >= length(str)) {
+                throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length(str));
+            }
+            
+            char[] charArray = toCharArray(str); // Convert string to character array
+            return charArray[index]; // Return the character at the specified index
+        }
     
+        // Custom length method
+        public int length(String str) {
+            int count = 0;
+            try {
+                while (true) {
+                    str.charAt(count); // Access each character
+                    count++;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                // Exception indicates end of string
+            }
+            return count;
+        }
+    
+        // Custom toCharArray method
+        public char[] toCharArray(String str) {
+            int len = length(str);
+            char[] charArray = new char[len];
+            
+            for (int i = 0; i < len; i++) {
+                charArray[i] = str.charAt(i); // Manually fill character array
+            }
+            return charArray;
+        }
     }
