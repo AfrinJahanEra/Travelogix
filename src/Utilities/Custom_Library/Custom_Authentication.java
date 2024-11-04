@@ -66,5 +66,37 @@ public class Custom_Authentication{
         return password.toString();
     }
 
+    // Custom hashing utility class to replace MD5
+    public static class CustomHash {
+        private final int[] hashValues = {0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476};
+
+        public CustomHash getInstance() {
+            return new CustomHash();
+        }
+
+        public int[] digest(byte[] input) {
+            int[] result = hashValues.clone();
+            for (int i = 0; i < input.length; i++) {
+                result[i % result.length] ^= input[i];
+            }
+            return result;
+        }
+    }
+
+    // Encrypt password method
+    public String encryptPassword(String password) throws NoSuchAlgorithmException {
+        CustomHash customHash = new CustomHash().getInstance();
+        byte[] passwordBytes = getBytes(password);
+        int[] hashedValues = customHash.digest(passwordBytes);
+        
+        StringBuilder hexString = new StringBuilder();
+        for (int value : hashedValues) {
+            String hex = Integer.toHexString(value);
+            hexString.append(hex);
+        }
+        
+        return hexString.toString();
+    }
+
     
     }
