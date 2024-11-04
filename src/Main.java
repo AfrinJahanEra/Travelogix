@@ -1,21 +1,12 @@
-import Itinerary_Management.*;
-import Itinerary_Management.Alarm.AlertSystem;
-import Trip_Management.*;
 
+import Authentication.UserAccess;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
-public class Main{
-
-public static void main(String[] args) {
-//        TripManager t = new TripManager();
-//        // t.addTrip();
-//
-//        t.viewTripsOnCalendar();
-//
-//        // t.removeTrip();
-//
-//        // AlertSystem a = new AlertSystem();
-//        // a.alertSystem();
-
-        
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
+        UserAccess userAccess = new UserAccess();
+        userAccess.start();
     }
 }
+

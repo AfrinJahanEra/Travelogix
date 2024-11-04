@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class TripManager {
 
-    private static final String TRIP_FILE = "trips.txt";
+    private static final String TRIP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\trips.txt";
     private final Scanner scanner = new Scanner(System.in);
 
     // Method to add a trip to the file
@@ -62,7 +62,7 @@ public class TripManager {
         System.out.print("Enter the index of the trip you want to remove: ");
         int serialNumber = scanner.nextInt();
 
-        File tempFile = new File("temp.txt");
+        File tempFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp.txt");
         File tripFile = new File(TRIP_FILE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(tripFile));
@@ -93,4 +93,6 @@ public class TripManager {
         tempFile.renameTo(tripFile);
 
     }
+
+    
 }

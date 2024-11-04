@@ -1,13 +1,13 @@
 package Authentication;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.math.BigInteger;
 
 
 public class Authentication extends  PasswordField{
-    private static final String USERS_FILE = "users.txt";
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
     public boolean isEmailUnique(String email) {
@@ -25,15 +25,11 @@ public class Authentication extends  PasswordField{
         return true;
     }
 
-    // Method to save user information
-    public void saveUserInfo(String role, String name, String phoneNumber, String email, String password) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE, true))) {
-            if (role.equals("1")) role = "Admin";
-            else role = "Traveler";
-            writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + password);
-            writer.newLine();
+    public void saveUserInfo(String role, String name, String phoneNumber, String email, String encryptedPass) {
+        try (FileWriter writer = new FileWriter(USERS_FILE, true)) {
+            writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + encryptedPass + "\n");
         } catch (IOException e) {
-            System.out.println(e + " occurred while saving user information.");
+            System.out.println("An error occurred while saving user information: " + e.getMessage());
         }
     }
 

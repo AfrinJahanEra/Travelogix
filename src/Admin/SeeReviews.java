@@ -1,20 +1,18 @@
 package Admin;
 
+import Utilities.FileManager.ReviewFile;
 import java.util.List;
 import java.util.Scanner;
-
-import Utilities.FileManager.ReviewFile;
 
 public class SeeReviews {
 
     private List<String> reviews;  
-    // private ReviewAnalyzer analyzer = new ReviewAnalyzer();
-    // private Comment comment = new Comment();
+    
     private ReviewFile reviewFile = new ReviewFile();
 
     public void reviewUserSuggestions() {
     
-        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt");
+        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt");
 
        
         displayReviewsWithFeedback();
@@ -48,7 +46,7 @@ public class SeeReviews {
         addComment(reviews.get(reviewNumber - 1), userComment);
         System.out.println("Your comment: \"" + userComment + "\" has been added to review " + reviewNumber);
 
-        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\Travelogix\\Admin\\AdminFunctionalities\\SeeReviews\\review.txt", reviewNumber - 1, userComment);
+        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt", reviewNumber - 1, userComment);
 
     }
 
