@@ -26,7 +26,7 @@ public class ItineraryDashboard {
                 switch (choice) {
                     case 1:
                         AlertSystem alertSystem = new AlertSystem();
-                        alertSystem.alertSystem(scanner); // Pass scanner
+                        alertSystem.alertSystem(); // Pass scanner
                         break;
                     case 2:
                         Calendar calendar = new Calendar();
