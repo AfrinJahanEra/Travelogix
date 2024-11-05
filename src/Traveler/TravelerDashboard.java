@@ -1,9 +1,10 @@
 package Traveler;
 
 import Authentication.DeleteAccount;
-import Authentication.ManageAccountDash;
 import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.CheckList.*;
+import Traveler.Checklist_NoteKeeping.NoteKeeping.*;
+import Traveler.Itinerary_Management.*;
 import Traveler.Trip_Management.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -20,22 +21,21 @@ public class TravelerDashboard {
             System.out.println("|            TRAVELER            |");
             System.out.println("|________________________________|");
 
-
-            System.out.println("[1] Plan a Trip");
-            System.out.println("[2] Browse Trips");
-            System.out.println("[3] Reviwes");
-            System.out.println("[4] Manage Account");
-            System.out.println("[5] Exit");
-        
+            System.out.println("[1] Itinerary Management");
+            System.out.println("[2] Keep Notes");
+            System.out.println("[3] CheckList");
+            System.out.println("[4] Trip Management");
+            System.out.println("[5] Delete Account");
+            System.out.println("[6] Exit");
             System.out.print("Enter your choice: ");
-
 
             int mainOption = scanner.nextInt();
             switch (mainOption) {
-                case 1 -> new PlanTripDashboard().showPlanTripDashboard();
-                case 2 -> new BrowseTripDashboard().showBrowseTripDashboard();
-                case 3 -> new TripDashboard().showDashboard(scanner);
-                case 4 -> new ManageAccountDash().showManageAccountDash();
+                case 1 -> new ItineraryDashboard().displayItinerary();
+                case 2 -> new NoteKeepingDashboard().displayChecklist();
+                case 3 -> new CheckListdashBoard().displayChecklist();
+                case 4 -> new TripDashboard().showDashboard(scanner);
+                case 5 -> new DeleteAccount().deleteAccount();
                 case 6 -> {
                     System.out.println("Exiting Traveler Dashboard...");
                     UserAccess userAccess = new UserAccess();
