@@ -99,12 +99,12 @@ public class SignUp extends Authentication {
 
 
     // Validate email to check if it contains only lowercase letters and ends with '@gmail.com' or '@yahoo.com'
-    private boolean isValidEmail(String email) {
+    public boolean isValidEmail(String email) {
         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
     }
 
     // Validate phone number to check if it is 11 digits and starts with '01'
-    private boolean isValidPhoneNumber(String phoneNumber) {
+    public boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("01\\d{9}");
     }
 }

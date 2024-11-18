@@ -194,7 +194,7 @@ public class DeleteAccount extends Authentication {
     }
 
     // Method to retrieve user role by email
-    private String getUserRole(String email) {
+    public String getUserRole(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
 
