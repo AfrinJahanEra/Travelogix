@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SignUp extends Authentication {
 
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
+    private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
     private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 

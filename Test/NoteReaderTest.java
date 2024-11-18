@@ -1,6 +1,5 @@
 package Test;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote.NoteManager;
@@ -12,18 +11,17 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class NoteReaderTest {
-    private NoteManager noteManager;
-    private NoteReader noteReader;
-
-    @Before
-    public void setUp() {
-        noteManager = new NoteManager();  // Ensure `NoteManager` manages paths and notes correctly
-        noteReader = new NoteReader(noteManager);
-        new File("notes").mkdir();  // Create the `notes` directory for testing
-    }
 
     @Test
     public void testShowAndReadNote() throws IOException {
+        // Initialize NoteManager and NoteReader
+        NoteManager noteManager = new NoteManager();  // Ensure `NoteManager` manages paths and notes correctly
+        NoteReader noteReader = new NoteReader(noteManager);
+
+        // Create the `notes` directory for testing
+        new File("notes").mkdir();
+
+        // Set up a test note file
         String testNoteTitle = "ReadTestNote";
         String testFilePath = noteManager.getNewNoteFilePath(testNoteTitle);
         File testFile = new File(testFilePath);
@@ -32,7 +30,7 @@ public class NoteReaderTest {
         // Invoke the reader to read the file (assume user input is mocked or handled)
         noteReader.showAndReadNote();
 
-        // Cleanup
+        // Cleanup: Delete the test file
         testFile.delete();
     }
 }

@@ -13,14 +13,10 @@ public class SoundUtils {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            // Wait for the sound to finish playing
-            Thread.sleep(clip.getMicrosecondLength() / 1000);
+            Thread.sleep(clip.getMicrosecondLength() / 1000); // Wait for the sound to finish
             clip.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error playing sound: " + e.getMessage());
         }
     }
 }
-
-
-

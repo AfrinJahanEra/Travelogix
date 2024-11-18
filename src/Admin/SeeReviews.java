@@ -12,21 +12,23 @@ public class SeeReviews {
 
     public void reviewUserSuggestions() {
     
-        reviews = reviewFile.loadReviewsFromFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt");
+        reviews = reviewFile.loadReviewsFromFile("src\\TXT_Files\\review.txt");
 
        
         displayReviewsWithFeedback();
         takeUserComment();
     }
-
     private void displayReviewsWithFeedback() {
-        System.out.println("Reviews with Feedback:");
+        System.out.printf("%-5s %-50s %-15s%n", "No.", "Review", "Feedback");
+        System.out.println("--------------------------------------------------------------------");
+    
         for (int i = 0; i < reviews.size(); i++) {
             String review = reviews.get(i);
             String feedback = analyzeReview(review);
-            System.out.println((i + 1) + ". " + review + " [" + feedback + "]");
+            System.out.printf("%-5d %-50s %-15s%n", (i + 1), review, feedback);
         }
     }
+    
 
     private void takeUserComment() {
         Scanner inputScanner = new Scanner(System.in);
@@ -46,7 +48,7 @@ public class SeeReviews {
         addComment(reviews.get(reviewNumber - 1), userComment);
         System.out.println("Your comment: \"" + userComment + "\" has been added to review " + reviewNumber);
 
-        reviewFile.saveCommentToFile("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\review.txt", reviewNumber - 1, userComment);
+        reviewFile.saveCommentToFile("src\\TXT_Files\\review.txt", reviewNumber - 1, userComment);
 
     }
 

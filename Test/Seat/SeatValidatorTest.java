@@ -1,7 +1,8 @@
 package Test.Seat;
 
-import Source.Seat.SeatValidator;
 import org.junit.jupiter.api.Test;
+
+import Transport.Seat.SeatValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

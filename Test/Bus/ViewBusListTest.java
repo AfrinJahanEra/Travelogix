@@ -1,8 +1,10 @@
 package Test.Bus;
 
-import Source.Bus.ViewBusList;
-import Source.File.FileHandler;
+
 import org.junit.jupiter.api.Test;
+
+import Transport.Bus.ViewBusList;
+import Utilities.FileManager.File.FileHandler;
 
 import java.io.File;
 import java.io.IOException;

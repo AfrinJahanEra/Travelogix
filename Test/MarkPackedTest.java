@@ -1,27 +1,23 @@
 package Test;
 
-
 import Traveler.Checklist_NoteKeeping.CheckList.*;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.Test;
 
 public class MarkPackedTest {
-    private Checklist checklist;
-    private MarkPacked markPacked;
-
-    @Before
-    public void setUp() {
-        checklist = new Checklist();
-        markPacked = new MarkPacked();
-        checklist.getItems().add("Item 1");
-        checklist.getPackedItems().add(false);
-        checklist.increaseTotalItems();
-    }
 
     @Test
     public void testMarkPacked() {
+        // Initialize checklist and markPacked
+        Checklist checklist = new Checklist();
+        MarkPacked markPacked = new MarkPacked();
+
+        // Add initial items
+        checklist.getItems().add("Item 1");
+        checklist.getPackedItems().add(false);
+        checklist.increaseTotalItems();
+
         // Verify initial state
         assertFalse(checklist.getPackedItems().get(0));
 
@@ -35,7 +31,16 @@ public class MarkPackedTest {
 
     @Test
     public void testMarkPackedAlreadyPacked() {
-        checklist.getPackedItems().set(0, true);  // Manually mark item as packed
+        // Initialize checklist and markPacked
+        Checklist checklist = new Checklist();
+        MarkPacked markPacked = new MarkPacked();
+
+        // Add initial items
+        checklist.getItems().add("Item 1");
+        checklist.getPackedItems().add(true);  // Item already packed
+        checklist.increaseTotalItems();
+
+        // Mark the item as packed
         markPacked.markPacked(checklist);
 
         // Verify that the item is still packed and no changes were incorrectly made

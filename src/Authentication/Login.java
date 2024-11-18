@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Login extends Authentication {
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
+    private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
     private SignUp signUpInstance = new SignUp();
     private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 

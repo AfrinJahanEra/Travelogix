@@ -4,9 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ApproveRequest {
-    private static final String REQUEST_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\requests.txt";
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
-    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt";
+    private static final String REQUEST_FILE = "src\\TXT_Files\\requests.txt";
+    private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
 
     public void approveTransportAgencyRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader(REQUEST_FILE));
@@ -28,17 +27,13 @@ public class ApproveRequest {
                         System.out.println("Request from " + email + " to delete account for reason: " + reason);
                         System.out.println("Approve this request? (1: Approve, 2: Reject)");
                         int choice = scanner.nextInt();
-                        scanner.nextLine(); 
 
                         if (choice == 1) {
                             deleteUserAccount(email);
                             writer.write(email + ", " + reason + ", approved");
                             System.out.println("Request approved and account deleted.");
                         } else {
-                            System.out.println("Enter reason for rejection: ");
-                            scanner.nextLine();  // Consume newline
-                            String rejectReason = scanner.nextLine();
-                            writer.write(email + ", " + reason + ", not approved, " + rejectReason);
+                            writer.write(email + ", " + reason + ", not approved");
                             System.out.println("Request not approved.");
                         }
                         writer.newLine();
@@ -59,9 +54,10 @@ public class ApproveRequest {
         replaceFile(REQUEST_FILE + "_temp", REQUEST_FILE);
     }
 
+    private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt";
+
     private void deleteUserAccount(String email) {
         boolean userDeleted = false;
-        final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));
             BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE))) {
@@ -103,6 +99,7 @@ public class ApproveRequest {
         }
     }
 
+
     private void replaceFile(String tempFileName, String originalFileName) {
         File tempFile = new File(tempFileName);
         File originalFile = new File(originalFileName);
@@ -112,3 +109,5 @@ public class ApproveRequest {
         }
     }
 }
+
+

@@ -1,8 +1,11 @@
 package Test.Bus;
 
-import Source.Bus.DeleteBus;
-import Source.File.FileHandler;
+
 import org.junit.jupiter.api.Test;
+
+import Transport.Bus.DeleteBus;
+import Utilities.FileManager.File.FileHandler;
+
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -11,7 +11,7 @@ public class VoiceNoteManager {
     public VoiceNoteManager() {
         File dir = new File(DIRECTORY_PATH);
         if (!dir.exists()) {
-            dir.mkdir();  
+            dir.mkdir();
         }
     }
 
@@ -27,12 +27,10 @@ public class VoiceNoteManager {
         return voiceNotes;
     }
 
-    // Generating a file path for a new voice note
     public String getNewVoiceNoteFilePath(String noteName) {
         return DIRECTORY_PATH + noteName + ".wav";
     }
 
-    // Deleting a voice note
     public void deleteVoiceNote(String fileName) {
         File file = new File(DIRECTORY_PATH + fileName);
         if (file.delete()) {

@@ -5,13 +5,10 @@ import Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote.VoiceNoteDashBoard;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote.NotewritingDashboard;
 import java.util.Scanner;
 
-
 public class NoteKeepingDashboard {
-     public void displayChecklist() {
-        
-        
+    public void displayChecklist() {
         Scanner scanner = new Scanner(System.in);
-        
+
         while (true) {
             System.out.println("[1] Voice Note");
             System.out.println("[2] Written Note");
@@ -30,11 +27,11 @@ public class NoteKeepingDashboard {
                     notewritingDashboard.notewritingDashboard();
                     break;
                 case 3:
-                    CheckListdashBoard checkListdashBoard=new CheckListdashBoard();
-                    checkListdashBoard.displayChecklist();
+                    CheckListdashBoard checklistDashboard = new CheckListdashBoard();
+                    checklistDashboard.displayChecklist();
                     break;
                 case 4:
-                    System.out.println("Exiting the checklist manager. Goodbye!");
+                    System.out.println("Exiting the note-keeping dashboard. Goodbye!");
                     return;
                 default:
                     System.out.println("Invalid choice! Please choose again.");
@@ -42,3 +39,4 @@ public class NoteKeepingDashboard {
         }
     }
 }
+

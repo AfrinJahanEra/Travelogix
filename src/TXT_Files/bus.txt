@@ -1,4 +1,4 @@
-Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,01700000001,10,4
+Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,01700000001,10,4,1A,1B,2C,4D,5B
 Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,01700000002,12,3,1A,1B,1C,2A,6B,8A
 Shyamoli NR Travels,Chittagong,Cox's Bazar,08:00 AM,CTG-1234,01700000003,10,4
 Green Line,Dhaka,Khulna,06:30 AM,DHK-9101,01700000004,12,3
@@ -13,10 +13,12 @@ Royal Coach,Rajshahi,Pabna,08:30 AM,RAJ-6677,01700000012,12,3
 Shah Fateh Ali Paribahan,Sylhet,Bogura,09:30 AM,SHY-7788,01700000013,10,4
 Manzil Paribahan,Bhola,Barisal,06:45 AM,BHL-8899,01700000014,10,4
 Akota Transport,Jessore,Kushtia,05:15 AM,JES-9900,01700000015,12,3
-BRTC,Dhaka,Feni,10:30 AM,DHK-1022,01700000016,10,4
+BRTC,Dhaka,Feni,10:30 AM,DHK-1022,01700000016,10,4,1A,2B,1C,1D
 Relax Transport,Bandarban,Cox's Bazar,04:00 PM,BDN-2345,01700000017,12,3
 Green Bengal,Dhaka,Bogra,07:20 AM,DHK-3456,01700000018,10,4
 Saudia Express,Bogura,Sirajganj,06:10 AM,BOG-4567,01700000019,10,4
 Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,01700000002,12,3,1A,1B,1C,2A,6B,8A
-dadasd,sffsz,fafddzd,sgfsgs,1234,3144,23,23,18C,16B,1A,1B,1C
-ttrwt,rtwt,wrtwr,werw,erwerw,rwrrrr,12,12
+Purbasha,Dhaka,Khulna,13:43,KHU-13,+880-1922339990,5,5,1A,1B,2C
+Purbasha,dhaka,khulna,23:00,KHU-14,+880-1933445550,5,5,1A,1B
+Purbasha,1,Dhaka,01:00,KHU-#$,+880-1922337780,3,3,
+Anabil,Dhaka,sylhet,03:00,KHU-23,+880-1822337770,5,5,1A,2B,2C

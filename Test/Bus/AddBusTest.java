@@ -1,20 +1,16 @@
 package Test.Bus;
 
-import Source.Bus.AddBus;
-import Source.File.FileHandler;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
+
+import Transport.Bus.AddBus;
+import Utilities.FileManager.File.FileHandler;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddBusTest {
-    private final PrintStream originalOut = System.out;
-    private final InputStream originalIn = System.in;
+    
     private final String testFilePath = "test_bus.txt";
 
 

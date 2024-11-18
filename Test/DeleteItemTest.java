@@ -1,28 +1,24 @@
 package Test;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.Test;
 import Traveler.Checklist_NoteKeeping.CheckList.*;
 
 public class DeleteItemTest {
-    private Checklist checklist;
-    private DeleteItem deleteItem;
-
-    @Before
-    public void setUp() {
-        checklist = new Checklist();
-        deleteItem = new DeleteItem();
+    @Test
+    public void testDeleteItem() {
+        // Initialize checklist and deleteItem
+        Checklist checklist = new Checklist();
+        DeleteItem deleteItem = new DeleteItem();
+        
+        // Add initial items
         checklist.getItems().add("Item 1");
         checklist.getItems().add("Item 2");
         checklist.getPackedItems().add(false);
         checklist.getPackedItems().add(false);
         checklist.increaseTotalItems();
         checklist.increaseTotalItems();
-    }
 
-    @Test
-    public void testDeleteItem() {
         // Initial assertions
         assertEquals(2, checklist.getTotalItems());
 
@@ -31,6 +27,6 @@ public class DeleteItemTest {
 
         // Verify item deletion
         assertEquals(1, checklist.getTotalItems());
-        assertFalse(checklist.getItems().contains("Item 1")); 
+        assertFalse(checklist.getItems().contains("Item 1"));
     }
 }

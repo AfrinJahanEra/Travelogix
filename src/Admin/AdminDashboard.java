@@ -23,19 +23,33 @@ public class AdminDashboard {
             System.out.println("[2] Review User Suggestions and Comments");
             System.out.println("[3] View Login Information ");
             System.out.println("[4] Delete Account");
-            System.out.println("[5] Exit");
+            System.out.println("[5] Log Out");
+            System.out.println(".............................");
 
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1 -> new ApproveRequest().approveTransportAgencyRequests();
                 case 2 -> new SeeReviews().reviewUserSuggestions();
                 case 3 -> new ViewAllLogins().showAllLogins();
-                case 4 -> new DeleteAccount().deleteAccount();
+                case 4 -> {
+                    if (new DeleteAccount().deleteAccount()) {
+                        System.out.println("Account deleted successfully. Returning to dashboard...");
+                        isRunning = false;
+                        UserAccess u = new UserAccess();
+                        u.start(); // Return to user access point
+                    } else {
+                        System.out.println("Account deletion cancelled or failed.");
+                    }
+                }
                 case 5 -> {
-                    UserAccess userAccess = new UserAccess();
-                    userAccess.start();
+                    System.out.println("Exiting Traveler Dashboard...");
+                    isRunning = false;
+                    UserAccess u = new UserAccess();
+                    u.start();// Exit the loop
                 }
                 default -> System.out.println("Invalid option. Please try again.");
+                
+                
             }
         }
     }
