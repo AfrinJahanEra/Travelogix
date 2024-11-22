@@ -22,8 +22,9 @@ class FileHandlerTest {
         String data = "Hello, World!";
         fileHandler.writeToFile(data);
 
+        // git branch
         String content = fileHandler.readFromFile();
-        assertEquals("Hello, World!\n", content);
+        assertEquals("Hello, World!\n", content); 
         new java.io.File(testFilePath).delete();
     }
 
