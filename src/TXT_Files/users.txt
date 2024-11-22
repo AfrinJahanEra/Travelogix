@@ -3,7 +3,6 @@ Traveler, Rina, 01234567890, rina@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Admin, Kadir, 01922337770, kadir@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Ahsan, 01234567800, ahsan@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Shabnam, 01911454640, shabnam@gmail.com, 25d55ad283aa400af464c76d713c07ad
-Transport, Masud, 01922336660, masud@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Rafiq, 01877666550, rafiq@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Nabila, 01922349999, nabila@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Admin, Bilal, 01922388888, bilal@gmail.com, 25d55ad283aa400af464c76d713c07ad
