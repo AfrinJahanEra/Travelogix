@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public class Authentication extends  PasswordField{
+public class Authentication{
     private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
 
@@ -51,9 +51,9 @@ public class Authentication extends  PasswordField{
 
     // Method to get password input with masking
     public String getPasswordInput() {
-
+        PasswordField passwordField= new PasswordField();
        
-        String password = PasswordField.readPassword("");        
+        String password = passwordField.readPassword("");
         return password;
     }
 
