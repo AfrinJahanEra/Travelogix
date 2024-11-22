@@ -20,7 +20,9 @@ public class Authentication extends  PasswordField{
                 }
             }
         } catch (IOException e) {
+            System.out.println(" ");
             System.out.println("An error occurred while reading the user file.");
+            System.out.println(" ");
         }
         return true;
     }
@@ -29,7 +31,9 @@ public class Authentication extends  PasswordField{
         try (FileWriter writer = new FileWriter(USERS_FILE, true)) {
             writer.write(role + ", " + name + ", " + phoneNumber + ", " + email + ", " + encryptedPass + "\n");
         } catch (IOException e) {
+            System.out.println(" ");
             System.out.println("An error occurred while saving user information: " + e.getMessage());
+            System.out.println(" ");
         }
     }
 
@@ -44,7 +48,9 @@ public class Authentication extends  PasswordField{
                 }
             }
         } catch (IOException e) {
+            System.out.println(" ");
             System.out.println("Invalid email or password.");
+            System.out.println(" ");
         }
         return false;
     }

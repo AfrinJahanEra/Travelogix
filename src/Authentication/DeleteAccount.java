@@ -1,133 +1,3 @@
-// package Authentication;
-
-// import Transport.*;
-// import java.io.*;
-// import java.security.NoSuchAlgorithmException;
-// import java.util.Scanner;
-
-// public class DeleteAccount extends Authentication {
-
-//     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
-//     private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
-//     private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
-
-//     // Method to delete the account
-//     public boolean deleteAccount() throws NoSuchAlgorithmException, IOException {
-
-//         System.out.println(" ________________________________");
-//         System.out.println("|         DELETE ACCOUNT         |");
-//         System.out.println("|________________________________|");
-
-//         Scanner scanner = new Scanner(System.in);
-      
-//         System.out.println("Enter your email: ");
-//         String email = scanner.nextLine().trim();
-
-//         // Check if the email is registered using LogIn's isEmailRegistered
-//         if (!loginHelper.isEmailRegistered(email)) {
-//             System.out.println("This email is not registered. Please check the email and try again.");
-//             deleteAccount();
-//             return;
-//         }
-
-//         System.out.println("Enter your password: ");
-//         String password = getPasswordInput();
-//         String encryptedPassword = encryptPassword(password);
-
-//         // Check if the email and password are valid
-//         if (!isValidUser(email, encryptedPassword)) {
-//             System.out.println("Invalid email or password. Please try again.");
-//             return;
-//         }
-
-//         String role = getUserRole(email); // Retrieve the user role based on the email
-//         if ("Transport".equalsIgnoreCase(role)) {
-//             TransportDeleteAccount request = new TransportDeleteAccount();
-//             request.sendDeleteRequest(email);
-//         } else {
-//             System.out.println("Are you sure you want to delete your account? \n1. Yes \n2. No");
-//             String choice = scanner.nextLine().trim();
-
-//             if ("1".equals(choice)) {
-//                 if (performDeletion(email)) {
-//                     System.out.println("Account deleted successfully.");
-//                 } else {
-//                     System.out.println("An error occurred while deleting the account. Please try again.");
-//                 }
-//             } else {
-//                 System.out.println("Account deletion cancelled.");
-//             }
-//         }
-//         scanner.close();
-//     }
-
-//     // Method to retrieve user role by email
-//     private String getUserRole(String email) {
-//         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
-//             String line;
-            
-//             while ((line = reader.readLine()) != null) {
-//                 String[] userDetails = line.split(", ");
-                
-//                 // Assuming the role is the first element and email is the fourth element
-//                 if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
-//                     return userDetails[0]; // Returns the role if email matches
-//                 }
-//             }
-//         } catch (IOException e) {
-//             System.out.println("An error occurred while retrieving the user's role.");
-//         }
-        
-//         return null; // Returns null if the user is not found
-//     }
-
-//     // Perform the deletion operation
-//     private boolean performDeletion(String email) {
-//         boolean isDeleted = false;
-
-//         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));
-//              BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE))) {
-
-//             String line;
-//             while ((line = reader.readLine()) != null) {
-//                 String[] userDetails = line.split(", ");
-//                 if (userDetails.length > 3 && !userDetails[3].equalsIgnoreCase(email)) {
-//                     // Write all users except the one to be deleted to the temporary file
-//                     writer.write(line);
-//                     writer.newLine();
-//                 } else {
-//                     // Mark as deleted
-//                     isDeleted = true;
-//                 }
-//             }
-//         } catch (IOException e) {
-//             System.out.println("An error occurred while processing the user file.");
-//             return false;
-//         }
-
-//         // Replace the original file with the temporary file
-//         if (isDeleted) {
-//             File originalFile = new File(USERS_FILE);
-//             File tempFile = new File(TEMP_FILE);
-
-//             if (originalFile.delete()) {
-//                 if (!tempFile.renameTo(originalFile)) {
-//                     System.out.println("Failed to update the user file.");
-//                     return false;
-//                 }
-//             } else {
-//                 System.out.println("Failed to delete the original user file.");
-//                 return false;
-//             }
-//         } else {
-//             // If no deletion occurred, delete the temporary file
-//             new File(TEMP_FILE).delete();
-//         }
-
-//         return isDeleted;
-//     }
-// }
-
 package Authentication;
 
 import Transport.*;
@@ -139,78 +9,73 @@ public class DeleteAccount extends Authentication {
 
     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
     private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
-    private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
+    private final Login loginHelper = new Login(); // Use LogIn for email validation
 
     // Method to delete the account
     public boolean deleteAccount() throws NoSuchAlgorithmException, IOException {
-
-        System.out.println(" ________________________________");
-        System.out.println("|         DELETE ACCOUNT         |");
-        System.out.println("|________________________________|");
+        printTitle("DELETE ACCOUNT");
 
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter your email: ");
+        System.out.print("Enter your email: ");
         String email = scanner.nextLine().trim();
 
-        // Check if the email is registered using LogIn's isEmailRegistered
+        // Check if email is registered
         if (!loginHelper.isEmailRegistered(email)) {
-            System.out.println("This email is not registered. Please check the email and try again.");
-            return false; // Return false to indicate the process didn't complete successfully
+            printError("This email is not registered. Please check and try again.");
+            return false;
         }
 
-        System.out.println("Enter your password: ");
+        System.out.print("Enter your password: ");
         String password = getPasswordInput();
         String encryptedPassword = encryptPassword(password);
 
-        // Check if the email and password are valid
+        // Validate user credentials
         if (!isValidUser(email, encryptedPassword)) {
-            System.out.println("Invalid email or password. Please try again.");
-            return false; // Return false if the credentials are invalid
+            printError("Invalid email or password. Please try again.");
+            return false;
         }
 
-        String role = getUserRole(email); // Retrieve the user role based on the email
+        // Retrieve user role
+        String role = getUserRole(email);
         if ("Transport".equalsIgnoreCase(role)) {
-            TransportDeleteAccount request = new TransportDeleteAccount();
-            request.sendDeleteRequest(email);
+            new TransportDeleteAccount().sendDeleteRequest(email); // Delegate deletion to Transport system
         } else {
-            System.out.println("Are you sure you want to delete your account? \n1. Yes \n2. No");
+            System.out.println("\nAre you sure you want to delete your account?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            System.out.print("Enter your choice: ");
             String choice = scanner.nextLine().trim();
 
             if ("1".equals(choice)) {
                 if (performDeletion(email)) {
-                    System.out.println("Account deleted successfully.");
-                    return true; // Return true if the account was deleted
+                    printSuccess("Account deleted successfully.");
+                    return true;
                 } else {
-                    System.out.println("An error occurred while deleting the account. Please try again.");
-                    return false; // Return false if there was an error during deletion
+                    printError("An error occurred while deleting the account. Please try again.");
+                    return false;
                 }
             } else {
-                System.out.println("Account deletion cancelled.");
-                return false; // Return false if the user canceled the deletion
+                printInfo("Account deletion cancelled.");
+                return false;
             }
         }
         return false;
     }
 
-    // Method to retrieve user role by email
+    // Retrieve user role by email
     public String getUserRole(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
-
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(", ");
-
-                // Assuming the role is the first element and email is the fourth element
                 if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
-                    return userDetails[0]; // Returns the role if email matches
+                    return userDetails[0]; // Assuming role is the first field
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while retrieving the user's role.");
+            printError("An error occurred while retrieving the user's role.");
         }
-
-        return null; // Returns null if the user is not found
+        return null; // Return null if role not found
     }
 
     // Perform the deletion operation
@@ -224,38 +89,51 @@ public class DeleteAccount extends Authentication {
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(", ");
                 if (userDetails.length > 3 && !userDetails[3].equalsIgnoreCase(email)) {
-                    // Write all users except the one to be deleted to the temporary file
                     writer.write(line);
                     writer.newLine();
                 } else {
-                    // Mark as deleted
-                    isDeleted = true;
+                    isDeleted = true; // Mark as deleted
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while processing the user file.");
+            printError("An error occurred while processing the user file.");
             return false;
         }
 
-        // Replace the original file with the temporary file
+        // Replace the original file with the updated one
         if (isDeleted) {
             File originalFile = new File(USERS_FILE);
             File tempFile = new File(TEMP_FILE);
 
-            if (originalFile.delete()) {
-                if (!tempFile.renameTo(originalFile)) {
-                    System.out.println("Failed to update the user file.");
-                    return false;
-                }
+            if (originalFile.delete() && tempFile.renameTo(originalFile)) {
+                return true;
             } else {
-                System.out.println("Failed to delete the original user file.");
+                printError("Failed to update the user file.");
                 return false;
             }
         } else {
-            // If no deletion occurred, delete the temporary file
-            new File(TEMP_FILE).delete();
+            new File(TEMP_FILE).delete(); // Clean up temp file
         }
 
         return isDeleted;
+    }
+
+    // Utility methods for standardized output
+    private void printTitle(String title) {
+        System.out.println("\n========================================");
+        System.out.printf("  %s%n", title);
+        System.out.println("========================================\n");
+    }
+
+    private void printError(String message) {
+        System.out.println("\n[ERROR] " + message + "\n");
+    }
+
+    private void printInfo(String message) {
+        System.out.println("\n[INFO] " + message + "\n");
+    }
+
+    private void printSuccess(String message) {
+        System.out.println("\n[SUCCESS] " + message + "\n");
     }
 }

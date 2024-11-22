@@ -7,49 +7,45 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Login extends Authentication {
+
     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
-    private SignUp signUpInstance = new SignUp();
-    private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
+    private final SignUp signUpInstance = new SignUp();
+    private final AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 
+    // Main login method
     public void logIn() throws NoSuchAlgorithmException, IOException {
-
-        System.out.println(" ________________________________");
-        System.out.println("|            LOG IN              |");
-        System.out.println("|________________________________|");
+        printTitle("LOG IN");
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter email: ");
+        System.out.print("Enter your email: ");
         String email = scanner.nextLine().trim();
 
         if (isEmailRegistered(email)) {
-            System.out.println("Enter password: ");
+            System.out.print("Enter your password: ");
             String password = getPasswordInput();
             String encryptedPass = encryptPassword(password);
 
             if (isValidUser(email, encryptedPass)) {
-                System.out.println("Login successful!");
+                printSuccess("Login successful!");
 
-                // Retrieve user role and direct to appropriate dashboard
+                // Retrieve user role and display the appropriate dashboard
                 String role = getUserRole(email);
                 if (role != null) {
                     authDashboard.displayDashboard(role);
                 } else {
-                    System.out.println("Role not found or is invalid.");
+                    printError("User role not found or invalid. Please contact support.");
                 }
-
             } else {
-                System.out.println("Invalid email or password. Try again.");
+                printError("Invalid email or password. Please try again.");
             }
         } else {
-            System.out.println("You are not signed up with this email. Sign up first.");
-            signUpInstance.signUp();
+            printError("Email not registered. You need to sign up first.");
+            signUpInstance.signUp(); // Redirect to sign-up
         }
-
-        scanner.close();
     }
 
-    // Check if email is registered in the system
+    // Check if an email is registered in the system
     public boolean isEmailRegistered(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
@@ -60,24 +56,41 @@ public class Login extends Authentication {
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while checking the email: " + e.getMessage());
+            printError("An error occurred while checking the email: " + e.getMessage());
         }
-        return false;  
+        return false; // Email not found
     }
 
-    // Get the role of the user based on the email from the file
+    // Retrieve the user role based on their email
     private String getUserRole(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(", ");
                 if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
-                    return userDetails[0].trim(); // Assuming role is the first item in the array
+                    return userDetails[0].trim(); // Role is the first item in the line
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while retrieving the user role: " + e.getMessage());
+            printError("An error occurred while retrieving the user role: " + e.getMessage());
         }
-        return null; // Return null if role not found or error occurs
+        return null; // Role not found
+    }
+
+    // Print formatted title
+    private void printTitle(String title) {
+        System.out.println("\n========================================");
+        System.out.printf("  %s%n", title);
+        System.out.println("========================================");
+    }
+
+    // Print success message
+    private void printSuccess(String message) {
+        System.out.println("\n[SUCCESS] " + message + "\n");
+    }
+
+    // Print error message
+    private void printError(String message) {
+        System.out.println("\n[ERROR] " + message + "\n");
     }
 }

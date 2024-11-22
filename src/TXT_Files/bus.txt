@@ -22,3 +22,5 @@ Purbasha,Dhaka,Khulna,13:43,KHU-13,+880-1922339990,5,5,1A,1B,2C
 Purbasha,dhaka,khulna,23:00,KHU-14,+880-1933445550,5,5,1A,1B
 Purbasha,1,Dhaka,01:00,KHU-#$,+880-1922337780,3,3,
 Anabil,Dhaka,sylhet,03:00,KHU-23,+880-1822337770,5,5,1A,2B,2C
+dsd,dsds,dsds,03:20,era,+880-1922337770,4,4,
+purbasha,dhaka,khulna,03:00,678,+880-1224499990,5,5,

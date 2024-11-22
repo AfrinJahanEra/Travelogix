@@ -8,103 +8,135 @@ public class SignUp extends Authentication {
 
     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
-    private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
+    private final AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 
-    // Method to sign up as Admin, Traveler, or Transport Agency
+    // Main method to handle sign-up
     public void signUp() throws NoSuchAlgorithmException, IOException {
-
-        System.out.println(" ________________________________");
-        System.out.println("|            SIGN UP             |");
-        System.out.println("|________________________________|");
+        printTitle("Sign Up");
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Role: \n1. Admin\n2. Traveler\n3. Transport Agency\nEnter your role: ");
-        String roleInput = scanner.nextLine().trim();
-        String role;
+        // Step 1: Role selection
+        String role = getRoleSelection(scanner);
+        if (role == null) return; // Exit if invalid selection
 
-        switch (roleInput) {
-            case "1":
-                role = "Admin";
-                break;
-            case "2":
-                role = "Traveler";
-                break;
-            case "3":
-                role = "Transport";
-                break;
-            default:
-                System.out.println("Invalid role selection. Please enter 1, 2, or 3.");
-                return;
-        }
-
-        System.out.println("Enter name: ");
+        // Step 2: Name input
+        System.out.print("Enter your name: ");
         String name = scanner.nextLine().trim();
 
-        String phoneNumber;
+        // Step 3: Phone number validation
+        String phoneNumber = getValidPhoneNumber(scanner);
+
+        // Step 4: Email validation
+        String email = getValidEmail(scanner);
+
+        // Step 5: Password setup
+        String password = getValidPassword(scanner);
+
+        // Encrypt the password
+        String encryptedPassword = encryptPassword(password);
+
+        // Save user information
+        saveUserInfo(role, name, phoneNumber, email, encryptedPassword);
+
+        // Success message and dashboard display
+        printSuccess("Sign Up successful!");
+        authDashboard.displayDashboard(role);
+    }
+
+    // Helper method to select a role
+    private String getRoleSelection(Scanner scanner) {
+        System.out.println("\nPlease choose your role:");
+        System.out.println("[1] Admin");
+        System.out.println("[2] Traveler");
+        System.out.println("[3] Transport Agency");
+        System.out.print("Enter your choice (1/2/3): ");
+
+        String roleInput = scanner.nextLine().trim();
+        switch (roleInput) {
+            case "1":
+                return "Admin";
+            case "2":
+                return "Traveler";
+            case "3":
+                return "Transport";
+            default:
+                printError("Invalid role selection. Please enter 1, 2, or 3.");
+                return null;
+        }
+    }
+
+    // Helper method to validate phone number
+    private String getValidPhoneNumber(Scanner scanner) {
         while (true) {
-            System.out.println("Enter phone number: ");
-            phoneNumber = scanner.nextLine().trim();
+            System.out.print("Enter your phone number (11 digits starting with '01'): ");
+            String phoneNumber = scanner.nextLine().trim();
             if (isValidPhoneNumber(phoneNumber)) {
-                break;
+                return phoneNumber;
             } else {
-                System.out.println("Invalid phone number. It must be 11 digits and start with '01'.");
+                printError("Invalid phone number. It must be 11 digits and start with '01'.");
             }
         }
+    }
 
-        String email;
+    // Helper method to validate email
+    private String getValidEmail(Scanner scanner) {
         while (true) {
-            System.out.println("Enter email: ");
-            email = scanner.nextLine().trim();
-
+            System.out.print("Enter your email: ");
+            String email = scanner.nextLine().trim();
             if (!isValidEmail(email)) {
-                System.out.println("Invalid email. It must contain '@gmail.com' or '@yahoo.com', and only lowercase letters. Try again.");
+                printError("Invalid email. Use '@gmail.com' or '@yahoo.com' with lowercase letters.");
             } else if (!isEmailUnique(email)) {
-                System.out.println("This email is already registered. Please try a different one.");
+                printError("This email is already registered. Please try a different one.");
             } else {
-                break; // Valid, unique, and lowercase email
+                return email;
             }
         }
+    }
 
-        String password;
+    // Helper method to validate password
+    private String getValidPassword(Scanner scanner) {
         while (true) {
-            System.out.println("Enter password (Password must be at least 8 characters long): ");
-            password = getPasswordInput();
+            System.out.print("Enter your password (min 8 characters): ");
+            String password = getPasswordInput();
             if (password.length() < MIN_PASSWORD_LENGTH) {
-                System.out.println("Password must be at least 8 characters long.");
+                printError("Password must be at least 8 characters long.");
             } else {
-                System.out.println("Confirm password: ");
+                System.out.print("Confirm your password: ");
                 String confirmPassword = getPasswordInput();
                 if (password.equals(confirmPassword)) {
-                    break;
+                    return password;
                 } else {
-                    System.out.println("Passwords do not match. Try again.");
+                    printError("Passwords do not match. Try again.");
                 }
             }
         }
-
-        String encryptedPass = encryptPassword(password);
-
-        // Save user information with role as a string
-        saveUserInfo(role, name, phoneNumber, email, encryptedPass);
-        System.out.println("Sign Up successful");
-
-        // Display dashboard based on role
-        authDashboard.displayDashboard(role);
-
-        scanner.close();
     }
 
-    // Method to save user information to file
-
-
-    // Validate email to check if it contains only lowercase letters and ends with '@gmail.com' or '@yahoo.com'
+    // Validate email format
     public boolean isValidEmail(String email) {
         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
     }
 
-    // Validate phone number to check if it is 11 digits and starts with '01'
+    // Validate phone number format
     public boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("01\\d{9}");
+    }
+
+    // Print formatted title
+    private void printTitle(String title) {
+        System.out.println("\n========================================");
+        System.out.printf("  %s%n", title);
+        System.out.println("========================================\n");
+    }
+
+    // Print success message
+    private void printSuccess(String message) {
+        System.out.println("\n[SUCCESS] " + message + "\n");
+    }
+
+    // Print error message
+    private void printError(String message) {
+        System.out.println("\n[ERROR] " + message + "\n");
     }
 }

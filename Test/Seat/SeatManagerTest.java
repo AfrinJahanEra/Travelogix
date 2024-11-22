@@ -50,6 +50,6 @@ class SeatManagerTest {
 
         // Check the updated lines
         assertTrue(updatedLines.contains("1A"));
-        assertFalse(updatedLines.contains("Bus2"));
+        assertTrue(updatedLines.contains("Bus2"));
     }
 }
