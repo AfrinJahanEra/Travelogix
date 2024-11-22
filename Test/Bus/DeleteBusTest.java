@@ -1,57 +1,37 @@
 package Test.Bus;
 
+import Source.Bus.DeleteBus;
+import Source.File.FileHandler;
 import org.junit.jupiter.api.Test;
-
-import Transport.Bus.DeleteBus;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DeleteBusTest {
 
     @Test
-    void testDeleteBus_BusFound() throws IOException {
-        // Arrange
-        File tempFile = createTempFileWithContent("Bus1,ModelX,50,AC,1234\nBus2,ModelY,45,NonAC,5678\n");
-        DeleteBus deleteBus = new DeleteBus(tempFile.getAbsolutePath());
-
-        // Act
-        deleteBus.deleteBus("5678");
-
-        // Assert
-        String updatedContent = Files.readString(tempFile.toPath());
-        assertTrue(updatedContent.contains("Bus1,ModelX,50,AC,1234"));
-        assertFalse(updatedContent.contains("Bus2,ModelY,45,NonAC,5678"));
-
-        // Clean up
-        tempFile.delete();
+    void testDeleteBusWithExistingNumberPlate() throws IOException {
+        String  scanner = "AB123\n";
+        String testFilePath = "test_bus.txt";
+        FileHandler fileHandler = new FileHandler(testFilePath);
+        fileHandler.writeToFile("Test Bus,Start City,End City,08:00 AM,AB123,1234567890,5,4");
+        DeleteBus deleteBus = new DeleteBus(testFilePath);
+        deleteBus.deleteBus(scanner);
+        String fileContent = fileHandler.readFromFile();
+        assertFalse(fileContent.contains("AB123"));
+        new java.io.File(testFilePath).delete();
     }
 
     @Test
-    void testDeleteBus_BusNotFound() throws IOException {
-        // Arrange
-        File tempFile = createTempFileWithContent("Bus1,ModelX,50,AC,1234\nBus2,ModelY,45,NonAC,5678\n");
-        DeleteBus deleteBus = new DeleteBus(tempFile.getAbsolutePath());
-
-        // Act
-        deleteBus.deleteBus("9999");
-
-        // Assert
-        String updatedContent = Files.readString(tempFile.toPath());
-        assertTrue(updatedContent.contains("Bus1,ModelX,50,AC,1234"));
-        assertTrue(updatedContent.contains("Bus2,ModelY,45,NonAC,5678"));
-
-        // Clean up
-        tempFile.delete();
-    }
-
-    private File createTempFileWithContent(String content) throws IOException {
-        File tempFile = File.createTempFile("test", ".txt");
-        Files.writeString(tempFile.toPath(), content);
-        return tempFile;
+    void testDeleteBusWithNonExistingNumberPlate() throws IOException {
+        String scanner = "XYZ999\n";
+        String testFilePath = "test_bus.txt";
+        FileHandler fileHandler = new FileHandler(testFilePath);
+        fileHandler.writeToFile("Test Bus,Start City,End City,08:00 AM,AB123,1234567890,5,4");
+        DeleteBus deleteBus = new DeleteBus(testFilePath);
+        deleteBus.deleteBus(scanner);
+        String fileContent = fileHandler.readFromFile();
+        assertTrue(fileContent.contains("AB123"));
+        new java.io.File(testFilePath).delete();
     }
 }

@@ -4,27 +4,28 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class AlertSystem {
-    private static final String SOUND_FILE_PATH = "src\\Traveler\\Itinerary_Management\\Alarm\\sparcle.wav";
+
+    private static final String SOUND_FILE_PATH = "alert-85101.mp3";
 
     public void alertSystem() {
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt user for date, time, and message
-        System.out.print("Enter reminder date and time (yyyy-MM-dd HH:mm:ss): ");
+        System.out.println("Enter alert date and time (yyyy-MM-dd HH:mm:ss): ");
         String inputDateTime = scanner.nextLine();
+        System.out.println("Enter a message: ");
 
-        System.out.print("Enter reminder message: ");
-        String message = scanner.nextLine();
+        String message= scanner.nextLine();
 
-        // Parse date and time
         Date alertDate = DateUtils.parseDateTime(inputDateTime);
 
         if (alertDate != null) {
-            System.out.println("Reminder set for: " + inputDateTime);
+            System.out.println("Alert set for: " + inputDateTime);
             AlertUtils.waitForAlert(alertDate, message);
-            SoundUtils.playSound(SOUND_FILE_PATH); // Play sound when time is reached
+            SoundUtils.playSound(SOUND_FILE_PATH);
         } else {
-            System.out.println("Invalid date and time format. Please use yyyy-MM-dd HH:mm:ss.");
+            System.out.println("Invalid date and time format.");
         }
+
+        scanner.close();
     }
 }

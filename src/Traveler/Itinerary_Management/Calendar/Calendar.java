@@ -14,38 +14,25 @@ public class Calendar {
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
 
     public void displayTripsOnCalendar(String tripFile) {
-        Set<LocalDate> tripDates = getTripDates(tripFile); // Get all dates in trip durations
+        Set<LocalDate> tripDates = getTripStartDates(tripFile); // Get only the starting dates
 
-        // Determine the range of years for which trips are available
-        int minYear = tripDates.stream().mapToInt(LocalDate::getYear).min().orElse(LocalDate.now().getYear());
-        int maxYear = tripDates.stream().mapToInt(LocalDate::getYear).max().orElse(LocalDate.now().getYear());
-
-        // Display the calendar for each year in the range
-        for (int year = minYear; year <= maxYear; year++) {
-            for (int month = 1; month <= 12; month++) {
-                if (hasTripsInMonth(year, month, tripDates)) { // Only display months with marked dates
-                    displayMonthCalendar(YearMonth.of(year, month), tripDates);
-                }
+        int year = LocalDate.now().getYear();
+        for (int month = 1; month <= 12; month++) {
+            if (hasTripsInMonth(year, month, tripDates)) { // Only display months with marked dates
+                displayMonthCalendar(YearMonth.of(year, month), tripDates);
             }
         }
     }
 
-    // Get all dates within the trip durations
-    private Set<LocalDate> getTripDates(String tripFile) {
+    // Get only the starting dates of the trips
+    private Set<LocalDate> getTripStartDates(String tripFile) {
         Set<LocalDate> tripDates = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(tripFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] tripData = line.split(", ");
-                LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0]);
-                LocalDate endDate = LocalDate.parse(tripData[2].split(" ")[0]);
-
-                // Add each date from start to end date to the set
-                LocalDate current = startDate;
-                while (!current.isAfter(endDate)) {
-                    tripDates.add(current);
-                    current = current.plusDays(1);
-                }
+                LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0]); // Parse only the start date
+                tripDates.add(startDate);
             }
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
@@ -76,7 +63,7 @@ public class Calendar {
             System.out.print("   ");
         }
 
-        // Display each day, marking all trip dates in red
+        // Display each day, marking the trips' starting dates in red
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
             if (tripDates.contains(date)) {

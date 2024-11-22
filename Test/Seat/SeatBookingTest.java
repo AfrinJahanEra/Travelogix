@@ -1,9 +1,7 @@
 package Test.Seat;
 
+import Source.Seat.SeatBooking;
 import org.junit.jupiter.api.Test;
-
-import Transport.Seat.SeatBooking;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SeatBookingTest {

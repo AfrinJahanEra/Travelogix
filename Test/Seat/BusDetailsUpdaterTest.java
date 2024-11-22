@@ -1,8 +1,7 @@
 package Test.Seat;
 
+import Source.Seat.BusDetailsUpdater;
 import org.junit.jupiter.api.Test;
-
-import Transport.Seat.BusDetailsUpdater;
 
 import static org.junit.jupiter.api.Assertions.*;
 

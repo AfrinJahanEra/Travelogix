@@ -1,10 +1,7 @@
 package Test.Seat;
 
-
+import Source.Seat.ShowSeat;
 import org.junit.jupiter.api.Test;
-
-import Transport.Seat.ShowSeat;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,9 +1,8 @@
 package Test.Seat;
 
+import Source.Seat.SeatManager;
+import Source.File.FileHandler;
 import org.junit.jupiter.api.Test;
-
-import Transport.Seat.SeatManager;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;

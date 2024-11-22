@@ -1,10 +1,8 @@
 package Test.Bus;
 
-
+import Source.Bus.EditBus;
+import Source.File.FileHandler;
 import org.junit.jupiter.api.Test;
-
-import Transport.Bus.EditBus;
-import Utilities.FileManager.File.FileHandler;
 
 import java.io.IOException;
 import java.util.Scanner;
