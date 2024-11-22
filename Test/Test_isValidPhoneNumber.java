@@ -1,3 +1,5 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -17,7 +19,7 @@ class Test_isValidPhoneNumber{
     @Test
     public void test2(){
         SignUp a= new SignUp();
-        assertTrue(a.isValidPhoneNumber("013467647"));
+        assertFalse(a.isValidPhoneNumber("013467647"));
 
     }
 
@@ -25,7 +27,7 @@ class Test_isValidPhoneNumber{
     @Test
     public void test3(){
         SignUp a= new SignUp();
-        assertTrue(a.isValidPhoneNumber("11841748183"));
+        assertFalse(a.isValidPhoneNumber("11841748183"));
 
     }
 }

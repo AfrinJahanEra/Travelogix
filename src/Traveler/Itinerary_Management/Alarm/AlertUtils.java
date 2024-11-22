@@ -7,7 +7,7 @@ public class AlertUtils {
         while (true) {
             Date currentDate = new Date();
             if (currentDate.after(alertDate)) {
-                System.out.println(message);
+                System.out.println("ALERT: " + message); // Display message
                 break;
             }
             try {

@@ -1,12 +1,15 @@
 package Test.File;
 
-import Source.File.FileHandler;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Utilities.FileManager.File.FileHandler;
+
 import java.io.File;
 import java.io.IOException;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,8 +22,9 @@ class FileHandlerTest {
         String data = "Hello, World!";
         fileHandler.writeToFile(data);
 
+        // git branch
         String content = fileHandler.readFromFile();
-        assertEquals("Hello, World!\n", content);
+        assertEquals("Hello, World!\n", content); 
         new java.io.File(testFilePath).delete();
     }
 

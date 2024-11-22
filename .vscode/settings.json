@@ -4,5 +4,17 @@
         "c:\\Users\\afrin\\.m2\\repository\\org\\apache\\maven\\shared\\maven-shared-utils\\3.3.4\\maven-shared-utils-3.3.4.jar",
         "c:\\Users\\afrin\\Downloads\\json-simple-1.1.1.jar"
     ],
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.completion.favoriteStaticMembers": [
+        "org",
+        "org.junit.Assert.*",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.junit.jupiter.api.Assumptions.*",
+        "org.junit.jupiter.api.DynamicContainer.*",
+        "org.junit.jupiter.api.DynamicTest.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*",
+        "org.mockito.Answers.*"
+    ]
 }

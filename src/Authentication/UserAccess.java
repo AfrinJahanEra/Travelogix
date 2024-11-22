@@ -1,16 +1,13 @@
 package Authentication;
 
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-
 public class UserAccess {
-    Login in= new Login();
+    Login in = new Login();
+    SignUp out = new SignUp();
 
-    SignUp out= new SignUp();
-        
     public void start() throws NoSuchAlgorithmException, IOException {
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -26,13 +23,11 @@ public class UserAccess {
         System.out.println("[0] Exit");
         System.out.println("\n");
 
-
-
         while (true) {
-            
+            System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine();  
-            
+            scanner.nextLine();
+
             switch (choice) {
                 case 1:
                     in.logIn();
@@ -41,8 +36,9 @@ public class UserAccess {
                     out.signUp();
                     break;
                 case 0:
-                    System.out.println("\nThank you for using Auth System. Goodbye!");
-                    return;
+                    System.out.println("\nThank you for using Travelogix. Goodbye!");
+                    scanner.close();
+                    System.exit(0);  // Exit the program
                 default:
                     System.out.println("Invalid option! Please enter 1, 2, or 0.");
                     break;

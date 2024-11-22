@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class TransportDashboard{
     private Scanner sc = new Scanner(System.in);
     private int choice;
-    private FileHandler fileHandler = new FileHandler("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt");
+    private FileHandler fileHandler = new FileHandler("src\\TXT_Files\\bus.txt");
 
     public boolean dashboard() throws IOException, NoSuchAlgorithmException {
         System.out.println(" ________________________________");
@@ -49,12 +49,12 @@ public class TransportDashboard{
         System.out.println("[2] View Bus List");
         System.out.println("[3] View Bus options");
         System.out.println("[4] Delete Account");
-        System.out.println("[5] Exit");
+        System.out.println("[5] Log Out");
         System.out.print("Enter your choice: ");
     }
 
     private void addBus() throws IOException {
-        new AddBus("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt").inputBusDetails();
+        new AddBus("src\\TXT_Files\\bus.txt").inputBusDetails();
     }
 
     private void busOptions() throws IOException {
@@ -62,16 +62,16 @@ public class TransportDashboard{
         String s = sc.next().trim();
 
         switch (s) {
-            case "v" -> new ViewBusDetails("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt").numberPlate();
-            case "e" -> new EditBus("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt").numberPlate();
-            case "b" -> new SeatBooking("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt").initiateBooking();
-            case "d" -> new DeleteBus("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt").numberPlate();
+            case "v" -> new ViewBusDetails("src\\TXT_Files\\bus.txt").numberPlate();
+            case "e" -> new EditBus("src\\TXT_Files\\bus.txt").numberPlate();
+            case "b" -> new SeatBooking("src\\TXT_Files\\bus.txt").initiateBooking();
+            case "d" -> new DeleteBus("src\\TXT_Files\\bus.txt").numberPlate();
             default -> System.out.println("Invalid option. Please choose 'v', 'e', 'b', or 'd'.");
         }
     }
 
     private void viewDetails() {
-        ViewBusList viewBusList = new ViewBusList("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\bus.txt");
+        ViewBusList viewBusList = new ViewBusList("src\\TXT_Files\\bus.txt");
         System.out.println("View bus with number plate (n) / starting location (s) / ending location (e)");
         String s = sc.next().trim();
 

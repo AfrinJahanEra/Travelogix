@@ -1,14 +1,18 @@
 package Test.Bus;
 
-import Source.Bus.ViewBusList;
-import Source.File.FileHandler;
+
 import org.junit.jupiter.api.Test;
+
+import Transport.Bus.ViewBusList;
+import Utilities.FileManager.File.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 
 class ViewBusListTest {
     @Test

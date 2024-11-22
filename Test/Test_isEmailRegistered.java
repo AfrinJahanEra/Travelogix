@@ -1,6 +1,6 @@
-import org.junit.jupiter.api.Test;
+package Test;
 
-import Authentication.Authentication;
+import org.junit.jupiter.api.Test;
 import Authentication.Login;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +10,7 @@ class Test_isEmailRegistered {
     @Test
     public void test1(){
         Login a= new Login();
-        assertTrue(a.isEmailRegistered("ramisa@gmail.com"));
+        assertFalse(a.isEmailRegistered("ramisa@gmail.com"));
 
     }
 

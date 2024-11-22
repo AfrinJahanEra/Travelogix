@@ -1,12 +1,13 @@
 package Traveler.Trip_Management;
-
 import Traveler.Itinerary_Management.Calendar.Calendar;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TripManager {
 
-    private static final String TRIP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\trips.txt";
+    private static final String TRIP_FILE = "src\\TXT_Files\\trips.txt";
     private final Scanner scanner = new Scanner(System.in);
 
     // Method to add a trip to the file
@@ -38,7 +39,7 @@ public class TripManager {
 
     // Method to view all trips
     public void viewTrips() {
-            try (BufferedReader reader = new BufferedReader(new FileReader(TRIP_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(TRIP_FILE))) {
             String line;
             int index = 1;
             System.out.println("Your Trips: ");
@@ -55,15 +56,22 @@ public class TripManager {
         }
     }
 
+
+
+
+
     // Method to remove a trip by its serial number
     public void removeTrip() {
         viewTrips(); // Show all trips first
 
         System.out.print("Enter the index of the trip you want to remove: ");
         int serialNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
 
-        File tempFile = new File("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp.txt");
         File tripFile = new File(TRIP_FILE);
+        File tempFile = new File("src\\TXT_Files\\temp.txt");
+        LocalDate today = LocalDate.now(); // Current date
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(tripFile));
              BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
@@ -71,28 +79,50 @@ public class TripManager {
             String line;
             int currentLine = 1;
             boolean found = false;
+
             while ((line = reader.readLine()) != null) {
+                String[] tripData = line.split(", ");
+                LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0], dateFormatter);
+
+                // Check if the trip is in the past
                 if (currentLine == serialNumber) {
-                    found = true;
-                    System.out.println("Trip at serial number " + serialNumber + " is removed.");
+                    if (startDate.isBefore(today)) {
+                        System.out.println("Cannot remove previous trips.");
+                        writer.write(line); // Write the line back, as it can't be deleted
+                        writer.newLine();
+                    } else {
+                        found = true;
+                        System.out.println("Trip at serial number " + serialNumber + " is removed.");
+                    }
                 } else {
                     writer.write(line);
                     writer.newLine();
                 }
                 currentLine++;
             }
+
             if (!found) {
-                System.out.println("Trip with serial number " + serialNumber + " not found.");
+                System.out.println("Trip with serial number " + serialNumber + " not found or cannot be removed.");
             }
+
         } catch (IOException e) {
             System.out.println("Error handling file: " + e.getMessage());
+            return;
         }
 
-        // Replace original file with the updated one
-        tripFile.delete();
-        tempFile.renameTo(tripFile);
-
+        // Replace the original file only if successful
+        if (tripFile.delete()) {
+            if (!tempFile.renameTo(tripFile)) {
+                System.out.println("Error renaming temp file to original trip file.");
+            }
+        } else {
+            System.out.println("Error deleting original trip file.");
+        }
     }
 
-    
+
+
 }
+
+
+

@@ -12,6 +12,7 @@ public class DateUtils {
             SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
             return formatter.parse(dateTime);
         } catch (ParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
             return null;
         }
     }
