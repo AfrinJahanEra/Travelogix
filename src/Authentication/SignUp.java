@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class SignUp extends Authentication {
+public class SignUp {
 
     private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private static final int MIN_PASSWORD_LENGTH = 8;
     private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
+    private Authentication auth = new Authentication();
 
     // Method to sign up as Admin, Traveler, or Transport Agency
     public void signUp() throws NoSuchAlgorithmException, IOException {
@@ -59,7 +60,7 @@ public class SignUp extends Authentication {
 
             if (!isValidEmail(email)) {
                 System.out.println("Invalid email. It must contain '@gmail.com' or '@yahoo.com', and only lowercase letters. Try again.");
-            } else if (!isEmailUnique(email)) {
+            } else if (!auth.isEmailUnique(email)) {
                 System.out.println("This email is already registered. Please try a different one.");
             } else {
                 break; // Valid, unique, and lowercase email
@@ -69,12 +70,12 @@ public class SignUp extends Authentication {
         String password;
         while (true) {
             System.out.println("Enter password (Password must be at least 8 characters long): ");
-            password = getPasswordInput();
+            password = auth.getPasswordInput();
             if (password.length() < MIN_PASSWORD_LENGTH) {
                 System.out.println("Password must be at least 8 characters long.");
             } else {
                 System.out.println("Confirm password: ");
-                String confirmPassword = getPasswordInput();
+                String confirmPassword = auth.getPasswordInput();
                 if (password.equals(confirmPassword)) {
                     break;
                 } else {
@@ -83,10 +84,10 @@ public class SignUp extends Authentication {
             }
         }
 
-        String encryptedPass = encryptPassword(password);
+        String encryptedPass = auth.encryptPassword(password);
 
         // Save user information with role as a string
-        saveUserInfo(role, name, phoneNumber, email, encryptedPass);
+        auth.saveUserInfo(role, name, phoneNumber, email, encryptedPass);
         System.out.println("Sign Up successful");
 
         // Display dashboard based on role
@@ -95,9 +96,7 @@ public class SignUp extends Authentication {
         scanner.close();
     }
 
-    // Method to save user information to file
-
-
+    
     // Validate email to check if it contains only lowercase letters and ends with '@gmail.com' or '@yahoo.com'
     private boolean isValidEmail(String email) {
         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
