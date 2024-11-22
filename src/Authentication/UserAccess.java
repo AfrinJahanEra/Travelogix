@@ -19,7 +19,7 @@ public class UserAccess {
         System.out.println(".................................");
         System.out.println(".    Welcome to Travelogix      .");
         System.out.println(".................................");
-        System.out.println("\n");
+        System.out.println("\n\n");
         System.out.println("Select an option to use Travelogix:");
         System.out.println("[1] Login");
         System.out.println("[2] Sign Up");

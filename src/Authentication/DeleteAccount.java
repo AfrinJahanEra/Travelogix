@@ -5,11 +5,13 @@ import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class DeleteAccount extends Authentication {
+public class DeleteAccount {
 
     private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
     private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
+    private Authentication auth = new Authentication();
+
 
     // Method to delete the account
     public void deleteAccount() throws NoSuchAlgorithmException, IOException {
@@ -31,11 +33,11 @@ public class DeleteAccount extends Authentication {
         }
 
         System.out.println("Enter your password: ");
-        String password = getPasswordInput();
-        String encryptedPassword = encryptPassword(password);
+        String password = auth.getPasswordInput();
+        String encryptedPassword = auth.encryptPassword(password);
 
         // Check if the email and password are valid
-        if (!isValidUser(email, encryptedPassword)) {
+        if (!auth.isValidUser(email, encryptedPassword)) {
             System.out.println("Invalid email or password. Please try again.");
             return;
         }
