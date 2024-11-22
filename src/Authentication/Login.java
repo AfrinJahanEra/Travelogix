@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class Login extends Authentication {
+public class Login  {
     private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
     private SignUp signUpInstance = new SignUp();
     private AuthenticationDashboard authDashboard = new AuthenticationDashboard();
+    private Authentication auth = new Authentication();
+
 
     public void logIn() throws NoSuchAlgorithmException, IOException {
 
@@ -24,10 +26,10 @@ public class Login extends Authentication {
 
         if (isEmailRegistered(email)) {
             System.out.println("Enter password: ");
-            String password = getPasswordInput();
-            String encryptedPass = encryptPassword(password);
+            String password = auth.getPasswordInput();
+            String encryptedPass = auth.encryptPassword(password);
 
-            if (isValidUser(email, encryptedPass)) {
+            if (auth.isValidUser(email, encryptedPass)) {
                 System.out.println("Login successful!");
 
                 // Retrieve user role and direct to appropriate dashboard

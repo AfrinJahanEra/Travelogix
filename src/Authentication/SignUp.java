@@ -96,7 +96,7 @@ public class SignUp {
         scanner.close();
     }
 
-    
+
     // Validate email to check if it contains only lowercase letters and ends with '@gmail.com' or '@yahoo.com'
     private boolean isValidEmail(String email) {
         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
