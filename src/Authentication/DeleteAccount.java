@@ -12,7 +12,7 @@ public class DeleteAccount {
 
     private Login loginHelper = new Login();
     private Authentication auth = new Authentication();
-    
+
     // Constructor allowing file paths to be injected
     public DeleteAccount(String usersFilePath, String tempFilePath) {
         this.usersFilePath = usersFilePath;
