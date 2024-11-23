@@ -7,11 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Test_getUserRole {
     
-    @Test
-    public void test1(){
-        DeleteAccount a= new DeleteAccount();
-        assertEquals("Traveler",a.getUserRole("rahim@gmail.com"));
-
+   @Test
+    public void testUserIsTraveler() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        assertEquals("Traveler", deleteAccount.getUserRole("rahim@gmail.com"));
     }
 
     @Test
