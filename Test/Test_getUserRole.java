@@ -31,5 +31,11 @@ class Test_getUserRole {
         assertNull("null", deleteAccount.getUserRole("unknown@gmail.com"));
     }
 
+    @Test
+    public void testEmptyEmail() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        assertNull("null", deleteAccount.getUserRole(""));
+    }
+
 
 }
