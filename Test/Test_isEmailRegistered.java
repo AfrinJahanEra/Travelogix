@@ -19,6 +19,10 @@ class Test_isEmailRegistered {
         assertFalse(login.isEmailRegistered("unregistered@gmail.com"));
     }
 
-
+    @Test
+    public void testEmailIsEmpty() {
+        Login login = new Login();
+        assertFalse("Empty email should not be registered", login.isEmailRegistered(""));
+    }
 
 }
