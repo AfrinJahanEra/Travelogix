@@ -1,5 +1,8 @@
 package Authentication;
 
+import Admin.Admin;
+import Transport.Transport;
+import Traveler.Traveler;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -10,38 +13,42 @@ public class SignUp extends Authentication {
     private static final int MIN_PASSWORD_LENGTH = 8;
     private final AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 
-    // Main method to handle sign-up
     public void signUp() throws NoSuchAlgorithmException, IOException {
         printTitle("Sign Up");
 
         Scanner scanner = new Scanner(System.in);
 
-        // Step 1: Role selection
         String role = getRoleSelection(scanner);
-        if (role == null) return; // Exit if invalid selection
+        if (role == null) return;
 
-        // Step 2: Name input
         System.out.print("Enter your name: ");
         String name = scanner.nextLine().trim();
 
-        // Step 3: Phone number validation
         String phoneNumber = getValidPhoneNumber(scanner);
-
-        // Step 4: Email validation
         String email = getValidEmail(scanner);
-
-        // Step 5: Password setup
         String password = getValidPassword(scanner);
 
-        // Encrypt the password
         String encryptedPassword = encryptPassword(password);
 
-        // Save user information
-        saveUserInfo(role, name, phoneNumber, email, encryptedPassword);
+        User user;
+        switch (role) {
+            case "Admin":
+                user = new Admin(name, phoneNumber, email, encryptedPassword);
+                break;
+            case "Transport":
+                user = new Transport(name, phoneNumber, email, encryptedPassword);
+                break;
+            case "Traveler":
+                user = new Traveler(name, phoneNumber, email, encryptedPassword);
+                break;
+            default:
+                printError("Invalid role selected.");
+                return;
+        }
 
-        // Success message and dashboard display
+        saveUserInfo(user);
         printSuccess("Sign Up successful!");
-        authDashboard.displayDashboard(role);
+        authDashboard.displayDashboard(user.getRole());
     }
 
     // Helper method to select a role
