@@ -58,20 +58,20 @@ class Test_getUserRole {
     @Test
     public void testNonExistentUser() {
         DeleteAccount deleteAccount = new DeleteAccount();
-        assertNull("null", deleteAccount.getUserRole("unknown@gmail.com"));
+        assertNull( deleteAccount.getUserRole("unknown@gmail.com"));
     }
 
     @Test
     public void testEmptyEmail() {
         DeleteAccount deleteAccount = new DeleteAccount();
-        assertNull("null", deleteAccount.getUserRole(""));
+        assertNull(deleteAccount.getUserRole(""));
     }
 
 
     @Test
     public void testNullEmail() {
         DeleteAccount deleteAccount = new DeleteAccount();
-        assertNull("null", deleteAccount.getUserRole("null"));
+        assertNull(deleteAccount.getUserRole("null"));
     }
 
 

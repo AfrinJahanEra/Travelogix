@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class DeleteAccount {
 
-    public static String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
-    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt";
+    public static String USERS_FILE = "src\\TXT_Files\\users.txt";
+    private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt";
 
     private Login loginHelper = new Login();
     private Authentication auth = new Authentication();

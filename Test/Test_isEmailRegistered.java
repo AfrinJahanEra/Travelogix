@@ -28,7 +28,7 @@ class Test_isEmailRegistered {
     @Test
     public void testEmailIsNull() {
         Login login = new Login();
-        assertFalse(ogin.isEmailRegistered(null));
+        assertFalse(login.isEmailRegistered(null));
     }
 
 }
