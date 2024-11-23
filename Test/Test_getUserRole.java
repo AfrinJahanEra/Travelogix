@@ -6,8 +6,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class Test_getUserRole {
-    
-   @Test
+
+    private static final String TEST_USERS_FILE = "test_users.txt";
+
+    @Before
+    public void setUp() throws IOException {
+        // Create a temporary file with mock user data for testing
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(TEST_USERS_FILE))) {
+            writer.write("Admin, , , kadir@gmail.com\n");
+            writer.write("Traveler, , , rahim@gmail.com\n");
+            writer.write("Admin, , , sumaiya@gmail.com\n");
+        }
+
+        // Set the USERS_FILE in DeleteAccount to the test file
+        DeleteAccount.USERS_FILE = TEST_USERS_FILE;
+    }
+
+    @After
+    public void tearDown() {
+        // Delete the temporary test file after tests
+        new File(TEST_USERS_FILE).delete();
+    }
+
+
+    @Test
     public void testUserIsTraveler() {
         DeleteAccount deleteAccount = new DeleteAccount();
         assertEquals("Traveler", deleteAccount.getUserRole("rahim@gmail.com"));
