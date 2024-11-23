@@ -7,23 +7,11 @@ import java.util.Scanner;
 
 public class DeleteAccount {
 
-    private String usersFilePath;
-    private String tempFilePath;
+    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
+    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt";
 
     private Login loginHelper = new Login();
     private Authentication auth = new Authentication();
-
-    // Constructor allowing file paths to be injected
-    public DeleteAccount(String usersFilePath, String tempFilePath) {
-        this.usersFilePath = usersFilePath;
-        this.tempFilePath = tempFilePath;
-    }
-
-    // Default constructor with default paths for production use
-    public DeleteAccount() {
-        this("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt",
-                "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt");
-    }
 
 
     // Method to delete the account
@@ -78,7 +66,7 @@ public class DeleteAccount {
 
     // Method to retrieve user role by email
     public String getUserRole(String email) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(usersFilePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             
             while ((line = reader.readLine()) != null) {
@@ -100,8 +88,8 @@ public class DeleteAccount {
     private boolean performDeletion(String email) {
         boolean isDeleted = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(usersFilePath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFilePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -122,8 +110,8 @@ public class DeleteAccount {
 
         // Replace the original file with the temporary file
         if (isDeleted) {
-            File originalFile = new File(usersFilePath);
-            File tempFile = new File(tempFilePath);
+            File originalFile = new File(USERS_FILE);
+            File tempFile = new File(TEMP_FILE);
 
             if (originalFile.delete()) {
                 if (!tempFile.renameTo(originalFile)) {
@@ -136,7 +124,7 @@ public class DeleteAccount {
             }
         } else {
             // If no deletion occurred, delete the temporary file
-            new File(tempFilePath).delete();
+            new File(TEMP_FILE).delete();
         }
 
         return isDeleted;
