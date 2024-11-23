@@ -78,7 +78,7 @@ public class DeleteAccount {
 
     // Method to retrieve user role by email
     public String getUserRole(String email) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(usersFilePath))) {
             String line;
             
             while ((line = reader.readLine()) != null) {
@@ -100,8 +100,8 @@ public class DeleteAccount {
     private boolean performDeletion(String email) {
         boolean isDeleted = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(usersFilePath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFilePath))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -122,8 +122,8 @@ public class DeleteAccount {
 
         // Replace the original file with the temporary file
         if (isDeleted) {
-            File originalFile = new File(USERS_FILE);
-            File tempFile = new File(TEMP_FILE);
+            File originalFile = new File(usersFilePath);
+            File tempFile = new File(tempFilePath);
 
             if (originalFile.delete()) {
                 if (!tempFile.renameTo(originalFile)) {
@@ -136,7 +136,7 @@ public class DeleteAccount {
             }
         } else {
             // If no deletion occurred, delete the temporary file
-            new File(TEMP_FILE).delete();
+            new File(tempFilePath).delete();
         }
 
         return isDeleted;
