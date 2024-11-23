@@ -25,5 +25,11 @@ class Test_getUserRole {
         assertEquals("Admin", deleteAccount.getUserRole("sumaiya@gmail.com"));
     }
 
+    @Test
+    public void testNonExistentUser() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        assertNull("null", deleteAccount.getUserRole("unknown@gmail.com"));
+    }
+
 
 }
