@@ -7,10 +7,23 @@ import java.util.Scanner;
 
 public class DeleteAccount {
 
-    private static final String USERS_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt";
-    private static final String TEMP_FILE = "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
-    private Login loginHelper = new Login(); // Create an instance of LogIn to use isEmailRegistered
+    private String usersFilePath;
+    private String tempFilePath;
+
+    private Login loginHelper = new Login();
     private Authentication auth = new Authentication();
+    
+    // Constructor allowing file paths to be injected
+    public DeleteAccount(String usersFilePath, String tempFilePath) {
+        this.usersFilePath = usersFilePath;
+        this.tempFilePath = tempFilePath;
+    }
+
+    // Default constructor with default paths for production use
+    public DeleteAccount() {
+        this("C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\users.txt",
+                "C:\\Users\\afrin\\OneDrive\\Desktop\\TravelApp\\src\\TXT_Files\\temp_users.txt");
+    }
 
 
     // Method to delete the account
