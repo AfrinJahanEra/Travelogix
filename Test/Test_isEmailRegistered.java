@@ -6,20 +6,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class Test_isEmailRegistered {
-    
-    @Test
-    public void test1(){
-        Login a= new Login();
-        assertTrue(a.isEmailRegistered("ramisa@gmail.com"));
 
+    @Test
+    public void testEmailExistsInRegisteredList() {
+        Login login = new Login();
+        assertTrue(login.isEmailRegistered("ramisa@gmail.com"));
     }
 
     @Test
-    public void test2(){
-        Login a= new Login();
-        assertTrue(a.isEmailRegistered("rina@gmail.com"));
-
+    public void testEmailDoesNotExistInRegisteredList() {
+        Login login = new Login();
+        assertFalse(login.isEmailRegistered("unregistered@gmail.com"));
     }
+
 
 
 }
