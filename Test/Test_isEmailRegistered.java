@@ -22,7 +22,13 @@ class Test_isEmailRegistered {
     @Test
     public void testEmailIsEmpty() {
         Login login = new Login();
-        assertFalse("Empty email should not be registered", login.isEmailRegistered(""));
+        assertFalse(login.isEmailRegistered(""));
+    }
+
+    @Test
+    public void testEmailIsNull() {
+        Login login = new Login();
+        assertFalse(ogin.isEmailRegistered(null));
     }
 
 }
