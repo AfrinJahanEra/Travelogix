@@ -13,73 +13,157 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class TransportDashboard{
+public class TransportDashboard {
     private Scanner sc = new Scanner(System.in);
     private int choice;
     private FileHandler fileHandler = new FileHandler("src\\TXT_Files\\bus.txt");
 
     public boolean dashboard() throws IOException, NoSuchAlgorithmException {
-        System.out.println(" ________________________________");
-        System.out.println("|           TRANSPORT            |");
-        System.out.println("|________________________________|");
+        boolean isRunning = true;
 
-        do {
-            displayMenu();
+        while (isRunning) {
+            displayMainMenu();
             choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
                 case 1 -> addBus();
-                case 2 -> viewDetails();
+                case 2 -> viewBusList();
                 case 3 -> busOptions();
-                case 4 -> new DeleteAccount().deleteAccount();
+                case 4 -> deleteAccount();
                 case 5 -> {
+                    System.out.println("\n╔════════════════════════════════════╗");
+                    System.out.println("║    Logging out...                  ║");
+                    System.out.println("╚════════════════════════════════════╝");
+                    isRunning = false;
                     UserAccess userAccess = new UserAccess();
                     userAccess.start();
                 }
-                default -> System.out.println("Invalid input");
+                default -> {
+                    System.out.println("\n╔════════════════════════════════════╗");
+                    System.out.println("║    Invalid input. Please try again.║");
+                    System.out.println("╚════════════════════════════════════╝");
+                }
             }
-        } while (choice != 4);
-
+        }
         return false;
     }
 
-    private void displayMenu() {
-        System.out.println("[1] Add Bus");
-        System.out.println("[2] View Bus List");
-        System.out.println("[3] View Bus options");
-        System.out.println("[4] Delete Account");
-        System.out.println("[5] Log Out");
+    private void displayMainMenu() {
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║            TRANSPORT DASHBOARD         ║");
+        System.out.println("╠════════════════════════════════════════╣");
+        System.out.println("║                                        ║");
+        System.out.println("║    [1] Add Bus                         ║");
+        System.out.println("║    [2] View Bus List                   ║");
+        System.out.println("║    [3] Bus Options                     ║");
+        System.out.println("║    [4] Delete Account                  ║");
+        System.out.println("║    [5] Log Out                         ║");
+        System.out.println("║                                        ║");
+        System.out.println("╚════════════════════════════════════════╝");
         System.out.print("Enter your choice: ");
     }
 
     private void addBus() throws IOException {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║    Adding a New Bus                ║");
+        System.out.println("╚════════════════════════════════════╝");
         new AddBus("src\\TXT_Files\\bus.txt").inputBusDetails();
     }
 
-    private void busOptions() throws IOException {
-        System.out.println("View a bus details(v) / Edit bus details(e) / Book a seat(b) / Delete bus (d)");
-        String s = sc.next().trim();
-
-        switch (s) {
-            case "v" -> new ViewBusDetails("src\\TXT_Files\\bus.txt").numberPlate();
-            case "e" -> new EditBus("src\\TXT_Files\\bus.txt").numberPlate();
-            case "b" -> new SeatBooking("src\\TXT_Files\\bus.txt").initiateBooking();
-            case "d" -> new DeleteBus("src\\TXT_Files\\bus.txt").numberPlate();
-            default -> System.out.println("Invalid option. Please choose 'v', 'e', 'b', or 'd'.");
-        }
-    }
-
-    private void viewDetails() {
+    private void viewBusList() {
         ViewBusList viewBusList = new ViewBusList("src\\TXT_Files\\bus.txt");
-        System.out.println("View bus with number plate (n) / starting location (s) / ending location (e)");
+
+        System.out.println("\n╔══════════════════════════════════════════╗");
+        System.out.println("║           VIEW BUS LIST                  ║");
+        System.out.println("╠══════════════════════════════════════════╣");
+        System.out.println("║                                          ║");
+        System.out.println("║    View by:                              ║");
+        System.out.println("║    [n] Number Plate                      ║");
+        System.out.println("║    [s] Starting Location                 ║");
+        System.out.println("║    [e] Ending Location                   ║");
+        System.out.println("║                                          ║");
+        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.print("Enter your choice: ");
+
         String s = sc.next().trim();
 
-        switch (s) {
+        switch (s.toLowerCase()) {
             case "n" -> System.out.println(viewBusList.list(4));
             case "s" -> System.out.println(viewBusList.list(1));
             case "e" -> System.out.println(viewBusList.list(2));
-            default -> System.out.println("Invalid input! Please enter 'n', 's', or 'e'.");
+            default -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Invalid input! Please enter 'n',║");
+                System.out.println("║    's', or 'e'.                    ║");
+                System.out.println("╚════════════════════════════════════╝");
+            }
+        }
+    }
+
+    private void busOptions() throws IOException {
+        System.out.println("\n╔══════════════════════════════════════════╗");
+        System.out.println("║               BUS OPTIONS                ║");
+        System.out.println("╠══════════════════════════════════════════╣");
+        System.out.println("║                                          ║");
+        System.out.println("║    [v] View Bus Details                  ║");
+        System.out.println("║    [e] Edit Bus Details                  ║");
+        System.out.println("║    [b] Book a Seat                       ║");
+        System.out.println("║    [d] Delete Bus                        ║");
+        System.out.println("║                                          ║");
+        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.print("Enter your choice: ");
+
+        String s = sc.next().trim();
+
+        switch (s.toLowerCase()) {
+            case "v" -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Viewing Bus Details             ║");
+                System.out.println("╚════════════════════════════════════╝");
+                new ViewBusDetails("src\\TXT_Files\\bus.txt").numberPlate();
+            }
+            case "e" -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Editing Bus Details             ║");
+                System.out.println("╚════════════════════════════════════╝");
+                new EditBus("src\\TXT_Files\\bus.txt").numberPlate();
+            }
+            case "b" -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Booking a Seat                  ║");
+                System.out.println("╚════════════════════════════════════╝");
+                new SeatBooking("src\\TXT_Files\\bus.txt").initiateBooking();
+            }
+            case "d" -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Deleting Bus                    ║");
+                System.out.println("╚════════════════════════════════════╝");
+                new DeleteBus("src\\TXT_Files\\bus.txt").numberPlate();
+            }
+            default -> {
+                System.out.println("\n╔════════════════════════════════════╗");
+                System.out.println("║    Invalid option. Please choose   ║");
+                System.out.println("║    'v', 'e', 'b', or 'd'.          ║");
+                System.out.println("╚════════════════════════════════════╝");
+            }
+        }
+    }
+
+    private void deleteAccount() throws NoSuchAlgorithmException, IOException {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║    Deleting Account                ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        if (new DeleteAccount().deleteAccount()) {
+            System.out.println("\n╔════════════════════════════════════╗");
+            System.out.println("║    Account deleted successfully.   ║");
+            System.out.println("╚════════════════════════════════════╝");
+        } else {
+            System.out.println("\n╔════════════════════════════════════╗");
+            System.out.println("║    Account deletion cancelled or   ║");
+            System.out.println("║    failed.                         ║");
+            System.out.println("╚════════════════════════════════════╝");
         }
     }
 }

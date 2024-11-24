@@ -1,4 +1,4 @@
-Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,01700000001,10,4,1A,1B,2C,4D,5B
+Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,01700000001,10,4,1A,1B,2C,4D,5B,3B
 Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,01700000002,12,3,1A,1B,1C,2A,6B,8A
 Shyamoli NR Travels,Chittagong,Cox's Bazar,08:00 AM,CTG-1234,01700000003,10,4
 Green Line,Dhaka,Khulna,06:30 AM,DHK-9101,01700000004,12,3
@@ -24,3 +24,5 @@ Purbasha,1,Dhaka,01:00,KHU-#$,+880-1922337780,3,3,
 Anabil,Dhaka,sylhet,03:00,KHU-23,+880-1822337770,5,5,1A,2B,2C
 dsd,dsds,dsds,03:20,era,+880-1922337770,4,4,
 purbasha,dhaka,khulna,03:00,678,+880-1224499990,5,5,
+wewe,dhaka,cumilla,07:00,4:00,+880-1922337770,4,4,
+er,wew,ewe,09:00,9:00,+880-1822990000,4,4,
