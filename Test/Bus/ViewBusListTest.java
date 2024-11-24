@@ -9,6 +9,8 @@ import Utilities.FileManager.File.FileHandler;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,26 +19,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ViewBusListTest {
     @Test
     void testList() throws IOException {
-        String testFilePath = "test_bus.txt";
-        FileHandler fileHandler = new FileHandler(testFilePath);
+        // Create a temporary file to simulate the file system
+        Path tempFile = Files.createTempFile("bus_list", ".txt");
+        String filePath = tempFile.toAbsolutePath().toString();
+
+        // Create a FileHandler instance to write test data
+        Utilities.FileManager.File.FileHandler fileHandler = new Utilities.FileManager.File.FileHandler(filePath);
 
         // Write test data to the file
-        PrintStream writer = new PrintStream(testFilePath);
-        writer.println("1st Old Bus Name,1st Old Start City,1st Old End City,1st Old Time,1st Old Plate,1st Old Phone,5,4");
-        writer.println("2nd Old Bus Name,2nd Old Start City,2nd Old End City,2nd Old Time,2nd Old Plate,2nd Old Phone,5,4");
-        writer.println("3rd Old Bus Name,3rd Old Start City,3rd Old End City,3rd Old Time,3rd Old Plate,3rd Old Phone,5,4");
-        writer.close();
+        fileHandler.writeToFile("""
+                Bus A,Location1,Location2,08:00 AM,ABC-123,1234567890
+                Bus B,City1,City2,09:00 AM,XYZ-789,9876543210
+                Bus C,Town1,Town2,10:00 AM,PQR-456,4567891230
+                """);
 
-        // Initialize ViewBusList and call list method
-        ViewBusList viewBusList = new ViewBusList(testFilePath);
-        String expectedOutput = "1. 1st Old Bus Name-1st Old Start City contact no. 1st Old Phone\n"
-                + "2. 2nd Old Bus Name-2nd Old Start City contact no. 2nd Old Phone\n"
-                + "3. 3rd Old Bus Name-3rd Old Start City contact no. 3rd Old Phone\n";
+        // Create an instance of ViewBusList
+        Transport.Bus.ViewBusList viewBusList = new Transport.Bus.ViewBusList(filePath);
 
-        String actualOutput = viewBusList.list(1);
+        // Call the method with n = 2 (Ending Location)
+        String result = viewBusList.list(2);
 
-        assertEquals(expectedOutput, actualOutput);
+        // Expected Output
+        String expectedOutput = """
+                No.   Bus Name             Additional Info     Contact Number
+                ------------------------------------------------------------
+                1     Bus A               Location2           1234567890
+                2     Bus B               City2               9876543210
+                3     Bus C               Town2               4567891230       
+                """;
 
-        new File(testFilePath).delete();
+        // Assert the output matches the expected format
+        assertEquals(expectedOutput.strip(), result.strip());
+
+        // Cleanup: Delete the temporary file
+        Files.deleteIfExists(tempFile);
     }
 }

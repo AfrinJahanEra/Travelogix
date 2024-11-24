@@ -120,10 +120,9 @@ public class DeleteAccount extends Authentication {
 
     // Utility methods for standardized output
     private void printTitle(String title) {
-        System.out.println("\n========================================");
-        System.out.printf("  %s%n", title);
-        System.out.println("========================================\n");
+        System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
     }
+    
 
     private void printError(String message) {
         System.out.println("\n[ERROR] " + message + "\n");

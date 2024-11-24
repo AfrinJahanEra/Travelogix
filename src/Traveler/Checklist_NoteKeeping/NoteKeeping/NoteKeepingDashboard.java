@@ -10,10 +10,16 @@ public class NoteKeepingDashboard {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("[1] Voice Note");
-            System.out.println("[2] Written Note");
-            System.out.println("[3] CheckList");
-            System.out.println("[4] Go back (Exit)");
+            System.out.println("\n╔══════════════════════════════════════════╗");
+            System.out.println("║                   NOTES                  ║");
+            System.out.println("╠══════════════════════════════════════════╣");
+            System.out.println("║                                          ║");
+            System.out.println("║    [1] Voice Note                        ║");
+            System.out.println("║    [2] Written Note                      ║");
+            System.out.println("║    [3] CheckList                         ║");
+            System.out.println("║    [4] Go back (Exit)                    ║");
+            System.out.println("╚══════════════════════════════════════════╝");
+
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
 

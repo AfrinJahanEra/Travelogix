@@ -13,17 +13,21 @@ public class UserAccess {
         Scanner scanner = new Scanner(System.in);
 
         // Welcome Message
-        printTitle("Welcome to Travelogix");
+        printTitle("TRAVELOGIX");
 
         while (true) {
-            // Main Menu
-            System.out.println("\nMain Menu:");
-            System.out.println("----------------------------------------");
-            System.out.println("1. Login");
-            System.out.println("2. Sign Up");
-            System.out.println("0. Exit");
-            System.out.println("----------------------------------------");
+    
 
+               
+                    System.out.println("\n╔════════════════════════════════════╗");
+                    System.out.println("║           Main Menu                ║");
+                    System.out.println("╠════════════════════════════════════╣");
+                    System.out.println("║           1. Login                 ║");
+                    System.out.println("║           2. Sign Up               ║");
+                    System.out.println("║           0. Exit                  ║");
+                    System.out.println("╚════════════════════════════════════╝");
+                
+                
             try {
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
@@ -55,8 +59,13 @@ public class UserAccess {
     }
 
     private void printTitle(String message) {
-        System.out.println("\n========================================");
-        System.out.printf("  %s%n", message);
-        System.out.println("========================================\n");
+        System.out.println("\n               _______   ");
+        System.out.println("              /       \\  ");
+        System.out.println("             /         \\ ");
+        System.out.printf("════════════/     %s ═══════════ %n", message);
+        System.out.println("             \\         / ");
+        System.out.println("              \\_______/  \n");
     }
+
+    
 }

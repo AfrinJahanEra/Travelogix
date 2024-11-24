@@ -132,10 +132,9 @@ public class SignUp extends Authentication {
 
     // Print formatted title
     private void printTitle(String title) {
-        System.out.println("\n========================================");
-        System.out.printf("  %s%n", title);
-        System.out.println("========================================\n");
+        System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
     }
+    
 
     // Print success message
     private void printSuccess(String message) {

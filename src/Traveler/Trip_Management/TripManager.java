@@ -1,4 +1,5 @@
 package Traveler.Trip_Management;
+
 import Traveler.Itinerary_Management.Calendar.Calendar;
 import java.io.*;
 import java.time.LocalDate;
@@ -12,19 +13,21 @@ public class TripManager {
 
     // Method to add a trip to the file
     public void addTrip() {
-        System.out.print("Enter destination: ");
+        System.out.println("Enter trip details:");
+
+        System.out.print("Destination          : ");
         String destination = scanner.nextLine().trim();
 
-        System.out.print("Enter start date and time (yyyy-MM-dd HH:mm:ss): ");
+        System.out.print("Start date and time  : (yyyy-MM-dd HH:mm:ss) ");
         String startDate = scanner.nextLine().trim();
 
-        System.out.print("Enter end date and time (yyyy-MM-dd HH:mm:ss): ");
+        System.out.print("End date and time    : (yyyy-MM-dd HH:mm:ss) ");
         String endDate = scanner.nextLine().trim();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRIP_FILE, true))) {
             writer.write(destination + ", " + startDate + ", " + endDate);
             writer.newLine();
-            System.out.println("Trip to " + destination + " added.\n");
+            System.out.println("Trip to " + destination + " added successfully.\n");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
@@ -34,31 +37,35 @@ public class TripManager {
     public void viewTripsOnCalendar() {
         viewTrips(); // Display the list of trips first
         Calendar calendar = new Calendar();
-        calendar.displayTripsOnCalendar(TRIP_FILE); // Show only relevant months with marked dates
+        calendar.displayTripsOnCalendar(TRIP_FILE); // Show relevant months with marked dates
     }
 
-    // Method to view all trips
+    // Method to view all trips in a table format
     public void viewTrips() {
         try (BufferedReader reader = new BufferedReader(new FileReader(TRIP_FILE))) {
             String line;
             int index = 1;
-            System.out.println("Your Trips: ");
+
+            System.out.println("════════════════════════════════════════════════════════════════════════");
+            System.out.println("║ No. ║ Destination        ║ Start               ║ End                 ║");
+            System.out.println("════════════════════════════════════════════════════════════════════════");
+
             while ((line = reader.readLine()) != null) {
                 String[] tripData = line.split(", ");
-                System.out.println(index + ". Destination: " + tripData[0] + " | Start: " + tripData[1] + " | End: " + tripData[2]);
+                System.out.printf("║ %-3d ║ %-18s ║ %-19s ║ %-19s ║\n", 
+                                  index, tripData[0], tripData[1], tripData[2]);
                 index++;
             }
+
             if (index == 1) {
-                System.out.println("No trips found.");
+                System.out.println("║ No trips found.                                                     ║");
             }
+
+            System.out.println("════════════════════════════════════════════════════════════════════════");
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }
-
-
-
-
 
     // Method to remove a trip by its serial number
     public void removeTrip() {
@@ -66,7 +73,7 @@ public class TripManager {
 
         System.out.print("Enter the index of the trip you want to remove: ");
         int serialNumber = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); // Consume newline character
 
         File tripFile = new File(TRIP_FILE);
         File tempFile = new File("src\\TXT_Files\\temp.txt");
@@ -92,7 +99,7 @@ public class TripManager {
                         writer.newLine();
                     } else {
                         found = true;
-                        System.out.println("Trip at serial number " + serialNumber + " is removed.");
+                        System.out.println("Trip at serial number " + serialNumber + " has been removed.");
                     }
                 } else {
                     writer.write(line);
@@ -119,9 +126,6 @@ public class TripManager {
             System.out.println("Error deleting original trip file.");
         }
     }
-
-
-
 }
 
 

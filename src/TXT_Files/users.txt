@@ -15,8 +15,6 @@ Traveler, Anik, 01234567891, anik@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Tania, 01922378901, tania@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Transport, Nizam, 01922311223, nizam@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, Parveen, 01877654321, parveen@gmail.com, 25d55ad283aa400af464c76d713c07ad
-Traveler, sharley, 01911229990, sharley@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Transport, ridika, 01892334456, rifikaa@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Admin, ridika, 01922887770, ridika@gmail.com, 25d55ad283aa400af464c76d713c07ad
-Admin, dsd, 01944332220, era@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, d, 01922448880, ft@gmail.com, 25d55ad283aa400af464c76d713c07ad
