@@ -12,7 +12,6 @@ public class Login extends Authentication {
     private final SignUp signUpInstance = new SignUp();
     private final AuthenticationDashboard authDashboard = new AuthenticationDashboard();
 
-    // Main login method
     public void logIn() throws NoSuchAlgorithmException, IOException {
         printTitle("LOG IN");
 
@@ -29,7 +28,6 @@ public class Login extends Authentication {
             if (isValidUser(email, encryptedPass)) {
                 printSuccess("Login successful!");
 
-                // Retrieve user role and display the appropriate dashboard
                 String role = getUserRole(email);
                 if (role != null) {
                     authDashboard.displayDashboard(role);
@@ -41,11 +39,10 @@ public class Login extends Authentication {
             }
         } else {
             printError("Email not registered. You need to sign up first.");
-            signUpInstance.signUp(); // Redirect to sign-up
+            signUpInstance.signUp(); 
         }
     }
 
-    // Check if an email is registered in the system
     public boolean isEmailRegistered(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
@@ -58,45 +55,56 @@ public class Login extends Authentication {
         } catch (IOException e) {
             printError("An error occurred while checking the email: " + e.getMessage());
         }
-        return false; // Email not found
+        return false; 
     }
 
-    // Retrieve the user role based on their email
     private String getUserRole(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(", ");
                 if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
-                    return userDetails[0].trim(); // Role is the first item in the line
+                    return userDetails[0].trim();
                 }
             }
         } catch (IOException e) {
             printError("An error occurred while retrieving the user role: " + e.getMessage());
         }
-        return null; // Role not found
+        return null;
     }
 
-    // Print formatted title
-    // private void printTitle(String title) {
-    //     System.out.println("\n========================================");
-    //     System.out.printf("  %s%n", title);
-    //     System.out.println("========================================");
-    // }
-
     private void printTitle(String title) {
+
+        waitForEnterKey();
+        clearTerminal();
         System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
     }
     
     
-
-    // Print success message
     private void printSuccess(String message) {
         System.out.println("\n[SUCCESS] " + message + "\n");
     }
 
-    // Print error message
     private void printError(String message) {
         System.out.println("\n[ERROR] " + message + "\n");
+    }
+
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine();
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
+        }
     }
 }

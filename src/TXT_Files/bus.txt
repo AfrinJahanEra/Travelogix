@@ -26,3 +26,5 @@ dsd,dsds,dsds,03:20,era,+880-1922337770,4,4,
 purbasha,dhaka,khulna,03:00,678,+880-1224499990,5,5,
 wewe,dhaka,cumilla,07:00,4:00,+880-1922337770,4,4,
 er,wew,ewe,09:00,9:00,+880-1822990000,4,4,
+purbasha,dhaka,jossore,08:22,JOS-123,+880-1922337770,4,4,
+Anabil,dhaka,gaziput,09:00,GAZ-000,+880-1922338880,5,5,1A,2B,5C

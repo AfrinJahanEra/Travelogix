@@ -22,6 +22,10 @@ public class TransportDashboard {
         boolean isRunning = true;
 
         while (isRunning) {
+
+            waitForEnterKey();
+            clearTerminal();
+            
             displayMainMenu();
             choice = sc.nextInt();
             sc.nextLine();
@@ -164,6 +168,25 @@ public class TransportDashboard {
             System.out.println("║    Account deletion cancelled or   ║");
             System.out.println("║    failed.                         ║");
             System.out.println("╚════════════════════════════════════╝");
+        }
+    }
+
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine(); // Waits for the ENTER key press
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
         }
     }
 }

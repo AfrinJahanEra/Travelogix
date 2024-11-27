@@ -24,19 +24,15 @@ public class PasswordField {
             ioe.printStackTrace();
         }
 
-        // Stop masking immediately after password is read
         et.stopMasking();
         try {
-            // Wait for the masking thread to finish
             mask.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Clear the last printed '*'
         System.out.print("\b \b");
 
-        // Return the password entered by the user
         return password;
     }
 }

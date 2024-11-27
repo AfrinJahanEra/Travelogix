@@ -3,13 +3,19 @@ package Traveler.Checklist_NoteKeeping.NoteKeeping;
 import Traveler.Checklist_NoteKeeping.CheckList.CheckListdashBoard;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote.VoiceNoteDashBoard;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote.NotewritingDashboard;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class NoteKeepingDashboard {
     public void displayChecklist() {
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+
+            waitForEnterKey();
+            clearTerminal();
+
             System.out.println("\n╔══════════════════════════════════════════╗");
             System.out.println("║                   NOTES                  ║");
             System.out.println("╠══════════════════════════════════════════╣");
@@ -42,6 +48,25 @@ public class NoteKeepingDashboard {
                 default:
                     System.out.println("Invalid choice! Please choose again.");
             }
+        }
+    }
+
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine(); // Waits for the ENTER key press
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
         }
     }
 }

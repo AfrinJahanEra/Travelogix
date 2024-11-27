@@ -5,4 +5,5 @@ jk@gmail.com, sas, approved
 jk@gmail.com, 12345678, not approved
 jk@gmail.com, ewe, not approved
 jk@gmail.com, jkh, approved
-rifikaa@gmail.com, ewe, pending
+rifikaa@gmail.com, ewe, not approved
+rifikaa@gmail.com, fgfh, not approved

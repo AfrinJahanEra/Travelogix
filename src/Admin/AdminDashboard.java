@@ -20,13 +20,12 @@ public class AdminDashboard {
             System.out.println("║                                ADMIN MENU                              ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════╣");
             System.out.println("║ [1]  Approve Requests from Transport Agencies                          ║");
-            System.out.println("║ [2]  Review User Suggestions and Comments                              ║");
-            System.out.println("║ [3]  View Login Information                                            ║");
-            System.out.println("║ [4]  Delete Account                                                    ║");
-            System.out.println("║ [5]  Log Out                                                           ║");
+            System.out.println("║ [2]  View Login Information                                            ║");
+            System.out.println("║ [3]  Delete Account                                                    ║");
+            System.out.println("║ [4]  Log Out                                                           ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
             System.out.println();
-            System.out.print(" Please enter your choice (1-5): ");
+            System.out.print(" Please enter your choice (1-4): ");
 
             int choice = scanner.nextInt();
             System.out.println();
@@ -38,19 +37,19 @@ public class AdminDashboard {
                     System.out.println(" ");
                     new ApproveRequest().approveTransportAgencyRequests();
                 }
+                // case 2 -> {
+                //     System.out.println(" ");
+                //     System.out.println("Reviewing User Suggestions and Comments...");
+                //     System.out.println(" ");
+                //     new SeeReviews().reviewUserSuggestions();
+                // }
                 case 2 -> {
-                    System.out.println(" ");
-                    System.out.println("Reviewing User Suggestions and Comments...");
-                    System.out.println(" ");
-                    new SeeReviews().reviewUserSuggestions();
-                }
-                case 3 -> {
                     System.out.println(" ");
                     System.out.println("Displaying Login Information...");
                     System.out.println(" ");
                     new ViewAllLogins().showAllLogins();
                 }
-                case 4 -> {
+                case 3 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println(" ");
                         System.out.println("\nAccount deleted successfully. Returning to dashboard...");
@@ -64,7 +63,7 @@ public class AdminDashboard {
                         System.out.println(" ");
                     }
                 }
-                case 5 -> {
+                case 4 -> {
                     System.out.println(" ");
                     System.out.println("Logging out of the Admin Dashboard...");
                     System.out.println(" ");

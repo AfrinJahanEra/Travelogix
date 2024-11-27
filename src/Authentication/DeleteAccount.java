@@ -8,10 +8,9 @@ import java.util.Scanner;
 public class DeleteAccount extends Authentication {
 
     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
-    private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt"; // Temporary file for deletion operation
-    private final Login loginHelper = new Login(); // Use LogIn for email validation
+    private static final String TEMP_FILE = "src\\TXT_Files\\temp_users.txt"; 
+    private final Login loginHelper = new Login(); 
 
-    // Method to delete the account
     public boolean deleteAccount() throws NoSuchAlgorithmException, IOException {
         printTitle("DELETE ACCOUNT");
 
@@ -19,7 +18,6 @@ public class DeleteAccount extends Authentication {
         System.out.print("Enter your email: ");
         String email = scanner.nextLine().trim();
 
-        // Check if email is registered
         if (!loginHelper.isEmailRegistered(email)) {
             printError("This email is not registered. Please check and try again.");
             return false;
@@ -29,16 +27,14 @@ public class DeleteAccount extends Authentication {
         String password = getPasswordInput();
         String encryptedPassword = encryptPassword(password);
 
-        // Validate user credentials
         if (!isValidUser(email, encryptedPassword)) {
             printError("Invalid email or password. Please try again.");
             return false;
         }
 
-        // Retrieve user role
         String role = getUserRole(email);
         if ("Transport".equalsIgnoreCase(role)) {
-            new TransportDeleteAccount().sendDeleteRequest(email); // Delegate deletion to Transport system
+            new TransportDeleteAccount().sendDeleteRequest(email);
         } else {
             System.out.println("\nAre you sure you want to delete your account?");
             System.out.println("1. Yes");
@@ -62,23 +58,21 @@ public class DeleteAccount extends Authentication {
         return false;
     }
 
-    // Retrieve user role by email
     public String getUserRole(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(", ");
                 if (userDetails.length > 3 && userDetails[3].equalsIgnoreCase(email)) {
-                    return userDetails[0]; // Assuming role is the first field
+                    return userDetails[0];
                 }
             }
         } catch (IOException e) {
             printError("An error occurred while retrieving the user's role.");
         }
-        return null; // Return null if role not found
+        return null;
     }
 
-    // Perform the deletion operation
     private boolean performDeletion(String email) {
         boolean isDeleted = false;
 
@@ -92,7 +86,7 @@ public class DeleteAccount extends Authentication {
                     writer.write(line);
                     writer.newLine();
                 } else {
-                    isDeleted = true; // Mark as deleted
+                    isDeleted = true;
                 }
             }
         } catch (IOException e) {
@@ -100,7 +94,6 @@ public class DeleteAccount extends Authentication {
             return false;
         }
 
-        // Replace the original file with the updated one
         if (isDeleted) {
             File originalFile = new File(USERS_FILE);
             File tempFile = new File(TEMP_FILE);
@@ -112,14 +105,15 @@ public class DeleteAccount extends Authentication {
                 return false;
             }
         } else {
-            new File(TEMP_FILE).delete(); // Clean up temp file
+            new File(TEMP_FILE).delete(); 
         }
 
         return isDeleted;
     }
 
-    // Utility methods for standardized output
     private void printTitle(String title) {
+        waitForEnterKey();
+        clearTerminal();
         System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
     }
     
@@ -134,5 +128,24 @@ public class DeleteAccount extends Authentication {
 
     private void printSuccess(String message) {
         System.out.println("\n[SUCCESS] " + message + "\n");
+    }
+
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine();
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
+        }
     }
 }

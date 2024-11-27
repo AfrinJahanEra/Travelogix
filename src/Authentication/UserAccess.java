@@ -6,6 +6,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserAccess {
+
+    private static final int CONSOLE_WIDTH = 120;
+
     Login in = new Login();
     SignUp out = new SignUp();
 
@@ -16,7 +19,6 @@ public class UserAccess {
         printTitle("TRAVELOGIX");
 
         while (true) {
-    
 
                
                     System.out.println("\n╔════════════════════════════════════╗");
@@ -29,7 +31,7 @@ public class UserAccess {
                 
                 
             try {
-                System.out.print("Enter your choice: ");
+                System.err.println("Enter your choice:");
                 int choice = scanner.nextInt();
                 scanner.nextLine(); // Clear buffer
 
@@ -59,13 +61,115 @@ public class UserAccess {
     }
 
     private void printTitle(String message) {
-        System.out.println("\n               _______   ");
-        System.out.println("              /       \\  ");
-        System.out.println("             /         \\ ");
-        System.out.printf("════════════/     %s ═══════════ %n", message);
-        System.out.println("             \\         / ");
-        System.out.println("              \\_______/  \n");
-    }
+        clearTerminal(); // Clear the terminal before displaying the title
+    
+        // Define small ASCII art for each letter
+        String[][] alphabet = new String[26][];
+        alphabet['T' - 'A'] = new String[]{
+                "███████",
+                "   █   ",
+                "   █   ",
+                "   █   ",
+                "   █   "
+        };
+        alphabet['R' - 'A'] = new String[]{
+                "██████ ",
+                "█    █ ",
+                "█████  ",
+                "█  █   ",
+                "█   █  "
+        };
+        alphabet['A' - 'A'] = new String[]{
+                "  ███  ",
+                " █   █ ",
+                "██████ ",
+                "█    █ ",
+                "█    █ "
+        };
+        alphabet['V' - 'A'] = new String[]{
+                "█    █ ",
+                "█    █ ",
+                " █  █  ",
+                "  ██   ",
+                "  ██   "
+        };
+        alphabet['E' - 'A'] = new String[]{
+                "██████ ",
+                "█      ",
+                "█████  ",
+                "█      ",
+                "██████ "
+        };
+        alphabet['L' - 'A'] = new String[]{
+                "█      ",
+                "█      ",
+                "█      ",
+                "█      ",
+                "█████  "
+        };
+        alphabet['O' - 'A'] = new String[]{
+                " ████  ",
+                "█    █ ",
+                "█    █ ",
+                "█    █ ",
+                " ████  "
+        };
+        alphabet['G' - 'A'] = new String[]{
+                " ████  ",
+                "█      ",
+                "█  ███ ",
+                "█    █ ",
+                " ████  "
+        };
+        alphabet['I' - 'A'] = new String[]{
+                " ████  ",
+                "   █   ",
+                "   █   ",
+                "   █   ",
+                " ████  "
+        };
+        alphabet['X' - 'A'] = new String[]{
+                "█    █ ",
+                " █  █  ",
+                "  ██   ",
+                " █  █  ",
+                "█    █ "
+        };
+    
+        // Prepare ASCII art for the input message
+        String[] rows = new String[5]; // Each letter has 5 rows
+        for (int i = 0; i < rows.length; i++) {
+            rows[i] = ""; // Initialize rows
+        }
+    
+        for (char c : message.toUpperCase().toCharArray()) {
+            if (c >= 'A' && c <= 'Z') {
+                String[] letterArt = alphabet[c - 'A'];
+                for (int i = 0; i < rows.length; i++) {
+                    rows[i] += letterArt[i] + "  "; // Add spacing between letters
+                }
+            }
+        }
 
+        int terminalWidth = 120;
+    
+        for (String row : rows) {
+            int padding = (terminalWidth - row.length()) / 2;
+            System.out.println(" ".repeat(Math.max(0, padding)) + row);
+        }
+    }
+    
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
+        }
+    }
     
 }

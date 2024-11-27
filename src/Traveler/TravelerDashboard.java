@@ -19,6 +19,10 @@ public class TravelerDashboard {
         boolean isRunning = true;
 
         while (isRunning) {
+            // Wait for ENTER key and clear the terminal
+            waitForEnterKey();
+            clearTerminal();
+
             // Main dashboard options
             System.out.println("╔════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                           TRAVELER DASHBOARD                       ║");
@@ -35,8 +39,8 @@ public class TravelerDashboard {
             int mainOption = scanner.nextInt();
 
             switch (mainOption) {
-                case 1 -> showPlanATripOptions(scanner);  
-                case 2 -> showManageTripsOptions(scanner); 
+                case 1 -> showPlanATripOptions(scanner);
+                case 2 -> showManageTripsOptions(scanner);
                 case 3 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println("\n╔══════════════════════════════════════════════╗");
@@ -58,7 +62,7 @@ public class TravelerDashboard {
                     System.out.println("╚══════════════════════════════════════════════╝");
                     isRunning = false;
                     UserAccess u = new UserAccess();
-                    u.start(); // Exit the loop
+                    u.start();
                 }
                 default -> {
                     System.out.println("\n╔══════════════════════════════════════════════╗");
@@ -70,13 +74,36 @@ public class TravelerDashboard {
         scanner.close();
     }
 
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine(); // Waits for the ENTER key press
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
+        }
+    }
     private void showPlanATripOptions(Scanner scanner) {
+
         boolean isPlanning = true;
 
         while (isPlanning) {
+
+            waitForEnterKey();
+            clearTerminal();
+
             // Sub-options for "Plan a Trip"
             System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║              ◄ PLAN A TRIP ►             ║");
+            System.out.println("║                PLAN A TRIP               ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
             System.out.println("║    [1] Trip Managment                    ║");
@@ -107,12 +134,17 @@ public class TravelerDashboard {
     }
 
     private void showManageTripsOptions(Scanner scanner) {
+
         boolean isManaging = true;
 
         while (isManaging) {
+
+            waitForEnterKey();
+            clearTerminal();
+
             // Sub-options for "Manage Trip"
             System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║            ◄ MANAGE TRIPS ►              ║");
+            System.out.println("║               MANAGE TRIPS               ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
             System.out.println("║    [1] View Trips                        ║");
@@ -137,6 +169,8 @@ public class TravelerDashboard {
     }
 
     public void browseTransports() {
+
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter starting location: ");
         String startLocation = scanner.nextLine().trim();
@@ -191,12 +225,16 @@ public class TravelerDashboard {
     }
 
     private void manageItinerary(Scanner scanner) {
+
         boolean itinerary = true;
 
         while (itinerary) {
+
+            waitForEnterKey();
+            clearTerminal();
             // Sub-options for "Manage Itinerary"
             System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║          ◄ MANAGE ITINERARY ►            ║");
+            System.out.println("║             MANAGE ITINERARY             ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
             System.out.println("║    [1] View Trips on Calendar            ║");
@@ -223,5 +261,5 @@ public class TravelerDashboard {
         }
     }
 
-
+   
 }
