@@ -27,11 +27,14 @@ public class ApproveRequest {
                     if ("pending".equalsIgnoreCase(status)) {
                         hasRequests = true;
 
+                        System.out.println(" ");
                         System.out.println("\n═════════════════════════════════════════════════════");
                         System.out.println(" Request from: " + email);
                         System.out.println(" Reason      : " + reason);
-                        System.out.println("Status     : Pending");
+                        System.out.println(" Status     : Pending");
                         System.out.println("═════════════════════════════════════════════════════");
+                        System.out.println(" ");
+                        
                         System.out.println("What do you want to do?");
                         System.out.println("[1]  Approve and delete account");
                         System.out.println("[2]  Reject request");

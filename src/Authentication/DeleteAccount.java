@@ -114,7 +114,7 @@ public class DeleteAccount extends Authentication {
     private void printTitle(String title) {
         waitForEnterKey();
         clearTerminal();
-        System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
+        System.out.printf("\n═══════════════════════ %s ═════════════════════════\n", title);
     }
     
 

@@ -21,7 +21,8 @@ public class SignUp extends Authentication {
         String role = getRoleSelection(scanner);
         if (role == null) return;
 
-        System.out.print("Enter your name: ");
+        // Prompt for inputs with aligned colons
+        System.out.printf("%-40s: ", "Enter your name");
         String name = scanner.nextLine().trim();
 
         String phoneNumber = getValidPhoneNumber(scanner);
@@ -57,7 +58,7 @@ public class SignUp extends Authentication {
         System.out.println("[1] Admin");
         System.out.println("[2] Traveler");
         System.out.println("[3] Transport Agency");
-        System.out.print("Enter your choice (1/2/3): ");
+        System.out.printf("%-40s: ", "Enter your choice (1/2/3)");
 
         String roleInput = scanner.nextLine().trim();
         switch (roleInput) {
@@ -76,7 +77,7 @@ public class SignUp extends Authentication {
     // Helper method to validate phone number
     private String getValidPhoneNumber(Scanner scanner) {
         while (true) {
-            System.out.print("Enter your phone number (11 digits starting with '01'): ");
+            System.out.printf("%-40s: ", "Enter your phone number (01*********)");
             String phoneNumber = scanner.nextLine().trim();
             if (isValidPhoneNumber(phoneNumber)) {
                 return phoneNumber;
@@ -89,7 +90,7 @@ public class SignUp extends Authentication {
     // Helper method to validate email
     private String getValidEmail(Scanner scanner) {
         while (true) {
-            System.out.print("Enter your email: ");
+            System.out.printf("%-40s: ", "Enter your email");
             String email = scanner.nextLine().trim();
             if (!isValidEmail(email)) {
                 printError("Invalid email. Use '@gmail.com' or '@yahoo.com' with lowercase letters.");
@@ -104,12 +105,12 @@ public class SignUp extends Authentication {
     // Helper method to validate password
     private String getValidPassword(Scanner scanner) {
         while (true) {
-            System.out.print("Enter your password (min 8 characters): ");
+            System.out.printf("%-40s: ", "Enter your password (min 8 char)");
             String password = getPasswordInput();
             if (password.length() < MIN_PASSWORD_LENGTH) {
                 printError("Password must be at least 8 characters long.");
             } else {
-                System.out.print("Confirm your password: ");
+                System.out.printf("%-40s: ", "Confirm your password");
                 String confirmPassword = getPasswordInput();
                 if (password.equals(confirmPassword)) {
                     return password;
@@ -132,12 +133,10 @@ public class SignUp extends Authentication {
 
     // Print formatted title
     private void printTitle(String title) {
-
         waitForEnterKey();
         clearTerminal();
-        System.out.printf("\n════════════════════ %s ═════════════════════\n", title);
+        System.out.printf("\n═════════════════════ %s ══════════════════════\n", title);
     }
-    
 
     // Print success message
     private void printSuccess(String message) {

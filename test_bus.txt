@@ -1,12 +1,2 @@
 1st Old Bus Name,1st Old Start City,1st Old End City,1st Old Time,1st Old Plate,1st Old Phone,5,4
 2nd Old Bus Name,2nd Old Start City,2nd Old End City,2nd Old Time,2nd Old Plate,2nd Old Phone,5,4
-3rd Old Bus Name,3rd Old Start City,3rd Old End City,3rd Old Time,3rd Old Plate,3rd Old Phone,5,4
-Test Bus
-Start City
-End City
-08:00 AM
-AB123
-1234567890
-5
-4
-

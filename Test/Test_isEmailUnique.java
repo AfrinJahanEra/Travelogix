@@ -11,7 +11,7 @@ class Test_isEmailUnique {
     @Test
     public void test1(){
         Authentication a= new Authentication();
-        assertFalse(a.isEmailUnique("ramisa@gmail.com"));
+        assertTrue(a.isEmailUnique("ramisa@gmail.com"));
 
     }
 

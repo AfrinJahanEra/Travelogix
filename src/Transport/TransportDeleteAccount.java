@@ -10,20 +10,17 @@ public class TransportDeleteAccount {
     public void sendDeleteRequest(String email) throws IOException, NoSuchAlgorithmException {
         if (checkPendingRequest(email)) {
             System.out.println("You already have a pending delete request. Please wait for admin approval.");
-            // Return to dashboard if there's already a pending request
             new TransportDashboard().dashboard();
             return;
         }
 
         String rejectionMessage = checkPreviousRequestStatus(email);
         if (rejectionMessage != null) {
-            // Notify user of rejection and allow new delete request
             System.out.println("Your previous delete request was not approved for the following reason:");
             System.out.println(rejectionMessage);
             System.out.println("You can now submit a new delete request.");
         }
 
-        // Proceed with creating a new delete request
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(REQUEST_FILE, true))) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please provide a reason for account deletion:");
@@ -48,7 +45,7 @@ public class TransportDeleteAccount {
                 if (requestDetails.length >= 3 && requestDetails[0].equals(email)) {
                     String status = requestDetails[2];
                     if ("pending".equalsIgnoreCase(status)) {
-                        return true;  // Pending request found
+                        return true; 
                     }
                 }
             }
@@ -64,11 +61,11 @@ public class TransportDeleteAccount {
                 if (requestDetails.length >= 4 && requestDetails[0].equals(email)) {
                     String status = requestDetails[2];
                     if ("not approved".equalsIgnoreCase(status)) {
-                        return requestDetails[3];  // Return the rejection reason
+                        return requestDetails[3];
                     }
                 }
             }
         }
-        return null;  // No rejection found
+        return null;  
     }
 }

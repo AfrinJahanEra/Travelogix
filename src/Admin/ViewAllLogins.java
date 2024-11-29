@@ -70,27 +70,43 @@ public class ViewAllLogins {
         int nameWidth = Math.max("Name".length(), users.stream().mapToInt(u -> u[0].length()).max().orElse(0));
         int emailWidth = Math.max("Email".length(), users.stream().mapToInt(u -> u[1].length()).max().orElse(0));
         int phoneWidth = Math.max("Phone".length(), users.stream().mapToInt(u -> u[2].length()).max().orElse(0));
-
-        int totalWidth = nameWidth + emailWidth + phoneWidth + 10; // Add padding for separators and spacing
-        String border = "═".repeat(totalWidth);
-
-        // Print table header
-        System.out.printf("╔%s╗%n", border);
-        System.out.printf("║ %-"+(totalWidth - 2)+"s ║%n", title.toUpperCase());
-        System.out.printf("╠%s╣%n", border);
-        System.out.printf("║ %-"+nameWidth+"s │ %-"+emailWidth+"s │ %-"+phoneWidth+"s   ║%n", "Name", "Email", "Phone");
-        System.out.printf("╠%s╣%n", border);
-
-        // Print user data
+    
+        int totalWidth = nameWidth + emailWidth + phoneWidth + 12; 
+    
+        // Print the title
+        System.out.printf(" %s%n", title.toUpperCase());
+    
+        // Print top border
+        System.out.printf("┌─────┬%s┬%s┬%s┐%n",
+            "─".repeat(nameWidth + 2),
+            "─".repeat(emailWidth + 2),
+            "─".repeat(phoneWidth + 2));
+    
+        // Print header row
+        System.out.printf("│ %-3s │ %-"+nameWidth+"s │ %-"+emailWidth+"s │ %-"+phoneWidth+"s │%n",
+            "No.", "Name", "Email", "Phone");
+    
+        // Print header separator
+        System.out.printf("├─────┼%s┼%s┼%s┤%n",
+            "─".repeat(nameWidth + 2),
+            "─".repeat(emailWidth + 2),
+            "─".repeat(phoneWidth + 2));
+    
+        // Print rows
         if (users.isEmpty()) {
-            System.out.printf("║ %-"+(totalWidth - 2)+"s ║%n", "No users found.");
+            System.out.printf("│ %-"+(totalWidth - 2)+"s │%n", "No users found.");
         } else {
-            for (String[] user : users) {
-                System.out.printf("║ %-"+nameWidth+"s │ %-"+emailWidth+"s │ %-"+phoneWidth+"s   ║%n", user[0], user[1], user[2]);
+            for (int i = 0; i < users.size(); i++) {
+                String[] user = users.get(i);
+                System.out.printf("│ %-3d │ %-"+nameWidth+"s │ %-"+emailWidth+"s │ %-"+phoneWidth+"s │%n",
+                    i + 1, user[0], user[1], user[2]);
             }
         }
-
-        // Print table footer
-        System.out.printf("╚%s╝%n%n", border);
+    
+        // Print bottom border
+        System.out.printf("└─────┴%s┴%s┴%s┘%n%n",
+            "─".repeat(nameWidth + 2),
+            "─".repeat(emailWidth + 2),
+            "─".repeat(phoneWidth + 2));
     }
 }

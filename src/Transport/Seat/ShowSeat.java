@@ -1,30 +1,33 @@
 package Transport.Seat;
 
-
 import java.util.ArrayList;
 
 public class ShowSeat {
     public String displaySeatMatrix(int row, int col, ArrayList<String> bookedSeats) {
+
+        System.err.println(" SEATS ");
+        System.err.println(" ");
         char[] columns = new char[col];
         for (int i = 0; i < col; i++) {
             columns[i] = (char) ('A' + i);
         }
-        String seatline = "";
+        StringBuilder seatLine = new StringBuilder();
         System.out.println("Seat matrix:");
+        
         for (int i = 1; i <= row; i++) {
-            String seatshow = "";
+            StringBuilder seatRow = new StringBuilder();
             for (int j = 0; j < col; j++) {
                 String seat = i + "" + columns[j];
                 if (bookedSeats.contains(seat)) {
-                    seatshow+="[X] ";
+                    seatRow.append("[ X ] ");
                 } else {
-                    seatshow+="[" + seat + "] ";
+                    seatRow.append(String.format("[%3s] ", seat));
                 }
             }
-            seatline+=seatshow+"\n";
-            System.out.println(seatshow);
+            seatLine.append(seatRow).append("\n");
+            System.out.println(seatRow);
         }
 
-        return seatline;
+        return seatLine.toString();
     }
 }

@@ -1,73 +1,5 @@
-// package Transport.Bus;
-
-// import Utilities.FileManager.File.FileHandler;
-// import java.io.IOException;
-// import java.util.Scanner;
-
-// public class AddBus {
-//     public String busName;
-//     public String startingLocation;
-//     public String endingLocation;
-//     public String startingTime;
-//     public String numberPlate;
-//     public String phoneNumber;
-//     public int row;
-//     public int col;
-
-//     private FileHandler fileHandler;
-
-//     public AddBus(String filePath) {
-//         this.fileHandler = new FileHandler(filePath);
-//     }
-
-//     public void inputBusDetails() throws IOException {
-
-//         String s ="";
-//         Scanner sc = new Scanner(System.in);
-
-//         System.out.print("Enter bus name: ");
-//         busName = sc.nextLine();
-//         s+=busName+",";
-
-//         System.out.print("Enter starting location: ");
-//         startingLocation = sc.nextLine();
-//         s+=startingLocation+",";
-
-//         System.out.print("Enter ending location: ");
-//         endingLocation = sc.nextLine();
-//         s+=endingLocation+",";
-
-//         System.out.print("Enter starting time: ");
-//         startingTime = sc.nextLine();
-//         s+=startingTime+",";
-
-//         System.out.print("Enter number plate (needs to be unique): ");
-//         numberPlate = sc.nextLine();
-//         s+=numberPlate+",";
-
-//         System.out.print("Enter phone number: ");
-//         phoneNumber = sc.nextLine();
-//         s+=phoneNumber+",";
-
-//         System.out.print("Enter row numbers: ");
-//         row = sc.nextInt();
-//         s+=row+",";
-
-//         System.out.print("Enter column numbers: ");
-//         col = sc.nextInt();
-//         s+=col+",";
-
-//         fileHandler.appendToFile(s);
-//     }
-
-//     public void savedetails(String s) throws IOException {
-
-//         fileHandler.appendToFile(s);
-//         System.out.println("Added successfully!");
-//     }
-// }
-
 package Transport.Bus;
+
 import Utilities.FileManager.File.FileHandler;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -90,24 +22,23 @@ public class AddBus {
     }
 
     public void inputBusDetails() throws IOException {
-
         String s = "";
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter bus name: ");
+        System.out.printf("%-40s: ", "Enter bus name");
         busName = sc.nextLine();
         s += busName + ",";
 
-        System.out.print("Enter starting location: ");
+        System.out.printf("%-40s: ", "Enter starting location");
         startingLocation = sc.nextLine();
         s += startingLocation + ",";
 
-        System.out.print("Enter ending location: ");
+        System.out.printf("%-40s: ", "Enter ending location");
         endingLocation = sc.nextLine();
         s += endingLocation + ",";
 
         while (true) {
-            System.out.print("Enter starting time in 24-hour HH:MM format: ");
+            System.out.printf("%-40s: ", "Enter starting time (HH:MM)");
             startingTime = sc.nextLine();
             if (startingTime.matches("^(?:[01]\\d|2[0-3]):[0-5]\\d$")) {
                 s += startingTime + ",";
@@ -117,9 +48,8 @@ public class AddBus {
             }
         }
 
-
         while (true) {
-            System.out.print("Enter number plate (needs to be unique): ");
+            System.out.printf("%-40s: ", "Enter number plate (unique)");
             numberPlate = sc.nextLine();
             if (isNumberPlateUnique(numberPlate)) {
                 s += numberPlate + ",";
@@ -130,7 +60,7 @@ public class AddBus {
         }
 
         while (true) {
-            System.out.print("Enter phone number in +880-XXXXXXXXXX format: ");
+            System.out.printf("%-40s: ", "Enter phone number (+880-XXXXXXXXXX)");
             phoneNumber = sc.nextLine();
             if (phoneNumber.matches("^\\+880-\\d{10}$")) {
                 s += phoneNumber + ",";
@@ -140,9 +70,8 @@ public class AddBus {
             }
         }
 
-
         while (true) {
-            System.out.print("Enter row numbers: ");
+            System.out.printf("%-40s: ", "Enter row numbers");
             try {
                 row = sc.nextInt();
                 s += row + ",";
@@ -154,7 +83,7 @@ public class AddBus {
         }
 
         while (true) {
-            System.out.print("Enter column numbers: ");
+            System.out.printf("%-40s: ", "Enter column numbers");
             try {
                 col = sc.nextInt();
                 s += col + ",";

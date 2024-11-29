@@ -1,13 +1,12 @@
-
 package Transport.Bus;
 
-import Utilities.FileManager.File.*;
+import Utilities.FileManager.File.FileHandler;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class ViewBusDetails {
-    private FileHandler fileHandler;
-    private Scanner sc;
+    private final FileHandler fileHandler;
+    private final Scanner sc;
 
     public ViewBusDetails(String filePath) {
         this.fileHandler = new FileHandler(filePath);
@@ -31,14 +30,16 @@ public class ViewBusDetails {
             String[] parts = line.split(",");
 
             if (parts[4].trim().equals(numberPlate)) {
-                output.append("---- Bus Details ----\n");
+                output.append("\n\n");
+                output.append("                 BUS DETAILS                  \n");
+                output.append("═════════════════════════════════════════════\n");
                 output.append(String.format("%-25s: %s\n", "Bus Name", parts[0].trim()));
                 output.append(String.format("%-25s: %s\n", "Starting Location", parts[1].trim()));
                 output.append(String.format("%-25s: %s\n", "Ending Location", parts[2].trim()));
                 output.append(String.format("%-25s: %s\n", "Starting Time", parts[3].trim()));
                 output.append(String.format("%-25s: %s\n", "Number Plate", parts[4].trim()));
                 output.append(String.format("%-25s: %s\n", "Contact Number", parts[5].trim()));
-                output.append("\n");
+                output.append("═════════════════════════════════════════════\n");
 
                 if (parts.length <= 8) {
                     output.append("No seats booked yet for this bus.\n");
@@ -54,8 +55,10 @@ public class ViewBusDetails {
         }
 
         if (!found) {
-            output.append("Bus not found!\n");
+            output.append("\n\n");
+            output.append("           BUS NOT FOUND!                    \n");
         }
+
         return output.toString();
     }
 }

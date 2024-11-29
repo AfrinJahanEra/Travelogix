@@ -43,31 +43,27 @@ public class TravelerDashboard {
                 case 2 -> showManageTripsOptions(scanner);
                 case 3 -> {
                     if (new DeleteAccount().deleteAccount()) {
-                        System.out.println("\n╔══════════════════════════════════════════════╗");
-                        System.out.println("║    Account deleted successfully. Returning   ║");
-                        System.out.println("║    to dashboard...                           ║");
-                        System.out.println("╚══════════════════════════════════════════════╝");
+                        System.out.println("\n");
+                        System.out.println("Account deleted successfully. Returning");
+                        System.out.println("to dashboard...     ");
                         isRunning = false;
                         UserAccess u = new UserAccess();
                         u.start();
                     } else {
-                        System.out.println("\n╔══════════════════════════════════════════════╗");
-                        System.out.println("║    Account deletion cancelled or failed.     ║");
-                        System.out.println("╚══════════════════════════════════════════════╝");
+                        System.out.println("\n");
+                        System.out.println("Account deletion cancelled or failed.     ");
                     }
                 }
                 case 5 -> {
-                    System.out.println("\n╔══════════════════════════════════════════════╗");
-                    System.out.println("║    Exiting Traveler Dashboard...             ║");
-                    System.out.println("╚══════════════════════════════════════════════╝");
+                    System.out.println("\n");
+                    System.out.println("Exiting Traveler Dashboard...    ");
                     isRunning = false;
                     UserAccess u = new UserAccess();
                     u.start();
                 }
                 default -> {
-                    System.out.println("\n╔══════════════════════════════════════════════╗");
-                    System.out.println("║    Invalid option. Please try again.         ║");
-                    System.out.println("╚══════════════════════════════════════════════╝");
+                    System.out.println("\n╔═══");
+                    System.out.println("Invalid option. Please try again.         ");
                 }
             }
         }
@@ -125,9 +121,8 @@ public class TravelerDashboard {
                 // case 5 -> trackBudget();  // Functionality for budget tracking
                 case 6 -> isPlanning = false;  // Exit to main menu
                 default -> {
-                    System.out.println("\n╔══════════════════════════════════════════╗");
-                    System.out.println("║    Invalid option. Please try again.     ║");
-                    System.out.println("╚══════════════════════════════════════════╝");
+                    System.out.println("\n");
+                    System.out.println("Invalid option. Please try again." );
                 }
             }
         }
@@ -160,9 +155,8 @@ public class TravelerDashboard {
                 case 2 -> t.removeTrip();
                 case 3 -> isManaging = false;  // Exit to main menu
                 default -> {
-                    System.out.println("\n╔══════════════════════════════════════════╗");
-                    System.out.println("║    Invalid option. Please try again.     ║");
-                    System.out.println("╚══════════════════════════════════════════╝");
+                    System.out.println("\n");
+                    System.out.println("Invalid option. Please try again. ");    
                 }
             }
         }
@@ -217,10 +211,9 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
 
         } catch (IOException e) {
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║    An error occurred while reading the   ║");
-            System.out.println("║    bus file: " + e.getMessage() + "     ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n");
+            System.out.println("An error occurred while reading the");
+            System.out.println("bus file: " + e.getMessage());  
         }
     }
 
@@ -253,13 +246,11 @@ public class TravelerDashboard {
                 }
                 case 3 -> itinerary = false;  // Exit to main menu
                 default -> {
-                    System.out.println("\n╔══════════════════════════════════════════╗");
-                    System.out.println("║    Invalid option. Please try again.     ║");
-                    System.out.println("╚══════════════════════════════════════════╝");
+                    System.out.println("\n");
+                    System.out.println("Invalid option. Please try again.          ");
                 }
             }
         }
     }
 
-   
 }

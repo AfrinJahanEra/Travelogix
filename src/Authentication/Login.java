@@ -14,20 +14,22 @@ public class Login extends Authentication {
 
     public void logIn() throws NoSuchAlgorithmException, IOException {
         printTitle("LOG IN");
-
+    
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter your email: ");
+    
+        // Prompt user for email
+        System.out.printf("%-20s: ", "Enter your email");
         String email = scanner.nextLine().trim();
-
+    
         if (isEmailRegistered(email)) {
-            System.out.print("Enter your password: ");
+            // Prompt user for password
+            System.out.printf("%-20s: ", "Enter your password");
             String password = getPasswordInput();
             String encryptedPass = encryptPassword(password);
-
+    
             if (isValidUser(email, encryptedPass)) {
                 printSuccess("Login successful!");
-
+    
                 String role = getUserRole(email);
                 if (role != null) {
                     authDashboard.displayDashboard(role);
@@ -39,9 +41,10 @@ public class Login extends Authentication {
             }
         } else {
             printError("Email not registered. You need to sign up first.");
-            signUpInstance.signUp(); 
+            signUpInstance.signUp();
         }
     }
+    
 
     public boolean isEmailRegistered(String email) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {
@@ -77,7 +80,7 @@ public class Login extends Authentication {
 
         waitForEnterKey();
         clearTerminal();
-        System.out.printf("\n════════════════════ %s ══════════════════════\n", title);
+        System.out.printf("\n═══════════════════════ %s ═════════════════════════\n", title);
     }
     
     
