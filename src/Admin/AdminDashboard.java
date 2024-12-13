@@ -4,7 +4,8 @@ import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class AdminDashboard {
 
@@ -13,12 +14,10 @@ public class AdminDashboard {
         boolean isRunning = true;
 
         while (isRunning) {
-
             waitForEnterKey();
             clearTerminal();
-        
+
             System.out.println();
-            
             System.out.println("╔════════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                                ADMIN MENU                              ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════╣");
@@ -28,61 +27,51 @@ public class AdminDashboard {
             System.out.println("║ [4]  Log Out                                                           ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
             System.out.println();
-            System.out.print(" Please enter your choice (1-4): ");
 
-            int choice = scanner.nextInt();
-            System.out.println();
+            int choice = -1; // Default invalid choice
+            try {
+                System.out.print(" Please enter your choice (1-4): ");
+                choice = scanner.nextInt();
+                scanner.nextLine(); 
 
-            switch (choice) {
-                case 1 -> {
-                    System.out.println(" ");
-                    System.out.println("Processing Request Approval...");
-                    System.out.println(" ");
-                    new ApproveRequest().approveTransportAgencyRequests();
-                }
-                // case 2 -> {
-                //     System.out.println(" ");
-                //     System.out.println("Reviewing User Suggestions and Comments...");
-                //     System.out.println(" ");
-                //     new SeeReviews().reviewUserSuggestions();
-                // }
-                case 2 -> {
-                    System.out.println(" ");
-                    System.out.println("Displaying Login Information...");
-                    System.out.println(" ");
-                    new ViewAllLogins().showAllLogins();
-                }
-                case 3 -> {
-                    if (new DeleteAccount().deleteAccount()) {
-                        System.out.println(" ");
-                        System.out.println("\nAccount deleted successfully. Returning to dashboard...");
-                        System.out.println(" ");
+                System.out.println();
+                switch (choice) {
+                    case 1 -> {
+                        System.out.println("Processing Request Approval...");
+                        new ApproveRequest().approveTransportAgencyRequests();
+                    }
+                    case 2 -> {
+                        System.out.println("Displaying Login Information...");
+                        new ViewAllLogins().showAllLogins();
+                    }
+                    case 3 -> {
+                        if (new DeleteAccount().deleteAccount()) {
+                            System.out.println("\nAccount deleted successfully. Returning to dashboard...");
+                            isRunning = false;
+                            new UserAccess().start();
+                        } else {
+                            System.out.println("\nAccount deletion cancelled or failed.");
+                        }
+                    }
+                    case 4 -> {
+                        System.out.println("Logging out of the Admin Dashboard...");
                         isRunning = false;
-                        UserAccess u = new UserAccess();
-                        u.start();
-                    } else {
-                        System.out.println(" ");
-                        System.out.println("\nAccount deletion cancelled or failed.");
-                        System.out.println(" ");
+                        new UserAccess().start();
+                    }
+                    default -> {
+                        System.out.println("Invalid option. Please try again.");
                     }
                 }
-                case 4 -> {
-                    System.out.println(" ");
-                    System.out.println("Logging out of the Admin Dashboard...");
-                    System.out.println(" ");
-                    isRunning = false;
-                    UserAccess u = new UserAccess();
-                    u.start();
-                }
-                default -> {
-                    System.out.println(" ");
-                    System.out.println("Invalid option. Please try again.");
-                    System.out.println(" ");
-                }
+            } catch (InputMismatchException e) {
+                System.out.println("\nInvalid input! Please enter a number between 1 and 4.");
+                scanner.nextLine(); // Clear invalid input from scanner
+            } catch (IOException | NoSuchAlgorithmException e) {
+                System.out.println("\nAn error occurred: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("\nUnexpected error: " + e.getMessage());
             }
-            System.out.println(" ");
+
             System.out.println("\nPress Enter to continue...");
-            System.out.println(" ");
             try {
                 System.in.read();
             } catch (IOException e) {

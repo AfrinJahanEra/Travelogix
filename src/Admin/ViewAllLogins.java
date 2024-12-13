@@ -28,7 +28,6 @@ public class ViewAllLogins {
                     String phoneNumber = userDetails[2].trim();
                     String email = userDetails[3].trim();
 
-                    // Add user information as an array for structured display
                     String[] userInfo = { name, email, phoneNumber };
 
                     switch (role.toLowerCase()) {

@@ -7,5 +7,7 @@ jk@gmail.com, ewe, not approved
 jk@gmail.com, jkh, approved
 rifikaa@gmail.com, ewe, not approved
 rifikaa@gmail.com, fgfh, not approved
-rifikaa@gmail.com, , not approved
-rifikaa@gmail.com, erer, pending
+rifikaa@gmail.com, , approved
+rifikaa@gmail.com, erer, approved
+tab@gmail.com, eeee, not approved
+tab@gmail.com, , not approved

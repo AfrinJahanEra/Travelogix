@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TravelerDashboard {
@@ -36,7 +37,7 @@ public class TravelerDashboard {
             System.out.println("╚════════════════════════════════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int mainOption = scanner.nextInt();
+            int mainOption =  getIntInput();
 
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
@@ -62,12 +63,23 @@ public class TravelerDashboard {
                     u.start();
                 }
                 default -> {
-                    System.out.println("\n╔═══");
+                    System.out.println("\n");
                     System.out.println("Invalid option. Please try again.         ");
                 }
             }
         }
         scanner.close();
+    }
+
+    private int getIntInput() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scanner.nextLine(); // Clear invalid input
+            }
+        }
     }
 
     private void waitForEnterKey() {
@@ -102,7 +114,7 @@ public class TravelerDashboard {
             System.out.println("║                PLAN A TRIP               ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
-            System.out.println("║    [1] Trip Managment                    ║");
+            System.out.println("║    [1] Add a Trip                        ║");
             System.out.println("║    [2] Browse Transports                 ║");
             System.out.println("║    [3] Manage Notes                      ║");
             System.out.println("║    [4] Manage Itinerary                  ║");
@@ -112,9 +124,9 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int planOption = scanner.nextInt();
+            int planOption = getIntInput();
             switch (planOption) {
-                case 1 -> showManageTripsOptions(scanner);
+                case 1 -> t.addTrip();
                 case 2 -> browseTransports();
                 case 3 -> new NoteKeepingDashboard().displayChecklist();  // Open note-keeping dashboard
                 case 4 -> manageItinerary(scanner);  // Open itinerary management
@@ -127,6 +139,7 @@ public class TravelerDashboard {
             }
         }
     }
+
 
     private void showManageTripsOptions(Scanner scanner) {
 
@@ -149,7 +162,7 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int manageTripsOption = scanner.nextInt();
+            int manageTripsOption = getIntInput();
             switch (manageTripsOption) {
                 case 1 -> t.viewTrips();
                 case 2 -> t.removeTrip();
@@ -237,7 +250,7 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int manageItineraryOption = scanner.nextInt();
+            int manageItineraryOption = getIntInput();
             switch (manageItineraryOption) {
                 case 1 -> t.viewTripsOnCalendar();
                 case 2 -> {

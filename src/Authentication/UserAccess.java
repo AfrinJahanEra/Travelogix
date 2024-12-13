@@ -14,51 +14,59 @@ public class UserAccess {
 
     public void start() throws NoSuchAlgorithmException, IOException {
         Scanner scanner = new Scanner(System.in);
-
+    
         // Welcome Message
         printTitle("TRAVELOGIX");
-
+    
         while (true) {
-
-               
-                    System.out.println("\n╔════════════════════════════════════╗");
-                    System.out.println("║           Main Menu                ║");
-                    System.out.println("╠════════════════════════════════════╣");
-                    System.out.println("║           1. Login                 ║");
-                    System.out.println("║           2. Sign Up               ║");
-                    System.out.println("║           0. Exit                  ║");
-                    System.out.println("╚════════════════════════════════════╝");
-                
-                
-            try {
-                System.err.println("Enter your choice:");
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Clear buffer
-
-                switch (choice) {
-                    case 1:
-                        System.out.println("\nLogging you in...");
-                        in.logIn(); // Call login method
-                        break;
-                    case 2:
-                        System.out.println("\nStarting Sign Up...");
-                        out.signUp(); // Call sign up method
-                        break;
-                    case 0:
-                        System.out.println("\nThank you for using Travelogix. Goodbye!");
-                        scanner.close();
-                        System.exit(0); // Exit the program
-                        break;
-                    default:
+            System.out.println("\n╔════════════════════════════════════╗");
+            System.out.println("║           Main Menu                ║");
+            System.out.println("╠════════════════════════════════════╣");
+            System.out.println("║           1. Login                 ║");
+            System.out.println("║           2. Sign Up               ║");
+            System.out.println("║           0. Exit                  ║");
+            System.out.println("╚════════════════════════════════════╝");
+    
+            boolean validInput = false;
+            int choice = -1;
+    
+            // Keep prompting until a valid choice is entered
+            while (!validInput) {
+                try {
+                    System.err.println("Enter your choice:");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear buffer
+    
+                    if (choice >= 0 && choice <= 2) {
+                        validInput = true; // Break out of the loop if the input is valid
+                    } else {
                         System.out.println("\nInvalid option! Please enter 1, 2, or 0.");
-                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("\nInvalid input! Please enter a number.");
+                    scanner.nextLine(); // Clear invalid input
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("\nInvalid input! Please enter a number.");
-                scanner.nextLine(); // Clear invalid input
+            }
+    
+            // Handling valid input cases
+            switch (choice) {
+                case 1:
+                    System.out.println("\nLogging you in...");
+                    in.logIn(); // Call login method
+                    break;
+                case 2:
+                    System.out.println("\nStarting Sign Up...");
+                    out.signUp(); // Call sign up method
+                    break;
+                case 0:
+                    System.out.println("\nThank you for using Travelogix. Goodbye!");
+                    scanner.close();
+                    System.exit(0); // Exit the program
+                    break;
             }
         }
     }
+    
 
     private void printTitle(String message) {
         clearTerminal(); // Clear the terminal before displaying the title

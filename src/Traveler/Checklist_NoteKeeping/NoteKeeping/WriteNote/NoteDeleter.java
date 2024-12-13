@@ -25,20 +25,31 @@ public class NoteDeleter {
         }
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Choose a note number to delete: ");
-        int noteNumber = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        boolean validInput = false;
+        int noteNumber = -1;
 
-        if (noteNumber < 1 || noteNumber > notes.size()) {
-            System.out.println("Invalid choice.");
-        } else {
-            String selectedNote = notes.get(noteNumber - 1);
-            File noteFile = new File("notes/" + selectedNote);
-            if (noteFile.delete()) {
-                System.out.println("Note '" + selectedNote + "' deleted successfully.");
-            } else {
-                System.out.println("Error deleting the note.");
+        while (!validInput) {
+            System.out.print("Choose a note number to delete: ");
+            try {
+                String input = scanner.nextLine();
+                noteNumber = Integer.parseInt(input);
+
+                if (noteNumber >= 1 && noteNumber <= notes.size()) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + notes.size() + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
             }
+        }
+
+        String selectedNote = notes.get(noteNumber - 1);
+        File noteFile = new File("notes/" + selectedNote);
+        if (noteFile.delete()) {
+            System.out.println("Note '" + selectedNote + "' deleted successfully.");
+        } else {
+            System.out.println("Error deleting the note.");
         }
     }
 }
