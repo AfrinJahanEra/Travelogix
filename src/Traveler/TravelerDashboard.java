@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TravelerDashboard {
@@ -36,7 +37,7 @@ public class TravelerDashboard {
             System.out.println("╚════════════════════════════════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int mainOption = scanner.nextInt();
+            int mainOption =  getIntInput();
 
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
@@ -68,6 +69,17 @@ public class TravelerDashboard {
             }
         }
         scanner.close();
+    }
+
+    private int getIntInput() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scanner.nextLine(); // Clear invalid input
+            }
+        }
     }
 
     private void waitForEnterKey() {
@@ -112,7 +124,7 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int planOption = scanner.nextInt();
+            int planOption = getIntInput();
             switch (planOption) {
                 case 1 -> showManageTripsOptions(scanner);
                 case 2 -> browseTransports();
@@ -149,7 +161,7 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int manageTripsOption = scanner.nextInt();
+            int manageTripsOption = getIntInput();
             switch (manageTripsOption) {
                 case 1 -> t.viewTrips();
                 case 2 -> t.removeTrip();
@@ -237,7 +249,7 @@ public class TravelerDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
-            int manageItineraryOption = scanner.nextInt();
+            int manageItineraryOption = getIntInput();
             switch (manageItineraryOption) {
                 case 1 -> t.viewTripsOnCalendar();
                 case 2 -> {

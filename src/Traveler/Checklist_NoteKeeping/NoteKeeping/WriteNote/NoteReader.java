@@ -27,17 +27,26 @@ public class NoteReader {
         }
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Choose a note number to read: ");
-        int noteNumber = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        int noteNumber = -1;
+        boolean validInput = false;
 
-        if (noteNumber < 1 || noteNumber > notes.size()) {
-            System.out.println("Invalid choice.");
-        } else {
-            String selectedNote = notes.get(noteNumber - 1);
-            File noteFile = new File("notes/" + selectedNote);
-            readNoteFromFile(noteFile);
+        while (!validInput) {
+            System.out.print("Choose a note number to read: ");
+            try {
+                noteNumber = Integer.parseInt(scanner.nextLine());
+                if (noteNumber >= 1 && noteNumber <= notes.size()) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid choice. Please select a number between 1 and " + notes.size() + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
         }
+
+        String selectedNote = notes.get(noteNumber - 1);
+        File noteFile = new File("notes/" + selectedNote);
+        readNoteFromFile(noteFile);
     }
 
     // Read a note from a file and print its content

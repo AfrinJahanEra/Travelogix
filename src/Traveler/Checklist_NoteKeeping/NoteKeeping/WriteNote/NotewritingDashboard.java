@@ -1,18 +1,18 @@
 package Traveler.Checklist_NoteKeeping.NoteKeeping.WriteNote;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class NotewritingDashboard {
 
+    Scanner scanner = new Scanner(System.in);
     public void notewritingDashboard() {
         
         NoteManager noteManager = new NoteManager();
         NoteWriter noteWriter = new NoteWriter(noteManager);
         NoteReader noteReader = new NoteReader(noteManager);
         NoteDeleter noteDeleter = new NoteDeleter(noteManager); 
-
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
 
@@ -30,7 +30,7 @@ public class NotewritingDashboard {
             System.out.println("╚══════════════════════════════════════════╝");
             
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
+            int choice = getIntInput();
             scanner.nextLine(); 
 
             switch (choice) {
@@ -51,7 +51,16 @@ public class NotewritingDashboard {
             }
         }
     }
-
+    private int getIntInput() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scanner.nextLine(); // Clear invalid input
+            }
+        }
+    }
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);

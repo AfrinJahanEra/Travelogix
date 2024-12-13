@@ -1,17 +1,18 @@
 package Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class VoiceNoteDashBoard {
 
+    Scanner scanner=new Scanner(System.in);
+
     public void voiceNoteDashBoard() {
         VoiceNoteManager voiceNoteManager = new VoiceNoteManager();
         AudioRecorder recorder = new AudioRecorder(voiceNoteManager);
         AudioPlayer player = new AudioPlayer();
-
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
 
@@ -29,7 +30,7 @@ public class VoiceNoteDashBoard {
             System.out.println("╚══════════════════════════════════════════╝");
         
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
+            int choice = getIntInput();
             scanner.nextLine();
 
             switch (choice) {
@@ -42,14 +43,22 @@ public class VoiceNoteDashBoard {
                         for (int i = 0; i < voiceNotes.size(); i++) {
                             System.out.println((i + 1) + ". " + voiceNotes.get(i));
                         }
-                        System.out.print("Choose a voice note number to play: ");
-                        int noteNumber = scanner.nextInt();
-                        if (noteNumber >= 1 && noteNumber <= voiceNotes.size()) {
-                            String filePath = "voice_notes/" + voiceNotes.get(noteNumber - 1);
-                            player.playVoiceNote(filePath);
-                        } else {
-                            System.out.println("Invalid choice.");
+                        int noteNumber = -1;
+                        while (true) {
+                            try {
+                                System.out.print("Choose a voice note number to play: ");
+                                noteNumber = Integer.parseInt(scanner.nextLine());
+                                if (noteNumber >= 1 && noteNumber <= voiceNotes.size()) {
+                                    break;
+                                } else {
+                                    System.out.println("Invalid choice. Please select a valid number.");
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Invalid input. Please enter a number.");
+                            }
                         }
+                        String filePath = "voice_notes/" + voiceNotes.get(noteNumber - 1);
+                        player.playVoiceNote(filePath);
                     }
                 }
                 case 3 -> {
@@ -60,13 +69,21 @@ public class VoiceNoteDashBoard {
                         for (int i = 0; i < voiceNotes.size(); i++) {
                             System.out.println((i + 1) + ". " + voiceNotes.get(i));
                         }
-                        System.out.print("Choose a voice note number to delete: ");
-                        int noteNumber = scanner.nextInt();
-                        if (noteNumber >= 1 && noteNumber <= voiceNotes.size()) {
-                            voiceNoteManager.deleteVoiceNote(voiceNotes.get(noteNumber - 1));
-                        } else {
-                            System.out.println("Invalid choice.");
+                        int noteNumber = -1;
+                        while (true) {
+                            try {
+                                System.out.print("Choose a voice note number to delete: ");
+                                noteNumber = Integer.parseInt(scanner.nextLine());
+                                if (noteNumber >= 1 && noteNumber <= voiceNotes.size()) {
+                                    break;
+                                } else {
+                                    System.out.println("Invalid choice. Please select a valid number.");
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Invalid input. Please enter a number.");
+                            }
                         }
+                        voiceNoteManager.deleteVoiceNote(voiceNotes.get(noteNumber - 1));
                     }
                 }
                 case 4 -> {
@@ -74,6 +91,17 @@ public class VoiceNoteDashBoard {
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private int getIntInput() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scanner.nextLine(); // Clear invalid input
             }
         }
     }

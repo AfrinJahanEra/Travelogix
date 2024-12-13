@@ -1,9 +1,12 @@
 package Traveler.Checklist_NoteKeeping.CheckList;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CheckListdashBoard{
+
+    Scanner scanner = new Scanner(System.in);
     public void displayChecklist() {
 
         Checklist checklist = new Checklist();
@@ -12,7 +15,6 @@ public class CheckListdashBoard{
         DeleteItem deleteItem = new DeleteItem();  // Add this line
         DisplayCheckList displayCheckList = new DisplayCheckList();
         
-        Scanner scanner = new Scanner(System.in);
         
         while (true) {
 
@@ -30,7 +32,7 @@ public class CheckListdashBoard{
             System.out.println("╚══════════════════════════════════════════╝");
 
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
+            int choice = getIntInput();
 
             switch (choice) {
                 case 1:
@@ -50,6 +52,17 @@ public class CheckListdashBoard{
             }
             
             displayCheckList.displayChecklist(checklist);  
+        }
+    }
+
+    private int getIntInput() {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print("Invalid input. Please enter a number: ");
+                scanner.nextLine(); // Clear invalid input
+            }
         }
     }
 
