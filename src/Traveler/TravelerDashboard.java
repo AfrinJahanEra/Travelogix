@@ -5,11 +5,10 @@ import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.NoteKeepingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
 import Traveler.Trip_Management.TripManager;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class TravelerDashboard {
@@ -20,11 +19,10 @@ public class TravelerDashboard {
         boolean isRunning = true;
 
         while (isRunning) {
-            // Wait for ENTER key and clear the terminal
+           
             waitForEnterKey();
             clearTerminal();
 
-            // Main dashboard options
             System.out.println("╔════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                           TRAVELER DASHBOARD                       ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════╣");
@@ -77,7 +75,7 @@ public class TravelerDashboard {
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine(); 
             }
         }
     }
@@ -85,7 +83,7 @@ public class TravelerDashboard {
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); // Waits for the ENTER key press
+        enterScanner.nextLine(); 
     }
 
     private void clearTerminal() {
@@ -109,7 +107,6 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            // Sub-options for "Plan a Trip"
             System.out.println("\n╔══════════════════════════════════════════╗");
             System.out.println("║                PLAN A TRIP               ║");
             System.out.println("╠══════════════════════════════════════════╣");
@@ -128,10 +125,10 @@ public class TravelerDashboard {
             switch (planOption) {
                 case 1 -> t.addTrip();
                 case 2 -> browseTransports();
-                case 3 -> new NoteKeepingDashboard().displayChecklist();  // Open note-keeping dashboard
-                case 4 -> manageItinerary(scanner);  // Open itinerary management
-                // case 5 -> trackBudget();  // Functionality for budget tracking
-                case 6 -> isPlanning = false;  // Exit to main menu
+                case 3 -> new NoteKeepingDashboard().displayChecklist();  
+                case 4 -> manageItinerary(scanner);  
+                // case 5 -> trackBudget(); 
+                case 6 -> isPlanning = false;  
                 default -> {
                     System.out.println("\n");
                     System.out.println("Invalid option. Please try again." );
@@ -150,7 +147,6 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            // Sub-options for "Manage Trip"
             System.out.println("\n╔══════════════════════════════════════════╗");
             System.out.println("║               MANAGE TRIPS               ║");
             System.out.println("╠══════════════════════════════════════════╣");
@@ -166,7 +162,7 @@ public class TravelerDashboard {
             switch (manageTripsOption) {
                 case 1 -> t.viewTrips();
                 case 2 -> t.removeTrip();
-                case 3 -> isManaging = false;  // Exit to main menu
+                case 3 -> isManaging = false; 
                 default -> {
                     System.out.println("\n");
                     System.out.println("Invalid option. Please try again. ");    
@@ -176,9 +172,9 @@ public class TravelerDashboard {
     }
 
     public void browseTransports() {
-
-
         Scanner scanner = new Scanner(System.in);
+
+        TransportBrowser transportBrowser=new TransportBrowser();
         System.out.print("Enter starting location: ");
         String startLocation = scanner.nextLine().trim();
 
@@ -186,48 +182,8 @@ public class TravelerDashboard {
         String destination = scanner.nextLine().trim();
 
         String busFile = "src\\TXT_Files\\bus.txt";
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(busFile))) {
-            String line;
-            boolean found = false;
-
-            // Print header row with column titles
-            System.out.println("\n╔══════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.printf("║ %-20s %-20s %-20s %-20s %-20s ║%n", 
-                "Bus Name", "Starting Location", "Destination", "Starting Time", "Contact Number");
-            System.out.println("╠══════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
-
-            while ((line = reader.readLine()) != null) {
-                String[] busDetails = line.split(",");
-
-                if (busDetails.length >= 8) {
-                    String busName = busDetails[0].trim();
-                    String busStartLocation = busDetails[1].trim();
-                    String busDestination = busDetails[2].trim();
-                    String startingTime = busDetails[3].trim();
-                    String contactNumber = busDetails[5].trim();
-
-                    // Check if the bus matches the user's search criteria
-                    if (busStartLocation.equalsIgnoreCase(startLocation) && busDestination.equalsIgnoreCase(destination)) {
-                        // Print each bus detail in aligned columns
-                        System.out.printf("║ %-20s %-20s %-20s %-20s %-20s ║%n", 
-                            busName, busStartLocation, busDestination, startingTime, contactNumber);
-                        found = true;
-                    }
-                }
-            }
-
-            // If no buses are found, print a message
-            if (!found) {
-                System.out.println("║ No buses found for the given route.                                               ║");
-            }
-            System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-
-        } catch (IOException e) {
-            System.out.println("\n");
-            System.out.println("An error occurred while reading the");
-            System.out.println("bus file: " + e.getMessage());  
-        }
+        List<String[]> results = transportBrowser.searchTransports(startLocation, destination, busFile);
+        transportBrowser.displayTransports(results);
     }
 
     private void manageItinerary(Scanner scanner) {
@@ -238,7 +194,7 @@ public class TravelerDashboard {
 
             waitForEnterKey();
             clearTerminal();
-            // Sub-options for "Manage Itinerary"
+
             System.out.println("\n╔══════════════════════════════════════════╗");
             System.out.println("║             MANAGE ITINERARY             ║");
             System.out.println("╠══════════════════════════════════════════╣");
@@ -257,7 +213,7 @@ public class TravelerDashboard {
                     AlertSystem a = new AlertSystem();
                     a.alertSystem();
                 }
-                case 3 -> itinerary = false;  // Exit to main menu
+                case 3 -> itinerary = false;  
                 default -> {
                     System.out.println("\n");
                     System.out.println("Invalid option. Please try again.          ");

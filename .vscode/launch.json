@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TransportBrowser",
+            "request": "launch",
+            "mainClass": "Traveler.TransportBrowser",
+            "projectName": "Travelogix_7165d663"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
