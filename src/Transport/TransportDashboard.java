@@ -11,6 +11,7 @@ import Transport.Seat.SeatBooking;
 import Utilities.FileManager.File.FileHandler;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TransportDashboard {
@@ -27,8 +28,7 @@ public class TransportDashboard {
             clearTerminal();
             
             displayMainMenu();
-            choice = sc.nextInt();
-            sc.nextLine();
+            choice = getValidIntegerInput("Enter your choice: ");
 
             switch (choice) {
                 case 1 -> addBus();
@@ -36,15 +36,12 @@ public class TransportDashboard {
                 case 3 -> busOptions();
                 case 4 -> deleteAccount();
                 case 5 -> {
-                    System.out.println("Logging out...                 ");
-
+                    System.out.println("Logging out...");
                     isRunning = false;
                     UserAccess userAccess = new UserAccess();
                     userAccess.start();
                 }
-                default -> {
-                    System.out.println("Invalid input. Please try again");
-                }
+                default -> System.out.println("Invalid input. Please try again.");
             }
         }
         return false;
@@ -64,10 +61,10 @@ public class TransportDashboard {
         System.out.println("║    [5] Log Out                         ║");
         System.out.println("║                                        ║");
         System.out.println("╚════════════════════════════════════════╝");
-        System.out.print("Enter your choice: ");
     }
 
     private void addBus() throws IOException {
+        clearTerminal();
         System.out.println("\n");
         System.out.println("               Adding a New Bus                ");
         System.out.println("═════════════════════════════════════════════\n");
@@ -89,19 +86,26 @@ public class TransportDashboard {
         System.out.println("║    [e] Ending Location                   ║");
         System.out.println("║                                          ║");
         System.out.println("╚══════════════════════════════════════════╝");
-        System.out.print("Enter your choice: ");
 
-        String s = sc.next().trim();
+        // String s = sc.next().trim();
 
-        switch (s.toLowerCase()) {
+        // switch (s.toLowerCase()) {
+        //     case "n" -> System.out.println(viewBusList.list(4));
+        //     case "s" -> System.out.println(viewBusList.list(1));
+        //     case "e" -> System.out.println(viewBusList.list(2));
+        //     default -> {
+        //         System.out.println("\n");
+        //         System.out.println("Invalid input! Please enter 'n',");
+        //         System.out.println("'s', or 'e'.                    ");
+        //     }
+        // }
+        String input = getValidStringInput("Enter your choice: ", "[nNsSeE]");
+
+        switch (input.toLowerCase()) {
             case "n" -> System.out.println(viewBusList.list(4));
             case "s" -> System.out.println(viewBusList.list(1));
             case "e" -> System.out.println(viewBusList.list(2));
-            default -> {
-                System.out.println("\n");
-                System.out.println("Invalid input! Please enter 'n',");
-                System.out.println("'s', or 'e'.                    ");
-            }
+            default -> System.out.println("Invalid input! Please enter 'n', 's', or 'e'.");
         }
     }
 
@@ -119,9 +123,8 @@ public class TransportDashboard {
         System.out.println("║    [d] Delete Bus                        ║");
         System.out.println("║                                          ║");
         System.out.println("╚══════════════════════════════════════════╝");
-        System.out.print("Enter your choice: ");
 
-        String s = sc.next().trim();
+        String s = getValidStringInput("Enter your choice: ", "[vVeEbBdD]");
 
         switch (s.toLowerCase()) {
             case "v" -> {
@@ -166,6 +169,30 @@ public class TransportDashboard {
             System.out.println("\n");
             System.out.println("Account deletion cancelled or ");
             System.out.println("failed.                         ");
+        }
+    }
+
+        private int getValidIntegerInput(String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                sc.next(); // Clear invalid input
+            }
+        }
+    }
+
+    private String getValidStringInput(String prompt, String regex) {
+        while (true) {
+            System.out.print(prompt);
+            String input = sc.next().trim();
+            if (input.matches(regex)) {
+                return input;
+            } else {
+                System.out.println("Invalid input. Please try again.");
+            }
         }
     }
 

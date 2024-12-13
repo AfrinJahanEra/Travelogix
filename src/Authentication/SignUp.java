@@ -1,3 +1,172 @@
+// package Authentication;
+
+// import Admin.Admin;
+// import Transport.Transport;
+// import Traveler.Traveler;
+// import java.io.IOException;
+// import java.security.NoSuchAlgorithmException;
+// import java.util.Scanner;
+
+// public class SignUp extends Authentication {
+
+//     private static final String USERS_FILE = "src\\TXT_Files\\users.txt";
+//     private static final int MIN_PASSWORD_LENGTH = 8;
+//     private final AuthenticationDashboard authDashboard = new AuthenticationDashboard();
+
+//     public void signUp() throws NoSuchAlgorithmException, IOException {
+//         printTitle("Sign Up");
+
+//         Scanner scanner = new Scanner(System.in);
+
+//         String role = getRoleSelection(scanner);
+//         if (role == null) return;
+
+//         // Prompt for inputs with aligned colons
+//         System.out.printf("%-40s: ", "Enter your name");
+//         String name = scanner.nextLine().trim();
+
+//         String phoneNumber = getValidPhoneNumber(scanner);
+//         String email = getValidEmail(scanner);
+//         String password = getValidPassword(scanner);
+
+//         String encryptedPassword = encryptPassword(password);
+
+//         User user;
+//         switch (role) {
+//             case "Admin":
+//                 user = new Admin(name, phoneNumber, email, encryptedPassword);
+//                 break;
+//             case "Transport":
+//                 user = new Transport(name, phoneNumber, email, encryptedPassword);
+//                 break;
+//             case "Traveler":
+//                 user = new Traveler(name, phoneNumber, email, encryptedPassword);
+//                 break;
+//             default:
+//                 printError("Invalid role selected.");
+//                 return;
+//         }
+
+//         saveUserInfo(user);
+//         printSuccess("Sign Up successful!");
+//         authDashboard.displayDashboard(user.getRole());
+//     }
+
+//     // Helper method to select a role
+//     private String getRoleSelection(Scanner scanner) {
+//         System.out.println("\nPlease choose your role:");
+//         System.out.println("[1] Admin");
+//         System.out.println("[2] Traveler");
+//         System.out.println("[3] Transport Agency");
+//         System.out.printf("%-40s: ", "Enter your choice (1/2/3)");
+
+//         String roleInput = scanner.nextLine().trim();
+//         switch (roleInput) {
+//             case "1":
+//                 return "Admin";
+//             case "2":
+//                 return "Traveler";
+//             case "3":
+//                 return "Transport";
+//             default:
+//                 printError("Invalid role selection. Please enter 1, 2, or 3.");
+//                 return null;
+//         }
+//     }
+
+//     // Helper method to validate phone number
+//     private String getValidPhoneNumber(Scanner scanner) {
+//         while (true) {
+//             System.out.printf("%-40s: ", "Enter your phone number (01*********)");
+//             String phoneNumber = scanner.nextLine().trim();
+//             if (isValidPhoneNumber(phoneNumber)) {
+//                 return phoneNumber;
+//             } else {
+//                 printError("Invalid phone number. It must be 11 digits and start with '01'.");
+//             }
+//         }
+//     }
+
+//     // Helper method to validate email
+//     private String getValidEmail(Scanner scanner) {
+//         while (true) {
+//             System.out.printf("%-40s: ", "Enter your email");
+//             String email = scanner.nextLine().trim();
+//             if (!isValidEmail(email)) {
+//                 printError("Invalid email. Use '@gmail.com' or '@yahoo.com' with lowercase letters.");
+//             } else if (!isEmailUnique(email)) {
+//                 printError("This email is already registered. Please try a different one.");
+//             } else {
+//                 return email;
+//             }
+//         }
+//     }
+
+//     // Helper method to validate password
+//     private String getValidPassword(Scanner scanner) {
+//         while (true) {
+//             System.out.printf("%-40s: ", "Enter your password (min 8 char)");
+//             String password = getPasswordInput();
+//             if (password.length() < MIN_PASSWORD_LENGTH) {
+//                 printError("Password must be at least 8 characters long.");
+//             } else {
+//                 System.out.printf("%-40s: ", "Confirm your password");
+//                 String confirmPassword = getPasswordInput();
+//                 if (password.equals(confirmPassword)) {
+//                     return password;
+//                 } else {
+//                     printError("Passwords do not match. Try again.");
+//                 }
+//             }
+//         }
+//     }
+
+//     // Validate email format
+//     public boolean isValidEmail(String email) {
+//         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
+//     }
+
+//     // Validate phone number format
+//     public boolean isValidPhoneNumber(String phoneNumber) {
+//         return phoneNumber.matches("01\\d{9}");
+//     }
+
+//     // Print formatted title
+//     private void printTitle(String title) {
+//         waitForEnterKey();
+//         clearTerminal();
+//         System.out.printf("\n═════════════════════ %s ══════════════════════\n", title);
+//     }
+
+//     // Print success message
+//     private void printSuccess(String message) {
+//         System.out.println("\n[SUCCESS] " + message + "\n");
+//     }
+
+//     // Print error message
+//     private void printError(String message) {
+//         System.out.println("\n[ERROR] " + message + "\n");
+//     }
+
+//     private void waitForEnterKey() {
+//         System.out.println("\nPress ENTER to continue...");
+//         Scanner enterScanner = new Scanner(System.in);
+//         enterScanner.nextLine(); // Waits for the ENTER key press
+//     }
+
+//     private void clearTerminal() {
+//         try {
+//             if (System.getProperty("os.name").contains("Windows")) {
+//                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//             } else {
+//                 System.out.print("\033[H\033[2J");
+//                 System.out.flush();
+//             }
+//         } catch (IOException | InterruptedException e) {
+//             System.out.println("Failed to clear terminal.");
+//         }
+//     }
+// }
 package Authentication;
 
 import Admin.Admin;
@@ -18,8 +187,15 @@ public class SignUp extends Authentication {
 
         Scanner scanner = new Scanner(System.in);
 
-        String role = getRoleSelection(scanner);
-        if (role == null) return;
+        String role;
+        while (true) {
+            role = getRoleSelection(scanner);
+            if (role != null) {
+                break;
+            } else {
+                printError("Invalid role selection. Please enter 1, 2, or 3.");
+            }
+        }
 
         // Prompt for inputs with aligned colons
         System.out.printf("%-40s: ", "Enter your name");
@@ -52,7 +228,6 @@ public class SignUp extends Authentication {
         authDashboard.displayDashboard(user.getRole());
     }
 
-    // Helper method to select a role
     private String getRoleSelection(Scanner scanner) {
         System.out.println("\nPlease choose your role:");
         System.out.println("[1] Admin");
@@ -69,12 +244,10 @@ public class SignUp extends Authentication {
             case "3":
                 return "Transport";
             default:
-                printError("Invalid role selection. Please enter 1, 2, or 3.");
                 return null;
         }
     }
 
-    // Helper method to validate phone number
     private String getValidPhoneNumber(Scanner scanner) {
         while (true) {
             System.out.printf("%-40s: ", "Enter your phone number (01*********)");
@@ -87,7 +260,6 @@ public class SignUp extends Authentication {
         }
     }
 
-    // Helper method to validate email
     private String getValidEmail(Scanner scanner) {
         while (true) {
             System.out.printf("%-40s: ", "Enter your email");
@@ -102,7 +274,6 @@ public class SignUp extends Authentication {
         }
     }
 
-    // Helper method to validate password
     private String getValidPassword(Scanner scanner) {
         while (true) {
             System.out.printf("%-40s: ", "Enter your password (min 8 char)");
@@ -121,29 +292,24 @@ public class SignUp extends Authentication {
         }
     }
 
-    // Validate email format
     public boolean isValidEmail(String email) {
         return email.matches("[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
     }
 
-    // Validate phone number format
     public boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("01\\d{9}");
     }
 
-    // Print formatted title
     private void printTitle(String title) {
         waitForEnterKey();
         clearTerminal();
         System.out.printf("\n═════════════════════ %s ══════════════════════\n", title);
     }
 
-    // Print success message
     private void printSuccess(String message) {
         System.out.println("\n[SUCCESS] " + message + "\n");
     }
 
-    // Print error message
     private void printError(String message) {
         System.out.println("\n[ERROR] " + message + "\n");
     }
@@ -151,7 +317,7 @@ public class SignUp extends Authentication {
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); // Waits for the ENTER key press
+        enterScanner.nextLine();
     }
 
     private void clearTerminal() {

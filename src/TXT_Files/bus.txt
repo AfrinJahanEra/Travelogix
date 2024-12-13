@@ -27,4 +27,4 @@ er,wew,ewe,09:00,9:00,+880-1822990000,4,4,
 purbasha,dhaka,jossore,08:22,JOS-123,+880-1922337770,4,4,
 Anabil,dhaka,gaziput,09:00,GAZ-000,+880-1922338880,5,5,1A,2B,5C
 royal,dhaka,jhinaidah,02:00,JH-12,+880-1922338880,5,5,
-ou,dhaka,rajshahi,09:00,RAJ-12,+880-1922338889,5,5,5E
+JUNGKOOK,dhaka,cumilla,09:00,JUN-12,+880-1922778880,5,5,1A,4D,2E,4A,5E
