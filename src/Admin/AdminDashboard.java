@@ -32,7 +32,7 @@ public class AdminDashboard {
             try {
                 System.out.print(" Please enter your choice (1-4): ");
                 choice = scanner.nextInt();
-                scanner.nextLine(); // Clear the buffer
+                scanner.nextLine(); 
 
                 System.out.println();
                 switch (choice) {
