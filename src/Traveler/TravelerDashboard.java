@@ -63,7 +63,7 @@ public class TravelerDashboard {
                     u.start();
                 }
                 default -> {
-                    System.out.println("\n╔═══");
+                    System.out.println("\n");
                     System.out.println("Invalid option. Please try again.         ");
                 }
             }
@@ -114,7 +114,7 @@ public class TravelerDashboard {
             System.out.println("║                PLAN A TRIP               ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
-            System.out.println("║    [1] Trip Managment                    ║");
+            System.out.println("║    [1] Add a Trip                        ║");
             System.out.println("║    [2] Browse Transports                 ║");
             System.out.println("║    [3] Manage Notes                      ║");
             System.out.println("║    [4] Manage Itinerary                  ║");
@@ -126,7 +126,7 @@ public class TravelerDashboard {
 
             int planOption = getIntInput();
             switch (planOption) {
-                case 1 -> showManageTripsOptions(scanner);
+                case 1 -> t.addTrip();
                 case 2 -> browseTransports();
                 case 3 -> new NoteKeepingDashboard().displayChecklist();  // Open note-keeping dashboard
                 case 4 -> manageItinerary(scanner);  // Open itinerary management
@@ -139,6 +139,7 @@ public class TravelerDashboard {
             }
         }
     }
+
 
     private void showManageTripsOptions(Scanner scanner) {
 

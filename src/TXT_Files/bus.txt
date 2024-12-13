@@ -28,3 +28,4 @@ purbasha,dhaka,jossore,08:22,JOS-123,+880-1922337770,4,4,
 Anabil,dhaka,gaziput,09:00,GAZ-000,+880-1922338880,5,5,1A,2B,5C
 royal,dhaka,jhinaidah,02:00,JH-12,+880-1922338880,5,5,
 JUNGKOOK,dhaka,cumilla,09:00,JUN-12,+880-1922778880,5,5,1A,4D,2E,4A,5E
+dd,dhaka,khulna,09:00,77,+880-1289999999,4,4,1A,2B
