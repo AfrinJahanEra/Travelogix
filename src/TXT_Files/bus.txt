@@ -1,31 +1,22 @@
-Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,01700000001,10,4,1A,1B,2C,4D,5B,3B,5D
-Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,01700000002,12,3,1A,1B,1C,2A,6B,8A
-Green Line,Dhaka,Khulna,06:30 AM,DHK-9101,01700000004,12,3
-Hanif Enterprise,Dhaka,Barisal,07:15 AM,DHK-1121,01700000005,10,4
-Nabil Paribahan,Sylhet,Rajshahi,08:45 AM,SHY-4567,01700000006,10,4
-Star Line,Comilla,Chittagong,09:00 AM,COM-7890,01700000007,12,3
-Sheba Green Line,Dhaka,Rangpur,05:00 AM,DHK-2323,01700000008,10,4
-ENA Transport,Dhaka,Mymensingh,10:00 AM,DHK-3344,01700000009,10,4
-Unique Paribahan,Dhaka,Jessore,07:45 AM,DHK-4455,01700000010,12,3
-Alhamra Paribahan,Khulna,Benapole,05:30 AM,KHN-5566,01700000011,10,4
-Royal Coach,Rajshahi,Pabna,08:30 AM,RAJ-6677,01700000012,12,3
-Manzil Paribahan,Bhola,Barisal,06:45 AM,BHL-8899,01700000014,10,4
-Akota Transport,Jessore,Kushtia,05:15 AM,JES-9900,01700000015,12,3
-BRTC,Dhaka,Feni,10:30 AM,DHK-1022,01700000016,10,4,1A,2B,1C,1D
-Relax Transport,Bandarban,Cox's Bazar,04:00 PM,BDN-2345,01700000017,12,3
-Green Bengal,Dhaka,Bogra,07:20 AM,DHK-3456,01700000018,10,4
-Saudia Express,Bogura,Sirajganj,06:10 AM,BOG-4567,01700000019,10,4
-Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,01700000002,12,3,1A,1B,1C,2A,6B,8A
-Purbasha,Dhaka,Khulna,13:43,KHU-13,+880-1922339990,5,5,1A,1B,2C
-Purbasha,dhaka,khulna,23:00,KHU-14,+880-1933445550,5,5,1A,1B
-Purbasha,1,Dhaka,01:00,KHU-#$,+880-1922337780,3,3,
-Anabil,Dhaka,sylhet,03:00,KHU-23,+880-1822337770,5,5,1A,2B,2C
-dsd,dsds,dsds,03:20,era,+880-1922337770,4,4,
-purbasha,dhaka,khulna,03:00,678,+880-1224499990,5,5,
-wewe,dhaka,cumilla,07:00,4:00,+880-1922337770,4,4,
-er,wew,ewe,09:00,9:00,+880-1822990000,4,4,
-purbasha,dhaka,jossore,08:22,JOS-123,+880-1922337770,4,4,
-Anabil,dhaka,gaziput,09:00,GAZ-000,+880-1922338880,5,5,1A,2B,5C
-royal,dhaka,jhinaidah,02:00,JH-12,+880-1922338880,5,5,
-JUNGKOOK,dhaka,cumilla,09:00,JUN-12,+880-1922778880,5,5,1A,4D,2E,4A,5E
-dd,dhaka,khulna,09:00,77,+880-1289999999,4,4,1A,2B
+Dhaka Express,Dhaka,Chittagong,06:00 AM,DHK-1234,+880-1700000001,10,4,1A,1B,2C,4D,5B,3B,5D
+Eagle Paribahan,Dhaka,Sylhet,07:00 AM,DHK-5678,+880-1700000002,12,3,1A,1B,1C,2A,6B,8A
+Green Line,Dhaka,Khulna,06:30 AM,DHK-9101,+880-1700000004,12,3
+Hanif Enterprise,Dhaka,Barisal,07:15 AM,DHK-1121,+880-1700000005,10,4
+Nabil Paribahan,Sylhet,Rajshahi,08:45 AM,SHY-4567,+880-1700000006,10,4
+Star Line,Comilla,Chittagong,09:00 AM,COM-7890,+880-1700000007,12,3
+Sheba Green Line,Dhaka,Rangpur,05:00 AM,DHK-2323,+880-1700000008,10,4
+ENA Transport,Dhaka,Mymensingh,10:00 AM,DHK-3344,+880-1700000009,10,4
+Unique Paribahan,Dhaka,Jessore,07:45 AM,DHK-4455,+880-1700000010,12,3
+Alhamra Paribahan,Khulna,Benapole,05:30 AM,KHN-5566,+880-1700000011,10,4
+Royal Coach,Rajshahi,Pabna,08:30 AM,RAJ-6677,+880-1700000012,12,3
+Manzil Paribahan,Bhola,Barisal,06:45 AM,BHL-8899,+880-1700000014,10,4
+Akota Transport,Jessore,Kushtia,05:15 AM,JES-9900,+880-1700000015,12,3
+BRTC,Dhaka,Feni,10:30 AM,DHK-1022,+880-1700000016,10,4,1A,2B,1C,1D
+Relax Transport,Bandarban,Cox's Bazar,04:00 PM,BDN-2345,+880-1700000017,12,3
+Green Bengal,Dhaka,Bogra,07:20 AM,DHK-3456,+880-1700000018,10,4
+Saudia Express,Bogura,Sirajganj,06:10 AM,BOG-4567,+880-1700000019,10,4
+Purbasha,Dhaka,Khulna,01:43 PM,KHU-13,+880-1922339990,5,5,1A,1B,2C
+Purbasha,Dhaka,Khulna,11:00 PM,KHU-14,+880-1933445550,5,5,1A,1B
+Anabil,Dhaka,Sylhet,03:00 AM,KHU-23,+880-1822337770,5,5,1A,2B,2C
+dhaka,gazipur,dhaka,09:00,gaz-45,+880-1266778880,6,4,1A,4B,5C,1B
+DHAKA,dhaka,gazipur,09:00,gaz-12,+880-1899009990,6,4,1A,2B,3C,4D,5D,1B
