@@ -1,8 +1,7 @@
 # **Travelogix - A Smart Travel Companion**  
 
 ### **Overview**  
-**Travelogix** is a cutting-edge travel management software tailored to meet the needs of three distinct user roles: **Travelers**, **Transport Agencies**, and **Admins**. Developed with robust **Java OOP** principles, the application ensures secure user authentication through unique email-based login and password hashing. Every user enjoys a custom-designed interface, enhancing their travel experience and operational efficiency.  
-
+**Travelogix** is an innovative travel management software designed to cater to three distinct user roles: **Travelers**, **Transport Agencies**, and **Admins**. Built with Java OOP principles, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
 
 ---
 
@@ -131,4 +130,4 @@ Contributions are encouraged to make **Travelogix** even smarter!
 - 📈 **Advanced Analytics**: Gain insights into user activity and travel trends.  
 
 
-**Star ⭐ this repository to stay updated with new features and enhancements!**  
+
