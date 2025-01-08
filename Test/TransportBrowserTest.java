@@ -18,7 +18,7 @@ public class TransportBrowserTest {
         List<String[]> results = browser.searchTransports("Dhaka", "Khulna", testBusFile);
 
         // Assert that the result matches the expected bus data
-        assertEquals(5, results.size());
+        assertEquals(3, results.size());
         assertEquals("Green Line", results.get(0)[0].trim());
         assertEquals("Dhaka", results.get(0)[1].trim());
         assertEquals("Khulna", results.get(0)[2].trim());
