@@ -1,8 +1,8 @@
 package Traveler.Checklist_NoteKeeping.NoteKeeping.VoiceNote;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class VoiceNoteManager {
 
@@ -15,14 +15,27 @@ public class VoiceNoteManager {
         }
     }
 
-    public List<String> getVoiceNotes() {
+    public List<String[]> getSortedVoiceNotesByDate() {
         File dir = new File(DIRECTORY_PATH);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".wav"));
-        List<String> voiceNotes = new ArrayList<>();
+        List<String[]> voiceNotes = new ArrayList<>();
         if (files != null) {
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
+
             for (File file : files) {
-                voiceNotes.add(file.getName());
+                String fileName = file.getName();
+                Date lastModified = new Date(file.lastModified());
+                String date = dateFormatter.format(lastModified);
+                String time = timeFormatter.format(lastModified);
+                voiceNotes.add(new String[]{fileName, date, time});
             }
+
+            // Sort by date and time (most recent first)
+            voiceNotes.sort((a, b) -> {
+                int dateComparison = b[1].compareTo(a[1]); // Compare dates
+                return dateComparison != 0 ? dateComparison : b[2].compareTo(a[2]); // Compare times if dates are equal
+            });
         }
         return voiceNotes;
     }

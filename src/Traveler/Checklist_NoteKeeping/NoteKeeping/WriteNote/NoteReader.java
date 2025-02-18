@@ -15,42 +15,57 @@ public class NoteReader {
     }
 
     public void showAndReadNote() {
-        List<String> notes = noteManager.getNotes();
-        if (notes.isEmpty()) {
-            System.out.println("No notes available.");
-            return;
-        }
+        try {
+            List<String[]> notes = noteManager.getNotes();
 
-        System.out.println("\nAvailable Notes:");
-        for (int i = 0; i < notes.size(); i++) {
-            System.out.println((i + 1) + ". " + notes.get(i));
-        }
+            if (notes.isEmpty()) {
+                System.out.println("No notes available.");
+                return;
+            }
 
+            System.out.println("\nNo.   Note Name                     Date            Time");
+            System.out.println("═══════════════════════════════════════════════════════════");
+
+            for (int i = 0; i < notes.size(); i++) {
+                System.out.printf("%-5d %-30s %-15s %-10s%n", i + 1, notes.get(i)[0], notes.get(i)[1], notes.get(i)[2]);
+            }
+
+            int noteNumber = getNoteNumber(notes.size());
+            File noteFile = new File("notes/" + notes.get(noteNumber - 1)[0]);
+            readNoteFromFile(noteFile);
+
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    private int getNoteNumber(int maxNumber) {
         Scanner scanner = new Scanner(System.in);
-        int noteNumber = -1;
-        boolean validInput = false;
+        int noteNumber;
 
-        while (!validInput) {
-            System.out.print("Choose a note number to read: ");
+        while (true) {
             try {
+                System.out.print("Choose a note number to read: ");
                 noteNumber = Integer.parseInt(scanner.nextLine());
-                if (noteNumber >= 1 && noteNumber <= notes.size()) {
-                    validInput = true;
+
+                if (noteNumber >= 1 && noteNumber <= maxNumber) {
+                    return noteNumber;
                 } else {
-                    System.out.println("Invalid choice. Please select a number between 1 and " + notes.size() + ".");
+                    System.out.println("Invalid choice. Please select a number between 1 and " + maxNumber + ".");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
         }
-
-        String selectedNote = notes.get(noteNumber - 1);
-        File noteFile = new File("notes/" + selectedNote);
-        readNoteFromFile(noteFile);
     }
 
-    // Read a note from a file and print its content
     private void readNoteFromFile(File noteFile) {
+        if (!noteFile.exists() || !noteFile.isFile()) {
+            System.out.println("The selected note file does not exist or is not a valid file.");
+            return;
+        }
+
         try {
             List<String> lines = Files.readAllLines(noteFile.toPath());
             System.out.println("\n--- Note Content ---");
