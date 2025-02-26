@@ -20,7 +20,7 @@ public class Budget {
             String catagory = BasicUtils.takeStringInput("Enter catagory name: ");
             String expenselimit = BasicUtils.takeStringInput("Enter expected limit for this: ");
             int limit = Integer.parseInt(expenselimit);
-            BasicFileUtils.write(filename, catagory+","+limit+",0");
+            BasicFileUtils.write(filename, catagory+","+limit+",0"+",Null");
             num--;
         }
     }
@@ -33,30 +33,27 @@ public class Budget {
             return;
         }
 
-        // Print table header
-        System.out.println("+----------------+----------------------+----------------+");
-        System.out.println("|    Category    | Expected Spending   | Your Spendings |");
-        System.out.println("+----------------+----------------------+----------------+");
+        System.out.println("+----------------+----------------------+----------------+----------------+");
+        System.out.println("|    Category    | Expected Spending    | Your Spending  |    Remarks     |");
+        System.out.println("+----------------+----------------------+----------------+----------------+");
 
-        // Iterate through the data and print each row
         for (String line : lines) {
             String[] parts = BasicFileUtils.splitIntoParts(line);
             String category = parts[0];
             String expectedLimit = parts[1];
             String actualSpending = parts[2];
+            String remarks = parts[3];
 
-            // Print row for each category
-            System.out.printf("| %-14s | %-20s | %-14s |\n", category, expectedLimit, actualSpending);
+            System.out.printf("| %-14s | %-20s | %-14s | %-14s | \n", category, expectedLimit, actualSpending, remarks);
         }
 
-        // Print table footer
-        System.out.println("+----------------+----------------------+----------------+");
+        System.out.println("+----------------+----------------------+----------------+----------------+");
     }
-
 
     public void updateSpending() {
         String category = BasicUtils.takeStringInput("Enter the category you spent on: ");
         String spendingInput = BasicUtils.takeStringInput("Enter the amount you spent: ");
+        String remarks = BasicUtils.takeStringInput("Enter remarks for this spending: ");
 
         try {
             int spending = Integer.parseInt(spendingInput);
@@ -68,11 +65,11 @@ public class Budget {
                 String line = lines.get(i);
                 String[] parts = BasicFileUtils.splitIntoParts(line);
 
-                if (parts[0].equalsIgnoreCase(category)) { // Match category
+                if (parts[0].equalsIgnoreCase(category)) {
                     int currentSpending = Integer.parseInt(parts[2]);
                     int updatedSpending = currentSpending + spending;
 
-                    lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending);
+                    lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
                     found = true;
                     break;
                 }
@@ -103,7 +100,7 @@ public class Budget {
             return;
         }
 
-        int totalSpending = 0;
+        int [] limitSpending = new int[lines.size()];
         int[] spendingValues = new int[lines.size()];
         String[] categories = new String[lines.size()];
 
@@ -112,13 +109,13 @@ public class Budget {
             String[] parts = BasicFileUtils.splitIntoParts(lines.get(i));
             categories[i] = parts[0]; // Category name
             spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
-            totalSpending += spendingValues[i];
+            limitSpending[i] += Integer.parseInt(parts[1]);
         }
 
         // Display pie chart
         System.out.println("\nExpense Chart (Spending Breakdown):");
         for (int i = 0; i < categories.length; i++) {
-            int percentage = (int) ((spendingValues[i] / (double) totalSpending) * 100);
+            int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
             System.out.printf("%-10s: %3d%% ", categories[i], percentage);
 
             // Create visual bar for pie chart
