@@ -83,6 +83,15 @@ public class Budget {
             System.out.println("4. View Spending Pie Chart");
             System.out.println("5. Go Back");
 
+            String choiceStr = BasicUtils.takeStringInput("Choose an option: ");
+            int choice;
+            try {
+                choice = Integer.parseInt(choiceStr);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                continue;
+            }
+
 
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
