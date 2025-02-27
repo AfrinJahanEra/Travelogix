@@ -16,11 +16,11 @@ public class Budget {
     }
 
     public static void selectTripAndManageBudget() {
-        String tripFile = "trips.txt"; // File storing trips
+        String tripFile = "trips.txt";
         List<String> upcomingTrips = new ArrayList<>();
+        List<LocalDate> tripStartDates = new ArrayList<>();
         LocalDate today = LocalDate.now();
 
-        // Read trips using BasicFileUtils
         List<String> tripLines = BasicFileUtils.read(tripFile);
 
         if (tripLines.isEmpty()) {
@@ -28,18 +28,15 @@ public class Budget {
             return;
         }
 
-        // Filter only upcoming & ongoing trips
-        int index = 1;
-        System.out.println("\nOngoing & Upcoming Trips:");
+        // Filter and store upcoming/ongoing trips with start dates
         for (String line : tripLines) {
             String[] tripData = line.split(", ");
             LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0]);
             LocalDate endDate = LocalDate.parse(tripData[2].split(" ")[0]);
 
-            if (!endDate.isBefore(today)) { // Show only upcoming/ongoing trips
+            if (!endDate.isBefore(today)) {  // Show only ongoing/upcoming trips
                 upcomingTrips.add(line);
-                System.out.println(index + ". " + tripData[0] + " | Start: " + tripData[1] + " | End: " + tripData[2]);
-                index++;
+                tripStartDates.add(startDate);
             }
         }
 
@@ -48,7 +45,31 @@ public class Budget {
             return;
         }
 
-        // Ask the user to select a trip
+        // Sort trips by nearest start date
+        for (int i = 0; i < upcomingTrips.size(); i++) {
+            for (int j = i + 1; j < upcomingTrips.size(); j++) {
+                if (tripStartDates.get(i).isAfter(tripStartDates.get(j))) {
+                    // Swap trips
+                    String tempTrip = upcomingTrips.get(i);
+                    upcomingTrips.set(i, upcomingTrips.get(j));
+                    upcomingTrips.set(j, tempTrip);
+
+                    // Swap start dates
+                    LocalDate tempDate = tripStartDates.get(i);
+                    tripStartDates.set(i, tripStartDates.get(j));
+                    tripStartDates.set(j, tempDate);
+                }
+            }
+        }
+
+        // Display sorted trips with serial numbers
+        System.out.println("\nOngoing & Upcoming Trips (Sorted by Date):");
+        for (int i = 0; i < upcomingTrips.size(); i++) {
+            String[] tripData = upcomingTrips.get(i).split(", ");
+            System.out.println((i + 1) + ". " + tripData[0] + " | Start: " + tripData[1] + " | End: " + tripData[2]);
+        }
+
+        // Let user select a trip
         String choiceStr = BasicUtils.takeStringInput("\nEnter the trip number to manage its budget: ");
         int choice;
         try {
@@ -61,19 +82,20 @@ public class Budget {
             System.out.println("Invalid input. Please enter a number.");
             return;
         }
+
         // Extract selected trip details
         String selectedTrip = upcomingTrips.get(choice - 1);
         String[] tripDetails = selectedTrip.split(", ");
         String destination = tripDetails[0];
-        String tripBudgetFile = "budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file for each trip
+        String tripBudgetFile = "budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file
 
-        // Show budget tracker for the selected trip
+        // Show budget tracker
         Budget budget = new Budget(tripBudgetFile);
         budget.showBudgetOptions();
     }
 
 
-    // ✅ Displays budget options after selecting a trip
+    // Displays budget options after selecting a trip
     private void showBudgetOptions() {
         while (true) {
             System.out.println("\nBudget Tracker Options:");
@@ -186,7 +208,7 @@ public class Budget {
                     lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
                     found = true;
 
-                    // ✅ Check if spending exceeds the limit
+                    // Check if spending exceeds the limit
                     if (updatedSpending >= limit) {
                         System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
                         SoundUtils.playSound("Itinerary_Management/Alarm/sparcle.wav"); // Play alert sound
@@ -213,7 +235,7 @@ public class Budget {
             System.out.println("❌ Invalid amount entered. Please enter a valid number.");
         }
     }
-    
+
 
     public void consolePieChart() {
         List<String> lines = BasicFileUtils.read(filename);
@@ -244,7 +266,7 @@ public class Budget {
         // Display pie chart
         System.out.println("\nExpense Chart (Spending Breakdown):");
         for (int i = 0; i < categories.length; i++) {
-            // ✅ Prevent division by zero
+            //  Prevent division by zero
             if (limitSpending[i] == 0) {
                 System.out.printf("%-10s: No spending limit set.\n", categories[i]);
                 continue;
