@@ -3,7 +3,7 @@ package Traveler.budget_tracker;
 import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
-
+import Traveler.Itinerary_Management.Alarm.SoundUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +170,6 @@ public class Budget {
 
         try {
             int spending = Integer.parseInt(spendingInput);
-
             List<String> lines = BasicFileUtils.read(filename);
             boolean found = false;
 
@@ -179,11 +178,20 @@ public class Budget {
                 String[] parts = BasicFileUtils.splitIntoParts(line);
 
                 if (parts[0].equalsIgnoreCase(category)) {
+                    int limit = Integer.parseInt(parts[1]);
                     int currentSpending = Integer.parseInt(parts[2]);
                     int updatedSpending = currentSpending + spending;
 
+                    // Update file with new spending
                     lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
                     found = true;
+
+                    // ✅ Check if spending exceeds the limit
+                    if (updatedSpending >= limit) {
+                        System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
+                        SoundUtils.playSound("Itinerary_Management/Alarm/sparcle.wav"); // Play alert sound
+                    }
+
                     break;
                 }
             }
@@ -193,17 +201,19 @@ public class Budget {
                 return;
             }
 
+            // Clear old data and write updated spending
             AdvancedFileUtils.clearFile(filename);
             for (String line : lines) {
                 BasicFileUtils.write(filename, line);
             }
 
-            System.out.println("Spending updated successfully!");
+            System.out.println("✅ Spending updated successfully!");
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid amount entered. Please enter a valid number.");
+            System.out.println("❌ Invalid amount entered. Please enter a valid number.");
         }
     }
+    
 
     public void consolePieChart() {
         List<String> lines = BasicFileUtils.read(filename);
