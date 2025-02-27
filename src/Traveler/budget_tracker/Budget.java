@@ -202,16 +202,16 @@ public class Budget {
                 if (parts[0].equalsIgnoreCase(category)) {
                     int limit = Integer.parseInt(parts[1]);
                     int currentSpending = Integer.parseInt(parts[2]);
-                    int updatedSpending = currentSpending + spending;
+                    int updatedSpending = currentSpending + spending;  // Spending is always updated
 
                     // Update file with new spending
                     lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
                     found = true;
 
-                    // Check if spending exceeds the limit
+                    // Alert if spending reaches/exceeds the limit
                     if (updatedSpending >= limit) {
                         System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
-                        SoundUtils.playSound("Itinerary_Management/Alarm/sparcle.wav"); // Play alert sound
+                        SoundUtils.playSound("Itinerary_Management/Alarm/sparcle.wav"); //Play alarm
                     }
 
                     break;
@@ -223,7 +223,7 @@ public class Budget {
                 return;
             }
 
-            // Clear old data and write updated spending
+            // Save updated spending data
             AdvancedFileUtils.clearFile(filename);
             for (String line : lines) {
                 BasicFileUtils.write(filename, line);
