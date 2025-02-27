@@ -13,6 +13,18 @@ public class Budget {
         this.filename = filename;
     }
 
+    public static void selectTripAndManageBudget() {
+        String tripFile = "trips.txt"; // File storing trips
+        List<String> upcomingTrips = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+
+        // Read trips and filter only upcoming & ongoing ones
+        try (BufferedReader reader = new BufferedReader(new FileReader(tripFile))) {
+            String line;
+            int index = 1;
+            System.out.println("\nOngoing & Upcoming Trips:");
+
+
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
         int num = Integer.parseInt(numOfCatagories);
