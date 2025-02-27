@@ -4,6 +4,8 @@ import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Budget {
@@ -18,12 +20,13 @@ public class Budget {
         List<String> upcomingTrips = new ArrayList<>();
         LocalDate today = LocalDate.now();
 
-        // Read trips and filter only upcoming & ongoing ones
-        try (BufferedReader reader = new BufferedReader(new FileReader(tripFile))) {
-            String line;
-            int index = 1;
-            System.out.println("\nOngoing & Upcoming Trips:");
+        // Read trips using BasicFileUtils
+        List<String> tripLines = BasicFileUtils.read(tripFile);
 
+        if (tripLines.isEmpty()) {
+            System.out.println("No trips found.");
+            return;
+        }
 
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
