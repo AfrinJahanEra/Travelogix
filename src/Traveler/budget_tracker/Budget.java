@@ -136,7 +136,7 @@ public class Budget {
             num--;
         }
     }
-    
+
 
     public void viewTotalSpending() {
         List<String> lines = BasicFileUtils.read(filename);
