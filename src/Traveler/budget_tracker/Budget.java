@@ -61,6 +61,17 @@ public class Budget {
             System.out.println("Invalid input. Please enter a number.");
             return;
         }
+        // Extract selected trip details
+        String selectedTrip = upcomingTrips.get(choice - 1);
+        String[] tripDetails = selectedTrip.split(", ");
+        String destination = tripDetails[0];
+        String tripBudgetFile = "budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file for each trip
+
+        // Show budget tracker for the selected trip
+        Budget budget = new Budget(tripBudgetFile);
+        budget.showBudgetOptions();
+    }
+
 
 
     public void setCatagoryandLimit(){
