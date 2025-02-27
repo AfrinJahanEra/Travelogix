@@ -234,11 +234,18 @@ public class Budget {
         // Display pie chart
         System.out.println("\nExpense Chart (Spending Breakdown):");
         for (int i = 0; i < categories.length; i++) {
+            // ✅ Prevent division by zero
+            if (limitSpending[i] == 0) {
+                System.out.printf("%-10s: No spending limit set.\n", categories[i]);
+                continue;
+            }
+
             int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
             System.out.printf("%-10s: %3d%% ", categories[i], percentage);
 
             // Create visual bar for pie chart
-            for (int j = 0; j < percentage / 2; j++) {
+            int barLength = Math.min(percentage / 2, 50); // Limit max bar length
+            for (int j = 0; j < barLength; j++) {
                 System.out.print("█");
             }
             System.out.println();
@@ -246,6 +253,7 @@ public class Budget {
 
         System.out.println("\nNote: Each '█' represents 2% of the total spending.");
     }
+
 
 
 }
