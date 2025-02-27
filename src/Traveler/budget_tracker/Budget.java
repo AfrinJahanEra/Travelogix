@@ -28,6 +28,21 @@ public class Budget {
             return;
         }
 
+        // Filter only upcoming & ongoing trips
+        int index = 1;
+        System.out.println("\nOngoing & Upcoming Trips:");
+        for (String line : tripLines) {
+            String[] tripData = line.split(", ");
+            LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0]);
+            LocalDate endDate = LocalDate.parse(tripData[2].split(" ")[0]);
+
+            if (!endDate.isBefore(today)) { // Show only upcoming/ongoing trips
+                upcomingTrips.add(line);
+                System.out.println(index + ". " + tripData[0] + " | Start: " + tripData[1] + " | End: " + tripData[2]);
+                index++;
+            }
+        }
+        
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
         int num = Integer.parseInt(numOfCatagories);
