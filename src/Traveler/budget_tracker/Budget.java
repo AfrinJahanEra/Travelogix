@@ -122,17 +122,21 @@ public class Budget {
             return;
         }
 
-    public void setCatagoryandLimit(){
-        String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
-        int num = Integer.parseInt(numOfCatagories);
-        while(num>0){
-            String catagory = BasicUtils.takeStringInput("Enter catagory name: ");
-            String expenselimit = BasicUtils.takeStringInput("Enter expected limit for this: ");
-            int limit = Integer.parseInt(expenselimit);
-            BasicFileUtils.write(filename, catagory+","+limit+",0"+",Null");
+        while (num > 0) {
+            String category = BasicUtils.takeStringInput("Enter category name: ");
+            String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this: ");
+            int limit;
+            try {
+                limit = Integer.parseInt(expenseLimit);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Try again.");
+                continue;
+            }
+            BasicFileUtils.write(filename, category + "," + limit + ",0" + ",Null");
             num--;
         }
     }
+    
 
     public void viewTotalSpending() {
         List<String> lines = BasicFileUtils.read(filename);
