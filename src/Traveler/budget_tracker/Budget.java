@@ -217,12 +217,18 @@ public class Budget {
         int[] spendingValues = new int[lines.size()];
         String[] categories = new String[lines.size()];
 
-        // Calculate total spending and collect data
+        // Collect spending data
         for (int i = 0; i < lines.size(); i++) {
             String[] parts = BasicFileUtils.splitIntoParts(lines.get(i));
-            categories[i] = parts[0]; // Category name
-            spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
-            limitSpending[i] += Integer.parseInt(parts[1]);
+
+            try {
+                categories[i] = parts[0]; // Category name
+                spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
+                limitSpending[i] = Integer.parseInt(parts[1]); // Expected limit (fixed from += issue)
+            } catch (NumberFormatException e) {
+                System.out.println("Warning: Invalid data format in file. Skipping entry: " + lines.get(i));
+                continue;
+            }
         }
 
         // Display pie chart
