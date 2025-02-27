@@ -92,6 +92,26 @@ public class Budget {
                 continue;
             }
 
+            switch (choice) {
+                case 1:
+                    setCategoryAndLimit();
+                    break;
+                case 2:
+                    viewTotalSpending();
+                    break;
+                case 3:
+                    updateSpending();
+                    break;
+                case 4:
+                    consolePieChart();
+                    break;
+                case 5:
+                    return; // Exit budget tracker
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
 
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
