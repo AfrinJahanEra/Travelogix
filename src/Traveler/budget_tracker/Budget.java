@@ -42,7 +42,15 @@ public class Budget {
                 index++;
             }
         }
+
+        if (upcomingTrips.isEmpty()) {
+            System.out.println("No upcoming trips found.");
+            return;
+        }
+
         
+
+
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
         int num = Integer.parseInt(numOfCatagories);
