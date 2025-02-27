@@ -16,7 +16,7 @@ public class Budget {
     }
 
     public static void selectTripAndManageBudget() {
-        String tripFile = "trips.txt";
+        String tripFile = "src\\TXT_Files\\trips.txt";
         List<String> upcomingTrips = new ArrayList<>();
         List<LocalDate> tripStartDates = new ArrayList<>();
         LocalDate today = LocalDate.now();
@@ -87,7 +87,7 @@ public class Budget {
         String selectedTrip = upcomingTrips.get(choice - 1);
         String[] tripDetails = selectedTrip.split(", ");
         String destination = tripDetails[0];
-        String tripBudgetFile = "budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file
+        String tripBudgetFile = "src\\TXT_Files\\budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file
 
         // Show budget tracker
         Budget budget = new Budget(tripBudgetFile);
