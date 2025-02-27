@@ -73,6 +73,16 @@ public class Budget {
     }
 
 
+    // ✅ Displays budget options after selecting a trip
+    private void showBudgetOptions() {
+        while (true) {
+            System.out.println("\nBudget Tracker Options:");
+            System.out.println("1. Set Categories and Limits");
+            System.out.println("2. View Total Spending");
+            System.out.println("3. Update Spending");
+            System.out.println("4. View Spending Pie Chart");
+            System.out.println("5. Go Back");
+
 
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
