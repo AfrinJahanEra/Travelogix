@@ -112,6 +112,15 @@ public class Budget {
             }
         }
     }
+    public void setCategoryAndLimit() {
+        String numOfCategories = BasicUtils.takeStringInput("How many categories you want to add? ");
+        int num;
+        try {
+            num = Integer.parseInt(numOfCategories);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number. Try again.");
+            return;
+        }
 
     public void setCatagoryandLimit(){
         String numOfCatagories = BasicUtils.takeStringInput("How many catagories you want to add? ");
