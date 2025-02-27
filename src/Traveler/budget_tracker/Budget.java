@@ -48,7 +48,19 @@ public class Budget {
             return;
         }
 
-        
+        // Ask the user to select a trip
+        String choiceStr = BasicUtils.takeStringInput("\nEnter the trip number to manage its budget: ");
+        int choice;
+        try {
+            choice = Integer.parseInt(choiceStr);
+            if (choice < 1 || choice > upcomingTrips.size()) {
+                System.out.println("Invalid choice. Exiting...");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            return;
+        }
 
 
     public void setCatagoryandLimit(){
