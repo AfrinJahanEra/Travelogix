@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Budget {
-    public String filename;
+    public static String filename;
 
     public Budget(String filename){
         this.filename = filename;
     }
 
     public static void selectTripAndManageBudget() {
-        String tripFile = "src\\TXT_Files\\trips.txt";
+       //String tripFile = "src\\TXT_Files\\trips.txt";
         List<String> upcomingTrips = new ArrayList<>();
         List<LocalDate> tripStartDates = new ArrayList<>();
         LocalDate today = LocalDate.now();
 
-        List<String> tripLines = BasicFileUtils.read(tripFile);
+        List<String> tripLines = BasicFileUtils.read(filename);
 
         if (tripLines.isEmpty()) {
             System.out.println("No trips found.");
@@ -87,7 +87,7 @@ public class Budget {
         String selectedTrip = upcomingTrips.get(choice - 1);
         String[] tripDetails = selectedTrip.split(", ");
         String destination = tripDetails[0];
-        String tripBudgetFile = "src\\TXT_Files\\budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file
+        String tripBudgetFile = "budget_" + destination.replace(" ", "_") + ".txt"; // Unique budget file
 
         // Show budget tracker
         Budget budget = new Budget(tripBudgetFile);
