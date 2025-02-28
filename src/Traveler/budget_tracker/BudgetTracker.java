@@ -144,6 +144,48 @@ public class BudgetTracker {
         }
     }
 
-    
+    public void consolePieChart() {
+        List<String> lines = BasicFileUtils.read(budgetFile);
+
+        if (lines.isEmpty()) {
+            System.out.println("No records to display.");
+            return;
+        }
+
+        int[] limitSpending = new int[lines.size()];
+        int[] spendingValues = new int[lines.size()];
+        String[] categories = new String[lines.size()];
+
+        for (int i = 0; i < lines.size(); i++) {
+            String[] parts = BasicFileUtils.splitIntoParts(lines.get(i));
+
+            try {
+                categories[i] = parts[0];
+                spendingValues[i] = Integer.parseInt(parts[2]);
+                limitSpending[i] = Integer.parseInt(parts[1]);
+            } catch (NumberFormatException e) {
+                System.out.println("Warning: Invalid data format. Skipping entry: " + lines.get(i));
+                continue;
+            }
+        }
+
+        System.out.println("\nExpense Chart (Spending Breakdown):");
+        for (int i = 0; i < categories.length; i++) {
+            if (limitSpending[i] == 0) {
+                System.out.printf("%-10s: No spending limit set.\n", categories[i]);
+                continue;
+            }
+
+            int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
+            System.out.printf("%-10s: %3d%% ", categories[i], percentage);
+
+            int barLength = Math.min(percentage / 2, 50);
+            for (int j = 0; j < barLength; j++) {
+                System.out.print("█");
+            }
+            System.out.println();
+        }
+    }
+
 }
 
