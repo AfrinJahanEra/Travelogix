@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Budget {
@@ -22,50 +23,63 @@ public class Budget {
     }
 
     public static void selectTripAndManageBudget() {
-            String inputFile = "src/trips.txt";  // Adjust path if necessary
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDate today = LocalDate.now();
-            boolean foundFutureDate = false;
+        String inputFile = "src/trips.txt";  // Adjust path if necessary
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDate today = LocalDate.now();
+        boolean foundFutureDate = false;
+
+        List<String[]> tripList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\s*,\\s*"); // Handles spaces correctly
+                if (parts.length >= 3) {
+                    try {
+                        // Extract and parse start date
+                        LocalDateTime startDateTime = LocalDateTime.parse(parts[1].trim(), formatter);
+                        LocalDate startDate = startDateTime.toLocalDate();
+                        LocalDateTime endDateTime = LocalDateTime.parse(parts[2].trim(), formatter);
+
+                        // Include only future trips
+                        if (endDateTime.toLocalDate().isAfter(today)) {
+                            tripList.add(parts);
+                        }
+
+                    } catch (Exception e) {
+                        System.err.println("Error parsing date in line: " + line);
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            // Sort trips by start date
+            tripList.sort(Comparator.comparing(t -> LocalDateTime.parse(t[1].trim(), formatter)));
+
+            // Display trips
             System.out.println("════════════════════════════════════════════════════════════════════════");
             System.out.println("║ No. ║ Destination        ║ Start               ║ End                 ║");
             System.out.println("════════════════════════════════════════════════════════════════════════");
 
-            try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
-                String line;
-                int index=1;
-                while ((line = br.readLine()) != null) {
-                    String[] parts = line.split("\\s*,\\s*"); // Handles spaces correctly
-
-                    if (parts.length >= 3) {
-                        try {
-                            // Extract last date-time and trim any extra spaces
-                            String lastDateTimeString = parts[2].trim();
-                            LocalDateTime dateTime = LocalDateTime.parse(lastDateTimeString, formatter);
-                            LocalDate date = dateTime.toLocalDate();
-                            if (date.isAfter(today)) {System.out.printf("║ %-3d ║ %-18s ║ %-19s ║ %-19s ║\n",
-                                    index, parts[0], parts[1], parts[2]);
-                                index++;
-                                foundFutureDate = true;
-                            }
-
-
-                        } catch (Exception e) {
-                            System.err.println("Error parsing date in line: " + line);
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                if (!foundFutureDate) {
-                    System.out.println("║ No trips found.  ");
-                }
-                System.out.println("════════════════════════════════════════════════════════════════════════");
-            } catch (IOException e) {
-                System.err.println("File not found or cannot be read.");
-                e.printStackTrace();
+            int index = 1;
+            for (String[] trip : tripList) {
+                System.out.printf("║ %-3d ║ %-18s ║ %-19s ║ %-19s ║\n",
+                        index++, trip[0], trip[1], trip[2]);
+                foundFutureDate = true;
             }
 
+            if (!foundFutureDate) {
+                System.out.println("║ No trips found.  ");
+            }
+            System.out.println("════════════════════════════════════════════════════════════════════════");
 
-        
+        } catch (IOException e) {
+            System.err.println("File not found or cannot be read.");
+            e.printStackTrace();
+        }
+
+
+
         // Let user select a trip
         String choiceStr = BasicUtils.takeStringInput("\nEnter the trip number to manage its budget: ");
         int choice;
