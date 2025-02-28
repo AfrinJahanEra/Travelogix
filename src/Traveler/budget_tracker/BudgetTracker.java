@@ -75,7 +75,31 @@ public class BudgetTracker {
         }
     }
 
-    
+    public void viewTotalSpending() {
+        List<String> lines = BasicFileUtils.read(budgetFile);
 
+        if (lines.isEmpty()) {
+            System.out.println("No records yet.");
+            return;
+        }
+
+        System.out.println("+----------------+----------------------+----------------+----------------+");
+        System.out.println("|    Category    | Expected Spending    | Your Spending  |    Remarks     |");
+        System.out.println("+----------------+----------------------+----------------+----------------+");
+
+        for (String line : lines) {
+            String[] parts = BasicFileUtils.splitIntoParts(line);
+            String category = parts[0];
+            String expectedLimit = parts[1];
+            String actualSpending = parts[2];
+            String remarks = parts[3];
+
+            System.out.printf("| %-14s | %-20s | %-14s | %-14s | \n", category, expectedLimit, actualSpending, remarks);
+        }
+
+        System.out.println("+----------------+----------------------+----------------+----------------+");
+    }
+
+    
 }
 
