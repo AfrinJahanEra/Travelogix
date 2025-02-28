@@ -1,5 +1,6 @@
 package Traveler.budget_tracker;
 
+import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
 
 import java.util.List;
@@ -49,6 +50,32 @@ public class BudgetTracker {
         }
     }
 
+    public void setCategoryAndLimit() {
+        String numOfCategories = BasicUtils.takeStringInput("How many categories you want to add? ");
+        int num;
+        try {
+            num = Integer.parseInt(numOfCategories);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number. Try again.");
+            return;
+        }
+
+        while (num > 0) {
+            String category = BasicUtils.takeStringInput("Enter category name: ");
+            String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this: ");
+            int limit;
+            try {
+                limit = Integer.parseInt(expenseLimit);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Try again.");
+                continue;
+            }
+            BasicFileUtils.write(budgetFile, category + "," + limit + ",0" + ",Null");
+            num--;
+        }
+    }
+
     
+
 }
 
