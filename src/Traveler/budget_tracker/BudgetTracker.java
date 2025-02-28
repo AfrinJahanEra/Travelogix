@@ -1,5 +1,6 @@
 package Traveler.budget_tracker;
 
+import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
 
@@ -98,6 +99,49 @@ public class BudgetTracker {
         }
 
         System.out.println("+----------------+----------------------+----------------+----------------+");
+    }
+
+    public void updateSpending() {
+        String category = BasicUtils.takeStringInput("Enter the category you spent on: ");
+        String spendingInput = BasicUtils.takeStringInput("Enter the amount you spent: ");
+        String remarks = BasicUtils.takeStringInput("Enter remarks for this spending: ");
+
+        try {
+            int spending = Integer.parseInt(spendingInput);
+            List<String> lines = BasicFileUtils.read(budgetFile);
+            boolean found = false;
+
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                String[] parts = BasicFileUtils.splitIntoParts(line);
+
+                if (parts[0].equalsIgnoreCase(category)) {
+                    int limit = Integer.parseInt(parts[1]);
+                    int currentSpending = Integer.parseInt(parts[2]);
+                    int updatedSpending = currentSpending + spending;  // Spending is always updated
+
+                    // Update file with new spending
+                    lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                System.out.println("Category not found.");
+                return;
+            }
+
+            AdvancedFileUtils.clearFile(budgetFile);
+            for (String line : lines) {
+                BasicFileUtils.write(budgetFile, line);
+            }
+
+            System.out.println("✅ Spending updated successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("❌ Invalid amount entered. Please enter a valid number.");
+        }
     }
 
     
