@@ -4,7 +4,13 @@ import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
 import Traveler.Itinerary_Management.Alarm.SoundUtils;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,59 +22,50 @@ public class Budget {
     }
 
     public static void selectTripAndManageBudget() {
-       //String tripFile = "src\\TXT_Files\\trips.txt";
-        List<String> upcomingTrips = new ArrayList<>();
-        List<LocalDate> tripStartDates = new ArrayList<>();
-        LocalDate today = LocalDate.now();
+            String inputFile = "src/trips.txt";  // Adjust path if necessary
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDate today = LocalDate.now();
+            boolean foundFutureDate = false;
+            System.out.println("════════════════════════════════════════════════════════════════════════");
+            System.out.println("║ No. ║ Destination        ║ Start               ║ End                 ║");
+            System.out.println("════════════════════════════════════════════════════════════════════════");
 
-        List<String> tripLines = BasicFileUtils.read(filename);
+            try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+                String line;
+                int index=1;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split("\\s*,\\s*"); // Handles spaces correctly
 
-        if (tripLines.isEmpty()) {
-            System.out.println("No trips found.");
-            return;
-        }
+                    if (parts.length >= 3) {
+                        try {
+                            // Extract last date-time and trim any extra spaces
+                            String lastDateTimeString = parts[2].trim();
+                            LocalDateTime dateTime = LocalDateTime.parse(lastDateTimeString, formatter);
+                            LocalDate date = dateTime.toLocalDate();
+                            if (date.isAfter(today)) {System.out.printf("║ %-3d ║ %-18s ║ %-19s ║ %-19s ║\n",
+                                    index, parts[0], parts[1], parts[2]);
+                                index++;
+                                foundFutureDate = true;
+                            }
 
-        // Filter and store upcoming/ongoing trips with start dates
-        for (String line : tripLines) {
-            String[] tripData = line.split(", ");
-            LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0]);
-            LocalDate endDate = LocalDate.parse(tripData[2].split(" ")[0]);
 
-            if (!endDate.isBefore(today)) {  // Show only ongoing/upcoming trips
-                upcomingTrips.add(line);
-                tripStartDates.add(startDate);
-            }
-        }
-
-        if (upcomingTrips.isEmpty()) {
-            System.out.println("No upcoming trips found.");
-            return;
-        }
-
-        // Sort trips by nearest start date
-        for (int i = 0; i < upcomingTrips.size(); i++) {
-            for (int j = i + 1; j < upcomingTrips.size(); j++) {
-                if (tripStartDates.get(i).isAfter(tripStartDates.get(j))) {
-                    // Swap trips
-                    String tempTrip = upcomingTrips.get(i);
-                    upcomingTrips.set(i, upcomingTrips.get(j));
-                    upcomingTrips.set(j, tempTrip);
-
-                    // Swap start dates
-                    LocalDate tempDate = tripStartDates.get(i);
-                    tripStartDates.set(i, tripStartDates.get(j));
-                    tripStartDates.set(j, tempDate);
+                        } catch (Exception e) {
+                            System.err.println("Error parsing date in line: " + line);
+                            e.printStackTrace();
+                        }
+                    }
                 }
+                if (!foundFutureDate) {
+                    System.out.println("║ No trips found.  ");
+                }
+                System.out.println("════════════════════════════════════════════════════════════════════════");
+            } catch (IOException e) {
+                System.err.println("File not found or cannot be read.");
+                e.printStackTrace();
             }
-        }
 
-        // Display sorted trips with serial numbers
-        System.out.println("\nOngoing & Upcoming Trips (Sorted by Date):");
-        for (int i = 0; i < upcomingTrips.size(); i++) {
-            String[] tripData = upcomingTrips.get(i).split(", ");
-            System.out.println((i + 1) + ". " + tripData[0] + " | Start: " + tripData[1] + " | End: " + tripData[2]);
-        }
 
+        
         // Let user select a trip
         String choiceStr = BasicUtils.takeStringInput("\nEnter the trip number to manage its budget: ");
         int choice;
