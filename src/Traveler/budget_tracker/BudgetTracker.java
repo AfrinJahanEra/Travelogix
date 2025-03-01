@@ -233,15 +233,17 @@ public class BudgetTracker {
 
         for (int i = 0; i < categories.length; i++) {
             if (limitSpending[i] == 0) {
-                System.out.printf("%-14s: $%-6d | Budget: N/A  | Over Budget 🚨\n", categories[i], spendingValues[i]);
+                System.out.printf("\n%-14s\nSpent: %-6d | Budget: N/A  | Over Budget 🚨\n",
+                        categories[i], spendingValues[i]);
                 continue;
             }
 
             int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
 
-            // Print category, spending, and budget
-            System.out.printf("%-14s: $%-6d | Budget: %-6d | %3d%%\n",
-                    categories[i], spendingValues[i], limitSpending[i], percentage);
+            // Print category on a separate line
+            System.out.printf(categories[i]+"\n");
+            System.out.printf("Spent: %-6d | Budget: %-6d | %3d%%\n",
+                    spendingValues[i], limitSpending[i], percentage);
 
             // Print expected budget bar (░)
             for (int j = 0; j < maxBarLength; j++) {
