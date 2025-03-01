@@ -158,7 +158,7 @@ public class BudgetTracker {
 
     }
 
-    public void consolePieChart() {
+    /*public void consolePieChart() {
         List<String> lines = BasicFileUtils.read(budgetFile);
 
         if (lines.isEmpty()) {
@@ -198,6 +198,62 @@ public class BudgetTracker {
                 System.out.print("█");
             }
             System.out.println();
+        }
+    }
+*/
+
+    public void consolePieChart() {
+        List<String> lines = BasicFileUtils.read(budgetFile);
+
+        if (lines.isEmpty()) {
+            System.out.println("\n📌 No records to display.\n");
+            return;
+        }
+
+        int[] limitSpending = new int[lines.size()];
+        int[] spendingValues = new int[lines.size()];
+        String[] categories = new String[lines.size()];
+
+        System.out.println("\nExpense Breakdown (Budget vs. Actual Spending):\n");
+
+        for (int i = 0; i < lines.size(); i++) {
+            String[] parts = BasicFileUtils.splitIntoParts(lines.get(i));
+
+            try {
+                categories[i] = parts[0]; // Category name
+                spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
+                limitSpending[i] = Integer.parseInt(parts[1]); // Spending limit
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Warning: Invalid data format. Skipping entry: " + lines.get(i));
+                continue;
+            }
+        }
+
+        for (int i = 0; i < categories.length; i++) {
+            int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
+            percentage = Math.min(percentage, 100); // Prevent overflow
+
+            // Print category, spending, and budget
+            System.out.printf("%-13s: $%-6d | Budget: %-6d | %3d%%\n",
+                    categories[i], spendingValues[i], limitSpending[i], percentage);
+
+            // Print expected budget bar
+            int budgetBarLength = 50; // Full bar length
+            for (int j = 0; j < budgetBarLength; j++) {
+                System.out.print("░");
+            }
+            System.out.println();
+
+            // Print actual spending bar (only if spending > 0)
+            int spendingBarLength = Math.max(percentage / 2, 1); // Scale to fit in 50 slots
+            for (int j = 0; j < spendingBarLength; j++) {
+                System.out.print("█");
+            }
+
+            if (spendingValues[i] > 0) {
+                System.out.printf("  %3d%%", percentage); // Show percentage at the end of the spending bar
+            }
+            System.out.println("\n");
         }
     }
 
