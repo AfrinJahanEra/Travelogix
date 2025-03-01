@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FutureTrips {
-    private static final String inputFile = "src/trips.txt";
+    private static final String inputFile = "src/TXT_Files/trips.txt";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -84,7 +84,7 @@ public class FutureTrips {
 
 
                     // Generate unique budget file for this trip
-                    String budgetFileName = "budget_" + selectedTrip[0] + "_" + selectedTrip[1].replace(" ", "_").replace(":", "-") + ".txt";
+                    String budgetFileName = "src/TXT_Files/budget_" + selectedTrip[0] + "_" + selectedTrip[1].replace(" ", "_").replace(":", "-") + ".txt";
                     BudgetTracker budgetTracker = new BudgetTracker(budgetFileName);
                     budgetTracker.showBudgetOptions();
                     break;
