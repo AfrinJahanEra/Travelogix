@@ -222,37 +222,43 @@ public class BudgetTracker {
             try {
                 categories[i] = parts[0]; // Category name
                 spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
-                limitSpending[i] = Integer.parseInt(parts[1]); // Spending limit
+                limitSpending[i] = Integer.parseInt(parts[1]); // Budget limit
             } catch (NumberFormatException e) {
                 System.out.println("⚠️ Warning: Invalid data format. Skipping entry: " + lines.get(i));
                 continue;
             }
         }
 
+        int maxBarLength = 50; // Full width of budget bar
+
         for (int i = 0; i < categories.length; i++) {
             int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
-            percentage = Math.min(percentage, 100); // Prevent overflow
 
             // Print category, spending, and budget
-            System.out.printf("%-13s: $%-6d | Budget: %-6d | %3d%%\n",
+            System.out.printf("%-14s: $%-6d | Budget: %-6d | %3d%%\n",
                     categories[i], spendingValues[i], limitSpending[i], percentage);
 
             // Print expected budget bar
-            int budgetBarLength = 50; // Full bar length
-            for (int j = 0; j < budgetBarLength; j++) {
+            for (int j = 0; j < maxBarLength; j++) {
                 System.out.print("░");
             }
             System.out.println();
 
-            // Print actual spending bar (only if spending > 0)
-            int spendingBarLength = Math.max(percentage / 2, 1); // Scale to fit in 50 slots
-            for (int j = 0; j < spendingBarLength; j++) {
-                System.out.print("█");
+            // Print actual spending bar only if spending > 0
+            if (spendingValues[i] > 0) {
+                int spendingBarLength = Math.min((percentage * maxBarLength) / 100, maxBarLength);
+                for (int j = 0; j < spendingBarLength; j++) {
+                    System.out.print("█");
+                }
+
+                System.out.printf("  %3d%%", percentage);
+
+                // If spending exceeds budget, show alert message
+                if (spendingValues[i] > limitSpending[i]) {
+                    System.out.print("  🚨 Over Budget!");
+                }
             }
 
-            if (spendingValues[i] > 0) {
-                System.out.printf("  %3d%%", percentage); // Show percentage at the end of the spending bar
-            }
             System.out.println("\n");
         }
     }
