@@ -20,7 +20,7 @@ public class Budget_test {
 
             switch (choice) {
                 case 1:
-                    Budget.selectTripAndManageBudget(); 
+                    Budget.selectTripAndManageBudget();
                     break;
                 case 2:
                     System.out.println("Goodbye! 👋");
