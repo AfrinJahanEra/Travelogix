@@ -1,5 +1,6 @@
 package Traveler.budget_tracker;
 
+import Traveler.Itinerary_Management.Alarm.SoundUtils;
 import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
@@ -130,7 +131,7 @@ public class BudgetTracker {
 
                     if (updatedSpending >= limit) {
                         System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
-                        SoundUtils.playSound("src/sparcle.wav");
+                        SoundUtils.playSound("src/Traveler/Itinerary_Management/Alarm/sparcle.wav");
                     }
                     break;
                 }
