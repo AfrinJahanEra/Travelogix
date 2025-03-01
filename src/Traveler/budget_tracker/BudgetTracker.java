@@ -63,7 +63,7 @@ public class BudgetTracker {
 
         while (num > 0) {
             String category = BasicUtils.takeStringInput("Enter category name: ");
-            String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this: ");
+            String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this category: ");
             int limit;
             try {
                 limit = Integer.parseInt(expenseLimit);
@@ -74,6 +74,7 @@ public class BudgetTracker {
             BasicFileUtils.write(budgetFile, category + "," + limit + ",0" + ",Null");
             num--;
         }
+        System.out.println("✅ Category and limit set successfully!");
     }
 
     public void viewTotalSpending() {
