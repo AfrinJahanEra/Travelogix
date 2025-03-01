@@ -62,7 +62,7 @@ public class BudgetTracker {
         }
 
         while (num > 0) {
-            String category = BasicUtils.takeStringInput("Enter category name: ");
+            String category = BasicUtils.takeStringInput("Enter the name of category: ");
             String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this category: ");
             int limit;
             try {
@@ -124,8 +124,17 @@ public class BudgetTracker {
                     // Update file with new spending
                     lines.set(i, parts[0] + "," + parts[1] + "," + updatedSpending + "," + remarks);
                     found = true;
+
+
+                    //Alert if spending reaches/exceeds the limit
+
+                    if (updatedSpending >= limit) {
+                        System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
+                        SoundUtils.playSound("src/sparcle.wav");
+                    }
                     break;
                 }
+
             }
 
             if (!found) {
@@ -143,6 +152,9 @@ public class BudgetTracker {
         } catch (NumberFormatException e) {
             System.out.println("❌ Invalid amount entered. Please enter a valid number.");
         }
+
+
+
     }
 
     public void consolePieChart() {
@@ -189,4 +201,3 @@ public class BudgetTracker {
     }
 
 }
-
