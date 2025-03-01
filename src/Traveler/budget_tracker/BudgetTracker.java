@@ -214,7 +214,7 @@ public class BudgetTracker {
         int[] spendingValues = new int[lines.size()];
         String[] categories = new String[lines.size()];
 
-        System.out.println("\nExpense Breakdown (Budget vs. Actual Spending):\n");
+        System.out.println("\nExpense Breakdown (Expected (░) vs. Actual Spending (█)):\n");
 
         for (int i = 0; i < lines.size(); i++) {
             String[] parts = BasicFileUtils.splitIntoParts(lines.get(i));
