@@ -232,23 +232,42 @@ public class BudgetTracker {
         int maxBarLength = 50; // Full width of budget bar
 
         for (int i = 0; i < categories.length; i++) {
+            if (limitSpending[i] == 0) {
+                System.out.printf("%-14s: $%-6d | Budget: N/A  | Over Budget 🚨\n", categories[i], spendingValues[i]);
+                continue;
+            }
+
             int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
 
             // Print category, spending, and budget
             System.out.printf("%-14s: $%-6d | Budget: %-6d | %3d%%\n",
                     categories[i], spendingValues[i], limitSpending[i], percentage);
 
-            // Print expected budget bar
+            // Print expected budget bar (░)
             for (int j = 0; j < maxBarLength; j++) {
                 System.out.print("░");
             }
             System.out.println();
 
-            // Print actual spending bar only if spending > 0
+            // Print actual spending bar
             if (spendingValues[i] > 0) {
-                int spendingBarLength = Math.min((percentage * maxBarLength) / 100, maxBarLength);
-                for (int j = 0; j < spendingBarLength; j++) {
-                    System.out.print("█");
+                int spendingBarLength = (percentage * maxBarLength) / 100;
+
+                if (percentage <= 100) {
+                    // Spending within budget (█)
+                    for (int j = 0; j < spendingBarLength; j++) {
+                        System.out.print("█");
+                    }
+                } else {
+                    // Spending exceeds budget → Normal + Over-budget in red
+                    for (int j = 0; j < maxBarLength; j++) {
+                        System.out.print("█"); // Normal spending within budget
+                    }
+                    System.out.print("\u001B[31m"); // Start red color
+                    for (int j = 0; j < spendingBarLength - maxBarLength; j++) {
+                        System.out.print("█"); // Over-budget spending
+                    }
+                    System.out.print("\u001B[0m"); // Reset color
                 }
 
                 System.out.printf("  %3d%%", percentage);
@@ -262,5 +281,6 @@ public class BudgetTracker {
             System.out.println("\n");
         }
     }
+
 
 }
