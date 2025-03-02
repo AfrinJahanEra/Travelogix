@@ -21,7 +21,7 @@
   - Access past travel records at a glance.  
 - 📝 **Note Management**:  
   - Organize written and voice notes.  
-- 📊 **Budget Cracker**:  
+- 📊 **Budget Tracker**:  
   - Plan budgets with graphical insights.  
 
 #### **Transport Agency Features**  
