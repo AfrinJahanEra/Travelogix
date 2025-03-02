@@ -5,6 +5,7 @@ import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.NoteKeepingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
 import Traveler.Trip_Management.TripManager;
+import Traveler.budget_tracker.FutureTrips;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
@@ -127,7 +128,7 @@ public class TravelerDashboard {
                 case 2 -> browseTransports();
                 case 3 -> new NoteKeepingDashboard().displayChecklist();  
                 case 4 -> manageItinerary(scanner);  
-                // case 5 -> trackBudget(); 
+                case 5 -> new FutureTrips().viewUpcomingTrips();
                 case 6 -> isPlanning = false;  
                 default -> {
                     System.out.println("\n");

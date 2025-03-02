@@ -21,23 +21,36 @@ public class FutureTrips {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
-                if (parts.length >= 3) {
-                    try {
-                        LocalDateTime startDateTime = LocalDateTime.parse(parts[1].trim(), formatter);
-                        LocalDateTime endDateTime = LocalDateTime.parse(parts[2].trim(), formatter);
-
-                        if (endDateTime.toLocalDate().isAfter(today)) {
-                            tripList.add(parts);
-                        }
-                    } catch (Exception e) {
-                        System.err.println("Error parsing date in line: " + line);
-                        e.printStackTrace();
-                    }
+            
+                // Ensure exactly 3 parts (destination, start, end)
+                if (parts.length != 3) {
+                    continue;  // Skip malformed line without printing an error
                 }
+            
+                try {
+                    LocalDateTime startDateTime = LocalDateTime.parse(parts[1].trim(), formatter);
+                    LocalDateTime endDateTime = LocalDateTime.parse(parts[2].trim(), formatter);
+            
+                    if (endDateTime.toLocalDate().isAfter(today)) {
+                        tripList.add(parts);
+                    }
+                } catch (Exception e) {
+                    // Skip this trip silently if date parsing fails
+                }
+            }
+            
+
+            if (tripList.isEmpty()) {
+                System.out.println("No upcoming trips found.");
+                return;
             }
 
             // Sort trips by start date
-            tripList.sort(Comparator.comparing(t -> LocalDateTime.parse(t[1].trim(), formatter)));
+            try {
+                tripList.sort(Comparator.comparing(t -> LocalDateTime.parse(t[1].trim(), formatter)));
+            } catch (Exception e) {
+                System.err.println("Error sorting trips. Some data might be corrupted.");
+            }
 
             // Display trips
             System.out.println("════════════════════════════════════════════════════════════════════════");
@@ -52,36 +65,33 @@ public class FutureTrips {
 
             System.out.println("════════════════════════════════════════════════════════════════════════");
 
-            if (tripList.isEmpty()) {
-                System.out.println("No upcoming trips found.");
-                return;
-            }
-
-            // Allow user to select a trip for budget management
-            if (!tripList.isEmpty())
-                selectTrip(tripList);
+            selectTrip(tripList);
         } catch (IOException e) {
-            System.err.println("File not found or cannot be read.");
-            e.printStackTrace();
+            System.err.println("Error: Unable to read the file '" + inputFile + "'. Please check if the file exists and is accessible.");
         }
     }
-
 
     private void selectTrip(List<String[]> tripList) {
         System.out.print("Enter the serial number of a trip to manage budget (or 0 to exit): ");
 
         while (true) {
             try {
+                if (!scanner.hasNextInt()) {
+                    System.out.print("Invalid input. Please enter a valid number: ");
+                    scanner.next(); // Consume invalid input
+                    continue;
+                }
+
                 int choice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
+
                 if (choice == 0) {
                     System.out.println("Exiting...");
                     break;
                 } else if (choice > 0 && choice <= tripList.size()) {
                     String[] selectedTrip = tripList.get(choice - 1);
-                    System.out.println("\nManaging Budget for Trip: "+choice);
+                    System.out.println("\nManaging Budget for Trip: " + choice);
                     System.out.println("Destination: " + selectedTrip[0] + "\nStart: " + selectedTrip[1] + "\nEnd: " + selectedTrip[2]);
-
 
                     // Generate unique budget file for this trip
                     String budgetFileName = "src/TXT_Files/budget_" + selectedTrip[0] + "_" + selectedTrip[1].replace(" ", "_").replace(":", "-") + ".txt";
@@ -89,11 +99,13 @@ public class FutureTrips {
                     budgetTracker.showBudgetOptions();
                     break;
                 } else {
-                    System.out.print("Invalid choice. Enter a valid serial number: ");
+                    System.out.print("Invalid choice. Please enter a number between 1 and " + tripList.size() + ": ");
                 }
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
                 scanner.next(); // Clear invalid input
+            } catch (Exception e) {
+                System.err.println("An unexpected error occurred. Please try again.");
             }
         }
     }
