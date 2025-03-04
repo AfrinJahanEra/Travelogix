@@ -36,5 +36,27 @@ public class TripHistoryViewerTest{
 
     }
 
+    @Test
+    public void testViewYearWiseTrips() throws Exception {
+
+    
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+
+        TripHistoryViewer.viewYearWiseTrips();
+
+
+        System.setOut(System.out);
+
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Year: 2024")); 
+        assertTrue(output.contains("Year: 2025")); 
+
+
+        
+    }
+
 
 }
