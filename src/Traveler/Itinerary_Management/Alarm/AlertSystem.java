@@ -39,11 +39,9 @@ public class AlertSystem {
     private void saveToHistory(String dateTime, String message) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(HISTORY_FILE));
-            int lastNumber = lines.isEmpty() ? 0 : lines.size();
-            int newNumber = lastNumber + 1;
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(HISTORY_FILE, true))) {
-                writer.println(newNumber + ". " + dateTime + " - " + message);
+                writer.println(dateTime + " - " + message);
             }
         } catch (IOException e) {
             System.out.println("Error writing to history file: " + e.getMessage());
