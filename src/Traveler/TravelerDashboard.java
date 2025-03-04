@@ -30,7 +30,8 @@ public class TravelerDashboard {
             System.out.println("║                                                                    ║");
             System.out.println("║    [1] Plan a Trip                                                 ║");
             System.out.println("║    [2] Manage Trips                                                ║");
-            System.out.println("║    [3] Delete Account                                              ║");
+            System.out.println("║    [3] Past Travel History                                         ║");
+            System.out.println("║    [4] Delete Account                                              ║");
             System.out.println("║    [5] Log Out                                                     ║");
             System.out.println("║                                                                    ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════╝");
@@ -41,7 +42,8 @@ public class TravelerDashboard {
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
                 case 2 -> showManageTripsOptions(scanner);
-                case 3 -> {
+                case 3 -> System.err.println();
+                case 4 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println("\n");
                         System.out.println("Account deleted successfully. Returning");
