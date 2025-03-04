@@ -4,6 +4,7 @@ import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.NoteKeepingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
+import Traveler.Past_Travel_History.PastHistoryDashboard;
 import Traveler.Trip_Management.TripManager;
 import Traveler.budget_tracker.FutureTrips;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class TravelerDashboard {
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
                 case 2 -> showManageTripsOptions(scanner);
-                case 3 -> System.err.println();
+                case 3 -> new PastHistoryDashboard().historyDashboard(scanner);
                 case 4 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println("\n");
