@@ -46,5 +46,43 @@ public class TripHistoryViewer {
         
         System.out.println("═══════════════════════════════════════════════════════════");
     }
+
+    public static void viewYearWiseTrips() {
+        Map<Integer, List<String[]>> tripsByYear = new TreeMap<>(Collections.reverseOrder());
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(TRIP_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] tripData = line.split(", ");
+                int year = LocalDate.parse(tripData[1].split(" ")[0]).getYear();
+                tripsByYear.putIfAbsent(year, new ArrayList<>());
+                tripsByYear.get(year).add(tripData);
+            }
+        } catch (IOException | DateTimeParseException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            return;
+        }
+        
+        System.out.println("═════════════════════════════════════════════");
+        System.out.println("║ Year-wise Travel History                  ║");
+        System.out.println("═════════════════════════════════════════════");
+        
+        if (tripsByYear.isEmpty()) {
+            System.out.println("║ No trips found.                           ║");
+        } else {
+            for (var entry : tripsByYear.entrySet()) {
+                System.out.println("═════════════════════════════════════════════");
+                System.out.println(" Year: " + entry.getKey());
+                System.out.println("═════════════════════════════════════════════");
+                System.out.println("║ No. ║ Destination        ║ Start Date & Time           ║ End Date & Time             ║");
+                System.out.println("═════════════════════════════════════════════");
+                int index = 1;
+                for (String[] trip : entry.getValue()) {
+                    System.out.printf("║ %-3d ║ %-18s ║ %-25s ║ %-25s ║\n", index++, trip[0], trip[1], trip[2]);
+                }
+                System.out.println("═════════════════════════════════════════════");
+            }
+        }
+    }
     
 }
