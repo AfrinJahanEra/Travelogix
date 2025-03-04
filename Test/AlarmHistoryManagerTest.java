@@ -37,4 +37,22 @@ public class AlarmHistoryManagerTest {
 
     }
 
+    @Test
+    public void testViewAlarmHistoryEmptyFile() throws Exception {
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        // Call the method
+        AlarmHistoryManager.viewAlarmHistory();
+
+        // Restore System.out
+        System.setOut(System.out);
+
+        // Verify the output
+        String output = outContent.toString();
+        assertTrue(!output.contains("No alarms set yet.")); // Empty file message should be displayed
+
+    }
+
 }
