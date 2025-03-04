@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class AlertSystem {
     private static final String SOUND_FILE_PATH = "src\\Traveler\\Itinerary_Management\\Alarm\\sparcle.wav";
-    private static final String HISTORY_FILE = "alarm_history.txt";
+    private static final String HISTORY_FILE = "src\\TXT_Files\\alarm_history.txt";
 
     public void alertSystem() {
         Scanner scanner = new Scanner(System.in);
