@@ -4,7 +4,9 @@ import Authentication.DeleteAccount;
 import Authentication.UserAccess;
 import Traveler.Checklist_NoteKeeping.NoteKeeping.NoteKeepingDashboard;
 import Traveler.Itinerary_Management.Alarm.AlertSystem;
+import Traveler.Past_Travel_History.PastHistoryDashboard;
 import Traveler.Trip_Management.TripManager;
+import Traveler.budget_tracker.FutureTrips;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
@@ -29,7 +31,8 @@ public class TravelerDashboard {
             System.out.println("║                                                                    ║");
             System.out.println("║    [1] Plan a Trip                                                 ║");
             System.out.println("║    [2] Manage Trips                                                ║");
-            System.out.println("║    [3] Delete Account                                              ║");
+            System.out.println("║    [3] Past Travel History                                         ║");
+            System.out.println("║    [4] Delete Account                                              ║");
             System.out.println("║    [5] Log Out                                                     ║");
             System.out.println("║                                                                    ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════╝");
@@ -40,7 +43,8 @@ public class TravelerDashboard {
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
                 case 2 -> showManageTripsOptions(scanner);
-                case 3 -> {
+                case 3 -> new PastHistoryDashboard().historyDashboard(scanner);
+                case 4 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println("\n");
                         System.out.println("Account deleted successfully. Returning");
@@ -127,7 +131,7 @@ public class TravelerDashboard {
                 case 2 -> browseTransports();
                 case 3 -> new NoteKeepingDashboard().displayChecklist();  
                 case 4 -> manageItinerary(scanner);  
-                // case 5 -> trackBudget(); 
+                case 5 -> new FutureTrips().viewUpcomingTrips();
                 case 6 -> isPlanning = false;  
                 default -> {
                     System.out.println("\n");

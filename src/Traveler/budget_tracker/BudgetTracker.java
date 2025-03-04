@@ -5,7 +5,9 @@ import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class BudgetTracker {
     private final String budgetFile;
@@ -15,12 +17,23 @@ public class BudgetTracker {
     }
     protected void showBudgetOptions() {
         while (true) {
-            System.out.println("\nBudget Tracker Options:");
-            System.out.println("1. Set Categories and Limits");
-            System.out.println("2. View Total Spending");
-            System.out.println("3. Update Spending");
-            System.out.println("4. View Spending Pie Chart");
-            System.out.println("5. Go Back");
+
+            waitForEnterKey();
+            clearTerminal();
+
+
+            System.out.println("\n╔══════════════════════════════════════════╗");
+            System.out.println("║                PLAN A TRIP               ║");
+            System.out.println("╠══════════════════════════════════════════╣");
+            System.out.println("║                                          ║");
+            System.out.println("║    [1] Set Categories and Limits         ║");
+            System.out.println("║    [2] View Total Spending               ║");
+            System.out.println("║    [3] Update Spending                   ║");
+            System.out.println("║    [4] View Spending Pie Chart           ║");
+            System.out.println("║    [5] Back to Main Menu                 ║");
+            System.out.println("║                                          ║");
+            System.out.println("╚══════════════════════════════════════════╝");
+
 
             String choiceStr = BasicUtils.takeStringInput("Choose an option: ");
             int choice;
@@ -156,6 +169,25 @@ public class BudgetTracker {
 
 
 
+    }
+
+    private void waitForEnterKey() {
+        System.out.println("\nPress ENTER to continue...");
+        Scanner enterScanner = new Scanner(System.in);
+        enterScanner.nextLine(); 
+    }
+
+    private void clearTerminal() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Failed to clear terminal.");
+        }
     }
 
     /*public void consolePieChart() {
