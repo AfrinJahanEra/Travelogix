@@ -1,7 +1,7 @@
 # **Travelogix - Your Smart Travel Companion**  
 
 ### **Overview**  
-
+<img src="https://github.com/user-attachments/assets/d4493e87-f3d6-4a47-8b59-2670bc38b23c" width="20%" align="right">
 
 **Travelogix** is an innovative travel management software designed to cater to three distinct user roles:
 - **Travelers** ,
