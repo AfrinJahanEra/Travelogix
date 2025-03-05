@@ -65,7 +65,11 @@ It's built with Java **Object Oriented principles**, this application ensures se
   - Manage user login information.  
   - Approve or reject account deletion requests from agencies.  
 - 🛡️ **Operational Supervision**:  
-  - Ensure smooth functioning of the platform.  
+  - Ensure smooth functioning of the platform.
+ 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ed6a4e12-f084-45b1-a8b9-594468f46285" width="50%">
+</p>
 
 
 ---
