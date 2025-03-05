@@ -30,7 +30,11 @@ It's built with Java **Object Oriented principles**, this application ensures se
 
 #### **Common Features**  
 - 🔒 **Secure User Authentication**: Unique email identification with password encryption.  
-- 🎭 **Dynamic Role-Based Interfaces**: Customized dashboards for every user role.  
+- 🎭 **Dynamic Role-Based Interfaces**: Customized dashboards for every user role.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a0b90703-e151-40d9-9b39-429d7c334d40" width="50%">
+</p>
 
 #### **Traveler Features**  
 - 🗓️ **Itinerary Management**:  
