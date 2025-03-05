@@ -58,7 +58,12 @@ It's built with Java **Object Oriented principles**, this application ensures se
 - ✏️ **Transport Management**:  
   - Add, edit, or remove transport details.  
 - 📄 **Booking System**:  
-  - Manage seat bookings for travelers.  
+  - Manage seat bookings for travelers.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/263916f4-bd61-4ac2-aa75-682a3fddb3ac" width="50%">
+</p>
+
 
 #### **Admin Features**  
 - 🔧 **System Oversight**:  
