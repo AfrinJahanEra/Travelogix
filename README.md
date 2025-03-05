@@ -1,7 +1,14 @@
-# **Travelogix - A Smart Travel Companion**  
+# **Travelogix - Your Smart Travel Companion**  
 
 ### **Overview**  
-**Travelogix** is an innovative travel management software designed to cater to three distinct user roles: **Travelers**, **Transport Agencies**, and **Admins**. Built with Java OOP principles, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
+
+
+**Travelogix** is an innovative travel management software designed to cater to three distinct user roles:
+- **Travelers** ,
+- **Transport Agencies** , and 
+- **Admins**. 
+
+It's built with Java **Object Oriented principles**, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![OOP](https://img.shields.io/badge/Object--Oriented%20Programming-%2300A896?style=for-the-badge)
@@ -9,6 +16,12 @@
 ![Security](https://img.shields.io/badge/Security-Password%20Hashing-%234CAF50?style=for-the-badge)
 ![Role-Based Access](https://img.shields.io/badge/Access%20Control-Role--Based-%23008CBA?style=for-the-badge)
 ![Project Status](https://img.shields.io/badge/Project-Active-green?style=for-the-badge)
+
+<br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d3cad53c-0503-4a14-ab36-83fc80881e01" width="80%">
+</p>
 
 
 ---
