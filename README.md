@@ -133,7 +133,7 @@ It's built with Java **Object Oriented principles**, this application ensures se
 ### **Team Members**  
 
 - **Afrin Jahan Era**: [GitHub Profile](https://github.com/AfrinJahanEra)  
-- **Ridika Naznin**: [GitHub Profile](https://github.com/ridika-115)  
+- **Ridika Naznin**: [GitHub Profile](https://github.com/ridika-2004)  
 - **Ramisa Anan Sharley**: [GitHub Profile](https://github.com/Ramisa105)  
 
 
