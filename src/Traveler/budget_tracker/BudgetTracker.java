@@ -77,18 +77,24 @@ public class BudgetTracker {
 
         while (num > 0) {
             String category = BasicUtils.takeStringInput("Enter the name of category: ");
-            String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this category: ");
-            int limit;
-            try {
-                limit = Integer.parseInt(expenseLimit);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid amount. Try again.");
-                continue;
+            String foundCategory = BasicFileUtils.search(budgetFile,category);
+            if(foundCategory!=null){
+                System.out.println("This category already exists.");
+                num--;
+            } else {
+                String expenseLimit = BasicUtils.takeStringInput("Enter expected limit for this category: ");
+                int limit;
+                try {
+                    limit = Integer.parseInt(expenseLimit);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid amount. Try again.");
+                    continue;
+                }
+                BasicFileUtils.write(budgetFile, category + "," + limit + ",0" + ",Null");
+                num--;
+                System.out.println("✅ Category and limit set successfully!");
             }
-            BasicFileUtils.write(budgetFile, category + "," + limit + ",0" + ",Null");
-            num--;
         }
-        System.out.println("✅ Category and limit set successfully!");
     }
 
     public void viewTotalSpending() {
@@ -118,7 +124,11 @@ public class BudgetTracker {
 
     public void updateSpending() {
         String category = BasicUtils.takeStringInput("Enter the category you spent on: ");
-        String spendingInput = BasicUtils.takeStringInput("Enter the amount you spent: ");
+        String foundCategory = BasicFileUtils.search(budgetFile,category);
+        if(foundCategory==null){
+            System.out.println("This category doesn't exists.");
+        } else {
+            String spendingInput = BasicUtils.takeStringInput("Enter the amount you spent: ");
         String remarks = BasicUtils.takeStringInput("Enter remarks for this spending: ");
 
         try {
@@ -166,8 +176,7 @@ public class BudgetTracker {
         } catch (NumberFormatException e) {
             System.out.println("❌ Invalid amount entered. Please enter a valid number.");
         }
-
-
+        }
 
     }
 

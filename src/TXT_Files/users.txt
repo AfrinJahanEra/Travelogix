@@ -28,3 +28,4 @@ Transport, r, 01922339990, r@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, ERA, 01922778880, er@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Traveler, ERA, 01922889990, af@gmail.com, 25d55ad283aa400af464c76d713c07ad
 Admin, ERA, 01922008880, era@gmail.com, 25d55ad283aa400af464c76d713c07ad
+Traveler, adiba, 01540103780, adiba@gmail.com, 25d55ad283aa400af464c76d713c07ad

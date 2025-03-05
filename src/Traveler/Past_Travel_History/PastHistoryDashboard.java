@@ -23,7 +23,7 @@ public class PastHistoryDashboard {
             System.out.println("║                                          ║");
             System.out.println("║    [1] All Trip History                  ║");
             System.out.println("║    [2] Year Wise Trip                    ║");
-            System.out.println("║    [3] Itinary History Summury           ║");
+            System.out.println("║    [3] Itinary History Summary           ║");
             System.out.println("║    [4] Back to Main Menu                 ║");
             System.out.println("║                                          ║");
             System.out.println("╚══════════════════════════════════════════╝");

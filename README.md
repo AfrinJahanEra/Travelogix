@@ -1,7 +1,28 @@
-# **Travelogix - A Smart Travel Companion**  
+# **Travelogix - Your Smart Travel Companion**  
 
 ### **Overview**  
-**Travelogix** is an innovative travel management software designed to cater to three distinct user roles: **Travelers**, **Transport Agencies**, and **Admins**. Built with Java OOP principles, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
+<img src="https://github.com/user-attachments/assets/d4493e87-f3d6-4a47-8b59-2670bc38b23c" width="20%" align="right">
+
+**Travelogix** is an innovative travel management software designed to cater to three distinct user roles:
+- **Travelers** ,
+- **Transport Agencies** , and 
+- **Admins**. 
+
+It's built with Java **Object Oriented principles**, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![OOP](https://img.shields.io/badge/Object--Oriented%20Programming-%2300A896?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/Version%20Control-GitHub-%23181717?style=for-the-badge&logo=github)
+![Security](https://img.shields.io/badge/Security-Password%20Hashing-%234CAF50?style=for-the-badge)
+![Role-Based Access](https://img.shields.io/badge/Access%20Control-Role--Based-%23008CBA?style=for-the-badge)
+![Project Status](https://img.shields.io/badge/Project-Active-green?style=for-the-badge)
+
+<br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d3cad53c-0503-4a14-ab36-83fc80881e01" width="80%">
+</p>
+
 
 ---
 
@@ -9,7 +30,11 @@
 
 #### **Common Features**  
 - 🔒 **Secure User Authentication**: Unique email identification with password encryption.  
-- 🎭 **Dynamic Role-Based Interfaces**: Customized dashboards for every user role.  
+- 🎭 **Dynamic Role-Based Interfaces**: Customized dashboards for every user role.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a0b90703-e151-40d9-9b39-429d7c334d40" width="50%">
+</p>
 
 #### **Traveler Features**  
 - 🗓️ **Itinerary Management**:  
@@ -22,20 +47,34 @@
 - 📝 **Note Management**:  
   - Organize written and voice notes.  
 - 📊 **Budget Tracker**:  
-  - Plan budgets with graphical insights.  
+  - Plan budgets with graphical insights.
+ 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/465a3d53-e665-4edf-8442-a0670835c35a" width="50%">
+</p>
+
 
 #### **Transport Agency Features**  
 - ✏️ **Transport Management**:  
   - Add, edit, or remove transport details.  
 - 📄 **Booking System**:  
-  - Manage seat bookings for travelers.  
+  - Manage seat bookings for travelers.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/263916f4-bd61-4ac2-aa75-682a3fddb3ac" width="50%">
+</p>
+
 
 #### **Admin Features**  
 - 🔧 **System Oversight**:  
   - Manage user login information.  
   - Approve or reject account deletion requests from agencies.  
 - 🛡️ **Operational Supervision**:  
-  - Ensure smooth functioning of the platform.  
+  - Ensure smooth functioning of the platform.
+ 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ed6a4e12-f084-45b1-a8b9-594468f46285" width="50%">
+</p>
 
 
 ---
@@ -94,7 +133,7 @@
 ### **Team Members**  
 
 - **Afrin Jahan Era**: [GitHub Profile](https://github.com/AfrinJahanEra)  
-- **Ridika Naznin**: [GitHub Profile](https://github.com/ridika-115)  
+- **Ridika Naznin**: [GitHub Profile](https://github.com/ridika-2004)  
 - **Ramisa Anan Sharley**: [GitHub Profile](https://github.com/Ramisa105)  
 
 
@@ -131,3 +170,5 @@ Contributions are encouraged to make **Travelogix** even smarter!
 
 
 
+
+-------------------------------------------------**🚀 Bon Voyage & Happy Traveling! 🧳✨**------------------------------------------------------
