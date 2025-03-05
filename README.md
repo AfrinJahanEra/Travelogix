@@ -3,6 +3,14 @@
 ### **Overview**  
 **Travelogix** is an innovative travel management software designed to cater to three distinct user roles: **Travelers**, **Transport Agencies**, and **Admins**. Built with Java OOP principles, this application ensures secure user authentication with unique email-based login and password hashing. Each user role is provided with a tailored interface to streamline their tasks, enhance their travel experience, and improve operational efficiency.
 
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![OOP](https://img.shields.io/badge/Object--Oriented%20Programming-%2300A896?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/Version%20Control-GitHub-%23181717?style=for-the-badge&logo=github)
+![Security](https://img.shields.io/badge/Security-Password%20Hashing-%234CAF50?style=for-the-badge)
+![Role-Based Access](https://img.shields.io/badge/Access%20Control-Role--Based-%23008CBA?style=for-the-badge)
+![Project Status](https://img.shields.io/badge/Project-Active-green?style=for-the-badge)
+
+
 ---
 
 ### **Features**  
