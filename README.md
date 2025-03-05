@@ -47,7 +47,12 @@ It's built with Java **Object Oriented principles**, this application ensures se
 - 📝 **Note Management**:  
   - Organize written and voice notes.  
 - 📊 **Budget Tracker**:  
-  - Plan budgets with graphical insights.  
+  - Plan budgets with graphical insights.
+ 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/465a3d53-e665-4edf-8442-a0670835c35a" width="50%">
+</p>
+
 
 #### **Transport Agency Features**  
 - ✏️ **Transport Management**:  
