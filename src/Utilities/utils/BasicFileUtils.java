@@ -7,12 +7,16 @@ import java.util.List;
 public class BasicFileUtils {
 
     public static String search(String fileName, String searchTerm) {
+        List<String> lines = read(fileName);
+        if(lines == null) {
+            return null;
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = splitIntoParts(line);
                 for (String part : parts) {
-                    if (part.trim().equals(searchTerm)) {
+                    if (part.trim().equalsIgnoreCase(searchTerm)) {
                         return line;
                     }
                 }
