@@ -13,11 +13,11 @@ import java.util.Set;
 public class Calendar {
     private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
-    private static final int COLUMN_WIDTH = 32; // Increased width for better spacing
-    private static final int SPACING_BETWEEN_MONTHS = 6; // Space between months
+    private static final int COLUMN_WIDTH = 28; // Width for each month block
+    private static final int SPACING = 3; // Space between months
 
     public void displayTripsOnCalendar(String tripFile) {
-        Set<LocalDate> tripDates = getTripDates(tripFile); // Get all dates in trip durations
+        Set<LocalDate> tripDates = getTripDates(tripFile);
 
         int minYear = tripDates.stream().mapToInt(LocalDate::getYear).min().orElse(LocalDate.now().getYear());
         int maxYear = tripDates.stream().mapToInt(LocalDate::getYear).max().orElse(LocalDate.now().getYear());
@@ -32,30 +32,33 @@ public class Calendar {
 
             // Print 3 months per row
             for (int row = 0; row < 4; row++) {
-                for (int line = 0; line < 8; line++) { // Ensure all months have the same height
-                    for (int col = 0; col < 3; col++) {
-                        int monthIndex = row * 3 + col;
-                        if (monthIndex < months.size()) {
-                            System.out.print(padRight(months.get(monthIndex)[line], COLUMN_WIDTH) + " ".repeat(SPACING_BETWEEN_MONTHS));
-                        }
-                    }
-                    System.out.println();
-                }
-                System.out.println();
+                printRowOfMonths(months, row);
             }
         }
     }
 
-    // Construct the month calendar as an array of lines
+    private void printRowOfMonths(List<String[]> months, int row) {
+        int startIndex = row * 3;
+        int endIndex = Math.min(startIndex + 3, months.size());
+
+        for (int line = 0; line < 9; line++) { // 9 lines per month block
+            for (int i = startIndex; i < endIndex; i++) {
+                System.out.print("| " + padRight(months.get(i)[line], COLUMN_WIDTH) + " ");
+            }
+            System.out.println("|");
+        }
+        System.out.println("+" + "-".repeat(COLUMN_WIDTH + 2).repeat(3) + "+");
+    }
+
     private String[] getMonthCalendar(YearMonth yearMonth, Set<LocalDate> tripDates) {
         List<String> lines = new ArrayList<>();
         lines.add(padCenter(yearMonth.getMonth() + " " + yearMonth.getYear(), COLUMN_WIDTH));
         lines.add("Sun Mon Tue Wed Thu Fri Sat");
 
-        int firstDayOfMonth = yearMonth.atDay(1).getDayOfWeek().getValue() % 7; // Adjust to Sunday start
+        int firstDayOfMonth = yearMonth.atDay(1).getDayOfWeek().getValue() % 7;
         int daysInMonth = yearMonth.lengthOfMonth();
 
-        StringBuilder week = new StringBuilder("    ".repeat(firstDayOfMonth)); // Space for first week
+        StringBuilder week = new StringBuilder("    ".repeat(firstDayOfMonth));
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
             if (tripDates.contains(date)) {
@@ -69,11 +72,10 @@ public class Calendar {
             }
         }
 
-        while (lines.size() < 8) lines.add(" ".repeat(COLUMN_WIDTH)); // Ensure equal height for formatting
+        while (lines.size() < 9) lines.add(" ".repeat(COLUMN_WIDTH));
         return lines.toArray(new String[0]);
     }
 
-    // Get all dates within the trip durations
     private Set<LocalDate> getTripDates(String tripFile) {
         Set<LocalDate> tripDates = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(tripFile))) {
@@ -95,16 +97,13 @@ public class Calendar {
         return tripDates;
     }
 
-    // Pad a string with spaces to ensure alignment
     private String padRight(String text, int length) {
         return String.format("%-" + length + "s", text);
     }
 
-    // Center a string within a given length
     private String padCenter(String text, int length) {
         int padding = (length - text.length()) / 2;
         return " ".repeat(Math.max(0, padding)) + text + " ".repeat(Math.max(0, length - text.length() - padding));
     }
 
 }
-
