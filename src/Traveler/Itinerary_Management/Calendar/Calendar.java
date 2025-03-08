@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Calendar {
 
-    private static final String RED_COLOR = "\u001B[31m"; // ANSI escape code for red color
+    private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
 
     public void displayTripsOnCalendar(String tripFile) {
@@ -76,11 +76,11 @@ public class Calendar {
             System.out.print("   ");
         }
 
-        // Display each day, marking all trip dates in red
+        // Display each day, marking all trip dates in **bold red**
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
             if (tripDates.contains(date)) {
-                System.out.printf(RED_COLOR + "%2d " + RESET_COLOR, day); // Color marked date in red
+                System.out.printf(BOLD_RED + "%2d " + RESET_COLOR, day); // Bold red for trip dates
             } else {
                 System.out.printf("%2d ", day);
             }
@@ -91,3 +91,4 @@ public class Calendar {
         System.out.println("\n");
     }
 }
+
