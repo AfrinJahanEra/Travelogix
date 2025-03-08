@@ -19,10 +19,12 @@ public class TripManager {
         String destination = scanner.nextLine().trim();
 
         String startDate = "";
+        LocalDate startDateParsed = null;
         while (true) {
             System.out.print("Start date and time  : (yyyy-MM-dd HH:mm:ss) ");
             startDate = scanner.nextLine().trim();
             if (isValidDateTime(startDate)) {
+                startDateParsed = LocalDate.parse(startDate.split(" ")[0]); // Extract date part
                 break;
             } else {
                 System.out.println("Invalid format. Please follow the format yyyy-MM-dd HH:mm:ss.");
@@ -34,7 +36,12 @@ public class TripManager {
             System.out.print("End date and time    : (yyyy-MM-dd HH:mm:ss) ");
             endDate = scanner.nextLine().trim();
             if (isValidDateTime(endDate)) {
-                break;
+                LocalDate endDateParsed = LocalDate.parse(endDate.split(" ")[0]); // Extract date part
+                if (!endDateParsed.isBefore(startDateParsed)) {
+                    break;
+                } else {
+                    System.out.println("End date must be after the start date. Please try again.");
+                }
             } else {
                 System.out.println("Invalid format. Please follow the format yyyy-MM-dd HH:mm:ss.");
             }
