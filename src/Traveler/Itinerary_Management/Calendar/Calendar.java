@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Calendar {
-
     private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
-    private static final int COLUMN_WIDTH = 22; // Width of each month block
+    private static final int COLUMN_WIDTH = 32; // Increased width for better spacing
+    private static final int SPACING_BETWEEN_MONTHS = 6; // Space between months
 
     public void displayTripsOnCalendar(String tripFile) {
         Set<LocalDate> tripDates = getTripDates(tripFile); // Get all dates in trip durations
@@ -32,11 +32,11 @@ public class Calendar {
 
             // Print 3 months per row
             for (int row = 0; row < 4; row++) {
-                for (int line = 0; line < months.get(0).length; line++) {
+                for (int line = 0; line < 8; line++) { // Ensure all months have the same height
                     for (int col = 0; col < 3; col++) {
                         int monthIndex = row * 3 + col;
                         if (monthIndex < months.size()) {
-                            System.out.print(padRight(months.get(monthIndex)[line], COLUMN_WIDTH));
+                            System.out.print(padRight(months.get(monthIndex)[line], COLUMN_WIDTH) + " ".repeat(SPACING_BETWEEN_MONTHS));
                         }
                     }
                     System.out.println();
@@ -49,19 +49,19 @@ public class Calendar {
     // Construct the month calendar as an array of lines
     private String[] getMonthCalendar(YearMonth yearMonth, Set<LocalDate> tripDates) {
         List<String> lines = new ArrayList<>();
-        lines.add(yearMonth.getMonth() + " " + yearMonth.getYear());
-        lines.add("Su Mo Tu We Th Fr Sa");
+        lines.add(padCenter(yearMonth.getMonth() + " " + yearMonth.getYear(), COLUMN_WIDTH));
+        lines.add("Sun Mon Tue Wed Thu Fri Sat");
 
         int firstDayOfMonth = yearMonth.atDay(1).getDayOfWeek().getValue() % 7; // Adjust to Sunday start
         int daysInMonth = yearMonth.lengthOfMonth();
 
-        StringBuilder week = new StringBuilder("   ".repeat(firstDayOfMonth)); // Space for first week
+        StringBuilder week = new StringBuilder("    ".repeat(firstDayOfMonth)); // Space for first week
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
             if (tripDates.contains(date)) {
-                week.append(String.format(BOLD_RED + "%2d " + RESET_COLOR, day));
+                week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
             } else {
-                week.append(String.format("%2d ", day));
+                week.append(String.format("%2d  ", day));
             }
             if ((day + firstDayOfMonth) % 7 == 0 || day == daysInMonth) {
                 lines.add(week.toString());
@@ -69,7 +69,7 @@ public class Calendar {
             }
         }
 
-        while (lines.size() < 8) lines.add(""); // Ensure equal height for formatting
+        while (lines.size() < 8) lines.add(" ".repeat(COLUMN_WIDTH)); // Ensure equal height for formatting
         return lines.toArray(new String[0]);
     }
 
@@ -99,5 +99,12 @@ public class Calendar {
     private String padRight(String text, int length) {
         return String.format("%-" + length + "s", text);
     }
-    
+
+    // Center a string within a given length
+    private String padCenter(String text, int length) {
+        int padding = (length - text.length()) / 2;
+        return " ".repeat(Math.max(0, padding)) + text + " ".repeat(Math.max(0, length - text.length() - padding));
+    }
+
 }
+
