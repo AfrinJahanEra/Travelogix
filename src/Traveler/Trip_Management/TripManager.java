@@ -72,48 +72,54 @@ public class TripManager {
             String line;
             int index = 1;
 
-            System.out.println("════════════════════════════════════════════════════════════════════════════");
-            System.out.println("║ No. ║ Destination        ║ Start Date & Time      ║ End Date & Time        ║");
-            System.out.println("════════════════════════════════════════════════════════════════════════════");
+            // Improved header with balanced spacing
+            System.out.println("╔═════╦════════════════════╦═════════════════════════╦═════════════════════════╗");
+            System.out.println("║ No. ║ Destination        ║ Start Date & Time        ║ End Date & Time          ║");
+            System.out.println("╠═════╬════════════════════╬═════════════════════════╬═════════════════════════╣");
 
             while ((line = reader.readLine()) != null) {
                 String[] tripData = line.split(", ");
 
-                // Ensure data integrity
+                // Validation for incomplete data
                 if (tripData.length < 3) {
-                    System.out.printf("║ %-3d ║ %-18s ║ %-22s ║ %-22s ║\n",
+                    System.out.printf("║ %-3d ║ %-20s ║ %-25s ║ %-25s ║\n",
                             index, tripData[0], "INVALID DATA", "INVALID DATA");
                     continue;
                 }
 
                 try {
-                    // Parse and format the dates
+                    // Format the dates and times
                     LocalDateTime startDateTime = LocalDateTime.parse(tripData[1], inputFormatter);
                     LocalDateTime endDateTime = LocalDateTime.parse(tripData[2], inputFormatter);
 
                     String formattedStartDate = startDateTime.format(dateFormatter) + " " + startDateTime.format(timeFormatter);
                     String formattedEndDate = endDateTime.format(dateFormatter) + " " + endDateTime.format(timeFormatter);
 
-                    System.out.printf("║ %-3d ║ %-18s ║ %-22s ║ %-22s ║\n",
+                    System.out.printf("║ %-3d ║ %-20s ║ %-25s ║ %-25s ║\n",
                             index, tripData[0], formattedStartDate, formattedEndDate);
 
                 } catch (DateTimeParseException e) {
-                    System.out.printf("║ %-3d ║ %-18s ║ %-22s ║ %-22s ║\n",
+                    System.out.printf("║ %-3d ║ %-20s ║ %-25s ║ %-25s ║\n",
                             index, tripData[0], "INVALID DATE", "INVALID DATE");
                 }
 
                 index++;
             }
 
+            // Display message for no trips
             if (index == 1) {
-                System.out.println("║ No trips found.                                                         ║");
+                System.out.println("║ No trips found.                                                                            ║");
             }
 
-            System.out.println("════════════════════════════════════════════════════════════════════════════");
+            System.out.println("╚═════╩════════════════════╩═════════════════════════╩═════════════════════════╝");
+
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }
+
+
+
     private boolean isValidDateTime(String dateTime) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
