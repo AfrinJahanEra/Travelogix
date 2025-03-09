@@ -13,7 +13,7 @@ import java.util.Set;
 public class Calendar {
     private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
-    private static final String RED_FLAG = "⚠️" + RESET_COLOR; // Red flag for overlapping dates
+    private static final String RED_FLAG = "⚠️"; // Plain red flag for overlapping dates (no formatting)
     private static final int COLUMN_WIDTH = 28; // Width for each month block
 
     public void displayTripsOnCalendar(String tripFile) {
@@ -69,7 +69,7 @@ public class Calendar {
             if (allTripDates.contains(date)) {
                 // If it's an overlapping date, replace with red flag (⚠️)
                 if (overlappingDates.contains(date)) {
-                    week.append(String.format( RED_FLAG + " " + RESET_COLOR, day));
+                    week.append(String.format("%-4s", RED_FLAG));  // No color formatting for the flag
                 } else {
                     // Non-overlapping date: print in bold red
                     week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
@@ -186,4 +186,3 @@ public class Calendar {
         }
     }
 }
-
