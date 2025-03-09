@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class Calendar {
     private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
+
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
     private static final int COLUMN_WIDTH = 28; // Width for each month block
     private static final int SPACING = 3; // Space between months
@@ -37,6 +38,7 @@ public class Calendar {
         }
     }
 
+
     private void printRowOfMonths(List<String[]> months, int row) {
         int startIndex = row * 3;
         int endIndex = Math.min(startIndex + 3, months.size());
@@ -59,20 +61,37 @@ public class Calendar {
         int daysInMonth = yearMonth.lengthOfMonth();
 
         StringBuilder week = new StringBuilder("    ".repeat(firstDayOfMonth));
+        int printedDays = firstDayOfMonth;  // Tracks number of printed day slots
+
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
+
+            // Highlight trip dates
             if (tripDates.contains(date)) {
                 week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
             } else {
                 week.append(String.format("%2d  ", day));
             }
-            if ((day + firstDayOfMonth) % 7 == 0 || day == daysInMonth) {
+
+            printedDays++;
+
+            // Handle end-of-week or end-of-month scenarios
+            if (printedDays % 7 == 0 || day == daysInMonth) {
+                // Fill remaining spaces if it's the last row
+                int remainingDays = 7 - (printedDays % 7 == 0 ? 7 : printedDays % 7);
+                week.append("    ".repeat(remainingDays));
+
                 lines.add(week.toString());
                 week.setLength(0);
+                printedDays = 0; // Reset counter for the next row
             }
         }
 
-        while (lines.size() < 9) lines.add(" ".repeat(COLUMN_WIDTH));
+        // Ensure the month block always has 9 lines
+        while (lines.size() < 9) {
+            lines.add(" ".repeat(COLUMN_WIDTH));
+        }
+
         return lines.toArray(new String[0]);
     }
 
