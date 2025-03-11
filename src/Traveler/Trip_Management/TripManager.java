@@ -58,7 +58,6 @@ public class TripManager {
     }
 
     public void viewTripsOnCalendar() {
-        viewTrips();
         Calendar calendar = new Calendar();
         calendar.displayTripsOnCalendar(TRIP_FILE); 
     }

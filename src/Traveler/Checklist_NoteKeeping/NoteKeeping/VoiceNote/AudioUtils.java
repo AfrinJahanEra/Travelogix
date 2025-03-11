@@ -24,7 +24,7 @@ public class AudioUtils {
         }
     }
 
-    public static byte[] captureAudio(int durationMs) throws LineUnavailableException {
+    public static byte[] captureAudio(AudioRecorder recorder) throws LineUnavailableException {
         AudioFormat format = getAudioFormat();
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
 
@@ -35,9 +35,9 @@ public class AudioUtils {
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
-            long end = System.currentTimeMillis() + durationMs;
 
-            while (System.currentTimeMillis() < end) {
+            // Record audio indefinitely until isRecording is set to false
+            while (recorder.isRecording()) {
                 int bytesRead = line.read(buffer, 0, buffer.length);
                 out.write(buffer, 0, bytesRead);
             }

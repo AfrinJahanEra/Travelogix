@@ -9,5 +9,3 @@ public class Main {
         userAccess.start();
     }
 }
-
-// 2025-01-06 11:00:00

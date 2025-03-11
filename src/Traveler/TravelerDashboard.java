@@ -165,7 +165,7 @@ public class TravelerDashboard {
             int manageTripsOption = getIntInput();
             switch (manageTripsOption) {
                 case 1 -> t.viewTrips();
-                case 2 -> t.removeTrip();
+                // case 2 -> t.removeTrip();
                 case 3 -> isManaging = false; 
                 default -> {
                     System.out.println("\n");
