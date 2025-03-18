@@ -27,7 +27,7 @@ public class NoteWriter {
             noteContent.append(line).append(System.lineSeparator());
         }
 
-        // Saving the note content to a file
+        
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(noteContent.toString());
             System.out.println("Note saved successfully!");

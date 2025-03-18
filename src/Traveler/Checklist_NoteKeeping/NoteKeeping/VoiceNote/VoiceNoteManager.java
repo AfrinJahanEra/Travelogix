@@ -31,10 +31,10 @@ public class VoiceNoteManager {
                 voiceNotes.add(new String[]{fileName, date, time});
             }
 
-            // Sort by date and time (most recent first)
+            
             voiceNotes.sort((a, b) -> {
-                int dateComparison = b[1].compareTo(a[1]); // Compare dates
-                return dateComparison != 0 ? dateComparison : b[2].compareTo(a[2]); // Compare times if dates are equal
+                int dateComparison = b[1].compareTo(a[1]);
+                return dateComparison != 0 ? dateComparison : b[2].compareTo(a[2]); 
             });
         }
         return voiceNotes;

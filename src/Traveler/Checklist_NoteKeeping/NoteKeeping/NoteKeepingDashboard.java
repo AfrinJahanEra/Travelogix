@@ -58,7 +58,7 @@ public class NoteKeepingDashboard {
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine(); 
             }
         }
     }
@@ -66,7 +66,7 @@ public class NoteKeepingDashboard {
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); // Waits for the ENTER key press
+        enterScanner.nextLine(); 
     }
 
     private void clearTerminal() {

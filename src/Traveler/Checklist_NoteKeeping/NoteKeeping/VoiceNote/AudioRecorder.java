@@ -20,15 +20,15 @@ public class AudioRecorder {
 
             String filePath = voiceNoteManager.getNewVoiceNoteFilePath(noteName);
 
-            // Start a thread to listen for manual stop
+            
             Thread stopThread = new Thread(() -> {
                 System.out.println("Press ENTER to stop recording...");
-                scanner.nextLine(); // Wait for user input
-                isRecording = false; // Stop the recording
+                scanner.nextLine(); 
+                isRecording = false; 
             });
             stopThread.start();
 
-            // Capture audio indefinitely until user stops it
+            
             byte[] audioBytes = AudioUtils.captureAudio(this);
             System.out.println("Audio captured of length: " + audioBytes.length);
 
