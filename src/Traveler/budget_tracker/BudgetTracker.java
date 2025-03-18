@@ -108,9 +108,9 @@ public class BudgetTracker {
             return;
         }
 
-        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-        System.out.println("║        Category        ║        Budget       ║      Spending      ║          Remarks          ║          Remaining           ║");
-        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("║        Category        ║        Budget       ║      Spending      ║          Remarks          ║     Remaining      ║");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
         for (String line : lines) {
             String[] parts = line.split(",");
@@ -119,20 +119,25 @@ public class BudgetTracker {
             int totalSpending = Integer.parseInt(parts[2]);
             int extra = budget - totalSpending;
 
+            String plainRemaining = String.valueOf(Math.abs(extra)); // Get length without color codes
+            int columnWidth = 18; // Fixed column width for "Remaining"
+
+// Pad spaces BEFORE adding color to ensure uniform width
+            String formattedRemaining = String.format("%-" + columnWidth + "s", plainRemaining);
             // Check if the remaining amount (extra) is negative
             String remaining;
             if (extra < 0) {
                 // If negative, print the absolute value in red (without the minus sign)
-                remaining = "\u001B[31m" + Math.abs(extra) + "\u001B[0m";  // Red color for negative values without the minus sign
+                formattedRemaining = "\u001B[31m" + formattedRemaining + "\u001B[0m"; // Red color for negative values without the minus sign
                 // Add "Over Budget 🚨" message after the remaining amount
-                remaining += " Over Budget 🚨";
+                //remaining += " Over Budget";
             } else {
                 remaining = String.valueOf(extra);
             }
 
             if (parts.length == 3) { // No spending recorded
-                System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-28s ║\n",
-                        category, budget, "0", "null", remaining);
+                System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-18s ║\n",
+                        category, budget, "0", "null", formattedRemaining);
             } else {
                 for (int i = 3; i < parts.length; i++) {
                     String[] entryParts = parts[i].split("@");
@@ -144,16 +149,16 @@ public class BudgetTracker {
                     boolean firstRow = (i == 3); // Last spending entry
 
                     if (i == 3) {
-                        System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-28s ║\n",
-                                category, budget, spending, remark, firstRow ? remaining : 0);
+                        System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-18s ║\n",
+                                category, budget, spending, remark, firstRow ? formattedRemaining : 0);
                     } else {
-                        System.out.printf("║ %-22s ║ %-19s ║ %-18s ║ %-25s ║ %-28s ║\n",
-                                "", "", spending, remark, firstRow ? remaining : "");
+                        System.out.printf("║ %-22s ║ %-19s ║ %-18s ║ %-25s ║ %-18s ║\n",
+                                "", "", spending, remark, firstRow ? formattedRemaining : "");
                     }
                 }
             }
 
-            System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 
