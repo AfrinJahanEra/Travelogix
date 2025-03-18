@@ -50,11 +50,11 @@ public class Calendar {
 
         for (int line = 0; line < 9; line++) { // 9 lines per month block
             for (int i = startIndex; i < endIndex; i++) {
-                System.out.print("| " + padRight(months.get(i)[line], COLUMN_WIDTH) + " ");
+                System.out.print("║ " + padRight(months.get(i)[line], COLUMN_WIDTH) + " ");
             }
-            System.out.println("|");
+            System.out.println("║");
         }
-        System.out.println("+" + "-".repeat(COLUMN_WIDTH + 2).repeat(3) + "+");
+        System.out.println("═══" + "═".repeat(COLUMN_WIDTH + 2).repeat(3) + "═");
     }
 
     private String[] getMonthCalendar(YearMonth yearMonth, Set<LocalDate> allTripDates, Set<LocalDate> overlappingDates) {
