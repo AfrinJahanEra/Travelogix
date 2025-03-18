@@ -12,8 +12,8 @@ import java.util.Set;
 
 public class Calendar {
     private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
-    private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
     private static final String BOLD_BLUE = "\u001B[1;34m"; // Bold + blue text for overlapping dates
+    private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
     private static final int COLUMN_WIDTH = 28; // Width for each month block
 
     public void displayTripsOnCalendar(String tripFile) {
@@ -28,11 +28,17 @@ public class Calendar {
 
             List<String[]> months = new ArrayList<>();
             for (int month = 1; month <= 12; month++) {
-                months.add(getMonthCalendar(YearMonth.of(year, month), allTripDates, overlappingDates));
+                YearMonth currentYearMonth = YearMonth.of(year, month);
+                Set<LocalDate> tripDatesInMonth = getTripDatesInMonth(currentYearMonth, allTripDates);
+
+                // Only add months that have trip dates
+                if (!tripDatesInMonth.isEmpty()) {
+                    months.add(getMonthCalendar(currentYearMonth, allTripDates, overlappingDates));
+                }
             }
 
             // Print 3 months per row
-            for (int row = 0; row < 4; row++) {
+            for (int row = 0; row < (months.size() + 2) / 3; row++) {
                 printRowOfMonths(months, row);
             }
         }
@@ -99,6 +105,17 @@ public class Calendar {
         }
 
         return lines.toArray(new String[0]);
+    }
+
+
+    private Set<LocalDate> getTripDatesInMonth(YearMonth yearMonth, Set<LocalDate> allTripDates) {
+        Set<LocalDate> tripDatesInMonth = new HashSet<>();
+        for (LocalDate date : allTripDates) {
+            if (date.getYear() == yearMonth.getYear() && date.getMonth() == yearMonth.getMonth()) {
+                tripDatesInMonth.add(date);
+            }
+        }
+        return tripDatesInMonth;
     }
 
     private Set<LocalDate> getAllTripDates(String tripFile) {
