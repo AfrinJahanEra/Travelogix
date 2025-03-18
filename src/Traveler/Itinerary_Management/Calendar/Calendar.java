@@ -50,11 +50,12 @@ public class Calendar {
 
         for (int line = 0; line < 9; line++) { // 9 lines per month block
             for (int i = startIndex; i < endIndex; i++) {
-                System.out.print("║ " + padRight(months.get(i)[line], COLUMN_WIDTH) + " ");
+                System.out.print("║ " + padRight(months.get(i)[line], COLUMN_WIDTH) + "");
             }
             System.out.println("║");
         }
-        System.out.println("═══" + "═".repeat(COLUMN_WIDTH + 2).repeat(3) + "═");
+        System.out.println("═".repeat(COLUMN_WIDTH + 2).repeat(endIndex - startIndex) + "═");
+
     }
 
     private String[] getMonthCalendar(YearMonth yearMonth, Set<LocalDate> allTripDates, Set<LocalDate> overlappingDates) {
@@ -73,10 +74,10 @@ public class Calendar {
 
             // If the date is a trip date
             if (allTripDates.contains(date)) {
-                // If it's an overlapping date, replace with blue bold "XX"
+                // If it's an overlapping date, replace with red bold "XX"
                 if (overlappingDates.contains(date)) {
-                    // Print "XX" in blue and bold, padded to occupy 4 spaces
-                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  // "XX" in blue bold occupies 4 spaces
+                    // Print "XX" in red and bold, padded to occupy 4 spaces
+                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  // "XX" in red bold occupies 4 spaces
                 } else {
                     // Non-overlapping date: print in bold red
                     week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
@@ -204,3 +205,4 @@ public class Calendar {
         }
     }
 }
+
