@@ -12,7 +12,7 @@ public class CheckListdashBoard{
         Checklist checklist = new Checklist();
         AddItems addItems = new AddItems();
         MarkPacked markPacked = new MarkPacked();
-        DeleteItem deleteItem = new DeleteItem();  // Add this line
+        DeleteItem deleteItem = new DeleteItem();  
         DisplayCheckList displayCheckList = new DisplayCheckList();
         
         
@@ -25,9 +25,9 @@ public class CheckListdashBoard{
             System.out.println("                                              ║            CHECKLIST OF ITEMS            ║");
             System.out.println("                                              ╠══════════════════════════════════════════╣");
             System.out.println("                                              ║                                          ║");
-            System.out.println("                                              ║    [1] Add checklist items               ║");
-            System.out.println("                                              ║    [2] Mark packed items                 ║");
-            System.out.println("                                              ║    [3] Delete checklist item             ║");
+            System.out.println("                                              ║    [1] Add items                         ║");
+            System.out.println("                                              ║    [2] Mark items                        ║");
+            System.out.println("                                              ║    [3] Delete item                       ║");
             System.out.println("                                              ║    [4] Go back (Exit)                    ║");
             System.out.println("                                              ╚══════════════════════════════════════════╝");
 
@@ -42,7 +42,7 @@ public class CheckListdashBoard{
                     markPacked.markPacked(checklist);  
                     break;
                 case 3:
-                    deleteItem.deleteChecklistItem(checklist);  // Add this case
+                    deleteItem.deleteChecklistItem(checklist);  
                     break;
                 case 4:
                     System.out.println("Exiting the checklist manager. Goodbye!");
@@ -61,7 +61,7 @@ public class CheckListdashBoard{
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine(); 
             }
         }
     }
@@ -69,7 +69,7 @@ public class CheckListdashBoard{
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); // Waits for the ENTER key press
+        enterScanner.nextLine(); 
     }
 
     private void clearTerminal() {
