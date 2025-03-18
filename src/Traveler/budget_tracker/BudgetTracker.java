@@ -21,7 +21,7 @@ public class BudgetTracker {
             clearTerminal();
 
 
-            System.out.println("\n                                            ╔══════════════════════════════════════════╗");
+            System.out.println("\n                                              ╔══════════════════════════════════════════╗");
             System.out.println("                                              ║                PLAN A TRIP               ║");
             System.out.println("                                              ╠══════════════════════════════════════════╣");
             System.out.println("                                              ║                                          ║");
@@ -32,7 +32,6 @@ public class BudgetTracker {
             System.out.println("                                              ║    [5] Back to Main Menu                 ║");
             System.out.println("                                              ║                                          ║");
             System.out.println("                                              ╚══════════════════════════════════════════╝");
-
 
             String choiceStr = BasicUtils.takeStringInput("Choose an option: ");
             int choice;
