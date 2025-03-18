@@ -108,9 +108,9 @@ public class BudgetTracker {
             return;
         }
 
-        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-        System.out.println("║        Category       ║        Budget       ║      Spending     ║         Remarks       ║      Remaining     ║");
-        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("║        Category        ║        Budget       ║      Spending      ║          Remarks          ║          Remaining           ║");
+        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
         for (String line : lines) {
             String[] parts = line.split(",");
@@ -131,7 +131,7 @@ public class BudgetTracker {
             }
 
             if (parts.length == 3) { // No spending recorded
-                System.out.printf("| %-21s | %-19d | %-18s | %-21s | %-18s |\n",
+                System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-28s ║\n",
                         category, budget, "0", "null", remaining);
             } else {
                 for (int i = 3; i < parts.length; i++) {
@@ -144,16 +144,16 @@ public class BudgetTracker {
                     boolean firstRow = (i == 3); // Last spending entry
 
                     if (i == 3) {
-                        System.out.printf("| %-21s | %-19d | %-18s | %-21s | %-18s |\n",
+                        System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-28s ║\n",
                                 category, budget, spending, remark, firstRow ? remaining : 0);
                     } else {
-                        System.out.printf("| %-21s | %-19s | %-18s | %-21s | %-18s |\n",
+                        System.out.printf("║ %-22s ║ %-19s ║ %-18s ║ %-25s ║ %-28s ║\n",
                                 "", "", spending, remark, firstRow ? remaining : "");
                     }
                 }
             }
 
-            System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 
