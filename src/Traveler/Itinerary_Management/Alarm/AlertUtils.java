@@ -7,11 +7,11 @@ public class AlertUtils {
         while (true) {
             Date currentDate = new Date();
             if (currentDate.after(alertDate)) {
-                System.out.println("ALERT: " + message); // Display message
+                System.out.println("ALERT: " + message); 
                 break;
             }
             try {
-                Thread.sleep(1000); // Check every second
+                Thread.sleep(1000); 
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
