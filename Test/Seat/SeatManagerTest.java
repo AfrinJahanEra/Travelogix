@@ -48,7 +48,7 @@ class SeatManagerTest {
 
         String updatedLines = seatManager.updateBusDetails(lines, originalParts);
 
-        // Check the updated lines
+       
         assertTrue(updatedLines.contains("1A"));
         assertTrue(updatedLines.contains("Bus2"));
     }
