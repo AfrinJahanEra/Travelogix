@@ -19,15 +19,15 @@ public class NotewritingDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║                WRITE NOTES               ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] Add Note                          ║");
-            System.out.println("║    [2] Show Note                         ║");
-            System.out.println("║    [3] Delete Note                       ║");
-            System.out.println("║    [4] Go back (Exit)                    ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                              ╔══════════════════════════════════════════╗");
+            System.out.println("                                              ║                WRITE NOTES               ║");
+            System.out.println("                                              ╠══════════════════════════════════════════╣");
+            System.out.println("                                              ║                                          ║");
+            System.out.println("                                              ║    [1] Add Note                          ║");
+            System.out.println("                                              ║    [2] Show Note                         ║");
+            System.out.println("                                              ║    [3] Delete Note                       ║");
+            System.out.println("                                              ║    [4] Go back (Exit)                    ║");
+            System.out.println("                                              ╚══════════════════════════════════════════╝");
             
             System.out.print("Enter your choice: ");
             int choice = getIntInput();

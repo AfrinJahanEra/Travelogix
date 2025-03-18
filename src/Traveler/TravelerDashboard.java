@@ -25,16 +25,16 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("╔════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                           TRAVELER DASHBOARD                       ║");
-            System.out.println("╠════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║                                                                    ║");
-            System.out.println("║    [1] Plan Your Trips                                             ║");
-            System.out.println("║    [2] Trips & Past Activities                                     ║");
-            System.out.println("║    [3] Delete Account                                              ║");
-            System.out.println("║    [4] Log Out                                                     ║");
-            System.out.println("║                                                                    ║");
-            System.out.println("╚════════════════════════════════════════════════════════════════════╝");
+            System.out.println("                                    ╔════════════════════════════════════════════════════════════════════╗");
+            System.out.println("                                    ║                           TRAVELER DASHBOARD                       ║");
+            System.out.println("                                    ╠════════════════════════════════════════════════════════════════════╣");
+            System.out.println("                                    ║                                                                    ║");
+            System.out.println("                                    ║    [1] Plan Your Trips                                             ║");
+            System.out.println("                                    ║    [2] Trips & Past Activities                                     ║");
+            System.out.println("                                    ║    [3] Delete Account                                              ║");
+            System.out.println("                                    ║    [4] Log Out                                                     ║");
+            System.out.println("                                    ║                                                                    ║");
+            System.out.println("                                    ╚════════════════════════════════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
             int mainOption =  getIntInput();
@@ -42,8 +42,7 @@ public class TravelerDashboard {
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
                 case 2 -> new PastHistoryDashboard().historyDashboard(scanner);
-                case 3 -> new PastHistoryDashboard().historyDashboard(scanner);
-                case 4 -> {
+                case 3 -> {
                     if (new DeleteAccount().deleteAccount()) {
                         System.out.println("\n");
                         System.out.println("Account deleted successfully. Returning");
@@ -56,7 +55,7 @@ public class TravelerDashboard {
                         System.out.println("Account deletion cancelled or failed.     ");
                     }
                 }
-                case 5 -> {
+                case 4 -> {
                     System.out.println("\n");
                     System.out.println("Exiting Traveler Dashboard...    ");
                     isRunning = false;
@@ -110,18 +109,18 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║                PLAN A TRIP               ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] Add a Trip                        ║");
-            System.out.println("║    [2] Browse Transports                 ║");
-            System.out.println("║    [3] Manage Notes                      ║");
-            System.out.println("║    [4] Manage Itinerary                  ║");
-            System.out.println("║    [5] Track Budget                      ║");
-            System.out.println("║    [6] Back to Main Menu                 ║");
-            System.out.println("║                                          ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                            ╔══════════════════════════════════════════╗");
+            System.out.println("                                            ║                PLAN A TRIP               ║");
+            System.out.println("                                            ╠══════════════════════════════════════════╣");
+            System.out.println("                                            ║                                          ║");
+            System.out.println("                                            ║    [1] Add a Trip                        ║");
+            System.out.println("                                            ║    [2] Browse Transports                 ║");
+            System.out.println("                                            ║    [3] Manage Notes                      ║");
+            System.out.println("                                            ║    [4] Manage Itinerary                  ║");
+            System.out.println("                                            ║    [5] Track Budget                      ║");
+            System.out.println("                                            ║    [6] Back to Main Menu                 ║");
+            System.out.println("                                            ║                                          ║");
+            System.out.println("                                            ╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
             int planOption = getIntInput();
@@ -150,15 +149,15 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║               MANAGE TRIPS               ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] View Trips                        ║");
-            System.out.println("║    [2] Remove Trips                      ║");
-            System.out.println("║    [3] Back to Main Menu                 ║");
-            System.out.println("║                                          ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                            ╔══════════════════════════════════════════╗");
+            System.out.println("                                            ║               MANAGE TRIPS               ║");
+            System.out.println("                                            ╠══════════════════════════════════════════╣");
+            System.out.println("                                            ║                                          ║");
+            System.out.println("                                            ║    [1] View Trips                        ║");
+            System.out.println("                                            ║    [2] Remove Trips                      ║");
+            System.out.println("                                            ║    [3] Back to Main Menu                 ║");
+            System.out.println("                                            ║                                          ║");
+            System.out.println("                                            ╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
             int manageTripsOption = getIntInput();
@@ -198,15 +197,15 @@ public class TravelerDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║             MANAGE ITINERARY             ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] View Trips on Calendar            ║");
-            System.out.println("║    [2] Set Reminder                      ║");
-            System.out.println("║    [3] Back to Main Menu                 ║");
-            System.out.println("║                                          ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                             ╔══════════════════════════════════════════╗");
+            System.out.println("                                             ║             MANAGE ITINERARY             ║");
+            System.out.println("                                             ╠══════════════════════════════════════════╣");
+            System.out.println("                                             ║                                          ║");
+            System.out.println("                                             ║    [1] View Trips on Calendar            ║");
+            System.out.println("                                             ║    [2] Set Reminder                      ║");
+            System.out.println("                                             ║    [3] Back to Main Menu                 ║");
+            System.out.println("                                             ║                                          ║");
+            System.out.println("                                             ╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
             int manageItineraryOption = getIntInput();

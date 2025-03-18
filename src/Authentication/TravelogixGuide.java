@@ -11,43 +11,50 @@ public class TravelogixGuide {
         clearTerminal();
         // Print ASCII Art Logo
         printAsciiArt();
-        
+
         // Display How-To-Use Guide
         printUserGuide();
     }
 
     // Method to Print ASCII Art
     public static void printAsciiArt() {
-        System.out.println("====================================================");
-        System.out.println("  ████████╗██████╗  █████╗ ██╗   ██╗███████╗██╗     ");
-        System.out.println("  ╚══██╔══╝██╔══██╗██╔══██╗██║   ██║██╔════╝██║     ");
-        System.out.println("     ██║   ██████╔╝███████║██║   ██║█████╗  ██║     ");
-        System.out.println("     ██║   ██╔═══╝ ██╔══██║██║   ██║██╔══╝  ██║     ");
-        System.out.println("     ██║   ██║     ██║  ██║╚██████╔╝███████╗███████╗");
-        System.out.println("     ╚═╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝");
-        System.out.println("====================================================");
-        System.out.println("                Welcome to Travelogix!");
-        System.out.println("       Simplify your travel planning experience.\n");
+
+        System.out.println("                                               =============================================");
+        System.out.println("                                                 ████████╗  ██╗   ██╗ ██  █████╗   ██████╗ ");
+        System.out.println("                                                 ██╔═════╝  ██║   ██║ ██║ ██╔══██╗ ██╔═══╝ ");
+        System.out.println("                                                 ██║  ███╗  ██║   ██║ ██║ ██║  ██║ █████╗   ");
+        System.out.println("                                                 ██║   ██║  ██║   ██║ ██║ ██║  ██║ ██╔══╝   ");
+        System.out.println("                                                 ╚██████╔╝  ╚██████╝  ██║ ██████╔╝ ███████╗");
+        System.out.println("                                                 ╚═════╝     ╚════╝   ╚═╝ ╚═════╝  ╚══════╝ ");
+        System.out.println("                                               =============================================");
+
+        System.out.println("                                                        Welcome to Travelogix!");
+        System.out.println("                                               Simplify your travel planning experience.\n");
     }
 
     // Method to Print How-To-Use Guide
     public static void printUserGuide() {
-        System.out.println("=============== HOW TO USE TRAVELOGIX ===============");
-        System.out.println("1.Launch the system by running the program.");
-        System.out.println("2.Enter your role when prompted: ");
-        System.out.println("     - Type 'traveler' for a Traveler Dashboard");
-        System.out.println("     - Type 'transport' for a Transport Agency Dashboard");
-        System.out.println("     - Type 'admin' for an Admin Dashboard");
-        System.out.println("3.The system will display your role-specific dashboard.");
-        System.out.println("4.Choose an option from the menu and follow the instructions.");
-        System.out.println("5.To exit, close the program or type 'exit' if applicable.");
-        System.out.println("=====================================================");
+        System.out.println("                                           =============== HOW TO USE TRAVELOGIX ===============");
+        System.out.println("                                       ");
+        System.out.println("                                       1.Create an account if You don't have any other wise press login");
+        System.out.println("                                       ");
+        System.out.println("                                                      2.Enter your role when prompted: ");
+        System.out.println("                                           - Choose 'traveler' for a Traveler Dashboard");
+        System.out.println("                                           - Choose 'transport' for a Transport Agency Dashboard");
+        System.out.println("                                           - Choose 'admin' for an Admin Dashboard");
+        System.out.println("                                       ");
+        System.out.println("                                       3.The system will display your role-specific dashboard.");
+        System.out.println("                                       ");
+        System.out.println("                                       4.Choose an option from the menu and follow the instructions .");
+        System.out.println("                                       ");
+        System.out.println("                                              5.To exit, close the program or press 'exit' key.");
+        System.out.println("                                           =====================================================");
     }
 
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); 
+        enterScanner.nextLine();
     }
 
     private void clearTerminal() {

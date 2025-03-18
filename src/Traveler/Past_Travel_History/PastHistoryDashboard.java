@@ -23,24 +23,22 @@ public class PastHistoryDashboard {
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║                PLAN A TRIP               ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] View all Trips                    ║");
-            System.out.println("║    [2] View Past Trips                   ║"); 
-            System.out.println("║    [3] Year Wise Past Trips              ║");
-            System.out.println("║    [4] Back to Main Menu                 ║");
-            System.out.println("║                                          ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                      ╔══════════════════════════════════════════╗");
+            System.out.println("                                      ║                PLAN A TRIP               ║");
+            System.out.println("                                      ╠══════════════════════════════════════════╣");
+            System.out.println("                                      ║                                          ║");
+            System.out.println("                                      ║    [1] View all Trips                    ║");
+            System.out.println("                                      ║    [2] Year Wise Past Trips              ║");
+            System.out.println("                                      ║    [3] Back to Main Menu                 ║");
+            System.out.println("                                      ║                                          ║");
+            System.out.println("                                      ╚══════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
 
             int planOption = getIntInput();
             switch (planOption) {
                 case 1 -> travelerDashboard.showManageTripsOptions(scanner);
-                case 2 -> tripHistoryViewer.viewPastTrips();
-                case 3 -> new TripHistoryViewer().viewYearWiseTrips();
-                case 4 -> isPlanning = false;  
+                case 2 -> new TripHistoryViewer().viewYearWiseTrips();
+                case 3 -> isPlanning = false;  
                 default -> {
                     System.out.println("\n");
                     System.out.println("Invalid option. Please try again." );

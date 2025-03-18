@@ -21,15 +21,15 @@ public class CheckListdashBoard{
             waitForEnterKey();
             clearTerminal();
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║            CHECKLIST OF ITEMS            ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] Add checklist items               ║");
-            System.out.println("║    [2] Mark packed items                 ║");
-            System.out.println("║    [3] Delete checklist item             ║");
-            System.out.println("║    [4] Go back (Exit)                    ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                              ╔══════════════════════════════════════════╗");
+            System.out.println("                                              ║            CHECKLIST OF ITEMS            ║");
+            System.out.println("                                              ╠══════════════════════════════════════════╣");
+            System.out.println("                                              ║                                          ║");
+            System.out.println("                                              ║    [1] Add checklist items               ║");
+            System.out.println("                                              ║    [2] Mark packed items                 ║");
+            System.out.println("                                              ║    [3] Delete checklist item             ║");
+            System.out.println("                                              ║    [4] Go back (Exit)                    ║");
+            System.out.println("                                              ╚══════════════════════════════════════════╝");
 
             System.out.print("Enter your choice: ");
             int choice = getIntInput();

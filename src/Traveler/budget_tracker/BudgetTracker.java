@@ -4,7 +4,6 @@ import Traveler.Itinerary_Management.Alarm.SoundUtils;
 import Utilities.utils.AdvancedFileUtils;
 import Utilities.utils.BasicFileUtils;
 import Utilities.utils.BasicUtils;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -22,17 +21,17 @@ public class BudgetTracker {
             clearTerminal();
 
 
-            System.out.println("\n╔══════════════════════════════════════════╗");
-            System.out.println("║                PLAN A TRIP               ║");
-            System.out.println("╠══════════════════════════════════════════╣");
-            System.out.println("║                                          ║");
-            System.out.println("║    [1] Set Categories and Limits         ║");
-            System.out.println("║    [2] View Total Spending               ║");
-            System.out.println("║    [3] Update Spending                   ║");
-            System.out.println("║    [4] View Spending Pie Chart           ║");
-            System.out.println("║    [5] Back to Main Menu                 ║");
-            System.out.println("║                                          ║");
-            System.out.println("╚══════════════════════════════════════════╝");
+            System.out.println("\n                                            ╔══════════════════════════════════════════╗");
+            System.out.println("                                              ║                PLAN A TRIP               ║");
+            System.out.println("                                              ╠══════════════════════════════════════════╣");
+            System.out.println("                                              ║                                          ║");
+            System.out.println("                                              ║    [1] Set Categories and Limits         ║");
+            System.out.println("                                              ║    [2] View Total Spending               ║");
+            System.out.println("                                              ║    [3] Update Spending                   ║");
+            System.out.println("                                              ║    [4] View Spending Pie Chart           ║");
+            System.out.println("                                              ║    [5] Back to Main Menu                 ║");
+            System.out.println("                                              ║                                          ║");
+            System.out.println("                                              ╚══════════════════════════════════════════╝");
 
 
             String choiceStr = BasicUtils.takeStringInput("Choose an option: ");

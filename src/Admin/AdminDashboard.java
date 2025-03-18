@@ -18,14 +18,14 @@ public class AdminDashboard {
             clearTerminal();
 
             System.out.println();
-            System.out.println("╔════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                                ADMIN MENU                              ║");
-            System.out.println("╠════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║ [1]  Approve Requests from Transport Agencies                          ║");
-            System.out.println("║ [2]  View Login Information                                            ║");
-            System.out.println("║ [3]  Delete Account                                                    ║");
-            System.out.println("║ [4]  Log Out                                                           ║");
-            System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("                            ╔════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("                            ║                                ADMIN MENU                              ║");
+            System.out.println("                            ╠════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("                            ║ [1]  Approve Requests from Transport Agencies                          ║");
+            System.out.println("                            ║ [2]  View Login Information                                            ║");
+            System.out.println("                            ║ [3]  Delete Account                                                    ║");
+            System.out.println("                            ║ [4]  Log Out                                                           ║");
+            System.out.println("                            ╚════════════════════════════════════════════════════════════════════════╝");
             System.out.println();
 
             int choice = -1; // Default invalid choice

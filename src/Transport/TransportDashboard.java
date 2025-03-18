@@ -50,17 +50,17 @@ public class TransportDashboard {
     private void displayMainMenu() {
         clearTerminal();
 
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║            TRANSPORT DASHBOARD         ║");
-        System.out.println("╠════════════════════════════════════════╣");
-        System.out.println("║                                        ║");
-        System.out.println("║    [1] Add Bus                         ║");
-        System.out.println("║    [2] View Bus List                   ║");
-        System.out.println("║    [3] Bus Options                     ║");
-        System.out.println("║    [4] Delete Account                  ║");
-        System.out.println("║    [5] Log Out                         ║");
-        System.out.println("║                                        ║");
-        System.out.println("╚════════════════════════════════════════╝");
+        System.out.println("                                              ╔════════════════════════════════════════╗");
+        System.out.println("                                              ║            TRANSPORT DASHBOARD         ║");
+        System.out.println("                                              ╠════════════════════════════════════════╣");
+        System.out.println("                                              ║                                        ║");
+        System.out.println("                                              ║    [1] Add Bus                         ║");
+        System.out.println("                                              ║    [2] View Bus List                   ║");
+        System.out.println("                                              ║    [3] Bus Options                     ║");
+        System.out.println("                                              ║    [4] Delete Account                  ║");
+        System.out.println("                                              ║    [5] Log Out                         ║");
+        System.out.println("                                              ║                                        ║");
+        System.out.println("                                              ╚════════════════════════════════════════╝");
     }
 
     private void addBus() throws IOException {
@@ -76,16 +76,16 @@ public class TransportDashboard {
 
         ViewBusList viewBusList = new ViewBusList("src\\TXT_Files\\bus.txt");
 
-        System.out.println("\n╔══════════════════════════════════════════╗");
-        System.out.println("║               VIEW BUS LIST              ║");
-        System.out.println("╠══════════════════════════════════════════╣");
-        System.out.println("║                                          ║");
-        System.out.println("║    View by:                              ║");
-        System.out.println("║    [n] Number Plate                      ║");
-        System.out.println("║    [s] Starting Location                 ║");
-        System.out.println("║    [e] Ending Location                   ║");
-        System.out.println("║                                          ║");
-        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.println("\n                                              ╔══════════════════════════════════════════╗");
+        System.out.println("                                              ║               VIEW BUS LIST              ║");
+        System.out.println("                                              ╠══════════════════════════════════════════╣");
+        System.out.println("                                              ║                                          ║");
+        System.out.println("                                              ║    View by:                              ║");
+        System.out.println("                                              ║    [n] Number Plate                      ║");
+        System.out.println("                                              ║    [s] Starting Location                 ║");
+        System.out.println("                                              ║    [e] Ending Location                   ║");
+        System.out.println("                                              ║                                          ║");
+        System.out.println("                                              ╚══════════════════════════════════════════╝");
 
         // String s = sc.next().trim();
 
@@ -113,16 +113,16 @@ public class TransportDashboard {
 
         clearTerminal();
 
-        System.out.println("\n╔══════════════════════════════════════════╗");
-        System.out.println("║               BUS OPTIONS                ║");
-        System.out.println("╠══════════════════════════════════════════╣");
-        System.out.println("║                                          ║");
-        System.out.println("║    [v] View Bus Details                  ║");
-        System.out.println("║    [e] Edit Bus Details                  ║");
-        System.out.println("║    [b] Book a Seat                       ║");
-        System.out.println("║    [d] Delete Bus                        ║");
-        System.out.println("║                                          ║");
-        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.println("\n                                              ╔══════════════════════════════════════════╗");
+        System.out.println("                                              ║               BUS OPTIONS                ║");
+        System.out.println("                                              ╠══════════════════════════════════════════╣");
+        System.out.println("                                              ║                                          ║");
+        System.out.println("                                              ║    [v] View Bus Details                  ║");
+        System.out.println("                                              ║    [e] Edit Bus Details                  ║");
+        System.out.println("                                              ║    [b] Book a Seat                       ║");
+        System.out.println("                                              ║    [d] Delete Bus                        ║");
+        System.out.println("                                              ║                                          ║");
+        System.out.println("                                              ╚══════════════════════════════════════════╝");
 
         String s = getValidStringInput("Enter your choice: ", "[vVeEbBdD]");
 
