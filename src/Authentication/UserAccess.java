@@ -164,17 +164,17 @@ public class UserAccess {
                 "█    █ "
         };
 
-        // Prepare ASCII art for the input message
-        String[] rows = new String[5]; // Each letter has 5 rows
+     
+        String[] rows = new String[5]; 
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = ""; // Initialize rows
+            rows[i] = ""; 
         }
 
         for (char c : message.toUpperCase().toCharArray()) {
             if (c >= 'A' && c <= 'Z') {
                 String[] letterArt = alphabet[c - 'A'];
                 for (int i = 0; i < rows.length; i++) {
-                    rows[i] += letterArt[i] + "  "; // Add spacing between letters
+                    rows[i] += letterArt[i] + "  "; 
                 }
             }
         }
