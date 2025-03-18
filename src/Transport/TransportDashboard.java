@@ -87,18 +87,7 @@ public class TransportDashboard {
         System.out.println("                                              ║                                          ║");
         System.out.println("                                              ╚══════════════════════════════════════════╝");
 
-        // String s = sc.next().trim();
-
-        // switch (s.toLowerCase()) {
-        //     case "n" -> System.out.println(viewBusList.list(4));
-        //     case "s" -> System.out.println(viewBusList.list(1));
-        //     case "e" -> System.out.println(viewBusList.list(2));
-        //     default -> {
-        //         System.out.println("\n");
-        //         System.out.println("Invalid input! Please enter 'n',");
-        //         System.out.println("'s', or 'e'.                    ");
-        //     }
-        // }
+        
         String input = getValidStringInput("Enter your choice: ", "[nNsSeE]");
 
         switch (input.toLowerCase()) {
