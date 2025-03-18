@@ -25,7 +25,7 @@ public class UserAccess {
             System.out.println("                                        ║           Main Menu                ║");
             System.out.println("                                        ╠════════════════════════════════════╣");
             System.out.println("                                        ║           1. Login                 ║");
-            System.out.println("                                        ║           2. Create an Account     ║");
+            System.out.println("                                        ║           2. Create Account        ║");
             System.out.println("                                        ║           3. How to Use            ║");
             System.out.println("                                        ║           0. Exit                  ║");
             System.out.println("                                        ╚════════════════════════════════════╝");
