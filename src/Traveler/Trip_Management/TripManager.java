@@ -57,10 +57,13 @@ public class TripManager {
         }
     }
 
+
     public void viewTripsOnCalendar() {
+        //  viewTrips();
         Calendar calendar = new Calendar();
-        calendar.displayTripsOnCalendar(TRIP_FILE); 
+        calendar.displayTripsOnCalendar(TRIP_FILE);
     }
+
 
     public void viewTrips() {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -115,6 +118,74 @@ public class TripManager {
     }
 
 
+
+
+    public void removeTrip() {
+        viewTrips();
+
+        int serialNumber = -1;
+        while (true) {
+            System.out.print("Enter the index of the trip you want to remove: ");
+            try {
+                serialNumber = Integer.parseInt(scanner.nextLine().trim());
+                if (serialNumber > 0) {
+                    break;
+                } else {
+                    System.out.println("Please enter a positive integer.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        }
+
+        File tripFile = new File(TRIP_FILE);
+        File tempFile = new File("src\\TXT_Files\\temp.txt");
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(tripFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            int currentLine = 1;
+            boolean found = false;
+
+            while ((line = reader.readLine()) != null) {
+                String[] tripData = line.split(", ");
+                LocalDate startDate = LocalDate.parse(tripData[1].split(" ")[0], dateFormatter);
+                if (currentLine == serialNumber) {
+                    if (startDate.isBefore(today)) {
+                        System.out.println("Cannot remove previous trips.");
+                        writer.write(line);
+                        writer.newLine();
+                    } else {
+                        found = true;
+                        System.out.println("Trip at serial number " + serialNumber + " has been removed.");
+                    }
+                } else {
+                    writer.write(line);
+                    writer.newLine();
+                }
+                currentLine++;
+            }
+
+            if (!found) {
+                System.out.println("Trip with serial number " + serialNumber + " not found or cannot be removed.");
+            }
+
+        } catch (IOException | DateTimeParseException e) {
+            System.out.println("Error handling file: " + e.getMessage());
+            return;
+        }
+
+        if (tripFile.delete()) {
+            if (!tempFile.renameTo(tripFile)) {
+                System.out.println("Error renaming temp file to original trip file.");
+            }
+        } else {
+            System.out.println("Error deleting original trip file.");
+        }
+    }
     private boolean isValidDateTime(String dateTime) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

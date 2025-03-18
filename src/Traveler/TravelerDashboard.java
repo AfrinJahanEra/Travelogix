@@ -29,11 +29,10 @@ public class TravelerDashboard {
             System.out.println("║                           TRAVELER DASHBOARD                       ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════╣");
             System.out.println("║                                                                    ║");
-            System.out.println("║    [1] Plan a Trip                                                 ║");
-            System.out.println("║    [2] Manage Trips                                                ║");
-            System.out.println("║    [3] Past Travel History                                         ║");
-            System.out.println("║    [4] Delete Account                                              ║");
-            System.out.println("║    [5] Log Out                                                     ║");
+            System.out.println("║    [1] Plan Your Trips                                             ║");
+            System.out.println("║    [2] Trips & Past Activities                                     ║");
+            System.out.println("║    [3] Delete Account                                              ║");
+            System.out.println("║    [4] Log Out                                                     ║");
             System.out.println("║                                                                    ║");
             System.out.println("╚════════════════════════════════════════════════════════════════════╝");
             System.out.print("Enter your choice: ");
@@ -42,7 +41,7 @@ public class TravelerDashboard {
 
             switch (mainOption) {
                 case 1 -> showPlanATripOptions(scanner);
-                case 2 -> showManageTripsOptions(scanner);
+                case 2 -> new PastHistoryDashboard().historyDashboard(scanner);
                 case 3 -> new PastHistoryDashboard().historyDashboard(scanner);
                 case 4 -> {
                     if (new DeleteAccount().deleteAccount()) {
@@ -142,7 +141,7 @@ public class TravelerDashboard {
     }
 
 
-    private void showManageTripsOptions(Scanner scanner) {
+    public void showManageTripsOptions(Scanner scanner) {
 
         boolean isManaging = true;
 
@@ -165,7 +164,7 @@ public class TravelerDashboard {
             int manageTripsOption = getIntInput();
             switch (manageTripsOption) {
                 case 1 -> t.viewTrips();
-                // case 2 -> t.removeTrip();
+                case 2 -> t.removeTrip();
                 case 3 -> isManaging = false; 
                 default -> {
                     System.out.println("\n");

@@ -1,11 +1,17 @@
 package Traveler.Past_Travel_History;
 
+import Traveler.TravelerDashboard;
+import Traveler.Trip_Management.TripManager;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class PastHistoryDashboard {
+
+    TripManager tripManager = new TripManager();
+    TravelerDashboard travelerDashboard = new TravelerDashboard();
+    TripHistoryViewer tripHistoryViewer = new TripHistoryViewer();
 
     Scanner scanner = new Scanner(System.in);
     public void historyDashboard(Scanner scanner) {
@@ -21,9 +27,9 @@ public class PastHistoryDashboard {
             System.out.println("║                PLAN A TRIP               ║");
             System.out.println("╠══════════════════════════════════════════╣");
             System.out.println("║                                          ║");
-            System.out.println("║    [1] All Trip History                  ║");
-            System.out.println("║    [2] Year Wise Trip                    ║");
-            System.out.println("║    [3] Itinary History Summary           ║");
+            System.out.println("║    [1] View all Trips                    ║");
+            System.out.println("║    [2] View Past Trips                   ║"); 
+            System.out.println("║    [3] Year Wise Past Trips              ║");
             System.out.println("║    [4] Back to Main Menu                 ║");
             System.out.println("║                                          ║");
             System.out.println("╚══════════════════════════════════════════╝");
@@ -31,9 +37,9 @@ public class PastHistoryDashboard {
 
             int planOption = getIntInput();
             switch (planOption) {
-                case 1 -> new TripHistoryViewer().viewPastTrips();
-                case 2 -> new TripHistoryViewer().viewYearWiseTrips();
-                case 3 -> new AlarmHistoryManager().viewAlarmHistory();  
+                case 1 -> travelerDashboard.showManageTripsOptions(scanner);
+                case 2 -> tripHistoryViewer.viewPastTrips();
+                case 3 -> new TripHistoryViewer().viewYearWiseTrips();
                 case 4 -> isPlanning = false;  
                 default -> {
                     System.out.println("\n");
@@ -42,6 +48,7 @@ public class PastHistoryDashboard {
             }
         }
     }
+    
 
 
     
