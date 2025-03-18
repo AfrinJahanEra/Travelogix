@@ -256,7 +256,7 @@ public class BudgetTracker {
         int[] spendingValues = new int[lines.size()];
         String[] categories = new String[lines.size()];
 
-        System.out.println("\nExpense Breakdown (Expected (░) vs. Actual Spending (█)):\n");
+        System.out.println("\nExpense Breakdown (Expected (▓) vs. Actual Spending (█)):\n");
 
         for (int i = 0; i < lines.size(); i++) {
             String[] parts = lines.get(i).split(",");
@@ -287,9 +287,9 @@ public class BudgetTracker {
             System.out.printf("Spent: %-6d | Budget: %-6d | %3d%%\n",
                     spendingValues[i], limitSpending[i], percentage);
 
-            // Print expected budget bar (░)
+            // Print expected budget bar (▓)
             for (int j = 0; j < maxBarLength; j++) {
-                System.out.print("░");
+                System.out.print("▓");
             }
             System.out.println();
 
