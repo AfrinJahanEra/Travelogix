@@ -73,10 +73,10 @@ public class Calendar {
 
             // If the date is a trip date
             if (allTripDates.contains(date)) {
-                // If it's an overlapping date, replace with red bold "XX"
+                // If it's an overlapping date, replace with blue bold "XX"
                 if (overlappingDates.contains(date)) {
-                    // Print "XX" in red and bold, padded to occupy 4 spaces
-                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  // "XX" in red bold occupies 4 spaces
+                    // Print "XX" in blue and bold, padded to occupy 4 spaces
+                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  // "XX" in blue bold occupies 4 spaces
                 } else {
                     // Non-overlapping date: print in bold red
                     week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
