@@ -11,18 +11,18 @@ public class Custom_Authentication {
     private String email;
     private String password;
 
-    // Custom equalsIgnoreCase method
+    
     private boolean equalsIgnoreCase(String str1, String str2) {
-        if (str1 == str2) return true; // Same object or both null
-        if (str1 == null || str2 == null) return false; // One is null
-        if (custom_length(str1) != custom_length(str2)) return false; // Different lengths
+        if (str1 == str2) return true; 
+        if (str1 == null || str2 == null) return false; 
+        if (custom_length(str1) != custom_length(str2)) return false; 
 
-        // Compare each character, ignoring case
+       
         for (int i = 0; i < custom_length(str1); i++) {
             char ch1 = charAt(str1, i);
             char ch2 = charAt(str2, i);
-            if (ch1 >= 'A' && ch1 <= 'Z') ch1 += 'a' - 'A'; // Convert to lowercase
-            if (ch2 >= 'A' && ch2 <= 'Z') ch2 += 'a' - 'A'; // Convert to lowercase
+            if (ch1 >= 'A' && ch1 <= 'Z') ch1 += 'a' - 'A'; 
+            if (ch2 >= 'A' && ch2 <= 'Z') ch2 += 'a' - 'A'; 
             if (ch1 != ch2) return false;
         }
         return true;
@@ -30,13 +30,13 @@ public class Custom_Authentication {
 
 
 
-    // Custom equals method
+    
     private boolean equals(String str1, String str2) {
-        if (str1 == str2) return true; // Same object or both null
-        if (str1 == null || str2 == null) return false; // One is null
-        if (custom_length(str1) != custom_length(str2)) return false; // Different lengths
+        if (str1 == str2) return true; 
+        if (str1 == null || str2 == null) return false; 
+        if (custom_length(str1) != custom_length(str2)) return false; 
 
-        // Compare each character
+        
         for (int i = 0; i < custom_length(str1); i++) {
             if (charAt(str1, i) != charAt(str2, i)) return false;
         }
@@ -44,13 +44,13 @@ public class Custom_Authentication {
     }
     
 
-    // Custom toString method
+    
     @Override
     public String toString() {
         return "Role: " + role + ", Name: " + name + ", Phone Number: " + phoneNumber + ", Email: " + email;
     }
 
-    // Method to get password input with masking
+    
     public String readPassword(String prompt) {
         StringBuilder password = new StringBuilder();
         System.out.print(prompt);
@@ -60,7 +60,7 @@ public class Custom_Authentication {
                 if (input == '\n' || input == '\r')
                     break;
                 password.append((char) input);
-                System.out.print("*"); // Mask input with *
+                System.out.print("*"); 
             }
         } catch (IOException e) {
             System.out.println("Error reading password");
@@ -68,7 +68,7 @@ public class Custom_Authentication {
         return password.toString();
     }
 
-    // Custom hashing utility class to replace MD5
+    
     public static class CustomHash {
         private final int[] hashValues = { 0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476 };
 
@@ -85,7 +85,7 @@ public class Custom_Authentication {
         }
     }
 
-    // Encrypt password method
+    
     public String encryptPassword(String password) throws NoSuchAlgorithmException {
         CustomHash customHash = new CustomHash().getInstance();
         byte[] passwordBytes = getBytes(password);
@@ -100,7 +100,7 @@ public class Custom_Authentication {
         return hexString.toString();
     }
 
-    // Custom getBytes method to convert a string to a byte array
+    
     private byte[] getBytes(String input) {
         byte[] bytes = new byte[custom_length(input)];
         for (int i = 0; i < custom_length(input); i++) {
@@ -109,37 +109,37 @@ public class Custom_Authentication {
         return bytes;
     }
 
-    // Custom charAt method
+    
     public char charAt(String str, int index) {
         if (index < 0 || index >= custom_length(str)) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + custom_length(str));
         }
 
-        char[] charArray = custom_toCharArray(str); // Convert string to character array
-        return charArray[index]; // Return the character at the specified index
+        char[] charArray = custom_toCharArray(str); 
+        return charArray[index]; 
     }
 
-    // Custom length method
+    
     public int custom_length(String str) {
         int count = 0;
         try {
             while (true) {
-                charAt(str, count); // Access each character
+                charAt(str, count); 
                 count++;
             }
         } catch (IndexOutOfBoundsException e) {
-            // Exception indicates end of string
+            
         }
         return count;
     }
 
-    // Custom toCharArray method
+    
     public char[] custom_toCharArray(String str) {
         int len = custom_length(str);
         char[] charArray = new char[len];
 
         for (int i = 0; i < len; i++) {
-            charArray[i] = charAt(str, i); // Manually fill character array
+            charArray[i] = charAt(str, i); 
         }
         return charArray;
     }
