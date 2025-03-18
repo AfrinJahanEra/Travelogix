@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Calendar {
-    private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
+    private static final String BOLD_RED = "\u001B[1;91m"; // Bold + Red text
     private static final String BOLD_BLUE = "\u001B[1;34m"; // Bold + blue text for overlapping dates
     private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
     private static final int COLUMN_WIDTH = 28; // Width for each month block
