@@ -35,6 +35,6 @@ public class Checklist {
         totalItems--;
     }
 
-    // public abstract void manageChecklist();
+   
     
 }

@@ -12,14 +12,14 @@ class Test_isValidUser {
     @Test
     public void test1(){
         Authentication a= new Authentication();
-        assertTrue(a.isValidUser("sharley@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
+        assertTrue(a.isValidUser("admin@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
 
     }
 
     @Test
     public void test2(){
         Authentication a= new Authentication();
-        assertTrue(a.isValidUser("rina@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
+        assertTrue(a.isValidUser("transport@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
 
     }
 

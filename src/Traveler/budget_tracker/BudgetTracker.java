@@ -21,18 +21,17 @@ public class BudgetTracker {
             clearTerminal();
 
 
-            System.out.println("\n                                            ╔══════════════════════════════════════════╗");
-            System.out.println("                                              ║                PLAN A TRIP               ║");
+            System.out.println("\n                                              ╔══════════════════════════════════════════╗");
+            System.out.println("                                              ║              BUDGET TRACKER              ║");
             System.out.println("                                              ╠══════════════════════════════════════════╣");
             System.out.println("                                              ║                                          ║");
             System.out.println("                                              ║    [1] Set Categories and Limits         ║");
             System.out.println("                                              ║    [2] View Total Spending               ║");
             System.out.println("                                              ║    [3] Update Spending                   ║");
-            System.out.println("                                              ║    [4] View Spending Pie Chart           ║");
+            System.out.println("                                              ║    [4] Budget Overview                   ║");
             System.out.println("                                              ║    [5] Back to Main Menu                 ║");
             System.out.println("                                              ║                                          ║");
             System.out.println("                                              ╚══════════════════════════════════════════╝");
-
 
             String choiceStr = BasicUtils.takeStringInput("Choose an option: ");
             int choice;
@@ -77,8 +76,8 @@ public class BudgetTracker {
         while (num > 0) {
             String category = BasicUtils.takeStringInput("Enter the name of category: ");
 
-            // Search for the category in a case-insensitive manner
-            String foundCategory = BasicFileUtils.search(budgetFile, category.toLowerCase());  // Convert input category to lowercase
+          
+            String foundCategory = BasicFileUtils.search(budgetFile, category.toLowerCase());  
 
             if (foundCategory != null) {
                 System.out.println("This category already exists.");
@@ -92,7 +91,7 @@ public class BudgetTracker {
                     System.out.println("Invalid amount. Try again.");
                     continue;
                 }
-                // Write the new category in lowercase to ensure uniformity
+                
                 BasicFileUtils.write(budgetFile, category.toLowerCase() + "," + limit + ",0");
                 num--;
                 System.out.println("Category and limit set successfully!");
@@ -109,9 +108,9 @@ public class BudgetTracker {
             return;
         }
 
-        System.out.println("+-----------------------+---------------------+--------------------+-----------------------+--------------------+");
-        System.out.println("|        Category       |        Budget       |      Spending     |         Remarks       |      Remaining     |");
-        System.out.println("+-----------------------+---------------------+--------------------+-----------------------+--------------------+");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("║        Category        ║        Budget       ║      Spending      ║          Remarks          ║     Remaining      ║");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
         for (String line : lines) {
             String[] parts = line.split(",");
@@ -120,41 +119,44 @@ public class BudgetTracker {
             int totalSpending = Integer.parseInt(parts[2]);
             int extra = budget - totalSpending;
 
-            // Check if the remaining amount (extra) is negative
+            String plainRemaining = String.valueOf(Math.abs(extra)); 
+            int columnWidth = 18; 
+
+            String formattedRemaining = String.format("%-" + columnWidth + "s", plainRemaining);
+            
             String remaining;
             if (extra < 0) {
-                // If negative, print the absolute value in red (without the minus sign)
-                remaining = "\u001B[31m" + Math.abs(extra) + "\u001B[0m";  // Red color for negative values without the minus sign
-                // Add "Over Budget 🚨" message after the remaining amount
-                remaining += " Over Budget 🚨";
+                
+                formattedRemaining = "\u001B[31m" + formattedRemaining + "\u001B[0m"; 
+                
             } else {
                 remaining = String.valueOf(extra);
             }
 
-            if (parts.length == 3) { // No spending recorded
-                System.out.printf("| %-21s | %-19d | %-18s | %-21s | %-18s |\n",
-                        category, budget, "0", "null", remaining);
+            if (parts.length == 3) { 
+                System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-18s ║\n",
+                        category, budget, "0", "null", formattedRemaining);
             } else {
                 for (int i = 3; i < parts.length; i++) {
                     String[] entryParts = parts[i].split("@");
-                    if (entryParts.length < 2) continue; // Skip malformed data
+                    if (entryParts.length < 2) continue; 
 
                     String remark = entryParts[0];
                     String spending = entryParts[1];
 
-                    boolean firstRow = (i == 3); // Last spending entry
+                    boolean firstRow = (i == 3); 
 
                     if (i == 3) {
-                        System.out.printf("| %-21s | %-19d | %-18s | %-21s | %-18s |\n",
-                                category, budget, spending, remark, firstRow ? remaining : 0);
+                        System.out.printf("║ %-22s ║ %-19d ║ %-18s ║ %-25s ║ %-18s ║\n",
+                                category, budget, spending, remark, firstRow ? formattedRemaining : 0);
                     } else {
-                        System.out.printf("| %-21s | %-19s | %-18s | %-21s | %-18s |\n",
-                                "", "", spending, remark, firstRow ? remaining : "");
+                        System.out.printf("║ %-22s ║ %-19s ║ %-18s ║ %-25s ║ %-18s ║\n",
+                                "", "", spending, remark, firstRow ? formattedRemaining : "");
                     }
                 }
             }
 
-            System.out.println("+-----------------------+---------------------+--------------------+-----------------------+--------------------+");
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 
@@ -201,7 +203,7 @@ public class BudgetTracker {
                     found = true;
 
                     if (updatedSpending >= budget) {
-                        System.out.println("\n⚠️ ALERT: You have reached/exceeded your spending limit for " + category + "!");
+                        System.out.println("\nALERT: You have reached/exceeded your spending limit for " + category + "!");
                         SoundUtils.playSound("src/Traveler/Itinerary_Management/Alarm/sparcle.wav");
                     }
                     break;
@@ -257,22 +259,22 @@ public class BudgetTracker {
         int[] spendingValues = new int[lines.size()];
         String[] categories = new String[lines.size()];
 
-        System.out.println("\nExpense Breakdown (Expected (░) vs. Actual Spending (█)):\n");
+        System.out.println("\nExpense Breakdown (Expected (▓) vs. Actual Spending (█)):\n");
 
         for (int i = 0; i < lines.size(); i++) {
             String[] parts = lines.get(i).split(",");
 
             try {
-                categories[i] = parts[0]; // Category name
-                spendingValues[i] = Integer.parseInt(parts[2]); // Actual spending
-                limitSpending[i] = Integer.parseInt(parts[1]); // Budget limit
+                categories[i] = parts[0]; 
+                spendingValues[i] = Integer.parseInt(parts[2]); 
+                limitSpending[i] = Integer.parseInt(parts[1]); 
             } catch (NumberFormatException e) {
-                System.out.println("⚠️ Warning: Invalid data format. Skipping entry: " + lines.get(i));
+                System.out.println("Warning: Invalid data format. Skipping entry: " + lines.get(i));
                 continue;
             }
         }
 
-        int maxBarLength = 50; // Full width of budget bar
+        int maxBarLength = 50; 
 
         for (int i = 0; i < categories.length; i++) {
             if (limitSpending[i] == 0) {
@@ -283,43 +285,42 @@ public class BudgetTracker {
 
             int percentage = (int) ((spendingValues[i] / (double) limitSpending[i]) * 100);
 
-            // Print category on a separate line
+            
             System.out.printf(categories[i]+"\n");
             System.out.printf("Spent: %-6d | Budget: %-6d | %3d%%\n",
                     spendingValues[i], limitSpending[i], percentage);
 
-            // Print expected budget bar (░)
+           
             for (int j = 0; j < maxBarLength; j++) {
-                System.out.print("░");
+                System.out.print("▓");
             }
             System.out.println();
 
-            // Print actual spending bar
+            
             if (spendingValues[i] > 0) {
                 int spendingBarLength = (percentage * maxBarLength) / 100;
 
                 if (percentage <= 100) {
-                    // Spending within budget (█)
+                    
                     for (int j = 0; j < spendingBarLength; j++) {
                         System.out.print("█");
                     }
                 } else {
-                    // Spending exceeds budget → Normal + Over-budget in red
+                   
                     for (int j = 0; j < maxBarLength; j++) {
-                        System.out.print("█"); // Normal spending within budget
+                        System.out.print("█"); 
                     }
-                    System.out.print("\u001B[31m"); // Start red color
+                    System.out.print("\u001B[31m"); 
                     for (int j = 0; j < spendingBarLength - maxBarLength; j++) {
-                        System.out.print("█"); // Over-budget spending
+                        System.out.print("█"); 
                     }
-                    System.out.print("\u001B[0m"); // Reset color
-                }
+                    System.out.print("\u001B[0m"); 
 
                 System.out.printf("  %3d%%", percentage);
 
-                // If spending exceeds budget, show alert message
+              
                 if (spendingValues[i] > limitSpending[i]) {
-                    System.out.print("  🚨 Over Budget!");
+                    System.out.print("   Over Budget!");
                 }
             }
 
@@ -328,4 +329,5 @@ public class BudgetTracker {
     }
 
 
+    }
 }

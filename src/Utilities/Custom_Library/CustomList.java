@@ -10,7 +10,7 @@ public class CustomList<T> {
         elements = new Object[DEFAULT_CAPACITY];
     }
 
-    // add elements to the list
+   
     public void add(T element) {
         if (size == elements.length) {
             resizeArray();
@@ -18,7 +18,7 @@ public class CustomList<T> {
         elements[size++] = element;
     }
 
-    // get an element by index
+   
     @SuppressWarnings("unchecked")
     public T get(int index) {
         if (index >= size || index < 0) {
@@ -27,7 +27,7 @@ public class CustomList<T> {
         return (T) elements[index];
     }
 
-    // update an element at a specific index
+    
     public void set(int index, T element) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -35,12 +35,12 @@ public class CustomList<T> {
         elements[index] = element;
     }
 
-    // return the size of the list
+    
     public int size() {
         return size;
     }
 
-    // resize the array when capacity is reached
+    
     private void resizeArray() {
         int newCapacity = elements.length * 2;
         Object[] newArray = new Object[newCapacity];

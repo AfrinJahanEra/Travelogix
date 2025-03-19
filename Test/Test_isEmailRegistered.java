@@ -10,14 +10,14 @@ class Test_isEmailRegistered {
     @Test
     public void test1(){
         Login a= new Login();
-        assertFalse(a.isEmailRegistered("ramisa@gmail.com"));
+        assertFalse(a.isEmailRegistered("era@gmail.com"));
 
     }
 
     @Test
     public void test2(){
         Login a= new Login();
-        assertTrue(a.isEmailRegistered("rina@gmail.com"));
+        assertTrue(a.isEmailRegistered("traveler@gmail.com"));
 
     }
 

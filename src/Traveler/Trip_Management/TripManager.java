@@ -25,7 +25,7 @@ public class TripManager {
             System.out.print("Start date and time  : (yyyy-MM-dd HH:mm:ss) ");
             startDate = scanner.nextLine().trim();
             if (isValidDateTime(startDate)) {
-                startDateParsed = LocalDate.parse(startDate.split(" ")[0]); // Extract date part
+                startDateParsed = LocalDate.parse(startDate.split(" ")[0]); 
                 break;
             } else {
                 System.out.println("Invalid format. Please follow the format yyyy-MM-dd HH:mm:ss.");
@@ -37,7 +37,7 @@ public class TripManager {
             System.out.print("End date and time    : (yyyy-MM-dd HH:mm:ss) ");
             endDate = scanner.nextLine().trim();
             if (isValidDateTime(endDate)) {
-                LocalDate endDateParsed = LocalDate.parse(endDate.split(" ")[0]); // Extract date part
+                LocalDate endDateParsed = LocalDate.parse(endDate.split(" ")[0]); 
                 if (!endDateParsed.isBefore(startDateParsed)) {
                     break;
                 } else {
@@ -59,7 +59,7 @@ public class TripManager {
 
 
     public void viewTripsOnCalendar() {
-        //  viewTrips();
+        
         Calendar calendar = new Calendar();
         calendar.displayTripsOnCalendar(TRIP_FILE);
     }
@@ -81,7 +81,7 @@ public class TripManager {
             while ((line = reader.readLine()) != null) {
                 String[] tripData = line.split(", ");
 
-                // Ensure data integrity
+                
                 if (tripData.length < 3) {
                     System.out.printf("║ %-3d ║ %-18s ║ %-30s ║ %-30s ║\n",
                             index, tripData[0], "INVALID DATA", "INVALID DATA");
@@ -89,7 +89,7 @@ public class TripManager {
                 }
 
                 try {
-                    // Parse and format the dates
+                    
                     LocalDateTime startDateTime = LocalDateTime.parse(tripData[1], inputFormatter);
                     LocalDateTime endDateTime = LocalDateTime.parse(tripData[2], inputFormatter);
 

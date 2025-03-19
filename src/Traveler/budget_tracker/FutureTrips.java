@@ -17,7 +17,7 @@ public class FutureTrips {
         LocalDate today = LocalDate.now();
         List<String[]> tripList = new ArrayList<>();
 
-        // Define the new formatter for the desired date format
+        
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM, yyyy hh:mm a");
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
@@ -25,9 +25,9 @@ public class FutureTrips {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\s*,\\s*");
 
-                // Ensure exactly 3 parts (destination, start, end)
+                
                 if (parts.length != 3) {
-                    continue;  // Skip malformed line without printing an error
+                    continue;  
                 }
 
                 try {
@@ -38,7 +38,7 @@ public class FutureTrips {
                         tripList.add(parts);
                     }
                 } catch (Exception e) {
-                    // Skip this trip silently if date parsing fails
+                    
                 }
             }
 
@@ -47,27 +47,27 @@ public class FutureTrips {
                 return;
             }
 
-            // Sort trips by start date
+            
             try {
                 tripList.sort(Comparator.comparing(t -> LocalDateTime.parse(t[1].trim(), formatter)));
             } catch (Exception e) {
                 System.err.println("Error sorting trips. Some data might be corrupted.");
             }
 
-            // Display trips
+            
             System.out.println("═════════════════════════════════════════════════════════════════════════════════");
             System.out.println("║ No. ║ Destination          ║ Start                   ║ End                     ║");
             System.out.println("═════════════════════════════════════════════════════════════════════════════════");
 
             int index = 1;
             for (String[] trip : tripList) {
-                // Format the start and end times
+                
                 LocalDateTime startDateTime = LocalDateTime.parse(trip[1].trim(), formatter);
                 LocalDateTime endDateTime = LocalDateTime.parse(trip[2].trim(), formatter);
                 String formattedStart = startDateTime.format(outputFormatter);
                 String formattedEnd = endDateTime.format(outputFormatter);
 
-                // Print trip details with the new formatted date and time
+                
                 System.out.printf("║ %-3d ║ %-20s ║ %-23s ║ %-23s ║\n",
                         index++, trip[0], formattedStart, formattedEnd);
             }
@@ -87,12 +87,12 @@ public class FutureTrips {
             try {
                 if (!scanner.hasNextInt()) {
                     System.out.print("Invalid input. Please enter a valid number: ");
-                    scanner.next(); // Consume invalid input
+                    scanner.next(); 
                     continue;
                 }
 
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                scanner.nextLine(); 
 
                 if (choice == 0) {
                     System.out.println("Exiting...");
@@ -102,20 +102,20 @@ public class FutureTrips {
                     System.out.println("\nManaging Budget for Trip: " + choice);
                     System.out.println("Destination: " + selectedTrip[0]);
 
-                    // Format the start and end date-times
+                    
                     LocalDateTime startDateTime = LocalDateTime.parse(selectedTrip[1].trim(), formatter);
                     LocalDateTime endDateTime = LocalDateTime.parse(selectedTrip[2].trim(), formatter);
 
-                    // Use the same formatter to display the start and end times
+                    
                     DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM, yyyy hh:mm a");
                     String formattedStart = startDateTime.format(outputFormatter);
                     String formattedEnd = endDateTime.format(outputFormatter);
 
-                    // Display formatted start and end times
+                    
                     System.out.println("Start: " + formattedStart);
                     System.out.println("End: " + formattedEnd);
 
-                    // Generate unique budget file for this trip
+                    
                     String budgetFileName = "src\\TXT_Files\\budget_" + selectedTrip[0] + "_" + selectedTrip[1].replace(" ", "_").replace(":", "-") + ".txt";
                     BudgetTracker budgetTracker = new BudgetTracker(budgetFileName);
                     budgetTracker.showBudgetOptions();
@@ -125,7 +125,7 @@ public class FutureTrips {
                 }
             } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
-                scanner.next(); // Clear invalid input
+                scanner.next(); 
             } catch (Exception e) {
                 System.err.println("An unexpected error occurred. Please try again.");
             }

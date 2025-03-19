@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Set;
 
 public class Calendar {
-    private static final String BOLD_RED = "\u001B[1;31m"; // Bold + Red text
-    private static final String RESET_COLOR = "\u001B[0m"; // Reset color to default
-    private static final String BOLD_BLUE = "\u001B[1;34m"; // Bold + blue text for overlapping dates
-    private static final int COLUMN_WIDTH = 28; // Width for each month block
+    private static final String BOLD_RED = "\u001B[1;91m"; 
+    private static final String BOLD_BLUE = "\u001B[1;34m";
+    private static final String RESET_COLOR = "\u001B[0m"; 
+    private static final int COLUMN_WIDTH = 28; 
 
     public void displayTripsOnCalendar(String tripFile) {
         Set<LocalDate> allTripDates = getAllTripDates(tripFile);
-        Set<LocalDate> overlappingDates = getOverlappingDates(tripFile);  // Identify overlapping dates
+        Set<LocalDate> overlappingDates = getOverlappingDates(tripFile);  
 
         int minYear = allTripDates.stream().mapToInt(LocalDate::getYear).min().orElse(LocalDate.now().getYear());
         int maxYear = allTripDates.stream().mapToInt(LocalDate::getYear).max().orElse(LocalDate.now().getYear());
@@ -28,11 +28,17 @@ public class Calendar {
 
             List<String[]> months = new ArrayList<>();
             for (int month = 1; month <= 12; month++) {
-                months.add(getMonthCalendar(YearMonth.of(year, month), allTripDates, overlappingDates));
+                YearMonth currentYearMonth = YearMonth.of(year, month);
+                Set<LocalDate> tripDatesInMonth = getTripDatesInMonth(currentYearMonth, allTripDates);
+
+                
+                if (!tripDatesInMonth.isEmpty()) {
+                    months.add(getMonthCalendar(currentYearMonth, allTripDates, overlappingDates));
+                }
             }
 
-            // Print 3 months per row
-            for (int row = 0; row < 4; row++) {
+            
+            for (int row = 0; row < (months.size() + 2) / 3; row++) {
                 printRowOfMonths(months, row);
             }
         }
@@ -42,13 +48,14 @@ public class Calendar {
         int startIndex = row * 3;
         int endIndex = Math.min(startIndex + 3, months.size());
 
-        for (int line = 0; line < 9; line++) { // 9 lines per month block
+        for (int line = 0; line < 9; line++) { 
             for (int i = startIndex; i < endIndex; i++) {
-                System.out.print("| " + padRight(months.get(i)[line], COLUMN_WIDTH) + " ");
+                System.out.print("║ " + padRight(months.get(i)[line], COLUMN_WIDTH) + "");
             }
-            System.out.println("|");
+            System.out.println("║");
         }
-        System.out.println("+" + "-".repeat(COLUMN_WIDTH + 2).repeat(3) + "+");
+        System.out.println("═".repeat(COLUMN_WIDTH + 2).repeat(endIndex - startIndex) + "═");
+
     }
 
     private String[] getMonthCalendar(YearMonth yearMonth, Set<LocalDate> allTripDates, Set<LocalDate> overlappingDates) {
@@ -60,45 +67,56 @@ public class Calendar {
         int daysInMonth = yearMonth.lengthOfMonth();
 
         StringBuilder week = new StringBuilder("    ".repeat(firstDayOfMonth));
-        int printedDays = firstDayOfMonth;  // Tracks number of printed day slots
+        int printedDays = firstDayOfMonth;  
 
         for (int day = 1; day <= daysInMonth; day++) {
             LocalDate date = yearMonth.atDay(day);
 
-            // If the date is a trip date
+            
             if (allTripDates.contains(date)) {
-                // If it's an overlapping date, replace with red bold "XX"
+                
                 if (overlappingDates.contains(date)) {
-                    // Print "XX" in red and bold, padded to occupy 4 spaces
-                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  // "XX" in red bold occupies 4 spaces
+                    
+                    week.append(String.format(BOLD_BLUE + "%-4s" + RESET_COLOR, "XX"));  
                 } else {
-                    // Non-overlapping date: print in bold red
+                    
                     week.append(String.format(BOLD_RED + "%2d  " + RESET_COLOR, day));
                 }
             } else {
-                week.append(String.format("%2d  ", day)); // Regular date (not part of any trip)
+                week.append(String.format("%2d  ", day)); 
             }
 
             printedDays++;
 
-            // Handle end-of-week or end-of-month scenarios
+            
             if (printedDays % 7 == 0 || day == daysInMonth) {
-                // Fill remaining spaces if it's the last row
+                
                 int remainingDays = 7 - (printedDays % 7 == 0 ? 7 : printedDays % 7);
                 week.append("    ".repeat(remainingDays));
 
                 lines.add(week.toString());
                 week.setLength(0);
-                printedDays = 0; // Reset counter for the next row
+                printedDays = 0; 
             }
         }
 
-        // Ensure the month block always has 9 lines
+       
         while (lines.size() < 9) {
             lines.add(" ".repeat(COLUMN_WIDTH));
         }
 
         return lines.toArray(new String[0]);
+    }
+
+
+    private Set<LocalDate> getTripDatesInMonth(YearMonth yearMonth, Set<LocalDate> allTripDates) {
+        Set<LocalDate> tripDatesInMonth = new HashSet<>();
+        for (LocalDate date : allTripDates) {
+            if (date.getYear() == yearMonth.getYear() && date.getMonth() == yearMonth.getMonth()) {
+                tripDatesInMonth.add(date);
+            }
+        }
+        return tripDatesInMonth;
     }
 
     private Set<LocalDate> getAllTripDates(String tripFile) {
@@ -146,7 +164,7 @@ public class Calendar {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
-        // Find overlapping dates
+        
         for (int i = 0; i < trips.size(); i++) {
             for (int j = i + 1; j < trips.size(); j++) {
                 overlappingDates.addAll(trips.get(i).getOverlappingDates(trips.get(j)));
@@ -187,3 +205,4 @@ public class Calendar {
         }
     }
 }
+

@@ -29,7 +29,7 @@ public class TravelerDashboard {
             System.out.println("                                    ║                           TRAVELER DASHBOARD                       ║");
             System.out.println("                                    ╠════════════════════════════════════════════════════════════════════╣");
             System.out.println("                                    ║                                                                    ║");
-            System.out.println("                                    ║    [1] Plan Your Trips                                             ║");
+            System.out.println("                                    ║    [1] Plan My Trips                                               ║");
             System.out.println("                                    ║    [2] Trips & Past Activities                                     ║");
             System.out.println("                                    ║    [3] Delete Account                                              ║");
             System.out.println("                                    ║    [4] Log Out                                                     ║");
@@ -110,7 +110,7 @@ public class TravelerDashboard {
             clearTerminal();
 
             System.out.println("\n                                            ╔══════════════════════════════════════════╗");
-            System.out.println("                                            ║                PLAN A TRIP               ║");
+            System.out.println("                                            ║               Plan My Trips              ║");
             System.out.println("                                            ╠══════════════════════════════════════════╣");
             System.out.println("                                            ║                                          ║");
             System.out.println("                                            ║    [1] Add a Trip                        ║");

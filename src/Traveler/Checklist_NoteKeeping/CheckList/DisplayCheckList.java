@@ -1,13 +1,9 @@
 package Traveler.Checklist_NoteKeeping.CheckList;
 
-public class DisplayCheckList //extends Checklist
+public class DisplayCheckList 
 {
 
-    // @Override
-    // public void manageChecklist() {
-    //     displayChecklist(this);
-    // }
-
+   
     public void displayChecklist(Checklist checklist) {
         System.out.println("\n--- Checklist ---");
         for (int i = 0; i < checklist.getItems().size(); i++) {

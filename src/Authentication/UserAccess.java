@@ -25,7 +25,7 @@ public class UserAccess {
             System.out.println("                                        ║           Main Menu                ║");
             System.out.println("                                        ╠════════════════════════════════════╣");
             System.out.println("                                        ║           1. Login                 ║");
-            System.out.println("                                        ║           2. Create an Account     ║");
+            System.out.println("                                        ║           2. Create Account        ║");
             System.out.println("                                        ║           3. How to Use            ║");
             System.out.println("                                        ║           0. Exit                  ║");
             System.out.println("                                        ╚════════════════════════════════════╝");
@@ -164,17 +164,17 @@ public class UserAccess {
                 "█    █ "
         };
 
-        // Prepare ASCII art for the input message
-        String[] rows = new String[5]; // Each letter has 5 rows
+     
+        String[] rows = new String[5]; 
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = ""; // Initialize rows
+            rows[i] = ""; 
         }
 
         for (char c : message.toUpperCase().toCharArray()) {
             if (c >= 'A' && c <= 'Z') {
                 String[] letterArt = alphabet[c - 'A'];
                 for (int i = 0; i < rows.length; i++) {
-                    rows[i] += letterArt[i] + "  "; // Add spacing between letters
+                    rows[i] += letterArt[i] + "  "; 
                 }
             }
         }

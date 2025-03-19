@@ -12,14 +12,14 @@ class Test_getUserRole {
     @Test
     public void test1(){
         DeleteAccount a= new DeleteAccount();
-        assertEquals("Traveler",a.getUserRole("rahim@gmail.com"));
+        assertEquals("Traveler",a.getUserRole("traveler@gmail.com"));
 
     }
 
     @Test
     public void test2(){
         DeleteAccount a= new DeleteAccount();
-        assertEquals("Admin",a.getUserRole("kadir@gmail.com"));
+        assertEquals("Admin",a.getUserRole("admin@gmail.com"));
 
     }
 }

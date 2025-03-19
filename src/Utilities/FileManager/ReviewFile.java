@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ReviewFile {
 
-    // Method to load reviews from file
+    
     public List<String> loadReviewsFromFile(String filename) {
         List<String> reviews = new ArrayList<>();
 
@@ -31,14 +31,14 @@ public class ReviewFile {
         return reviews;
     }
 
-    // save a comment to the file under the specific review
+    
     public void saveCommentToFile(String filename, int reviewIndex, String comment) {
         List<String> reviews = loadReviewsFromFile(filename);
 
         if (reviewIndex >= 0 && reviewIndex < reviews.size()) {
             String reviewWithComment = reviews.get(reviewIndex) + " [Comment: " + comment + "]";
 
-            // Update the review with the comment
+            
             reviews.set(reviewIndex, reviewWithComment);
 
             try (FileWriter writer = new FileWriter(filename)) {

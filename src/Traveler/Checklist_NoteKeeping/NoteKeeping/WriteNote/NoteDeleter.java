@@ -29,11 +29,11 @@ public class NoteDeleter {
 
             int noteNumber = getNoteNumber(notes.size());
             String[] selectedNote = notes.get(noteNumber - 1);
-            File noteFile = new File("notes/" + selectedNote[0]); // Access note file name properly
+            File noteFile = new File("notes/" + selectedNote[0]); 
 
             if (noteFile.exists() && noteFile.delete()) {
                 System.out.println("Note '" + selectedNote[0] + "' deleted successfully.");
-                notes.remove(noteNumber - 1); // Directly remove the note from the list
+                notes.remove(noteNumber - 1); 
             } else {
                 System.out.println("Error deleting the note. Make sure the file exists and is not locked.");
             }

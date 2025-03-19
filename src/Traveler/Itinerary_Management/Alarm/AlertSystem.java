@@ -16,21 +16,21 @@ public class AlertSystem {
     public void alertSystem() {
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt user for date, time, and message
+        
         System.out.print("Enter reminder date and time (yyyy-MM-dd HH:mm:ss): ");
         String inputDateTime = scanner.nextLine();
 
         System.out.print("Enter reminder message: ");
         String message = scanner.nextLine();
 
-        // Parse date and time
+        
         Date alertDate = DateUtils.parseDateTime(inputDateTime);
 
         if (alertDate != null) {
             System.out.println("Reminder set for: " + inputDateTime);
             saveToHistory(inputDateTime, message);
             AlertUtils.waitForAlert(alertDate, message);
-            SoundUtils.playSound(SOUND_FILE_PATH); // Play sound when time is reached
+            SoundUtils.playSound(SOUND_FILE_PATH); 
         } else {
             System.out.println("Invalid date and time format. Please use yyyy-MM-dd HH:mm:ss.");
         }

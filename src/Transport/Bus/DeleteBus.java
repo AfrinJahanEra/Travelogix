@@ -48,7 +48,7 @@ public class DeleteBus {
             System.out.println("Bus deletion successful.");
         } else {
             System.out.println("Bus with number plate " + numberPlate + " not found. Please try again.");
-            numberPlate(); // Retry deletion
+            numberPlate(); 
         }
     }
 }

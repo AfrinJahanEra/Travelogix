@@ -36,7 +36,7 @@ public class AudioUtils {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
 
-            // Record audio indefinitely until isRecording is set to false
+            
             while (recorder.isRecording()) {
                 int bytesRead = line.read(buffer, 0, buffer.length);
                 out.write(buffer, 0, bytesRead);

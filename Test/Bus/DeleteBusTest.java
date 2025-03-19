@@ -15,37 +15,32 @@ class DeleteBusTest {
 
     @Test
     void testDeleteBus_BusFound() throws IOException {
-        // Arrange
+      
         File tempFile = createTempFileWithContent("Bus1,ModelX,50,AC,1234\nBus2,ModelY,45,NonAC,5678\n");
         DeleteBus deleteBus = new DeleteBus(tempFile.getAbsolutePath());
 
-        // Act
+      
         deleteBus.deleteBus("5678");
 
-        // Assert
         String updatedContent = Files.readString(tempFile.toPath());
         assertTrue(updatedContent.contains("Bus1,ModelX,50,AC,1234"));
         assertFalse(updatedContent.contains("Bus2,ModelY,45,NonAC,5678"));
 
-        // Clean up
         tempFile.delete();
     }
 
     @Test
     void testDeleteBus_BusNotFound() throws IOException {
-        // Arrange
+        
         File tempFile = createTempFileWithContent("Bus1,ModelX,50,AC,1234\nBus2,ModelY,45,NonAC,5678\n");
         DeleteBus deleteBus = new DeleteBus(tempFile.getAbsolutePath());
 
-        // Act
         deleteBus.deleteBus("9999");
 
-        // Assert
         String updatedContent = Files.readString(tempFile.toPath());
         assertTrue(updatedContent.contains("Bus1,ModelX,50,AC,1234"));
         assertTrue(updatedContent.contains("Bus2,ModelY,45,NonAC,5678"));
 
-        // Clean up
         tempFile.delete();
     }
 

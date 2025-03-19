@@ -54,9 +54,9 @@ public class TransportDashboard {
         System.out.println("                                              ║            TRANSPORT DASHBOARD         ║");
         System.out.println("                                              ╠════════════════════════════════════════╣");
         System.out.println("                                              ║                                        ║");
-        System.out.println("                                              ║    [1] Add Bus                         ║");
-        System.out.println("                                              ║    [2] View Bus List                   ║");
-        System.out.println("                                              ║    [3] Bus Options                     ║");
+        System.out.println("                                              ║    [1] Add a Bus                       ║");
+        System.out.println("                                              ║    [2] View Available Buses            ║");
+        System.out.println("                                              ║    [3] Manage Bus Services             ║");
         System.out.println("                                              ║    [4] Delete Account                  ║");
         System.out.println("                                              ║    [5] Log Out                         ║");
         System.out.println("                                              ║                                        ║");
@@ -77,28 +77,18 @@ public class TransportDashboard {
         ViewBusList viewBusList = new ViewBusList("src\\TXT_Files\\bus.txt");
 
         System.out.println("\n                                              ╔══════════════════════════════════════════╗");
-        System.out.println("                                              ║               VIEW BUS LIST              ║");
+        System.out.println("                                              ║               VIEW AVAILABLE BUSES       ║");
         System.out.println("                                              ╠══════════════════════════════════════════╣");
         System.out.println("                                              ║                                          ║");
-        System.out.println("                                              ║    View by:                              ║");
+        System.out.println("                                              ║    View Available Bus list by:           ║");
+        System.out.println("                                              ║                                          ║");
         System.out.println("                                              ║    [n] Number Plate                      ║");
         System.out.println("                                              ║    [s] Starting Location                 ║");
-        System.out.println("                                              ║    [e] Ending Location                   ║");
+        System.out.println("                                              ║    [e] Destination                       ║");
         System.out.println("                                              ║                                          ║");
         System.out.println("                                              ╚══════════════════════════════════════════╝");
 
-        // String s = sc.next().trim();
-
-        // switch (s.toLowerCase()) {
-        //     case "n" -> System.out.println(viewBusList.list(4));
-        //     case "s" -> System.out.println(viewBusList.list(1));
-        //     case "e" -> System.out.println(viewBusList.list(2));
-        //     default -> {
-        //         System.out.println("\n");
-        //         System.out.println("Invalid input! Please enter 'n',");
-        //         System.out.println("'s', or 'e'.                    ");
-        //     }
-        // }
+        
         String input = getValidStringInput("Enter your choice: ", "[nNsSeE]");
 
         switch (input.toLowerCase()) {
@@ -114,13 +104,13 @@ public class TransportDashboard {
         clearTerminal();
 
         System.out.println("\n                                              ╔══════════════════════════════════════════╗");
-        System.out.println("                                              ║               BUS OPTIONS                ║");
+        System.out.println("                                              ║               MANAGE BUS SERVICES        ║");
         System.out.println("                                              ╠══════════════════════════════════════════╣");
         System.out.println("                                              ║                                          ║");
-        System.out.println("                                              ║    [v] View Bus Details                  ║");
-        System.out.println("                                              ║    [e] Edit Bus Details                  ║");
-        System.out.println("                                              ║    [b] Book a Seat                       ║");
-        System.out.println("                                              ║    [d] Delete Bus                        ║");
+        System.out.println("                                              ║    [v] Check Bus Info                    ║");
+        System.out.println("                                              ║    [e] Update Bus Details                ║");
+        System.out.println("                                              ║    [b] Reserve Seat                      ║");
+        System.out.println("                                              ║    [d] Delete a Bus                      ║");
         System.out.println("                                              ║                                          ║");
         System.out.println("                                              ╚══════════════════════════════════════════╝");
 
@@ -129,25 +119,25 @@ public class TransportDashboard {
         switch (s.toLowerCase()) {
             case "v" -> {
                 System.out.println("\n"); 
-                System.out.println("             Viewing Bus Details             ");
+                System.out.println("                Check Bus Info               ");
                 System.out.println("═════════════════════════════════════════════\n");
                 new ViewBusDetails("src\\TXT_Files\\bus.txt").numberPlate();
             }
             case "e" -> {
                 System.out.println("\n");
-                System.out.println("             Editing Bus Details             ");
+                System.out.println("             Update Bus Details              ");
                 System.out.println("═════════════════════════════════════════════\n");
                 new EditBus("src\\TXT_Files\\bus.txt").numberPlate();
             }
             case "b" -> {
                 System.out.println("\n");
-                System.out.println("                Booking a Seat                  ");
+                System.out.println("                Reserve Seat                 ");
                 System.out.println("═════════════════════════════════════════════\n");
                 new SeatBooking("src\\TXT_Files\\bus.txt").initiateBooking();
             }
             case "d" -> {
                 System.out.println("\n");
-                System.out.println("                  Deleting Bus                   ");
+                System.out.println("                 Delete a Bus                ");
                 System.out.println("═════════════════════════════════════════════\n");
                 new DeleteBus("src\\TXT_Files\\bus.txt").numberPlate();
             }
@@ -179,7 +169,7 @@ public class TransportDashboard {
                 return sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
-                sc.next(); // Clear invalid input
+                sc.next(); 
             }
         }
     }
@@ -199,7 +189,7 @@ public class TransportDashboard {
     private void waitForEnterKey() {
         System.out.println("\nPress ENTER to continue...");
         Scanner enterScanner = new Scanner(System.in);
-        enterScanner.nextLine(); // Waits for the ENTER key press
+        enterScanner.nextLine(); 
     }
 
     private void clearTerminal() {
