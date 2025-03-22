@@ -20,3 +20,4 @@ Purbasha,Dhaka,Khulna,11:00 PM,KHU-14,+880-1933445550,5,5,1A,1B
 Anabil,Dhaka,Sylhet,03:00 AM,KHU-23,+880-1822337770,5,5,1A,2B,2C
 dhaka,gazipur,dhaka,09:00,gaz-45,+880-1266778880,6,4,1A,4B,5C,1B
 anabil,dhaka,gazipur,09:00,gaz-00,+880-1922339990,6,4,1A,1B
+anabil,dhaka,gazipur,09:00,yu-00,+880-1922889990,6,4,1A,1B,2C
