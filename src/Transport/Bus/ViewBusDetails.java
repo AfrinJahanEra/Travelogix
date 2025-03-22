@@ -34,9 +34,9 @@ public class ViewBusDetails {
                 output.append("                 BUS DETAILS                  \n");
                 output.append("═════════════════════════════════════════════\n");
                 output.append(String.format("%-25s: %s\n", "Bus Name", parts[0].trim()));
-                output.append(String.format("%-25s: %s\n", "Starting Location", parts[1].trim()));
-                output.append(String.format("%-25s: %s\n", "Ending Location", parts[2].trim()));
-                output.append(String.format("%-25s: %s\n", "Starting Time", parts[3].trim()));
+                output.append(String.format("%-25s: %s\n", "Departure From", parts[1].trim()));
+                output.append(String.format("%-25s: %s\n", "Destination", parts[2].trim()));
+                output.append(String.format("%-25s: %s\n", "Departure Time", parts[3].trim()));
                 output.append(String.format("%-25s: %s\n", "Number Plate", parts[4].trim()));
                 output.append(String.format("%-25s: %s\n", "Contact Number", parts[5].trim()));
                 output.append("═════════════════════════════════════════════\n");

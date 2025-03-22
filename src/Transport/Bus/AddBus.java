@@ -26,20 +26,20 @@ public class AddBus {
         StringBuilder s = new StringBuilder();
         Scanner sc = new Scanner(System.in);
 
-        System.out.printf("%-40s: ", "Enter bus name");
+        System.out.printf("%-40s: ", "Enter Bus Name");
         busName = sc.nextLine();
         s.append(busName).append(",");
 
-        System.out.printf("%-40s: ", "Enter starting location");
+        System.out.printf("%-40s: ", "Enter Departure Location");
         startingLocation = sc.nextLine();
         s.append(startingLocation).append(",");
 
-        System.out.printf("%-40s: ", "Enter ending location");
+        System.out.printf("%-40s: ", "Enter Destination");
         endingLocation = sc.nextLine();
         s.append(endingLocation).append(",");
 
         while (true) {
-            System.out.printf("%-40s: ", "Enter starting time (HH:MM)");
+            System.out.printf("%-40s: ", "Enter Departure Time in 24-hour format (HH:MM)");
             startingTime = sc.nextLine();
             if (startingTime.matches("^(?:[01]\\d|2[0-3]):[0-5]\\d$")) {
                 s.append(startingTime).append(",");
@@ -50,7 +50,7 @@ public class AddBus {
         }
 
         while (true) {
-            System.out.printf("%-40s: ", "Enter number plate (unique)");
+            System.out.printf("%-40s: ", "Enter Number Plate (unique)");
             numberPlate = sc.nextLine();
             if (isNumberPlateUnique(numberPlate)) {
                 s.append(numberPlate).append(",");
@@ -61,18 +61,18 @@ public class AddBus {
         }
 
         while (true) {
-            System.out.printf("%-40s: ", "Enter phone number (+880-XXXXXXXXXX)");
+            System.out.printf("%-40s: ", "Enter Contact Number (+880-XXXXXXXXXX)");
             phoneNumber = sc.nextLine();
             if (phoneNumber.matches("^\\+880-\\d{10}$")) {
                 s.append(phoneNumber).append(",");
                 break;
             } else {
-                System.out.println("Invalid phone number format. Please enter in +880-XXXXXXXXXX format.");
+                System.out.println("Invalid Contact Number Format. Please enter in +880-XXXXXXXXXX format.");
             }
         }
 
         while (true) {
-            System.out.printf("%-40s: ", "Enter row numbers");
+            System.out.printf("%-40s: ", "Enter Row numbers");
             try {
                 row = sc.nextInt();
                 if (row > 0) {
@@ -88,7 +88,7 @@ public class AddBus {
         }
 
         while (true) {
-            System.out.printf("%-40s: ", "Enter column numbers");
+            System.out.printf("%-40s: ", "Enter Column numbers");
             try {
                 col = sc.nextInt();
                 if (col > 0) {

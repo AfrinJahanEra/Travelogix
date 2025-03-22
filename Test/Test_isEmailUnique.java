@@ -1,4 +1,3 @@
-package Test;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,19 +6,19 @@ import Authentication.Authentication;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class Test_isValidUser {
+class Test_isEmailUnique {
     
     @Test
     public void test1(){
         Authentication a= new Authentication();
-        assertTrue(a.isValidUser("sharley@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
+        assertTrue(a.isEmailUnique("ramisa@gmail.com"));
 
     }
 
     @Test
     public void test2(){
         Authentication a= new Authentication();
-        assertTrue(a.isValidUser("rina@gmail.com", "25d55ad283aa400af464c76d713c07ad"));
+        assertTrue(a.isEmailUnique("rina@gmail.com"));
 
     }
 

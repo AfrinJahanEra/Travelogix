@@ -17,7 +17,7 @@ public class UserAccess {
     public void start() throws NoSuchAlgorithmException, IOException {
         Scanner scanner = new Scanner(System.in);
 
-        // Welcome Message
+        
         printTitle("TRAVELOGIX");
 
         while (true) {
@@ -33,33 +33,33 @@ public class UserAccess {
             boolean validInput = false;
             int choice = -1;
 
-            // Keep prompting until a valid choice is entered
+            
             while (!validInput) {
                 try {
                     System.err.println("Enter your choice:");
                     choice = scanner.nextInt();
-                    scanner.nextLine(); // Clear buffer
+                    scanner.nextLine(); 
 
                     if (choice >= 0 && choice <= 3) {
-                        validInput = true; // Break out of the loop if the input is valid
+                        validInput = true;
                     } else {
                         System.out.println("\nInvalid option! Please enter 1, 2, or 0.");
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("\nInvalid input! Please enter a number.");
-                    scanner.nextLine(); // Clear invalid input
+                    scanner.nextLine();
                 }
             }
 
-            // Handling valid input cases
+            
             switch (choice) {
                 case 1:
                     System.out.println("\nLogging you in...");
-                    in.logIn(); // Call login method
+                    in.logIn();
                     break;
                 case 2:
                     System.out.println("\nStarting Sign Up...");
-                    out.signUp(); // Call sign up method
+                    out.signUp(); 
                     break;
 
                 case 3:
@@ -73,7 +73,7 @@ public class UserAccess {
                 case 0:
                     System.out.println("\nThank you for using Travelogix. Goodbye!");
                     scanner.close();
-                    System.exit(0); // Exit the program
+                    System.exit(0);
                     break;
             }
         }
@@ -89,9 +89,9 @@ public class UserAccess {
 
 
     private void printTitle(String message) {
-        clearTerminal(); // Clear the terminal before displaying the title
+        clearTerminal();
 
-        // Define small ASCII art for each letter
+    
         String[][] alphabet = new String[26][];
         alphabet['T' - 'A'] = new String[] {
                 "███████",

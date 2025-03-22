@@ -24,11 +24,11 @@ public class PastHistoryDashboard {
             clearTerminal();
 
             System.out.println("\n                                      ╔══════════════════════════════════════════╗");
-            System.out.println("                                      ║                PLAN A TRIP               ║");
+            System.out.println("                                      ║         TRIPS & PAST ACTIVITIES          ║");
             System.out.println("                                      ╠══════════════════════════════════════════╣");
             System.out.println("                                      ║                                          ║");
-            System.out.println("                                      ║    [1] View all Trips                    ║");
-            System.out.println("                                      ║    [2] Year Wise Past Trips              ║");
+            System.out.println("                                      ║    [1] All Trips                         ║");
+            System.out.println("                                      ║    [2] Year Wise Trips                   ║");
             System.out.println("                                      ║    [3] Back to Main Menu                 ║");
             System.out.println("                                      ║                                          ║");
             System.out.println("                                      ╚══════════════════════════════════════════╝");

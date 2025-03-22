@@ -32,8 +32,17 @@ public class EditBus {
             String[] parts = line.split(",");
 
             if (parts[4].trim().equals(numberPlate)) {
-                busFound = true;
-                System.out.println("Current details: " + line);
+                busFound = true;           
+                System.out.println("                                                             Current details: ");
+                System.out.print("                                               ═════════════════════════════════════════════\n");
+                String[] busparts = line.split(",");    
+
+                System.out.print(String.format("                                               %-25s: %s\n", "Bus Name", busparts[0].trim()));
+                System.out.print(String.format("                                               %-25s: %s\n", "Starting Location", busparts[1].trim()));
+                System.out.print(String.format("                                               %-25s: %s\n", "Ending Location", busparts[2].trim()));
+                System.out.print(String.format("                                               %-25s: %s\n", "Starting Time", busparts[3].trim()));
+                System.out.print(String.format("                                               %-25s: %s\n", "Number Plate", busparts[4].trim()));
+                System.out.println(String.format("                                               %-25s: %s\n", "Contact Number", busparts[5].trim()));
 
                 updateDetail("Enter new bus name", parts, 0, sc);
                 updateDetail("Enter new starting location", parts, 1, sc);
